@@ -6,7 +6,8 @@
     "main": "index.js",
     "scripts": {
         "format": "prettier --write \"**/*.{js,jsx,json,css}\"",
-        "lint": "eslint ."
+        "lint": "eslint .",
+        "verify-data": "node scripts/verify-data.js"
     },
     "devDependencies": {
         "@eslint/js": "^10.0.1",
