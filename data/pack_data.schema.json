@@ -105,16 +105,6 @@
                 }
             }
         },
-        "choiceOption": {
-            "type": "object",
-            "required": ["contains"],
-            "additionalProperties": false,
-            "properties": {
-                "contains": {
-                    "$ref": "#/definitions/itemQuantities"
-                }
-            }
-        },
         "choicePool": {
             "type": "object",
             "required": ["choices"],
@@ -128,9 +118,9 @@
                 "choices": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/choiceOption"
+                        "$ref": "#/definitions/itemQuantities"
                     },
-                    "minItems": 1
+                    "minItems": 2
                 }
             }
         },

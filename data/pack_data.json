@@ -344,19 +344,13 @@
                 "select_count": 1,
                 "choices": [
                     {
-                        "contains": {
-                            "grain": 10000
-                        }
+                        "grain": 10000
                     },
                     {
-                        "contains": {
-                            "timber": 10000
-                        }
+                        "timber": 10000
                     },
                     {
-                        "contains": {
-                            "herbs": 6000
-                        }
+                        "herbs": 6000
                     }
                 ]
             }
@@ -369,19 +363,13 @@
                 "select_count": 1,
                 "choices": [
                     {
-                        "contains": {
-                            "grain": 169090
-                        }
+                        "grain": 169090
                     },
                     {
-                        "contains": {
-                            "timber": 169090
-                        }
+                        "timber": 169090
                     },
                     {
-                        "contains": {
-                            "herbs": 108470
-                        }
+                        "herbs": 108470
                     }
                 ]
             }
@@ -394,19 +382,13 @@
                 "select_count": 1,
                 "choices": [
                     {
-                        "contains": {
-                            "grain": 1352660
-                        }
+                        "grain": 1352660
                     },
                     {
-                        "contains": {
-                            "timber": 1352660
-                        }
+                        "timber": 1352660
                     },
                     {
-                        "contains": {
-                            "herbs": 867720
-                        }
+                        "herbs": 867720
                     }
                 ]
             }
@@ -419,19 +401,13 @@
                 "select_count": 1,
                 "choices": [
                     {
-                        "contains": {
-                            "grain": 4057980
-                        }
+                        "grain": 4057980
                     },
                     {
-                        "contains": {
-                            "timber": 4057980
-                        }
+                        "timber": 4057980
                     },
                     {
-                        "contains": {
-                            "herbs": 2603150
-                        }
+                        "herbs": 2603150
                     }
                 ]
             }
@@ -1532,24 +1508,16 @@
                 "select_count": 2,
                 "choices": [
                     {
-                        "contains": {
-                            "raven_essence": 70
-                        }
+                        "raven_essence": 70
                     },
                     {
-                        "contains": {
-                            "resource_supply_ur": 14
-                        }
+                        "resource_supply_ur": 14
                     },
                     {
-                        "contains": {
-                            "speedup": 3780
-                        }
+                        "speedup": 3780
                     },
                     {
-                        "contains": {
-                            "gearstone": 7000
-                        }
+                        "gearstone": 7000
                     }
                 ]
             }
@@ -1574,24 +1542,16 @@
                 "select_count": 4,
                 "choices": [
                     {
-                        "contains": {
-                            "raven_essence": 70
-                        }
+                        "raven_essence": 70
                     },
                     {
-                        "contains": {
-                            "resource_supply_ur": 14
-                        }
+                        "resource_supply_ur": 14
                     },
                     {
-                        "contains": {
-                            "speedup": 3780
-                        }
+                        "speedup": 3780
                     },
                     {
-                        "contains": {
-                            "gearstone": 7000
-                        }
+                        "gearstone": 7000
                     }
                 ]
             }
