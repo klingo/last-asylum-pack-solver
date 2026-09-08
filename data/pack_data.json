@@ -2534,6 +2534,152 @@
                     "quantity": 1
                 }
             ]
+        },
+        "weekly_special_t1": {
+            "name": "Weekly Special (T1)",
+            "category": "Special",
+            "price": 499,
+            "deal_percentage": 9870,
+            "purchase_limit": 1,
+            "limit_type": "weekly",
+            "tier": 1,
+            "requires": null,
+            "contains": [
+                {
+                    "item_id": "diamonds",
+                    "quantity": 500
+                },
+                {
+                    "item_id": "ur_hero_omni_shard",
+                    "quantity": 8
+                },
+                {
+                    "item_id": "survivor_recruit_ticket",
+                    "quantity": 2
+                },
+                {
+                    "item_id": "vip_points",
+                    "quantity": 500
+                },
+                {
+                    "item_id": "lv2_alliance_chest",
+                    "quantity": 1
+                }
+            ],
+            "choice": {
+                "select_count": 2,
+                "choices": [
+                    {
+                        "option_name": "Raven Essence",
+                        "contains": [
+                            {
+                                "item_id": "raven_essence",
+                                "quantity": 70
+                            }
+                        ]
+                    },
+                    {
+                        "option_name": "Resource Supply (UR)",
+                        "contains": [
+                            {
+                                "item_id": "resource_supply_ur",
+                                "quantity": 14
+                            }
+                        ]
+                    },
+                    {
+                        "option_name": "Speedup",
+                        "contains": [
+                            {
+                                "item_id": "speedup",
+                                "quantity": 3780
+                            }
+                        ]
+                    },
+                    {
+                        "option_name": "Gearstone",
+                        "contains": [
+                            {
+                                "item_id": "gearstone",
+                                "quantity": 7000
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        "weekly_special_t2": {
+            "name": "Weekly Special (T2)",
+            "category": "Special",
+            "price": 499,
+            "deal_percentage": 8530,
+            "purchase_limit": 1,
+            "limit_type": "weekly",
+            "tier": 2,
+            "requires": "weekly_special_t1",
+            "contains": [
+                {
+                    "item_id": "diamonds",
+                    "quantity": 1000
+                },
+                {
+                    "item_id": "ur_hero_omni_shard",
+                    "quantity": 8
+                },
+                {
+                    "item_id": "survivor_recruit_ticket",
+                    "quantity": 2
+                },
+                {
+                    "item_id": "vip_points",
+                    "quantity": 1000
+                },
+                {
+                    "item_id": "lv3_alliance_chest",
+                    "quantity": 1
+                }
+            ],
+            "choice": {
+                "select_count": 4,
+                "choices": [
+                    {
+                        "option_name": "Raven Essence",
+                        "contains": [
+                            {
+                                "item_id": "raven_essence",
+                                "quantity": 70
+                            }
+                        ]
+                    },
+                    {
+                        "option_name": "Resource Supply (UR)",
+                        "contains": [
+                            {
+                                "item_id": "resource_supply_ur",
+                                "quantity": 14
+                            }
+                        ]
+                    },
+                    {
+                        "option_name": "Speedup",
+                        "contains": [
+                            {
+                                "item_id": "speedup",
+                                "quantity": 3780
+                            }
+                        ]
+                    },
+                    {
+                        "option_name": "Gearstone",
+                        "contains": [
+                            {
+                                "item_id": "gearstone",
+                                "quantity": 7000
+                            }
+                        ]
+                    }
+                ]
+            }
         }
     },
     "exchange_shops": {
