@@ -1,4 +1,5 @@
 {
+    "data/pack_data.json": ["node scripts/update-last-updated.js"],
     "*.{js,jsx,ts,tsx}": "eslint",
     "*.{js,jsx,ts,tsx,json,css,less}": "prettier --write"
 }
