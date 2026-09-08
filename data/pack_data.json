@@ -94,6 +94,14 @@
                 }
             ]
         },
+        "brass": {
+            "name": "Brass",
+            "category": "Gear"
+        },
+        "cloth": {
+            "name": "Cloth",
+            "category": "Gear"
+        },
         "diamonds": {
             "name": "Diamonds",
             "category": "Resource"
@@ -217,6 +225,10 @@
                     "probability": 0.5
                 }
             ]
+        },
+        "leather": {
+            "name": "Leather",
+            "category": "Gear"
         },
         "lv1_alliance_chest": {
             "name": "Lv.1 Alliance Chest",
@@ -355,6 +367,10 @@
         "recruit_ticket": {
             "name": "Recruit Ticket",
             "category": "Hero"
+        },
+        "refined_iron": {
+            "name": "Refined Iron",
+            "category": "Gear"
         },
         "research_speedup": {
             "name": "Research Speedup",
@@ -504,6 +520,10 @@
         "survivor_recruit_ticket": {
             "name": "Survivor Recruit Ticket",
             "category": "Hero"
+        },
+        "tempered_steel": {
+            "name": "Tempered Steel",
+            "category": "Gear"
         },
         "timber": {
             "name": "Timber",
@@ -1320,7 +1340,7 @@
             "contains": {
                 "diamonds": 5000,
                 "raven_essence": 150,
-                "raven_fruits": 400000,
+                "raven_fruit": 400000,
                 "resource_supply_general": 40,
                 "vip_points": 5000,
                 "lv5_alliance_chest": 1
@@ -1359,7 +1379,7 @@
                 "lv5_raven_gear_choice_chest": 1,
                 "lv5_raven_gear_chest": 1,
                 "lv3_raven_gear_chest": 3,
-                "raven_fruits": 100000,
+                "raven_fruit": 100000,
                 "vip_points": 5000,
                 "lv5_alliance_chest": 1
             }
@@ -1395,7 +1415,7 @@
             "contains": {
                 "diamonds": 500,
                 "raven_essence": 20,
-                "raven_fruits": 40000,
+                "raven_fruit": 40000,
                 "sr_epigraph_chest": 2,
                 "vip_points": 500,
                 "lv2_alliance_chest": 1
