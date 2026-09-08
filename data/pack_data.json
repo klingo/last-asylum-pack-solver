@@ -778,7 +778,9 @@
             "deal_percentage": 4140,
             "purchase_limit": 1,
             "limit_type": "daily",
-            "available_days": ["tuesday"],
+            "available_days": [
+                "tuesday"
+            ],
             "tier": 1,
             "requires": null,
             "contains": {
@@ -854,7 +856,9 @@
             "deal_percentage": 4140,
             "purchase_limit": 1,
             "limit_type": "daily",
-            "available_days": ["tuesday"],
+            "available_days": [
+                "tuesday"
+            ],
             "tier": 1,
             "requires": null,
             "contains": {
@@ -874,7 +878,9 @@
             "deal_percentage": 4140,
             "purchase_limit": 1,
             "limit_type": "daily",
-            "available_days": ["tuesday"],
+            "available_days": [
+                "tuesday"
+            ],
             "tier": 2,
             "requires": "development_pack_t1",
             "contains": {
@@ -946,7 +952,9 @@
             "deal_percentage": 3500,
             "purchase_limit": 1,
             "limit_type": "daily",
-            "available_days": ["tuesday"],
+            "available_days": [
+                "tuesday"
+            ],
             "tier": 1,
             "requires": null,
             "contains": {
@@ -983,7 +991,9 @@
             "deal_percentage": 2550,
             "purchase_limit": 1,
             "limit_type": "daily",
-            "available_days": ["monday"],
+            "available_days": [
+                "monday"
+            ],
             "tier": 1,
             "requires": null,
             "contains": {
@@ -1324,7 +1334,9 @@
             "deal_percentage": 4500,
             "purchase_limit": 1,
             "limit_type": "daily",
-            "available_days": ["monday"],
+            "available_days": [
+                "monday"
+            ],
             "tier": 1,
             "requires": null,
             "contains": {
@@ -1437,7 +1449,9 @@
             "deal_percentage": 5000,
             "purchase_limit": 1,
             "limit_type": "daily",
-            "available_days": ["monday"],
+            "available_days": [
+                "monday"
+            ],
             "tier": 1,
             "requires": null,
             "contains": {
@@ -1722,7 +1736,10 @@
                 }
             },
             "bonus_tiers": {
-                "50": { "stone_blade": 999, "dummy_entry": 1 }
+                "50": {
+                    "stone_blade": 999,
+                    "dummy_entry": 1
+                }
             }
         }
     }
