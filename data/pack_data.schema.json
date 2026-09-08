@@ -61,19 +61,16 @@
             "type": "string",
             "pattern": "^[a-z][a-z0-9_]*$"
         },
-        "itemQuantity": {
+        "itemQuantities": {
             "type": "object",
-            "required": ["item_id", "quantity"],
-            "additionalProperties": false,
-            "properties": {
-                "item_id": {
-                    "$ref": "#/definitions/id"
-                },
-                "quantity": {
-                    "type": "integer",
-                    "minimum": 1
-                }
-            }
+            "propertyNames": {
+                "$ref": "#/definitions/id"
+            },
+            "additionalProperties": {
+                "type": "integer",
+                "minimum": 1
+            },
+            "minProperties": 1
         },
         "limitType": {
             "type": "string",
@@ -104,11 +101,7 @@
                     "$ref": "#/definitions/itemCategory"
                 },
                 "contains": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/itemQuantity"
-                    },
-                    "minItems": 1
+                    "$ref": "#/definitions/itemQuantities"
                 }
             }
         },
@@ -117,16 +110,8 @@
             "required": ["contains"],
             "additionalProperties": false,
             "properties": {
-                "option_name": {
-                    "type": "string",
-                    "minLength": 1
-                },
                 "contains": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/itemQuantity"
-                    },
-                    "minItems": 1
+                    "$ref": "#/definitions/itemQuantities"
                 }
             }
         },
@@ -296,11 +281,7 @@
                     ]
                 },
                 "contains": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/itemQuantity"
-                    },
-                    "minItems": 1
+                    "$ref": "#/definitions/itemQuantities"
                 },
                 "choice": {
                     "$ref": "#/definitions/choicePool"
