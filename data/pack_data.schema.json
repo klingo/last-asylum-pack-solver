@@ -309,6 +309,13 @@
                     "additionalProperties": {
                         "$ref": "#/definitions/exchangeShopOffer"
                     }
+                },
+                "bonus_tiers": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "object",
+                        "additionalProperties": { "type": "integer", "minimum": 1 }
+                    }
                 }
             }
         },

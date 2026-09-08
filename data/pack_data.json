@@ -867,6 +867,26 @@
                 "lv2_alliance_chest": 1
             }
         },
+        "development_pack_t2": {
+            "name": "Development Pack (T2)",
+            "category": "Special",
+            "price": 999,
+            "deal_percentage": 4140,
+            "purchase_limit": 1,
+            "limit_type": "daily",
+            "available_days": ["tuesday"],
+            "tier": 2,
+            "requires": "development_pack_t1",
+            "contains": {
+                "diamonds": 100,
+                "resource_supply_ur": 10,
+                "timber_level_supply_ur": 4,
+                "grain_level_supply_ur": 4,
+                "herb_level_supply_ur": 4,
+                "vip_points": 1000,
+                "lv3_alliance_chest": 1
+            }
+        },
         "enhance_might": {
             "name": "Enhance Might",
             "category": "Weekly Special",
@@ -1700,6 +1720,9 @@
                     "purchase_limit": 1,
                     "limit_type": "daily"
                 }
+            },
+            "bonus_tiers": {
+                "50": { "stone_blade": 999, "dummy_entry": 1 }
             }
         }
     }
