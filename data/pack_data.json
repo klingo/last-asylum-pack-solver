@@ -961,6 +961,47 @@
                 }
             ]
         },
+        "building_speedup_pack_t1": {
+            "name": "Building Speedup Pack (T1)",
+            "category": "Special",
+            "price": 499,
+            "deal_percentage": 4140,
+            "purchase_limit": 1,
+            "limit_type": "daily",
+            "available_days": ["tuesday"],
+            "tier": 1,
+            "requires": null,
+            "contains": [
+                {
+                    "item_id": "diamonds",
+                    "quantity": 500
+                },
+                {
+                    "item_id": "construction_speedup",
+                    "quantity": 1200
+                },
+                {
+                    "item_id": "timber_level_supply_ur",
+                    "quantity": 1
+                },
+                {
+                    "item_id": "grain_level_supply_ur",
+                    "quantity": 1
+                },
+                {
+                    "item_id": "herb_level_supply_ur",
+                    "quantity": 1
+                },
+                {
+                    "item_id": "vip_points",
+                    "quantity": 500
+                },
+                {
+                    "item_id": "lv2_alliance_chest",
+                    "quantity": 1
+                }
+            ]
+        },
         "curio_boost": {
             "name": "Curio Boost",
             "category": "Weekly Special",
@@ -1077,6 +1118,47 @@
                 }
             ]
         },
+        "development_pack_t1": {
+            "name": "Development Pack (T1)",
+            "category": "Special",
+            "price": 499,
+            "deal_percentage": 4140,
+            "purchase_limit": 1,
+            "limit_type": "daily",
+            "available_days": ["tuesday"],
+            "tier": 1,
+            "requires": null,
+            "contains": [
+                {
+                    "item_id": "diamonds",
+                    "quantity": 500
+                },
+                {
+                    "item_id": "resource_supply_ur",
+                    "quantity": 5
+                },
+                {
+                    "item_id": "timber_level_supply_ur",
+                    "quantity": 2
+                },
+                {
+                    "item_id": "grain_level_supply_ur",
+                    "quantity": 2
+                },
+                {
+                    "item_id": "herb_level_supply_ur",
+                    "quantity": 2
+                },
+                {
+                    "item_id": "vip_points",
+                    "quantity": 500
+                },
+                {
+                    "item_id": "lv2_alliance_chest",
+                    "quantity": 1
+                }
+            ]
+        },
         "enhance_might": {
             "name": "Enhance Might",
             "category": "Weekly Special",
@@ -1173,6 +1255,39 @@
                 },
                 {
                     "item_id": "lv6_alliance_chest",
+                    "quantity": 1
+                }
+            ]
+        },
+        "exclusive_weapon_pack_t1": {
+            "name": "Exclusive Weapon Pack (T1)",
+            "category": "Special",
+            "price": 499,
+            "deal_percentage": 3500,
+            "purchase_limit": 1,
+            "limit_type": "daily",
+            "available_days": ["tuesday"],
+            "tier": 1,
+            "requires": null,
+            "contains": [
+                {
+                    "item_id": "diamonds",
+                    "quantity": 500
+                },
+                {
+                    "item_id": "excl_weapon_shard_choice_chest",
+                    "quantity": 10
+                },
+                {
+                    "item_id": "antitoxin_level_supply_sr",
+                    "quantity": 10
+                },
+                {
+                    "item_id": "vip_points",
+                    "quantity": 500
+                },
+                {
+                    "item_id": "lv2_alliance_chest",
                     "quantity": 1
                 }
             ]
