@@ -1,0 +1,33 @@
+# Dependencies
+node_modules
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+/client/.env
+/server/.env
+
+# SSL Certificates
+/ssl/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Build outputs
+dist
+build
+coverage
+test-results
+
+# IDE
+.idea
+.vscode
+
+# OS
+.DS_Store
+Thumbs.db
