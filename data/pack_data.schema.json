@@ -147,15 +147,11 @@
         },
         "randomItemDrop": {
             "type": "object",
-            "required": ["item_id", "quantity", "probability"],
+            "required": ["contains", "probability"],
             "additionalProperties": false,
             "properties": {
-                "item_id": {
-                    "$ref": "#/definitions/id"
-                },
-                "quantity": {
-                    "type": "integer",
-                    "minimum": 1
+                "contains": {
+                    "$ref": "#/definitions/itemQuantities"
                 },
                 "probability": {
                     "type": "number",
@@ -185,7 +181,7 @@
                     "items": {
                         "$ref": "#/definitions/randomItemDrop"
                     },
-                    "minItems": 1
+                    "minItems": 2
                 }
             }
         },
@@ -318,7 +314,7 @@
         },
         "exchangeShopOffer": {
             "type": "object",
-            "required": ["currency_cost", "quantity", "purchase_limit"],
+            "required": ["currency_cost", "quantity", "purchase_limit", "limit_type"],
             "additionalProperties": false,
             "properties": {
                 "currency_cost": {

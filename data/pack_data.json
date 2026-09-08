@@ -50,18 +50,21 @@
             "type": "random",
             "drop_table": [
                 {
-                    "item_id": "resource_supply_ur",
-                    "quantity": 100,
+                    "contains": {
+                        "resource_supply_ur": 100
+                    },
                     "probability": 0.16667
                 },
                 {
-                    "item_id": "resource_supply_ur",
-                    "quantity": 60,
+                    "contains": {
+                        "resource_supply_ur": 60
+                    },
                     "probability": 0.33333
                 },
                 {
-                    "item_id": "resource_supply_ur",
-                    "quantity": 40,
+                    "contains": {
+                        "resource_supply_ur": 40
+                    },
                     "probability": 0.5
                 }
             ]
@@ -72,18 +75,21 @@
             "type": "random",
             "drop_table": [
                 {
-                    "item_id": "resource_supply_ur",
-                    "quantity": 50,
+                    "contains": {
+                        "resource_supply_ur": 50
+                    },
                     "probability": 0.16667
                 },
                 {
-                    "item_id": "resource_supply_ur",
-                    "quantity": 30,
+                    "contains": {
+                        "resource_supply_ur": 30
+                    },
                     "probability": 0.33333
                 },
                 {
-                    "item_id": "resource_supply_ur",
-                    "quantity": 20,
+                    "contains": {
+                        "resource_supply_ur": 20
+                    },
                     "probability": 0.5
                 }
             ]
@@ -168,18 +174,21 @@
             "type": "random",
             "drop_table": [
                 {
-                    "item_id": "resource_supply_ur",
-                    "quantity": 10,
+                    "contains": {
+                        "resource_supply_ur": 10
+                    },
                     "probability": 0.16667
                 },
                 {
-                    "item_id": "resource_supply_ur",
-                    "quantity": 6,
+                    "contains": {
+                        "resource_supply_ur": 6
+                    },
                     "probability": 0.33333
                 },
                 {
-                    "item_id": "resource_supply_ur",
-                    "quantity": 4,
+                    "contains": {
+                        "resource_supply_ur": 4
+                    },
                     "probability": 0.5
                 }
             ]
@@ -190,18 +199,21 @@
             "type": "random",
             "drop_table": [
                 {
-                    "item_id": "resource_supply_ur",
-                    "quantity": 5,
+                    "contains": {
+                        "resource_supply_ur": 5
+                    },
                     "probability": 0.16667
                 },
                 {
-                    "item_id": "resource_supply_ur",
-                    "quantity": 3,
+                    "contains": {
+                        "resource_supply_ur": 3
+                    },
                     "probability": 0.33333
                 },
                 {
-                    "item_id": "resource_supply_ur",
-                    "quantity": 2,
+                    "contains": {
+                        "resource_supply_ur": 2
+                    },
                     "probability": 0.5
                 }
             ]
@@ -248,43 +260,51 @@
             "type": "random",
             "drop_table": [
                 {
-                    "item_id": "ur_sword",
-                    "quantity": 1,
+                    "contains": {
+                        "ur_sword": 1
+                    },
                     "probability": 0.025
                 },
                 {
-                    "item_id": "ur_armor",
-                    "quantity": 1,
+                    "contains": {
+                        "ur_armor": 1
+                    },
                     "probability": 0.025
                 },
                 {
-                    "item_id": "ur_gauntlets",
-                    "quantity": 1,
+                    "contains": {
+                        "ur_gauntlets": 1
+                    },
                     "probability": 0.025
                 },
                 {
-                    "item_id": "ur_boots",
-                    "quantity": 1,
+                    "contains": {
+                        "ur_boots": 1
+                    },
                     "probability": 0.025
                 },
                 {
-                    "item_id": "ssr_sword",
-                    "quantity": 1,
+                    "contains": {
+                        "ssr_sword": 1
+                    },
                     "probability": 0.225
                 },
                 {
-                    "item_id": "ssr_armor",
-                    "quantity": 1,
+                    "contains": {
+                        "ssr_armor": 1
+                    },
                     "probability": 0.225
                 },
                 {
-                    "item_id": "ssr_gauntlets",
-                    "quantity": 1,
+                    "contains": {
+                        "ssr_gauntlets": 1
+                    },
                     "probability": 0.225
                 },
                 {
-                    "item_id": "ssr_boots",
-                    "quantity": 1,
+                    "contains": {
+                        "ssr_boots": 1
+                    },
                     "probability": 0.225
                 }
             ]
@@ -295,23 +315,27 @@
             "type": "random",
             "drop_table": [
                 {
-                    "item_id": "gearstone",
-                    "quantity": 10000,
+                    "contains": {
+                        "gearstone": 10000
+                    },
                     "probability": 0.01
                 },
                 {
-                    "item_id": "gearstone",
-                    "quantity": 3000,
+                    "contains": {
+                        "gearstone": 3000
+                    },
                     "probability": 0.15
                 },
                 {
-                    "item_id": "gearstone",
-                    "quantity": 2000,
+                    "contains": {
+                        "gearstone": 2000
+                    },
                     "probability": 0.4
                 },
                 {
-                    "item_id": "gearstone",
-                    "quantity": 1000,
+                    "contains": {
+                        "gearstone": 1000
+                    },
                     "probability": 0.44
                 }
             ]
@@ -418,18 +442,21 @@
             "type": "random",
             "drop_table": [
                 {
-                    "item_id": "resource_supply_ur",
-                    "quantity": 20,
+                    "contains": {
+                        "resource_supply_ur": 20
+                    },
                     "probability": 0.16667
                 },
                 {
-                    "item_id": "resource_supply_ur",
-                    "quantity": 12,
+                    "contains": {
+                        "resource_supply_ur": 12
+                    },
                     "probability": 0.33333
                 },
                 {
-                    "item_id": "resource_supply_ur",
-                    "quantity": 8,
+                    "contains": {
+                        "resource_supply_ur": 8
+                    },
                     "probability": 0.5
                 }
             ]
@@ -513,23 +540,27 @@
             "type": "random",
             "drop_table": [
                 {
-                    "item_id": "universal_curio_shard",
-                    "quantity": 300,
+                    "contains": {
+                        "universal_curio_shard": 300
+                    },
                     "probability": 0.01
                 },
                 {
-                    "item_id": "universal_curio_shard",
-                    "quantity": 100,
+                    "contains": {
+                        "universal_curio_shard": 100
+                    },
                     "probability": 0.04
                 },
                 {
-                    "item_id": "universal_curio_shard",
-                    "quantity": 80,
+                    "contains": {
+                        "universal_curio_shard": 80
+                    },
                     "probability": 0.45
                 },
                 {
-                    "item_id": "universal_curio_shard",
-                    "quantity": 60,
+                    "contains": {
+                        "universal_curio_shard": 60
+                    },
                     "probability": 0.5
                 }
             ]
