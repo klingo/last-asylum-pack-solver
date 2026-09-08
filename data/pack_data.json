@@ -102,6 +102,10 @@
             "name": "Cloth",
             "category": "Gear"
         },
+        "construction_speedup": {
+            "name": "Construction Speedup",
+            "category": "Speedup"
+        },
         "diamonds": {
             "name": "Diamonds",
             "category": "Resource"
@@ -504,6 +508,10 @@
         "ssr_sword_epigraph_chest": {
             "name": "SSR Sword Epigraph Chest",
             "category": "Special"
+        },
+        "stamina": {
+            "name": "Stamina",
+            "category": "Resource"
         },
         "stone_blade": {
             "name": "Stone Blade",
