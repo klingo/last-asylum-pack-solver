@@ -1,0 +1,2511 @@
+{
+    "metadata": {
+        "game": "Last Asylum: Plague",
+        "currency": "Banknotes",
+        "last_updated": "2026-09-06"
+    },
+    "items": {
+        "antitoxin": {
+            "name": "Antitoxin",
+            "category": "Resource"
+        },
+        "antitoxin_level_supply_r": {
+            "name": "Antitoxin Level Supply (R)",
+            "category": "Hero",
+            "contains": [
+                {
+                    "item_id": "antitoxin",
+                    "quantity": 108210
+                }
+            ]
+        },
+        "antitoxin_level_supply_sr": {
+            "name": "Antitoxin Level Supply (SR)",
+            "category": "Hero",
+            "contains": [
+                {
+                    "item_id": "antitoxin",
+                    "quantity": 1082100
+                }
+            ]
+        },
+        "antitoxin_level_supply_ssr": {
+            "name": "Antitoxin Level Supply (SSR)",
+            "category": "Hero",
+            "contains": [
+                {
+                    "item_id": "antitoxin",
+                    "quantity": 8656800
+                }
+            ]
+        },
+        "antitoxin_level_supply_ur": {
+            "name": "Antitoxin Level Supply (UR)",
+            "category": "Hero",
+            "contains": [
+                {
+                    "item_id": "antitoxin",
+                    "quantity": 25970400
+                }
+            ]
+        },
+        "awaken_shard_choice_chest": {
+            "name": "Awaken Shard Choice Chest",
+            "category": "Special",
+            "contains": [
+                {
+                    "item_id": "hero_awaken_shard",
+                    "quantity": 1
+                }
+            ]
+        },
+        "battlebreaker_loot": {
+            "name": "Battlebreaker Loot",
+            "category": "Special",
+            "type": "random",
+            "drop_table": [
+                {
+                    "item_id": "resource_supply_ur",
+                    "quantity": 100,
+                    "probability": 0.16667
+                },
+                {
+                    "item_id": "resource_supply_ur",
+                    "quantity": 60,
+                    "probability": 0.33333
+                },
+                {
+                    "item_id": "resource_supply_ur",
+                    "quantity": 40,
+                    "probability": 0.5
+                }
+            ]
+        },
+        "berserker_loot": {
+            "name": "Berserker Loot",
+            "category": "Special",
+            "type": "random",
+            "drop_table": [
+                {
+                    "item_id": "resource_supply_ur",
+                    "quantity": 50,
+                    "probability": 0.16667
+                },
+                {
+                    "item_id": "resource_supply_ur",
+                    "quantity": 30,
+                    "probability": 0.33333
+                },
+                {
+                    "item_id": "resource_supply_ur",
+                    "quantity": 20,
+                    "probability": 0.5
+                }
+            ]
+        },
+        "diamonds": {
+            "name": "Diamonds",
+            "category": "Resource"
+        },
+        "exclusive_weapon_shard": {
+            "name": "<Hero> Exclusive Weapon Shard",
+            "category": "Hero"
+        },
+        "gear_blueprint_ur": {
+            "name": "Gear Blueprint (UR)",
+            "category": "Gear"
+        },
+        "gearstone": {
+            "name": "Gearstone",
+            "category": "Gear"
+        },
+        "grain": {
+            "name": "Grain",
+            "category": "Resource"
+        },
+        "grain_level_supply_sr": {
+            "name": "Grain Level Supply (SR)",
+            "category": "Resource",
+            "contains": [
+                {
+                    "item_id": "grain",
+                    "quantity": 169090
+                }
+            ]
+        },
+        "grain_level_supply_ssr": {
+            "name": "Grain Level Supply (SSR)",
+            "category": "Resource",
+            "contains": [
+                {
+                    "item_id": "grain",
+                    "quantity": 1352660
+                }
+            ]
+        },
+        "grain_level_supply_ur": {
+            "name": "Grain Level Supply (UR)",
+            "category": "Resource",
+            "contains": [
+                {
+                    "item_id": "grain",
+                    "quantity": 4057980
+                }
+            ]
+        },
+        "herb_level_supply_sr": {
+            "name": "Herb Level Supply (SR)",
+            "category": "Resource",
+            "contains": [
+                {
+                    "item_id": "herbs",
+                    "quantity": 108470
+                }
+            ]
+        },
+        "herb_level_supply_ssr": {
+            "name": "Herb Level Supply (SSR)",
+            "category": "Resource",
+            "contains": [
+                {
+                    "item_id": "herbs",
+                    "quantity": 867720
+                }
+            ]
+        },
+        "herb_level_supply_ur": {
+            "name": "Herb Level Supply (UR)",
+            "category": "Resource",
+            "contains": [
+                {
+                    "item_id": "herbs",
+                    "quantity": 2603150
+                }
+            ]
+        },
+        "herbs": {
+            "name": "Herbs",
+            "category": "Resource"
+        },
+        "hero_awaken_shard": {
+            "name": "<Hero> Awaken Shard",
+            "category": "Hero"
+        },
+        "hero_shard": {
+            "name": "<Hero> Shard",
+            "category": "Hero"
+        },
+        "holy_sword_loot": {
+            "name": "Holy Sword Loot",
+            "category": "Special",
+            "type": "random",
+            "drop_table": [
+                {
+                    "item_id": "resource_supply_ur",
+                    "quantity": 10,
+                    "probability": 0.16667
+                },
+                {
+                    "item_id": "resource_supply_ur",
+                    "quantity": 6,
+                    "probability": 0.33333
+                },
+                {
+                    "item_id": "resource_supply_ur",
+                    "quantity": 4,
+                    "probability": 0.5
+                }
+            ]
+        },
+        "iron_guard_loot": {
+            "name": "Iron Guard Loot",
+            "category": "Special",
+            "type": "random",
+            "drop_table": [
+                {
+                    "item_id": "resource_supply_ur",
+                    "quantity": 5,
+                    "probability": 0.16667
+                },
+                {
+                    "item_id": "resource_supply_ur",
+                    "quantity": 3,
+                    "probability": 0.33333
+                },
+                {
+                    "item_id": "resource_supply_ur",
+                    "quantity": 2,
+                    "probability": 0.5
+                }
+            ]
+        },
+        "lv1_alliance_chest": {
+            "name": "Lv.1 Alliance Chest",
+            "category": "Virtual"
+        },
+        "lv1_raven_gear_chest": {
+            "name": "Lv.1 Raven Gear Chest",
+            "category": "Special"
+        },
+        "lv2_alliance_chest": {
+            "name": "Lv.2 Alliance Chest",
+            "category": "Virtual"
+        },
+        "lv3_alliance_chest": {
+            "name": "Lv.3 Alliance Chest",
+            "category": "Virtual"
+        },
+        "lv3_raven_gear_chest": {
+            "name": "Lv.3 Raven Gear Chest",
+            "category": "Special"
+        },
+        "lv4_alliance_chest": {
+            "name": "Lv.4 Alliance Chest",
+            "category": "Virtual"
+        },
+        "lv5_alliance_chest": {
+            "name": "Lv.5 Alliance Chest",
+            "category": "Virtual"
+        },
+        "lv5_raven_gear_chest": {
+            "name": "Lv.5 Raven Gear Chest",
+            "category": "Special"
+        },
+        "lv6_alliance_chest": {
+            "name": "Lv.6 Alliance Chest",
+            "category": "Virtual"
+        },
+        "random_gear_chest": {
+            "name": "Random Gear Chest",
+            "category": "Special",
+            "type": "random",
+            "drop_table": [
+                {
+                    "item_id": "ur_sword",
+                    "quantity": 1,
+                    "probability": 0.025
+                },
+                {
+                    "item_id": "ur_armor",
+                    "quantity": 1,
+                    "probability": 0.025
+                },
+                {
+                    "item_id": "ur_gauntlets",
+                    "quantity": 1,
+                    "probability": 0.025
+                },
+                {
+                    "item_id": "ur_boots",
+                    "quantity": 1,
+                    "probability": 0.025
+                },
+                {
+                    "item_id": "ssr_sword",
+                    "quantity": 1,
+                    "probability": 0.225
+                },
+                {
+                    "item_id": "ssr_armor",
+                    "quantity": 1,
+                    "probability": 0.225
+                },
+                {
+                    "item_id": "ssr_gauntlets",
+                    "quantity": 1,
+                    "probability": 0.225
+                },
+                {
+                    "item_id": "ssr_boots",
+                    "quantity": 1,
+                    "probability": 0.225
+                }
+            ]
+        },
+        "random_gearstone_supply": {
+            "name": "Random Gearstone Supply",
+            "category": "Gear",
+            "type": "random",
+            "drop_table": [
+                {
+                    "item_id": "gearstone",
+                    "quantity": 10000,
+                    "probability": 0.01
+                },
+                {
+                    "item_id": "gearstone",
+                    "quantity": 3000,
+                    "probability": 0.15
+                },
+                {
+                    "item_id": "gearstone",
+                    "quantity": 2000,
+                    "probability": 0.4
+                },
+                {
+                    "item_id": "gearstone",
+                    "quantity": 1000,
+                    "probability": 0.44
+                }
+            ]
+        },
+        "raven_essence": {
+            "name": "Raven Essence",
+            "category": "Gear"
+        },
+        "raven_evolve_guide": {
+            "name": "Raven Evolve Guide",
+            "category": "Special"
+        },
+        "raven_fruit": {
+            "name": "Raven Fruit",
+            "category": "Gear"
+        },
+        "recruit_ticket": {
+            "name": "Recruit Ticket",
+            "category": "Hero"
+        },
+        "research_speedup": {
+            "name": "Research Speedup",
+            "category": "Speedup"
+        },
+        "resource_supply_general": {
+            "name": "Resource Supply (General)",
+            "category": "Resource",
+            "type": "choice",
+            "choice": {
+                "select_count": 1,
+                "choices": [
+                    {
+                        "option_name": "Grain",
+                        "contains": [
+                            {
+                                "item_id": "grain",
+                                "quantity": 10000
+                            }
+                        ]
+                    },
+                    {
+                        "option_name": "Timber",
+                        "contains": [
+                            {
+                                "item_id": "timber",
+                                "quantity": 10000
+                            }
+                        ]
+                    },
+                    {
+                        "option_name": "Herbs",
+                        "contains": [
+                            {
+                                "item_id": "herbs",
+                                "quantity": 6000
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        "resource_supply_sr": {
+            "name": "Resource Supply (SR)",
+            "category": "Resource",
+            "type": "choice",
+            "choice": {
+                "select_count": 1,
+                "choices": [
+                    {
+                        "option_name": "SR Grain Level Supply",
+                        "contains": [
+                            {
+                                "item_id": "grain",
+                                "quantity": 169090
+                            }
+                        ]
+                    },
+                    {
+                        "option_name": "SR Timber Level Supply",
+                        "contains": [
+                            {
+                                "item_id": "timber",
+                                "quantity": 169090
+                            }
+                        ]
+                    },
+                    {
+                        "option_name": "SR Herb Level Supply",
+                        "contains": [
+                            {
+                                "item_id": "herbs",
+                                "quantity": 108470
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        "resource_supply_ssr": {
+            "name": "Resource Supply (SSR)",
+            "category": "Resource",
+            "type": "choice",
+            "choice": {
+                "select_count": 1,
+                "choices": [
+                    {
+                        "option_name": "Grain Level Supply (SSR)",
+                        "contains": [
+                            {
+                                "item_id": "grain",
+                                "quantity": 1352660
+                            }
+                        ]
+                    },
+                    {
+                        "option_name": "Timber Level Supply (SSR)",
+                        "contains": [
+                            {
+                                "item_id": "timber",
+                                "quantity": 1352660
+                            }
+                        ]
+                    },
+                    {
+                        "option_name": "Herb Level Supply (SSR)",
+                        "contains": [
+                            {
+                                "item_id": "herbs",
+                                "quantity": 867720
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        "resource_supply_ur": {
+            "name": "Resource Supply (UR)",
+            "category": "Resource",
+            "type": "choice",
+            "choice": {
+                "select_count": 1,
+                "choices": [
+                    {
+                        "option_name": "Grain Level Supply (UR)",
+                        "contains": [
+                            {
+                                "item_id": "grain",
+                                "quantity": 4057980
+                            }
+                        ]
+                    },
+                    {
+                        "option_name": "Timber Level Supply (UR)",
+                        "contains": [
+                            {
+                                "item_id": "timber",
+                                "quantity": 4057980
+                            }
+                        ]
+                    },
+                    {
+                        "option_name": "Herb Level Supply (UR)",
+                        "contains": [
+                            {
+                                "item_id": "herbs",
+                                "quantity": 2603150
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        "rock_loot": {
+            "name": "Rock Loot",
+            "category": "Special",
+            "type": "random",
+            "drop_table": [
+                {
+                    "item_id": "resource_supply_ur",
+                    "quantity": 20,
+                    "probability": 0.16667
+                },
+                {
+                    "item_id": "resource_supply_ur",
+                    "quantity": 12,
+                    "probability": 0.33333
+                },
+                {
+                    "item_id": "resource_supply_ur",
+                    "quantity": 8,
+                    "probability": 0.5
+                }
+            ]
+        },
+        "skill_badge": {
+            "name": "Skill Badge",
+            "category": "Hero"
+        },
+        "speedup": {
+            "name": "Speedup",
+            "category": "Speedup"
+        },
+        "ssr_armor": {
+            "name": "SSR Armor",
+            "category": "Gear"
+        },
+        "ssr_boots": {
+            "name": "SSR Boots",
+            "category": "Gear"
+        },
+        "ssr_gauntlets": {
+            "name": "SSR Gauntlets",
+            "category": "Gear"
+        },
+        "ssr_sword": {
+            "name": "SSR Sword",
+            "category": "Gear"
+        },
+        "ssr_sword_epigraph_chest": {
+            "name": "SSR Sword Epigraph Chest",
+            "category": "Special"
+        },
+        "stone_blade": {
+            "name": "Stone Blade",
+            "category": "Special"
+        },
+        "strange_coin": {
+            "name": "Strange Coin",
+            "category": "Special"
+        },
+        "study_scroll": {
+            "name": "Study Scroll",
+            "category": "Special"
+        },
+        "survivor_recruit_ticket": {
+            "name": "Survivor Recruit Ticket",
+            "category": "Hero"
+        },
+        "timber": {
+            "name": "Timber",
+            "category": "Resource"
+        },
+        "timber_level_supply_sr": {
+            "name": "Timber Level Supply (SR)",
+            "category": "Resource",
+            "contains": [
+                {
+                    "item_id": "timber",
+                    "quantity": 169090
+                }
+            ]
+        },
+        "timber_level_supply_ssr": {
+            "name": "Timber Level Supply (SSR)",
+            "category": "Resource",
+            "contains": [
+                {
+                    "item_id": "timber",
+                    "quantity": 1352660
+                }
+            ]
+        },
+        "timber_level_supply_ur": {
+            "name": "Timber Level Supply (UR)",
+            "category": "Resource",
+            "contains": [
+                {
+                    "item_id": "timber",
+                    "quantity": 4057980
+                }
+            ]
+        },
+        "top_up_exp": {
+            "name": "Top-Up EXP",
+            "category": "Virtual"
+        },
+        "universal_curio_random_chest": {
+            "name": "Universal Curio Random Chest",
+            "category": "Special",
+            "type": "random",
+            "drop_table": [
+                {
+                    "item_id": "universal_curio_shard",
+                    "quantity": 300,
+                    "probability": 0.01
+                },
+                {
+                    "item_id": "universal_curio_shard",
+                    "quantity": 100,
+                    "probability": 0.04
+                },
+                {
+                    "item_id": "universal_curio_shard",
+                    "quantity": 80,
+                    "probability": 0.45
+                },
+                {
+                    "item_id": "universal_curio_shard",
+                    "quantity": 60,
+                    "probability": 0.5
+                }
+            ]
+        },
+        "universal_curio_shard": {
+            "name": "Universal Curio Shard",
+            "category": "Special"
+        },
+        "ur_armor": {
+            "name": "UR Armor",
+            "category": "Gear"
+        },
+        "ur_boots": {
+            "name": "UR Boots",
+            "category": "Gear"
+        },
+        "ur_epigraph_chest": {
+            "name": "UR Epigraph Chest",
+            "category": "Special"
+        },
+        "ur_epigraph_shard": {
+            "name": "UR Epigraph Shard",
+            "category": "Special"
+        },
+        "ur_gauntlets": {
+            "name": "UR Gauntlets",
+            "category": "Gear"
+        },
+        "ur_hero_choice_chest": {
+            "name": "UR Hero Choice Chest",
+            "category": "Special",
+            "contains": [
+                {
+                    "item_id": "hero_shard",
+                    "quantity": 1
+                }
+            ]
+        },
+        "ur_hero_omni_shard": {
+            "name": "UR Hero Omni Shard",
+            "category": "Hero"
+        },
+        "ur_sword": {
+            "name": "UR Sword",
+            "category": "Gear"
+        },
+        "vip_points": {
+            "name": "VIP Points",
+            "category": "Virtual"
+        }
+    },
+    "packages": {
+        "awaken_shard_t1": {
+            "name": "Awaken Shard (T1)",
+            "category": "Daily Offer",
+            "price": 499,
+            "deal_percentage": 5880,
+            "purchase_limit": 1,
+            "limit_type": "daily",
+            "tier": 1,
+            "requires": null,
+            "contains": [
+                {
+                    "item_id": "diamonds",
+                    "quantity": 700
+                },
+                {
+                    "item_id": "hero_awaken_shard",
+                    "quantity": 10
+                },
+                {
+                    "item_id": "recruit_ticket",
+                    "quantity": 10
+                },
+                {
+                    "item_id": "antitoxin_level_supply_ssr",
+                    "quantity": 6
+                },
+                {
+                    "item_id": "vip_points",
+                    "quantity": 700
+                },
+                {
+                    "item_id": "lv1_alliance_chest",
+                    "quantity": 1
+                },
+                {
+                    "item_id": "lv2_alliance_chest",
+                    "quantity": 2
+                }
+            ]
+        },
+        "awaken_shard_t2": {
+            "name": "Awaken Shard (T2)",
+            "category": "Daily Offer",
+            "price": 999,
+            "deal_percentage": 5880,
+            "purchase_limit": 1,
+            "limit_type": "daily",
+            "tier": 2,
+            "requires": "awaken_shard_t1",
+            "contains": [
+                {
+                    "item_id": "diamonds",
+                    "quantity": 1400
+                },
+                {
+                    "item_id": "hero_awaken_shard",
+                    "quantity": 20
+                },
+                {
+                    "item_id": "recruit_ticket",
+                    "quantity": 20
+                },
+                {
+                    "item_id": "antitoxin_level_supply_ssr",
+                    "quantity": 12
+                },
+                {
+                    "item_id": "vip_points",
+                    "quantity": 1400
+                },
+                {
+                    "item_id": "lv1_alliance_chest",
+                    "quantity": 1
+                },
+                {
+                    "item_id": "lv2_alliance_chest",
+                    "quantity": 2
+                }
+            ]
+        },
+        "blades_out_deluxe_pack": {
+            "name": "Blades Out Deluxe Pack",
+            "category": "Event",
+            "event_id": "blades_out",
+            "price": 999,
+            "deal_percentage": 3550,
+            "purchase_limit": 1,
+            "limit_type": "daily",
+            "tier": 2,
+            "requires": null,
+            "contains": [
+                {
+                    "item_id": "diamonds",
+                    "quantity": 1000
+                },
+                {
+                    "item_id": "stone_blade",
+                    "quantity": 20
+                },
+                {
+                    "item_id": "holy_sword_loot",
+                    "quantity": 1
+                },
+                {
+                    "item_id": "resource_supply_general",
+                    "quantity": 10
+                },
+                {
+                    "item_id": "vip_points",
+                    "quantity": 1000
+                },
+                {
+                    "item_id": "lv3_alliance_chest",
+                    "quantity": 1
+                }
+            ]
+        },
+        "blades_out_premium_pack": {
+            "name": "Blades Out Premium Pack",
+            "category": "Event",
+            "event_id": "blades_out",
+            "price": 4999,
+            "deal_percentage": 3550,
+            "purchase_limit": 1,
+            "limit_type": "daily",
+            "tier": 4,
+            "requires": null,
+            "contains": [
+                {
+                    "item_id": "diamonds",
+                    "quantity": 5000
+                },
+                {
+                    "item_id": "stone_blade",
+                    "quantity": 100
+                },
+                {
+                    "item_id": "berserker_loot",
+                    "quantity": 1
+                },
+                {
+                    "item_id": "resource_supply_general",
+                    "quantity": 50
+                },
+                {
+                    "item_id": "vip_points",
+                    "quantity": 5000
+                },
+                {
+                    "item_id": "lv5_alliance_chest",
+                    "quantity": 1
+                }
+            ]
+        },
+        "blades_out_rare_pack": {
+            "name": "Blades Out Rare Pack",
+            "category": "Event",
+            "event_id": "blades_out",
+            "price": 1999,
+            "deal_percentage": 3550,
+            "purchase_limit": 1,
+            "limit_type": "daily",
+            "tier": 3,
+            "requires": null,
+            "contains": [
+                {
+                    "item_id": "diamonds",
+                    "quantity": 2000
+                },
+                {
+                    "item_id": "stone_blade",
+                    "quantity": 40
+                },
+                {
+                    "item_id": "rock_loot",
+                    "quantity": 1
+                },
+                {
+                    "item_id": "resource_supply_general",
+                    "quantity": 20
+                },
+                {
+                    "item_id": "vip_points",
+                    "quantity": 2000
+                },
+                {
+                    "item_id": "lv4_alliance_chest",
+                    "quantity": 1
+                }
+            ]
+        },
+        "blades_out_select_pack": {
+            "name": "Blades Out Select Pack",
+            "category": "Event",
+            "event_id": "blades_out",
+            "price": 499,
+            "deal_percentage": 3550,
+            "purchase_limit": 1,
+            "limit_type": "daily",
+            "tier": 1,
+            "requires": null,
+            "contains": [
+                {
+                    "item_id": "diamonds",
+                    "quantity": 500
+                },
+                {
+                    "item_id": "stone_blade",
+                    "quantity": 10
+                },
+                {
+                    "item_id": "iron_guard_loot",
+                    "quantity": 1
+                },
+                {
+                    "item_id": "resource_supply_general",
+                    "quantity": 5
+                },
+                {
+                    "item_id": "vip_points",
+                    "quantity": 500
+                },
+                {
+                    "item_id": "lv2_alliance_chest",
+                    "quantity": 1
+                }
+            ]
+        },
+        "blades_out_ultimate_pack": {
+            "name": "Blades Out Ultimate Pack",
+            "category": "Event",
+            "event_id": "blades_out",
+            "price": 9999,
+            "deal_percentage": 3550,
+            "purchase_limit": 5,
+            "limit_type": "daily",
+            "tier": 5,
+            "requires": null,
+            "contains": [
+                {
+                    "item_id": "diamonds",
+                    "quantity": 10000
+                },
+                {
+                    "item_id": "stone_blade",
+                    "quantity": 200
+                },
+                {
+                    "item_id": "battlebreaker_loot",
+                    "quantity": 1
+                },
+                {
+                    "item_id": "resource_supply_general",
+                    "quantity": 100
+                },
+                {
+                    "item_id": "vip_points",
+                    "quantity": 10000
+                },
+                {
+                    "item_id": "lv6_alliance_chest",
+                    "quantity": 1
+                }
+            ]
+        },
+        "curio_boost": {
+            "name": "Curio Boost",
+            "category": "Weekly Special",
+            "price": 9999,
+            "deal_percentage": 3360,
+            "purchase_limit": 7,
+            "limit_type": "weekly",
+            "tier": null,
+            "requires": null,
+            "contains": [
+                {
+                    "item_id": "diamonds",
+                    "quantity": 10000
+                },
+                {
+                    "item_id": "universal_curio_shard",
+                    "quantity": 1100
+                },
+                {
+                    "item_id": "curio_chest_ur",
+                    "quantity": 1
+                },
+                {
+                    "item_id": "curio_chest_ssr",
+                    "quantity": 3
+                },
+                {
+                    "item_id": "vip_points",
+                    "quantity": 10000
+                },
+                {
+                    "item_id": "lv6_alliance_chest",
+                    "quantity": 1
+                }
+            ]
+        },
+        "curio_pack_t1": {
+            "name": "Curio Pack (T1)",
+            "category": "Daily Must-Buy",
+            "price": 499,
+            "deal_percentage": 4080,
+            "purchase_limit": 1,
+            "limit_type": "daily",
+            "tier": 1,
+            "requires": null,
+            "contains": [
+                {
+                    "item_id": "diamonds",
+                    "quantity": 500
+                },
+                {
+                    "item_id": "top_up_exp",
+                    "quantity": 5
+                },
+                {
+                    "item_id": "universal_curio_random_chest",
+                    "quantity": 1
+                },
+                {
+                    "item_id": "resource_supply_general",
+                    "quantity": 5
+                },
+                {
+                    "item_id": "vip_points",
+                    "quantity": 500
+                },
+                {
+                    "item_id": "lv2_alliance_chest",
+                    "quantity": 1
+                }
+            ]
+        },
+        "develop_territory": {
+            "name": "Develop Territory",
+            "category": "Weekly Special",
+            "price": 1999,
+            "deal_percentage": 3980,
+            "purchase_limit": 5,
+            "limit_type": "weekly",
+            "tier": null,
+            "requires": null,
+            "contains": [
+                {
+                    "item_id": "diamonds",
+                    "quantity": 2000
+                },
+                {
+                    "item_id": "speedup",
+                    "quantity": 950
+                },
+                {
+                    "item_id": "resource_supply_general",
+                    "quantity": 20
+                },
+                {
+                    "item_id": "timber_level_supply_ur",
+                    "quantity": 13
+                },
+                {
+                    "item_id": "grain_level_supply_ur",
+                    "quantity": 13
+                },
+                {
+                    "item_id": "herb_level_supply_ur",
+                    "quantity": 13
+                },
+                {
+                    "item_id": "vip_points",
+                    "quantity": 2000
+                },
+                {
+                    "item_id": "lv4_alliance_chest",
+                    "quantity": 1
+                }
+            ]
+        },
+        "enhance_might": {
+            "name": "Enhance Might",
+            "category": "Weekly Special",
+            "price": 9999,
+            "deal_percentage": 3980,
+            "purchase_limit": 2,
+            "limit_type": "weekly",
+            "tier": null,
+            "requires": null,
+            "contains": [
+                {
+                    "item_id": "diamonds",
+                    "quantity": 10000
+                },
+                {
+                    "item_id": "gearstone",
+                    "quantity": 25000
+                },
+                {
+                    "item_id": "skill_badge",
+                    "quantity": 25000
+                },
+                {
+                    "item_id": "antitoxin_level_supply_ssr",
+                    "quantity": 40
+                },
+                {
+                    "item_id": "raven_essence",
+                    "quantity": 10
+                },
+                {
+                    "item_id": "vip_points",
+                    "quantity": 10000
+                },
+                {
+                    "item_id": "lv6_alliance_chest",
+                    "quantity": 1
+                }
+            ]
+        },
+        "enhancement_special_pack_t1": {
+            "name": "Enhancement Special Pack (T1)",
+            "category": "Special",
+            "price": 499,
+            "deal_percentage": 3280,
+            "purchase_limit": 1,
+            "limit_type": "weekly",
+            "tier": 1,
+            "requires": null,
+            "contains": [
+                {
+                    "item_id": "diamonds",
+                    "quantity": 500
+                },
+                {
+                    "item_id": "random_gearstone_supply",
+                    "quantity": 1
+                },
+                {
+                    "item_id": "gearstone",
+                    "quantity": 1500
+                },
+                {
+                    "item_id": "vip_points",
+                    "quantity": 500
+                },
+                {
+                    "item_id": "lv2_alliance_chest",
+                    "quantity": 1
+                }
+            ]
+        },
+        "exclusive_weapon": {
+            "name": "Exclusive Weapon",
+            "category": "Weekly Special",
+            "price": 9999,
+            "deal_percentage": 2550,
+            "purchase_limit": 3,
+            "limit_type": "weekly",
+            "tier": null,
+            "requires": null,
+            "contains": [
+                {
+                    "item_id": "diamonds",
+                    "quantity": 10000
+                },
+                {
+                    "item_id": "exclusive_weapon_omni_shard",
+                    "quantity": 80
+                },
+                {
+                    "item_id": "vip_points",
+                    "quantity": 10000
+                },
+                {
+                    "item_id": "lv6_alliance_chest",
+                    "quantity": 1
+                }
+            ]
+        },
+        "exclusive_weapon_t2": {
+            "name": "Exclusive Weapon (T2)",
+            "category": "Daily Offer",
+            "price": 999,
+            "deal_percentage": 5880,
+            "purchase_limit": 1,
+            "limit_type": "daily",
+            "tier": 2,
+            "requires": "exclusive_weapon_t1",
+            "contains": [
+                {
+                    "item_id": "diamonds",
+                    "quantity": 1400
+                },
+                {
+                    "item_id": "exclusive_weapon_shard",
+                    "quantity": 20
+                },
+                {
+                    "item_id": "recruit_ticket",
+                    "quantity": 20
+                },
+                {
+                    "item_id": "antitoxin_level_supply_ssr",
+                    "quantity": 12
+                },
+                {
+                    "item_id": "vip_points",
+                    "quantity": 1400
+                },
+                {
+                    "item_id": "lv1_alliance_chest",
+                    "quantity": 1
+                },
+                {
+                    "item_id": "lv2_alliance_chest",
+                    "quantity": 2
+                }
+            ]
+        },
+        "exp_special_pack_t1": {
+            "name": "EXP Special Pack (T1)",
+            "category": "Special",
+            "price": 499,
+            "deal_percentage": 2550,
+            "purchase_limit": 1,
+            "limit_type": "daily",
+            "available_days": ["monday"],
+            "tier": 1,
+            "requires": null,
+            "contains": [
+                {
+                    "item_id": "diamonds",
+                    "quantity": 500
+                },
+                {
+                    "item_id": "antitoxin_level_supply_ssr",
+                    "quantity": 10
+                },
+                {
+                    "item_id": "vip_points",
+                    "quantity": 500
+                },
+                {
+                    "item_id": "lv2_alliance_chest",
+                    "quantity": 1
+                }
+            ]
+        },
+        "hero_awaken": {
+            "name": "Hero Awaken",
+            "category": "Weekly Special",
+            "price": 9999,
+            "deal_percentage": 2550,
+            "purchase_limit": 3,
+            "limit_type": "weekly",
+            "tier": null,
+            "requires": null,
+            "contains": [
+                {
+                    "item_id": "diamonds",
+                    "quantity": 10000
+                },
+                {
+                    "item_id": "hero_awaken_omni_shard",
+                    "quantity": 80
+                },
+                {
+                    "item_id": "vip_points",
+                    "quantity": 10000
+                },
+                {
+                    "item_id": "lv6_alliance_chest",
+                    "quantity": 1
+                }
+            ]
+        },
+        "hero_awaken_growth_pack_t5": {
+            "name": "<Hero> Awaken Growth Pack (T5)",
+            "category": "Exclusive",
+            "price": 9999,
+            "deal_percentage": 3610,
+            "purchase_limit": 1,
+            "limit_type": "exclusive",
+            "tier": 5,
+            "requires": "hero_awaken_growth_pack_t4",
+            "contains": [
+                {
+                    "item_id": "diamonds",
+                    "quantity": 10000
+                },
+                {
+                    "item_id": "hero_awaken_shard",
+                    "quantity": 160
+                },
+                {
+                    "item_id": "resource_supply_ssr",
+                    "quantity": 160
+                },
+                {
+                    "item_id": "skill_badge",
+                    "quantity": 8000
+                },
+                {
+                    "item_id": "vip_points",
+                    "quantity": 10000
+                },
+                {
+                    "item_id": "lv6_alliance_chest",
+                    "quantity": 1
+                }
+            ]
+        },
+        "hero_exclusive_weapon_pack_t4": {
+            "name": "<Hero> Exclusive Weapon Pack (T4)",
+            "category": "Exclusive",
+            "price": 4999,
+            "deal_percentage": 3610,
+            "purchase_limit": 1,
+            "limit_type": "exclusive",
+            "tier": 4,
+            "requires": "hero_exclusive_weapon_pack_t3",
+            "contains": [
+                {
+                    "item_id": "diamonds",
+                    "quantity": 5000
+                },
+                {
+                    "item_id": "exclusive_weapon_shard",
+                    "quantity": 80
+                },
+                {
+                    "item_id": "antitoxin_level_supply_sr",
+                    "quantity": 100
+                },
+                {
+                    "item_id": "skill_badge",
+                    "quantity": 2500
+                },
+                {
+                    "item_id": "vip_points",
+                    "quantity": 5000
+                },
+                {
+                    "item_id": "lv5_alliance_chest",
+                    "quantity": 1
+                }
+            ]
+        },
+        "hero_exclusive_weapon_pack_t5": {
+            "name": "<Hero> Exclusive Weapon Pack (T5)",
+            "category": "Exclusive",
+            "price": 9999,
+            "deal_percentage": 3610,
+            "purchase_limit": 2,
+            "limit_type": "exclusive",
+            "tier": 5,
+            "requires": "hero_exclusive_weapon_pack_t4",
+            "contains": [
+                {
+                    "item_id": "diamonds",
+                    "quantity": 10000
+                },
+                {
+                    "item_id": "exclusive_weapon_shard",
+                    "quantity": 160
+                },
+                {
+                    "item_id": "antitoxin_level_supply_sr",
+                    "quantity": 200
+                },
+                {
+                    "item_id": "skill_badge",
+                    "quantity": 5000
+                },
+                {
+                    "item_id": "vip_points",
+                    "quantity": 10000
+                },
+                {
+                    "item_id": "lv6_alliance_chest",
+                    "quantity": 1
+                }
+            ]
+        },
+        "hero_growth_pack_t1": {
+            "name": "Hero Growth Pack (T1)",
+            "category": "Daily Must-Buy",
+            "price": 499,
+            "deal_percentage": 4450,
+            "purchase_limit": 1,
+            "limit_type": "daily",
+            "tier": 1,
+            "requires": null,
+            "contains": [
+                {
+                    "item_id": "diamonds",
+                    "quantity": 500
+                },
+                {
+                    "item_id": "top_up_exp",
+                    "quantity": 5
+                },
+                {
+                    "item_id": "gearstone",
+                    "quantity": 1000
+                },
+                {
+                    "item_id": "skill_badge",
+                    "quantity": 1200
+                },
+                {
+                    "item_id": "recruit_ticket",
+                    "quantity": 5
+                },
+                {
+                    "item_id": "resource_supply_general",
+                    "quantity": 2
+                },
+                {
+                    "item_id": "vip_points",
+                    "quantity": 500
+                },
+                {
+                    "item_id": "lv2_alliance_chest",
+                    "quantity": 1
+                }
+            ]
+        },
+        "hero_promotion": {
+            "name": "Hero Promotion",
+            "category": "Weekly Special",
+            "price": 9999,
+            "deal_percentage": 2540,
+            "purchase_limit": 3,
+            "limit_type": "weekly",
+            "tier": null,
+            "requires": null,
+            "contains": [
+                {
+                    "item_id": "diamonds",
+                    "quantity": 10000
+                },
+                {
+                    "item_id": "ur_hero_omni_shard",
+                    "quantity": 75
+                },
+                {
+                    "item_id": "recruit_ticket",
+                    "quantity": 20
+                },
+                {
+                    "item_id": "vip_points",
+                    "quantity": 10000
+                },
+                {
+                    "item_id": "lv6_alliance_chest",
+                    "quantity": 1
+                }
+            ]
+        },
+        "hero_shard_t1": {
+            "name": "Hero Shard (T1)",
+            "category": "Daily Offer",
+            "price": 499,
+            "deal_percentage": 5880,
+            "purchase_limit": 1,
+            "limit_type": "daily",
+            "tier": 1,
+            "requires": null,
+            "contains": [
+                {
+                    "item_id": "diamonds",
+                    "quantity": 700
+                },
+                {
+                    "item_id": "hero_shard",
+                    "quantity": 10
+                },
+                {
+                    "item_id": "recruit_ticket",
+                    "quantity": 10
+                },
+                {
+                    "item_id": "antitoxin_level_supply_ssr",
+                    "quantity": 6
+                },
+                {
+                    "item_id": "vip_points",
+                    "quantity": 700
+                },
+                {
+                    "item_id": "lv1_alliance_chest",
+                    "quantity": 1
+                },
+                {
+                    "item_id": "lv2_alliance_chest",
+                    "quantity": 2
+                }
+            ]
+        },
+        "might_special_pack_t1": {
+            "name": "Might Special Pack (T1)",
+            "category": "Special",
+            "price": 499,
+            "deal_percentage": 4180,
+            "purchase_limit": 1,
+            "limit_type": "weekly",
+            "tier": 1,
+            "requires": null,
+            "contains": [
+                {
+                    "item_id": "diamonds",
+                    "quantity": 500
+                },
+                {
+                    "item_id": "gearstone",
+                    "quantity": 1250
+                },
+                {
+                    "item_id": "skill_badge",
+                    "quantity": 1250
+                },
+                {
+                    "item_id": "antitoxin_level_supply_ssr",
+                    "quantity": 2
+                },
+                {
+                    "item_id": "resource_supply_general",
+                    "quantity": 2
+                },
+                {
+                    "item_id": "vip_points",
+                    "quantity": 1000
+                },
+                {
+                    "item_id": "lv2_alliance_chest",
+                    "quantity": 1
+                }
+            ]
+        },
+        "mystic_cabinet_i_t1": {
+            "name": "Mystic Cabinet I (T1)",
+            "category": "Special",
+            "price": 499,
+            "deal_percentage": 5520,
+            "purchase_limit": 1,
+            "limit_type": "exclusive",
+            "tier": 1,
+            "requires": null,
+            "contains": [
+                {
+                    "item_id": "diamonds",
+                    "quantity": 500
+                },
+                {
+                    "item_id": "random_gearstone_supply",
+                    "quantity": 1
+                },
+                {
+                    "item_id": "resource_supply_ur",
+                    "quantity": 6
+                },
+                {
+                    "item_id": "gearstone",
+                    "quantity": 800
+                },
+                {
+                    "item_id": "vip_points",
+                    "quantity": 500
+                },
+                {
+                    "item_id": "lv2_alliance_chest",
+                    "quantity": 1
+                }
+            ]
+        },
+        "mystic_cabinet_i_t2": {
+            "name": "Mystic Cabinet I (T2)",
+            "category": "Special",
+            "price": 999,
+            "deal_percentage": 5520,
+            "purchase_limit": 1,
+            "limit_type": "exclusive",
+            "tier": 2,
+            "requires": "mystic_cabinet_i_t1",
+            "contains": [
+                {
+                    "item_id": "diamonds",
+                    "quantity": 1000
+                },
+                {
+                    "item_id": "random_gearstone_supply",
+                    "quantity": 2
+                },
+                {
+                    "item_id": "resource_supply_ur",
+                    "quantity": 12
+                },
+                {
+                    "item_id": "gearstone",
+                    "quantity": 1600
+                },
+                {
+                    "item_id": "vip_points",
+                    "quantity": 1000
+                },
+                {
+                    "item_id": "lv3_alliance_chest",
+                    "quantity": 1
+                }
+            ]
+        },
+        "mystic_cabinet_i_t3": {
+            "name": "Mystic Cabinet I (T3)",
+            "category": "Special",
+            "price": 1999,
+            "deal_percentage": 5520,
+            "purchase_limit": 1,
+            "limit_type": "exclusive",
+            "tier": 3,
+            "requires": "mystic_cabinet_i_t2",
+            "contains": [
+                {
+                    "item_id": "diamonds",
+                    "quantity": 2000
+                },
+                {
+                    "item_id": "random_gearstone_supply",
+                    "quantity": 6
+                },
+                {
+                    "item_id": "resource_supply_ur",
+                    "quantity": 24
+                },
+                {
+                    "item_id": "vip_points",
+                    "quantity": 2000
+                },
+                {
+                    "item_id": "lv4_alliance_chest",
+                    "quantity": 1
+                }
+            ]
+        },
+        "mystic_cabinet_ii_t1": {
+            "name": "Mystic Cabinet II (T1)",
+            "category": "Special",
+            "price": 499,
+            "deal_percentage": 5520,
+            "purchase_limit": 1,
+            "limit_type": "exclusive",
+            "tier": 1,
+            "requires": null,
+            "contains": [
+                {
+                    "item_id": "diamonds",
+                    "quantity": 500
+                },
+                {
+                    "item_id": "ur_hero_omni_shard",
+                    "quantity": 5
+                },
+                {
+                    "item_id": "skill_badge",
+                    "quantity": 1800
+                },
+                {
+                    "item_id": "vip_points",
+                    "quantity": 500
+                },
+                {
+                    "item_id": "lv2_alliance_chest",
+                    "quantity": 1
+                }
+            ]
+        },
+        "mystic_cabinet_iii_t1": {
+            "name": "Mystic Cabinet III (T1)",
+            "category": "Special",
+            "price": 499,
+            "deal_percentage": 5520,
+            "purchase_limit": 1,
+            "limit_type": "exclusive",
+            "tier": 1,
+            "requires": null,
+            "contains": [
+                {
+                    "item_id": "diamonds",
+                    "quantity": 500
+                },
+                {
+                    "item_id": "study_scroll",
+                    "quantity": 100
+                },
+                {
+                    "item_id": "research_speedup",
+                    "quantity": 390
+                },
+                {
+                    "item_id": "vip_points",
+                    "quantity": 500
+                },
+                {
+                    "item_id": "lv2_alliance_chest",
+                    "quantity": 1
+                }
+            ]
+        },
+        "premium_grain_pack_t1": {
+            "name": "Premium Grain Pack (T1)",
+            "category": "Daily Must-Buy",
+            "price": 499,
+            "deal_percentage": 3700,
+            "purchase_limit": 1,
+            "limit_type": "daily",
+            "tier": 1,
+            "requires": null,
+            "contains": [
+                {
+                    "item_id": "diamonds",
+                    "quantity": 500
+                },
+                {
+                    "item_id": "grain_level_supply_ur",
+                    "quantity": 8
+                },
+                {
+                    "item_id": "top_up_exp",
+                    "quantity": 5
+                },
+                {
+                    "item_id": "resource_supply_general",
+                    "quantity": 4
+                },
+                {
+                    "item_id": "vip_points",
+                    "quantity": 500
+                },
+                {
+                    "item_id": "lv2_alliance_chest",
+                    "quantity": 1
+                }
+            ]
+        },
+        "premium_herb_pack_t1": {
+            "name": "Premium Herb Pack (T1)",
+            "category": "Daily Must-Buy",
+            "price": 499,
+            "deal_percentage": 3700,
+            "purchase_limit": 1,
+            "limit_type": "daily",
+            "tier": 1,
+            "requires": null,
+            "contains": [
+                {
+                    "item_id": "diamonds",
+                    "quantity": 500
+                },
+                {
+                    "item_id": "herb_level_supply_ur",
+                    "quantity": 8
+                },
+                {
+                    "item_id": "top_up_exp",
+                    "quantity": 5
+                },
+                {
+                    "item_id": "resource_supply_general",
+                    "quantity": 4
+                },
+                {
+                    "item_id": "vip_points",
+                    "quantity": 500
+                },
+                {
+                    "item_id": "lv2_alliance_chest",
+                    "quantity": 1
+                }
+            ]
+        },
+        "premium_monthly_pass": {
+            "name": "Premium Monthly Pass",
+            "category": "Premium Monthly Pass",
+            "price": 2499,
+            "deal_percentage": 8360,
+            "purchase_limit": 1,
+            "limit_type": "monthly",
+            "tier": null,
+            "requires": null,
+            "contains": [
+                {
+                    "item_id": "diamonds",
+                    "quantity": 5500
+                },
+                {
+                    "item_id": "stamina",
+                    "quantity": 3000
+                },
+                {
+                    "item_id": "recruit_ticket",
+                    "quantity": 60
+                },
+                {
+                    "item_id": "speedup",
+                    "quantity": 9300
+                },
+                {
+                    "item_id": "brass",
+                    "quantity": 6000
+                },
+                {
+                    "item_id": "vip_points",
+                    "quantity": 2500
+                },
+                {
+                    "item_id": "lv4_alliance_chest",
+                    "quantity": 1
+                }
+            ]
+        },
+        "premium_timber_pack_t1": {
+            "name": "Premium Timber Pack (T1)",
+            "category": "Daily Must-Buy",
+            "price": 499,
+            "deal_percentage": 3700,
+            "purchase_limit": 1,
+            "limit_type": "daily",
+            "tier": 1,
+            "requires": null,
+            "contains": [
+                {
+                    "item_id": "diamonds",
+                    "quantity": 500
+                },
+                {
+                    "item_id": "timber_level_supply_ur",
+                    "quantity": 8
+                },
+                {
+                    "item_id": "top_up_exp",
+                    "quantity": 5
+                },
+                {
+                    "item_id": "resource_supply_general",
+                    "quantity": 4
+                },
+                {
+                    "item_id": "vip_points",
+                    "quantity": 500
+                },
+                {
+                    "item_id": "lv2_alliance_chest",
+                    "quantity": 1
+                }
+            ]
+        },
+        "raven_epigraph": {
+            "name": "Raven Epigraph",
+            "category": "Weekly Special",
+            "price": 4999,
+            "deal_percentage": 3720,
+            "purchase_limit": 10,
+            "limit_type": "weekly",
+            "tier": null,
+            "requires": null,
+            "contains": [
+                {
+                    "item_id": "diamonds",
+                    "quantity": 5000
+                },
+                {
+                    "item_id": "r_epigraph_chest",
+                    "quantity": 22
+                },
+                {
+                    "item_id": "ssr_epigraph_chest",
+                    "quantity": 4
+                },
+                {
+                    "item_id": "ur_epigraph_chest",
+                    "quantity": 4
+                },
+                {
+                    "item_id": "resource_supply_general",
+                    "quantity": 50
+                },
+                {
+                    "item_id": "vip_points",
+                    "quantity": 5000
+                },
+                {
+                    "item_id": "lv5_alliance_chest",
+                    "quantity": 1
+                }
+            ]
+        },
+        "raven_epigraph_offer_t1": {
+            "name": "Raven Epigraph Offer (T1)",
+            "category": "Special",
+            "price": 499,
+            "deal_percentage": 4500,
+            "purchase_limit": 1,
+            "limit_type": "daily",
+            "available_days": ["monday"],
+            "tier": 1,
+            "requires": null,
+            "contains": [
+                {
+                    "item_id": "diamonds",
+                    "quantity": 500
+                },
+                {
+                    "item_id": "ssr_epigraph_chest",
+                    "quantity": 1
+                },
+                {
+                    "item_id": "sr_epigraph_chest",
+                    "quantity": 1
+                },
+                {
+                    "item_id": "r_epigraph_chest",
+                    "quantity": 2
+                },
+                {
+                    "item_id": "raven_evolve_guide",
+                    "quantity": 1
+                },
+                {
+                    "item_id": "vip_points",
+                    "quantity": 500
+                },
+                {
+                    "item_id": "lv2_alliance_chest",
+                    "quantity": 1
+                }
+            ]
+        },
+        "raven_epigraph_t1": {
+            "name": "Raven Epigraph (T1)",
+            "category": "Daily Must-Buy",
+            "price": 499,
+            "deal_percentage": 4020,
+            "purchase_limit": 1,
+            "limit_type": "daily",
+            "tier": 1,
+            "requires": null,
+            "contains": [
+                {
+                    "item_id": "diamonds",
+                    "quantity": 500
+                },
+                {
+                    "item_id": "top_up_exp",
+                    "quantity": 5
+                },
+                {
+                    "item_id": "ssr_sword_epigraph_chest",
+                    "quantity": 1
+                },
+                {
+                    "item_id": "ur_epigraph_chest",
+                    "quantity": 4
+                },
+                {
+                    "item_id": "resource_supply_general",
+                    "quantity": 5
+                },
+                {
+                    "item_id": "vip_points",
+                    "quantity": 500
+                },
+                {
+                    "item_id": "lv2_alliance_chest",
+                    "quantity": 1
+                }
+            ]
+        },
+        "raven_essence": {
+            "name": "Raven Essence",
+            "category": "Weekly Special",
+            "price": 4999,
+            "deal_percentage": 3340,
+            "purchase_limit": 6,
+            "limit_type": "weekly",
+            "tier": null,
+            "requires": null,
+            "contains": [
+                {
+                    "item_id": "diamonds",
+                    "quantity": 5000
+                },
+                {
+                    "item_id": "raven_essence",
+                    "quantity": 150
+                },
+                {
+                    "item_id": "raven_fruits",
+                    "quantity": 400000
+                },
+                {
+                    "item_id": "resource_supply_general",
+                    "quantity": 40
+                },
+                {
+                    "item_id": "vip_points",
+                    "quantity": 5000
+                },
+                {
+                    "item_id": "lv5_alliance_chest",
+                    "quantity": 1
+                }
+            ]
+        },
+        "raven_essence_t1": {
+            "name": "Raven Essence (T1)",
+            "category": "Daily Must-Buy",
+            "price": 499,
+            "deal_percentage": 4460,
+            "purchase_limit": 1,
+            "limit_type": "daily",
+            "tier": 1,
+            "requires": null,
+            "contains": [
+                {
+                    "item_id": "diamonds",
+                    "quantity": 500
+                },
+                {
+                    "item_id": "raven_essence",
+                    "quantity": 20
+                },
+                {
+                    "item_id": "top_up_exp",
+                    "quantity": 5
+                },
+                {
+                    "item_id": "raven_fruit",
+                    "quantity": 10000
+                },
+                {
+                    "item_id": "resource_supply_general",
+                    "quantity": 5
+                },
+                {
+                    "item_id": "vip_points",
+                    "quantity": 500
+                },
+                {
+                    "item_id": "lv2_alliance_chest",
+                    "quantity": 1
+                }
+            ]
+        },
+        "raven_gear": {
+            "name": "Raven Gear",
+            "category": "Weekly Special",
+            "price": 4999,
+            "deal_percentage": 3630,
+            "purchase_limit": 6,
+            "limit_type": "weekly",
+            "tier": null,
+            "requires": null,
+            "contains": [
+                {
+                    "item_id": "diamonds",
+                    "quantity": 5000
+                },
+                {
+                    "item_id": "lv5_raven_gear_choice_chest",
+                    "quantity": 1
+                },
+                {
+                    "item_id": "lv5_raven_gear_chest",
+                    "quantity": 1
+                },
+                {
+                    "item_id": "lv3_raven_gear_chest",
+                    "quantity": 3
+                },
+                {
+                    "item_id": "raven_fruits",
+                    "quantity": 100000
+                },
+                {
+                    "item_id": "vip_points",
+                    "quantity": 5000
+                },
+                {
+                    "item_id": "lv5_alliance_chest",
+                    "quantity": 1
+                }
+            ]
+        },
+        "raven_gear_t1": {
+            "name": "Raven Gear (T1)",
+            "category": "Daily Must-Buy",
+            "price": 499,
+            "deal_percentage": 4280,
+            "purchase_limit": 1,
+            "limit_type": "daily",
+            "tier": 1,
+            "requires": null,
+            "contains": [
+                {
+                    "item_id": "diamonds",
+                    "quantity": 500
+                },
+                {
+                    "item_id": "lv3_raven_gear_chest",
+                    "quantity": 3
+                },
+                {
+                    "item_id": "top_up_exp",
+                    "quantity": 5
+                },
+                {
+                    "item_id": "lv1_raven_gear_chest",
+                    "quantity": 3
+                },
+                {
+                    "item_id": "vip_points",
+                    "quantity": 500
+                },
+                {
+                    "item_id": "lv2_alliance_chest",
+                    "quantity": 1
+                }
+            ]
+        },
+        "raven_growth_pack_t1": {
+            "name": "Raven Growth Pack (T1)",
+            "category": "Special",
+            "price": 499,
+            "deal_percentage": 5000,
+            "purchase_limit": 1,
+            "limit_type": "daily",
+            "available_days": ["monday"],
+            "tier": 1,
+            "requires": null,
+            "contains": [
+                {
+                    "item_id": "diamonds",
+                    "quantity": 500
+                },
+                {
+                    "item_id": "raven_essence",
+                    "quantity": 20
+                },
+                {
+                    "item_id": "raven_fruits",
+                    "quantity": 40000
+                },
+                {
+                    "item_id": "sr_epigraph_chest",
+                    "quantity": 2
+                },
+                {
+                    "item_id": "vip_points",
+                    "quantity": 500
+                },
+                {
+                    "item_id": "lv2_alliance_chest",
+                    "quantity": 1
+                }
+            ]
+        },
+        "stamina_discount_pack": {
+            "name": "Stamina Discount Pack",
+            "category": "Weekly Special",
+            "price": 999,
+            "deal_percentage": 3220,
+            "purchase_limit": 5,
+            "limit_type": "weekly",
+            "tier": null,
+            "requires": null,
+            "contains": [
+                {
+                    "item_id": "diamonds",
+                    "quantity": 1000
+                },
+                {
+                    "item_id": "stamina",
+                    "quantity": 500
+                },
+                {
+                    "item_id": "speedup",
+                    "quantity": 1000
+                },
+                {
+                    "item_id": "resource_supply_general",
+                    "quantity": 20
+                },
+                {
+                    "item_id": "vip_points",
+                    "quantity": 1000
+                },
+                {
+                    "item_id": "lv4_alliance_chest",
+                    "quantity": 1
+                }
+            ]
+        },
+        "study_scroll": {
+            "name": "Study Scroll",
+            "category": "Weekly Special",
+            "price": 9999,
+            "deal_percentage": 4000,
+            "purchase_limit": 5,
+            "limit_type": "weekly",
+            "tier": null,
+            "requires": null,
+            "contains": [
+                {
+                    "item_id": "diamonds",
+                    "quantity": 10000
+                },
+                {
+                    "item_id": "study_scroll",
+                    "quantity": 1000
+                },
+                {
+                    "item_id": "research_speedup",
+                    "quantity": 6250
+                },
+                {
+                    "item_id": "timber_level_supply_ur",
+                    "quantity": 22
+                },
+                {
+                    "item_id": "grain_level_supply_ur",
+                    "quantity": 22
+                },
+                {
+                    "item_id": "herb_level_supply_ur",
+                    "quantity": 82
+                },
+                {
+                    "item_id": "vip_points",
+                    "quantity": 5000
+                },
+                {
+                    "item_id": "lv6_alliance_chest",
+                    "quantity": 1
+                }
+            ]
+        },
+        "study_scroll_t1": {
+            "name": "Study Scroll (T1)",
+            "category": "Daily Must-Buy",
+            "price": 499,
+            "deal_percentage": 4180,
+            "purchase_limit": 1,
+            "limit_type": "daily",
+            "tier": 1,
+            "requires": null,
+            "contains": [
+                {
+                    "item_id": "diamonds",
+                    "quantity": 500
+                },
+                {
+                    "item_id": "study_scroll",
+                    "quantity": 60
+                },
+                {
+                    "item_id": "top_up_exp",
+                    "quantity": 5
+                },
+                {
+                    "item_id": "research_speedup",
+                    "quantity": 300
+                },
+                {
+                    "item_id": "timber_level_supply_ur",
+                    "quantity": 1
+                },
+                {
+                    "item_id": "grain_level_supply_ur",
+                    "quantity": 1
+                },
+                {
+                    "item_id": "herb_level_supply_ur",
+                    "quantity": 1
+                },
+                {
+                    "item_id": "resource_supply_general",
+                    "quantity": 2
+                },
+                {
+                    "item_id": "vip_points",
+                    "quantity": 500
+                },
+                {
+                    "item_id": "lv2_alliance_chest",
+                    "quantity": 1
+                }
+            ]
+        },
+        "universal_speedup_pack_t1": {
+            "name": "Universal Speedup Pack (T1)",
+            "category": "Daily Must-Buy",
+            "price": 499,
+            "deal_percentage": 3880,
+            "purchase_limit": 1,
+            "limit_type": "daily",
+            "tier": 1,
+            "requires": null,
+            "contains": [
+                {
+                    "item_id": "diamonds",
+                    "quantity": 500
+                },
+                {
+                    "item_id": "speedup",
+                    "quantity": 925
+                },
+                {
+                    "item_id": "top_up_exp",
+                    "quantity": 5
+                },
+                {
+                    "item_id": "grain_level_supply_sr",
+                    "quantity": 2
+                },
+                {
+                    "item_id": "timber_level_supply_sr",
+                    "quantity": 2
+                },
+                {
+                    "item_id": "herb_level_supply_sr",
+                    "quantity": 2
+                },
+                {
+                    "item_id": "vip_points",
+                    "quantity": 500
+                },
+                {
+                    "item_id": "lv2_alliance_chest",
+                    "quantity": 1
+                }
+            ]
+        },
+        "ur_gear_crafting": {
+            "name": "UR Gear Crafting",
+            "category": "Weekly Special",
+            "price": 4999,
+            "deal_percentage": 2960,
+            "purchase_limit": 2,
+            "limit_type": "weekly",
+            "tier": null,
+            "requires": null,
+            "contains": [
+                {
+                    "item_id": "diamonds",
+                    "quantity": 5000
+                },
+                {
+                    "item_id": "speedup",
+                    "quantity": 3000
+                },
+                {
+                    "item_id": "herbs",
+                    "quantity": 600000
+                },
+                {
+                    "item_id": "tempered_steel",
+                    "quantity": 750
+                },
+                {
+                    "item_id": "resource_supply_ur",
+                    "quantity": 5
+                },
+                {
+                    "item_id": "vip_points",
+                    "quantity": 5000
+                },
+                {
+                    "item_id": "lv5_alliance_chest",
+                    "quantity": 1
+                }
+            ]
+        },
+        "value_gear_pack_t1": {
+            "name": "Value Gear Pack (T1)",
+            "category": "Daily Must-Buy",
+            "price": 499,
+            "deal_percentage": 5060,
+            "purchase_limit": 1,
+            "limit_type": "daily",
+            "tier": 1,
+            "requires": null,
+            "contains": [
+                {
+                    "item_id": "diamonds",
+                    "quantity": 500
+                },
+                {
+                    "item_id": "top_up_exp",
+                    "quantity": 5
+                },
+                {
+                    "item_id": "random_gear_chest",
+                    "quantity": 1
+                },
+                {
+                    "item_id": "gearstone",
+                    "quantity": 1000
+                },
+                {
+                    "item_id": "resource_supply_general",
+                    "quantity": 5
+                },
+                {
+                    "item_id": "vip_points",
+                    "quantity": 500
+                },
+                {
+                    "item_id": "lv2_alliance_chest",
+                    "quantity": 1
+                }
+            ]
+        }
+    },
+    "exchange_shops": {
+        "stone_blade_exchange_shop": {
+            "name": "Stone Blade Exchange Shop",
+            "event_id": "blades_out",
+            "currency_item_id": "stone_blade",
+            "offers": {
+                "antitoxin_level_supply_ssr": {
+                    "currency_cost": 1,
+                    "quantity": 1,
+                    "purchase_limit": 350,
+                    "limit_type": "weekly"
+                },
+                "awaken_shard_choice_chest": {
+                    "currency_cost": 2,
+                    "quantity": 1,
+                    "purchase_limit": 400,
+                    "limit_type": "weekly"
+                },
+                "exclusive_weapon_shard": {
+                    "currency_cost": 2,
+                    "quantity": 1,
+                    "purchase_limit": 200,
+                    "limit_type": "weekly"
+                },
+                "gear_blueprint_ur": {
+                    "currency_cost": 12,
+                    "quantity": 1,
+                    "purchase_limit": 50,
+                    "limit_type": "weekly"
+                },
+                "gearstone": {
+                    "currency_cost": 1,
+                    "quantity": 120,
+                    "purchase_limit": 1010,
+                    "limit_type": "weekly"
+                },
+                "lv5_raven_gear_chest": {
+                    "currency_cost": 30,
+                    "quantity": 1,
+                    "purchase_limit": 50,
+                    "limit_type": "weekly"
+                },
+                "resource_supply_ssr": {
+                    "currency_cost": 1,
+                    "quantity": 1,
+                    "purchase_limit": 4000,
+                    "limit_type": "weekly"
+                },
+                "skill_badge": {
+                    "currency_cost": 1,
+                    "quantity": 200,
+                    "purchase_limit": 1010,
+                    "limit_type": "weekly"
+                },
+                "survivor_recruit_ticket": {
+                    "currency_cost": 8,
+                    "quantity": 8,
+                    "purchase_limit": 50,
+                    "limit_type": "weekly"
+                },
+                "ur_epigraph_chest": {
+                    "currency_cost": 55,
+                    "quantity": 1,
+                    "purchase_limit": 10,
+                    "limit_type": "weekly"
+                },
+                "ur_epigraph_shard": {
+                    "currency_cost": 7,
+                    "quantity": 100,
+                    "purchase_limit": 10,
+                    "limit_type": "weekly"
+                },
+                "ur_hero_choice_chest": {
+                    "currency_cost": 2,
+                    "quantity": 1,
+                    "purchase_limit": 800,
+                    "limit_type": "weekly"
+                },
+                "ur_hero_omni_shard": {
+                    "currency_cost": 10,
+                    "quantity": 10,
+                    "purchase_limit": 1,
+                    "limit_type": "daily"
+                }
+            }
+        }
+    }
+}

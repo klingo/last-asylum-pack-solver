@@ -1,0 +1,375 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "PackData",
+    "description": "Schema for Last Asylum pack solver data",
+    "type": "object",
+    "required": ["metadata", "items", "packages", "exchange_shops"],
+    "additionalProperties": false,
+    "properties": {
+        "metadata": {
+            "$ref": "#/definitions/metadata"
+        },
+        "items": {
+            "type": "object",
+            "propertyNames": {
+                "$ref": "#/definitions/id"
+            },
+            "additionalProperties": {
+                "$ref": "#/definitions/item"
+            }
+        },
+        "packages": {
+            "type": "object",
+            "propertyNames": {
+                "$ref": "#/definitions/id"
+            },
+            "additionalProperties": {
+                "$ref": "#/definitions/package"
+            }
+        },
+        "exchange_shops": {
+            "type": "object",
+            "propertyNames": {
+                "$ref": "#/definitions/id"
+            },
+            "additionalProperties": {
+                "$ref": "#/definitions/exchangeShop"
+            }
+        }
+    },
+    "definitions": {
+        "metadata": {
+            "type": "object",
+            "required": ["game", "currency", "last_updated"],
+            "additionalProperties": false,
+            "properties": {
+                "game": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "currency": {
+                    "type": "string",
+                    "enum": ["Banknotes"]
+                },
+                "last_updated": {
+                    "type": "string",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+                }
+            }
+        },
+        "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "itemQuantity": {
+            "type": "object",
+            "required": ["item_id", "quantity"],
+            "additionalProperties": false,
+            "properties": {
+                "item_id": {
+                    "$ref": "#/definitions/id"
+                },
+                "quantity": {
+                    "type": "integer",
+                    "minimum": 1
+                }
+            }
+        },
+        "limitType": {
+            "type": "string",
+            "enum": ["daily", "weekly", "monthly", "exclusive", "event"]
+        },
+        "weekday": {
+            "type": "string",
+            "enum": ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
+        },
+        "availableDays": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/weekday"
+            },
+            "minItems": 1,
+            "uniqueItems": true
+        },
+        "standardItem": {
+            "type": "object",
+            "required": ["name", "category"],
+            "additionalProperties": false,
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "category": {
+                    "$ref": "#/definitions/itemCategory"
+                },
+                "contains": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/itemQuantity"
+                    },
+                    "minItems": 1
+                }
+            }
+        },
+        "choiceOption": {
+            "type": "object",
+            "required": ["contains"],
+            "additionalProperties": false,
+            "properties": {
+                "option_name": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "contains": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/itemQuantity"
+                    },
+                    "minItems": 1
+                }
+            }
+        },
+        "choicePool": {
+            "type": "object",
+            "required": ["choices"],
+            "additionalProperties": false,
+            "properties": {
+                "select_count": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "default": 1
+                },
+                "choices": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/choiceOption"
+                    },
+                    "minItems": 1
+                }
+            }
+        },
+        "choiceItem": {
+            "type": "object",
+            "required": ["name", "category", "type", "choice"],
+            "additionalProperties": false,
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "category": {
+                    "$ref": "#/definitions/itemCategory"
+                },
+                "type": {
+                    "type": "string",
+                    "enum": ["choice"]
+                },
+                "choice": {
+                    "$ref": "#/definitions/choicePool"
+                }
+            }
+        },
+        "randomItemDrop": {
+            "type": "object",
+            "required": ["item_id", "quantity", "probability"],
+            "additionalProperties": false,
+            "properties": {
+                "item_id": {
+                    "$ref": "#/definitions/id"
+                },
+                "quantity": {
+                    "type": "integer",
+                    "minimum": 1
+                },
+                "probability": {
+                    "type": "number",
+                    "exclusiveMinimum": 0,
+                    "maximum": 1
+                }
+            }
+        },
+        "randomItem": {
+            "type": "object",
+            "required": ["name", "category", "type", "drop_table"],
+            "additionalProperties": false,
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "category": {
+                    "$ref": "#/definitions/itemCategory"
+                },
+                "type": {
+                    "type": "string",
+                    "enum": ["random"]
+                },
+                "drop_table": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/randomItemDrop"
+                    },
+                    "minItems": 1
+                }
+            }
+        },
+        "item": {
+            "oneOf": [
+                {
+                    "$ref": "#/definitions/standardItem"
+                },
+                {
+                    "$ref": "#/definitions/choiceItem"
+                },
+                {
+                    "$ref": "#/definitions/randomItem"
+                }
+            ]
+        },
+        "itemCategory": {
+            "type": "string",
+            "enum": ["Resource", "Hero", "Gear", "Special", "Speedup", "Virtual"]
+        },
+        "package": {
+            "type": "object",
+            "required": [
+                "name",
+                "category",
+                "price",
+                "deal_percentage",
+                "purchase_limit",
+                "limit_type",
+                "tier",
+                "requires",
+                "contains"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "category": {
+                    "$ref": "#/definitions/packageCategory"
+                },
+                "event_id": {
+                    "$ref": "#/definitions/eventId"
+                },
+                "price": {
+                    "type": "integer",
+                    "minimum": 99
+                },
+                "deal_percentage": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "purchase_limit": {
+                    "type": "integer",
+                    "minimum": 1
+                },
+                "limit_type": {
+                    "$ref": "#/definitions/limitType"
+                },
+                "available_days": {
+                    "$ref": "#/definitions/availableDays"
+                },
+                "tier": {
+                    "anyOf": [
+                        {
+                            "type": "integer",
+                            "minimum": 1
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "requires": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/id"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "contains": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/itemQuantity"
+                    },
+                    "minItems": 1
+                },
+                "choice": {
+                    "$ref": "#/definitions/choicePool"
+                }
+            }
+        },
+        "packageCategory": {
+            "type": "string",
+            "enum": [
+                "Daily Offer",
+                "Daily Must-Buy",
+                "Weekly Special",
+                "Premium Monthly Pass",
+                "Exclusive",
+                "Event",
+                "Special"
+            ]
+        },
+        "exchangeShop": {
+            "type": "object",
+            "required": ["name", "currency_item_id", "offers"],
+            "additionalProperties": false,
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "event_id": {
+                    "$ref": "#/definitions/eventId"
+                },
+                "currency_item_id": {
+                    "$ref": "#/definitions/id"
+                },
+                "offers": {
+                    "type": "object",
+                    "propertyNames": {
+                        "$ref": "#/definitions/id"
+                    },
+                    "additionalProperties": {
+                        "$ref": "#/definitions/exchangeShopOffer"
+                    }
+                }
+            }
+        },
+        "exchangeShopOffer": {
+            "type": "object",
+            "required": ["currency_cost", "quantity", "purchase_limit"],
+            "additionalProperties": false,
+            "properties": {
+                "currency_cost": {
+                    "type": "integer",
+                    "minimum": 1
+                },
+                "quantity": {
+                    "type": "integer",
+                    "minimum": 1
+                },
+                "purchase_limit": {
+                    "type": "integer",
+                    "minimum": 1
+                },
+                "limit_type": {
+                    "$ref": "#/definitions/limitType"
+                }
+            }
+        },
+        "eventId": {
+            "type": "string",
+            "enum": ["blades_out", "strange_bazaar"]
+        }
+    }
+}
