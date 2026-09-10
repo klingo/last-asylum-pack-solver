@@ -778,9 +778,7 @@
             "deal_percentage": 4140,
             "purchase_limit": 1,
             "limit_type": "daily",
-            "available_days": [
-                "tuesday"
-            ],
+            "available_days": ["tuesday"],
             "tier": 1,
             "requires": null,
             "contains": {
@@ -856,9 +854,7 @@
             "deal_percentage": 4140,
             "purchase_limit": 1,
             "limit_type": "daily",
-            "available_days": [
-                "tuesday"
-            ],
+            "available_days": ["tuesday"],
             "tier": 1,
             "requires": null,
             "contains": {
@@ -878,9 +874,7 @@
             "deal_percentage": 4140,
             "purchase_limit": 1,
             "limit_type": "daily",
-            "available_days": [
-                "tuesday"
-            ],
+            "available_days": ["tuesday"],
             "tier": 2,
             "requires": "development_pack_t1",
             "contains": {
@@ -952,9 +946,7 @@
             "deal_percentage": 3500,
             "purchase_limit": 1,
             "limit_type": "daily",
-            "available_days": [
-                "tuesday"
-            ],
+            "available_days": ["tuesday"],
             "tier": 1,
             "requires": null,
             "contains": {
@@ -991,9 +983,7 @@
             "deal_percentage": 2550,
             "purchase_limit": 1,
             "limit_type": "daily",
-            "available_days": [
-                "monday"
-            ],
+            "available_days": ["monday"],
             "tier": 1,
             "requires": null,
             "contains": {
@@ -1334,9 +1324,7 @@
             "deal_percentage": 4500,
             "purchase_limit": 1,
             "limit_type": "daily",
-            "available_days": [
-                "monday"
-            ],
+            "available_days": ["monday"],
             "tier": 1,
             "requires": null,
             "contains": {
@@ -1449,9 +1437,7 @@
             "deal_percentage": 5000,
             "purchase_limit": 1,
             "limit_type": "daily",
-            "available_days": [
-                "monday"
-            ],
+            "available_days": ["monday"],
             "tier": 1,
             "requires": null,
             "contains": {
@@ -1648,6 +1634,104 @@
                     }
                 ]
             }
+        },
+        "surprise_encounter_select_pack": {
+            "name": "Surprise Encounter Select Pack",
+            "category": "Event",
+            "price": 499,
+            "deal_percentage": 5610,
+            "purchase_limit": 1,
+            "limit_type": "daily",
+            "tier": null,
+            "requires": null,
+            "contains": {
+                "diamonds": 500,
+                "surprise_emblem": 40,
+                "vip_points": 500,
+                "resource_supply_general": 5
+            }
+        },
+        "surprise_encounter_exquisite_pack": {
+            "name": "Surprise Encounter Exquisite Pack",
+            "category": "Event",
+            "price": 999,
+            "deal_percentage": 3410,
+            "purchase_limit": 5,
+            "limit_type": "daily",
+            "tier": null,
+            "requires": null,
+            "contains": {
+                "diamonds": 1000,
+                "surprise_emblem": 50,
+                "vip_points": 1000,
+                "resource_supply_general": 10
+            }
+        },
+        "surprise_encounter_rare_pack": {
+            "name": "Surprise Encounter Rare Pack",
+            "category": "Event",
+            "price": 1999,
+            "deal_percentage": 3410,
+            "purchase_limit": 5,
+            "limit_type": "daily",
+            "tier": null,
+            "requires": null,
+            "contains": {
+                "diamonds": 2000,
+                "surprise_emblem": 100,
+                "vip_points": 2000,
+                "resource_supply_general": 20
+            }
+        },
+        "surprise_encounter_premium_pack": {
+            "name": "Surprise Encounter Premium Pack",
+            "category": "Event",
+            "price": 4999,
+            "deal_percentage": 3410,
+            "purchase_limit": 5,
+            "limit_type": "daily",
+            "tier": null,
+            "requires": null,
+            "contains": {
+                "diamonds": 5000,
+                "surprise_emblem": 250,
+                "vip_points": 5000,
+                "resource_supply_general": 50
+            }
+        },
+        "surprise_encounter_ultimate_pack": {
+            "name": "Surprise Encounter Ultimate Pack",
+            "category": "Event",
+            "price": 9999,
+            "deal_percentage": 3410,
+            "purchase_limit": 10,
+            "limit_type": "daily",
+            "tier": null,
+            "requires": null,
+            "contains": {
+                "diamonds": 10000,
+                "surprise_emblem": 500,
+                "vip_points": 10000,
+                "resource_supply_general": 100
+            }
+        },
+        "quick_research_pack_t1": {
+            "name": "Quick Research Pack (T1)",
+            "category": "Special",
+            "price": 499,
+            "deal_percentage": 4490,
+            "purchase_limit": 1,
+            "limit_type": "daily",
+            "available_days": ["wednesday"],
+            "tier": 1,
+            "requires": null,
+            "contains": {
+                "diamonds": 500,
+                "research_speedup": 1500,
+                "herb_level_supply_ur": 5,
+                "vip_points": 500,
+                "lv2_alliance_chest": 1
+            }
         }
     },
     "exchange_shops": {
@@ -1739,6 +1823,32 @@
                 "50": {
                     "stone_blade": 999,
                     "dummy_entry": 1
+                }
+            }
+        },
+        "surprise_encounter_shop": {
+            "name": "Surprise Encounter Shop",
+            "event_id": "surprise_encounter",
+            "currency_item_id": "surprise_emblem",
+            "offers": {},
+            "bonus_tiers": {
+                "100": {
+                    "ur_hero_omni_shard": 5
+                },
+                "500": {
+                    "curio_chest_ur": 1
+                },
+                "1000": {
+                    "ur_hero_omni_shard": 10
+                },
+                "2000": {
+                    "lv5_raven_gear_chest": 1
+                },
+                "5000": {
+                    "resource_supply_ur": 20
+                },
+                "10000": {
+                    "ur_hero_omni_shard": 20
                 }
             }
         }
