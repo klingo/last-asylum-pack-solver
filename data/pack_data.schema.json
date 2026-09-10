@@ -343,7 +343,7 @@
         },
         "eventId": {
             "type": "string",
-            "enum": ["blades_out", "strange_bazaar"]
+            "enum": ["blades_out", "strange_bazaar", "surprise_encounter"]
         }
     }
 }
