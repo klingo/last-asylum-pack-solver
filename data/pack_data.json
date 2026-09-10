@@ -2,7 +2,7 @@
     "metadata": {
         "game": "Last Asylum: Plague",
         "currency": "Banknotes",
-        "last_updated": "2026-09-08"
+        "last_updated": "2026-09-10"
     },
     "items": {
         "antitoxin": {
@@ -676,6 +676,40 @@
                 "lv2_alliance_chest": 2
             }
         },
+        "awakening_special_pack_t1": {
+            "name": "Awakening Special Pack (T1)",
+            "category": "Special",
+            "price": 499,
+            "deal_percentage": 3500,
+            "purchase_limit": 1,
+            "limit_type": "daily",
+            "tier": 1,
+            "requires": null,
+            "contains": {
+                "diamonds": 500,
+                "awaknening_shard_choice_chest": 10,
+                "antitoxin_level_supply_sr": 10,
+                "vip_points": 500,
+                "lv2_alliance_chest": 1
+            }
+        },
+        "awakening_special_pack_t2": {
+            "name": "Awakening Special Pack (T2)",
+            "category": "Special",
+            "price": 999,
+            "deal_percentage": 3500,
+            "purchase_limit": 1,
+            "limit_type": "daily",
+            "tier": 2,
+            "requires": "awakening_special_pack_t1",
+            "contains": {
+                "diamonds": 1000,
+                "awaknening_shard_choice_chest": 20,
+                "antitoxin_level_supply_sr": 20,
+                "vip_points": 1000,
+                "lv3_alliance_chest": 1
+            }
+        },
         "blades_out_deluxe_pack": {
             "name": "Blades Out Deluxe Pack",
             "category": "Event",
@@ -1119,6 +1153,23 @@
                 "lv2_alliance_chest": 2
             }
         },
+        "hero_special_pack_t1": {
+            "name": "Hero Special Pack (T1)",
+            "category": "Special",
+            "price": 499,
+            "deal_percentage": 3500,
+            "purchase_limit": 1,
+            "limit_type": "daily",
+            "tier": 1,
+            "requires": null,
+            "contains": {
+                "diamonds": 500,
+                "ur_hero_choice_chest": 10,
+                "antitoxin_level_supply_sr": 10,
+                "vip_points": 500,
+                "lv2_alliance_chest": 1
+            }
+        },
         "might_special_pack_t1": {
             "name": "Might Special Pack (T1)",
             "category": "Special",
@@ -1294,6 +1345,24 @@
                 "timber_level_supply_ur": 8,
                 "top_up_exp": 5,
                 "resource_supply_general": 4,
+                "vip_points": 500,
+                "lv2_alliance_chest": 1
+            }
+        },
+        "quick_research_pack_t1": {
+            "name": "Quick Research Pack (T1)",
+            "category": "Special",
+            "price": 499,
+            "deal_percentage": 4490,
+            "purchase_limit": 1,
+            "limit_type": "daily",
+            "available_days": ["wednesday"],
+            "tier": 1,
+            "requires": null,
+            "contains": {
+                "diamonds": 500,
+                "research_speedup": 1500,
+                "herb_level_supply_ur": 5,
                 "vip_points": 500,
                 "lv2_alliance_chest": 1
             }
@@ -1509,6 +1578,86 @@
                 "lv2_alliance_chest": 1
             }
         },
+        "surprise_encounter_exquisite_pack": {
+            "name": "Surprise Encounter Exquisite Pack",
+            "category": "Event",
+            "price": 999,
+            "deal_percentage": 3410,
+            "purchase_limit": 5,
+            "limit_type": "daily",
+            "tier": null,
+            "requires": null,
+            "contains": {
+                "diamonds": 1000,
+                "surprise_emblem": 50,
+                "vip_points": 1000,
+                "resource_supply_general": 10
+            }
+        },
+        "surprise_encounter_premium_pack": {
+            "name": "Surprise Encounter Premium Pack",
+            "category": "Event",
+            "price": 4999,
+            "deal_percentage": 3410,
+            "purchase_limit": 5,
+            "limit_type": "daily",
+            "tier": null,
+            "requires": null,
+            "contains": {
+                "diamonds": 5000,
+                "surprise_emblem": 250,
+                "vip_points": 5000,
+                "resource_supply_general": 50
+            }
+        },
+        "surprise_encounter_rare_pack": {
+            "name": "Surprise Encounter Rare Pack",
+            "category": "Event",
+            "price": 1999,
+            "deal_percentage": 3410,
+            "purchase_limit": 5,
+            "limit_type": "daily",
+            "tier": null,
+            "requires": null,
+            "contains": {
+                "diamonds": 2000,
+                "surprise_emblem": 100,
+                "vip_points": 2000,
+                "resource_supply_general": 20
+            }
+        },
+        "surprise_encounter_select_pack": {
+            "name": "Surprise Encounter Select Pack",
+            "category": "Event",
+            "price": 499,
+            "deal_percentage": 5610,
+            "purchase_limit": 1,
+            "limit_type": "daily",
+            "tier": null,
+            "requires": null,
+            "contains": {
+                "diamonds": 500,
+                "surprise_emblem": 40,
+                "vip_points": 500,
+                "resource_supply_general": 5
+            }
+        },
+        "surprise_encounter_ultimate_pack": {
+            "name": "Surprise Encounter Ultimate Pack",
+            "category": "Event",
+            "price": 9999,
+            "deal_percentage": 3410,
+            "purchase_limit": 10,
+            "limit_type": "daily",
+            "tier": null,
+            "requires": null,
+            "contains": {
+                "diamonds": 10000,
+                "surprise_emblem": 500,
+                "vip_points": 10000,
+                "resource_supply_general": 100
+            }
+        },
         "universal_speedup_pack_t1": {
             "name": "Universal Speedup Pack (T1)",
             "category": "Daily Must-Buy",
@@ -1633,104 +1782,6 @@
                         "gearstone": 7000
                     }
                 ]
-            }
-        },
-        "surprise_encounter_select_pack": {
-            "name": "Surprise Encounter Select Pack",
-            "category": "Event",
-            "price": 499,
-            "deal_percentage": 5610,
-            "purchase_limit": 1,
-            "limit_type": "daily",
-            "tier": null,
-            "requires": null,
-            "contains": {
-                "diamonds": 500,
-                "surprise_emblem": 40,
-                "vip_points": 500,
-                "resource_supply_general": 5
-            }
-        },
-        "surprise_encounter_exquisite_pack": {
-            "name": "Surprise Encounter Exquisite Pack",
-            "category": "Event",
-            "price": 999,
-            "deal_percentage": 3410,
-            "purchase_limit": 5,
-            "limit_type": "daily",
-            "tier": null,
-            "requires": null,
-            "contains": {
-                "diamonds": 1000,
-                "surprise_emblem": 50,
-                "vip_points": 1000,
-                "resource_supply_general": 10
-            }
-        },
-        "surprise_encounter_rare_pack": {
-            "name": "Surprise Encounter Rare Pack",
-            "category": "Event",
-            "price": 1999,
-            "deal_percentage": 3410,
-            "purchase_limit": 5,
-            "limit_type": "daily",
-            "tier": null,
-            "requires": null,
-            "contains": {
-                "diamonds": 2000,
-                "surprise_emblem": 100,
-                "vip_points": 2000,
-                "resource_supply_general": 20
-            }
-        },
-        "surprise_encounter_premium_pack": {
-            "name": "Surprise Encounter Premium Pack",
-            "category": "Event",
-            "price": 4999,
-            "deal_percentage": 3410,
-            "purchase_limit": 5,
-            "limit_type": "daily",
-            "tier": null,
-            "requires": null,
-            "contains": {
-                "diamonds": 5000,
-                "surprise_emblem": 250,
-                "vip_points": 5000,
-                "resource_supply_general": 50
-            }
-        },
-        "surprise_encounter_ultimate_pack": {
-            "name": "Surprise Encounter Ultimate Pack",
-            "category": "Event",
-            "price": 9999,
-            "deal_percentage": 3410,
-            "purchase_limit": 10,
-            "limit_type": "daily",
-            "tier": null,
-            "requires": null,
-            "contains": {
-                "diamonds": 10000,
-                "surprise_emblem": 500,
-                "vip_points": 10000,
-                "resource_supply_general": 100
-            }
-        },
-        "quick_research_pack_t1": {
-            "name": "Quick Research Pack (T1)",
-            "category": "Special",
-            "price": 499,
-            "deal_percentage": 4490,
-            "purchase_limit": 1,
-            "limit_type": "daily",
-            "available_days": ["wednesday"],
-            "tier": 1,
-            "requires": null,
-            "contains": {
-                "diamonds": 500,
-                "research_speedup": 1500,
-                "herb_level_supply_ur": 5,
-                "vip_points": 500,
-                "lv2_alliance_chest": 1
             }
         }
     },
