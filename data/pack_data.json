@@ -2,7 +2,7 @@
     "metadata": {
         "game": "Last Asylum: Plague",
         "currency": "Banknotes",
-        "last_updated": "2026-09-10"
+        "last_updated": "2026-09-11"
     },
     "items": {
         "antitoxin": {
@@ -683,6 +683,7 @@
             "deal_percentage": 3500,
             "purchase_limit": 1,
             "limit_type": "daily",
+            "available_days": ["wednesday"],
             "tier": 1,
             "requires": null,
             "contains": {
@@ -700,6 +701,7 @@
             "deal_percentage": 3500,
             "purchase_limit": 1,
             "limit_type": "daily",
+            "available_days": ["wednesday"],
             "tier": 2,
             "requires": "awakening_special_pack_t1",
             "contains": {
@@ -1160,6 +1162,7 @@
             "deal_percentage": 3500,
             "purchase_limit": 1,
             "limit_type": "daily",
+            "available_days": ["thursday"],
             "tier": 1,
             "requires": null,
             "contains": {
@@ -1514,6 +1517,66 @@
                 "raven_essence": 20,
                 "raven_fruit": 40000,
                 "sr_epigraph_chest": 2,
+                "vip_points": 500,
+                "lv2_alliance_chest": 1
+            }
+        },
+        "resource_special_pack_t1": {
+            "name": "Resource Special Pack (T1)",
+            "category": "Special",
+            "price": 499,
+            "deal_percentage": 4140,
+            "purchase_limit": 1,
+            "limit_type": "daily",
+            "available_days": ["friday"],
+            "tier": 1,
+            "requires": null,
+            "contains": {
+                "diamonds": 500,
+                "resource_supply_ur": 5,
+                "timber_level_supply_ur": 2,
+                "grain_level_supply_ur": 2,
+                "herb_level_supply_ur": 2,
+                "vip_points": 500,
+                "lv2_alliance_chest": 1
+            }
+        },
+        "resource_special_pack_t2": {
+            "name": "Resource Special Pack (T2)",
+            "category": "Special",
+            "price": 499,
+            "deal_percentage": 4140,
+            "purchase_limit": 1,
+            "limit_type": "daily",
+            "available_days": ["friday"],
+            "tier": 2,
+            "requires": "resource_special_pack_t1",
+            "contains": {
+                "diamonds": 1000,
+                "resource_supply_ur": 10,
+                "timber_level_supply_ur": 4,
+                "grain_level_supply_ur": 4,
+                "herb_level_supply_ur": 4,
+                "vip_points": 1000,
+                "lv3_alliance_chest": 1
+            }
+        },
+        "speedup_special_pack_t1": {
+            "name": "Speedup Special Pack (T1)",
+            "category": "Special",
+            "price": 499,
+            "deal_percentage": 3330,
+            "purchase_limit": 1,
+            "limit_type": "daily",
+            "available_days": ["friday"],
+            "tier": 1,
+            "requires": null,
+            "contains": {
+                "diamonds": 500,
+                "speedup": 1000,
+                "timber_level_supply_ur": 1,
+                "grain_level_supply_ur": 1,
+                "herb_level_supply_ur": 1,
                 "vip_points": 500,
                 "lv2_alliance_chest": 1
             }
