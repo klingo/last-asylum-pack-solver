@@ -2,7 +2,7 @@
     "metadata": {
         "game": "Last Asylum: Plague",
         "currency": "Banknotes",
-        "last_updated": "2026-09-12"
+        "last_updated": "2026-09-13"
     },
     "items": {
         "antitoxin": {
@@ -1753,7 +1753,7 @@
             "name": "UR Blueprint Offer (T1)",
             "category": "Special",
             "price": 999,
-            "deal_percentage": 4650,
+            "deal_percentage": null,
             "purchase_limit": 1,
             "limit_type": "daily",
             "available_days": ["saturday"],
@@ -1785,6 +1785,25 @@
                 "gearstone": 2000,
                 "vip_points": 2000,
                 "lv4_alliance_chest": 1
+            }
+        },
+        "ur_blueprint_offer_t3": {
+            "name": "UR Blueprint Offer (T3)",
+            "category": "Special",
+            "price": 4999,
+            "deal_percentage": 4380,
+            "purchase_limit": 1,
+            "limit_type": "daily",
+            "available_days": ["saturday"],
+            "tier": 3,
+            "requires": "ur_blueprint_offer_t2",
+            "contains": {
+                "diamonds": 5000,
+                "tempered_steel": 250,
+                "gear_blueprint_ur": 8,
+                "gearstone": 5000,
+                "vip_points": 5000,
+                "lv5_alliance_chest": 1
             }
         },
         "ur_gear_crafting": {
