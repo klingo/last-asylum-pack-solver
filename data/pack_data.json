@@ -2,7 +2,7 @@
     "metadata": {
         "game": "Last Asylum: Plague",
         "currency": "Banknotes",
-        "last_updated": "2026-09-11"
+        "last_updated": "2026-09-12"
     },
     "items": {
         "antitoxin": {
@@ -1528,7 +1528,7 @@
             "deal_percentage": 4140,
             "purchase_limit": 1,
             "limit_type": "daily",
-            "available_days": ["friday"],
+            "available_days": ["friday", "saturday"],
             "tier": 1,
             "requires": null,
             "contains": {
@@ -1548,7 +1548,7 @@
             "deal_percentage": 4140,
             "purchase_limit": 1,
             "limit_type": "daily",
-            "available_days": ["friday"],
+            "available_days": ["friday", "saturday"],
             "tier": 2,
             "requires": "resource_special_pack_t1",
             "contains": {
@@ -1568,7 +1568,7 @@
             "deal_percentage": 3330,
             "purchase_limit": 1,
             "limit_type": "daily",
-            "available_days": ["friday"],
+            "available_days": ["friday", "saturday"],
             "tier": 1,
             "requires": null,
             "contains": {
@@ -1739,6 +1739,44 @@
                 "herb_level_supply_sr": 2,
                 "vip_points": 500,
                 "lv2_alliance_chest": 1
+            }
+        },
+        "ur_blueprint_offer_t1": {
+            "name": "UR Blueprint Offer (T1)",
+            "category": "Special",
+            "price": 999,
+            "deal_percentage": 4650,
+            "purchase_limit": 1,
+            "limit_type": "daily",
+            "available_days": ["saturday"],
+            "tier": 1,
+            "requires": null,
+            "contains": {
+                "diamonds": 1000,
+                "tempered_steel": 50,
+                "gear_blueprint_ur": 2,
+                "gearstone": 1000,
+                "vip_points": 1000,
+                "lv3_alliance_chest": 1
+            }
+        },
+        "ur_blueprint_offer_t2": {
+            "name": "UR Blueprint Offer (T2)",
+            "category": "Special",
+            "price": 1999,
+            "deal_percentage": 4650,
+            "purchase_limit": 1,
+            "limit_type": "daily",
+            "available_days": ["saturday"],
+            "tier": 2,
+            "requires": "ur_blueprint_offer_t1",
+            "contains": {
+                "diamonds": 2000,
+                "tempered_steel": 100,
+                "gear_blueprint_ur": 4,
+                "gearstone": 2000,
+                "vip_points": 2000,
+                "lv4_alliance_chest": 1
             }
         },
         "ur_gear_crafting": {
