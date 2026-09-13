@@ -5,6 +5,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
+        "analyze-item-value": "node scripts/analyze-item-value.js",
         "format": "prettier --write \"**/*.{js,jsx,json,css}\"",
         "lint": "eslint .",
         "prepare": "husky",
