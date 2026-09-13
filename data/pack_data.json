@@ -686,7 +686,7 @@
         },
         "awakening_special_pack_t1": {
             "name": "Awakening Special Pack (T1)",
-            "category": "Special",
+            "category": "Weekly Rotation",
             "price": 499,
             "deal_percentage": 3500,
             "purchase_limit": 1,
@@ -704,7 +704,7 @@
         },
         "awakening_special_pack_t2": {
             "name": "Awakening Special Pack (T2)",
-            "category": "Special",
+            "category": "Weekly Rotation",
             "price": 999,
             "deal_percentage": 3500,
             "purchase_limit": 1,
@@ -817,7 +817,7 @@
         },
         "building_speedup_pack_t1": {
             "name": "Building Speedup Pack (T1)",
-            "category": "Special",
+            "category": "Weekly Rotation",
             "price": 499,
             "deal_percentage": 4140,
             "purchase_limit": 1,
@@ -893,7 +893,7 @@
         },
         "development_pack_t1": {
             "name": "Development Pack (T1)",
-            "category": "Special",
+            "category": "Weekly Rotation",
             "price": 499,
             "deal_percentage": 4140,
             "purchase_limit": 1,
@@ -913,7 +913,7 @@
         },
         "development_pack_t2": {
             "name": "Development Pack (T2)",
-            "category": "Special",
+            "category": "Weekly Rotation",
             "price": 999,
             "deal_percentage": 4140,
             "purchase_limit": 1,
@@ -952,11 +952,12 @@
         },
         "enhancement_special_pack_t1": {
             "name": "Enhancement Special Pack (T1)",
-            "category": "Special",
+            "category": "Weekly Rotation",
             "price": 499,
             "deal_percentage": 3280,
             "purchase_limit": 1,
             "limit_type": "weekly",
+            "available_days": ["sunday"],
             "tier": 1,
             "requires": null,
             "contains": {
@@ -985,7 +986,7 @@
         },
         "exclusive_weapon_pack_t1": {
             "name": "Exclusive Weapon Pack (T1)",
-            "category": "Special",
+            "category": "Weekly Rotation",
             "price": 499,
             "deal_percentage": 3500,
             "purchase_limit": 1,
@@ -1022,7 +1023,7 @@
         },
         "exp_special_pack_t1": {
             "name": "EXP Special Pack (T1)",
-            "category": "Special",
+            "category": "Weekly Rotation",
             "price": 499,
             "deal_percentage": 2550,
             "purchase_limit": 1,
@@ -1165,7 +1166,7 @@
         },
         "hero_special_pack_t1": {
             "name": "Hero Special Pack (T1)",
-            "category": "Special",
+            "category": "Weekly Rotation",
             "price": 499,
             "deal_percentage": 3500,
             "purchase_limit": 1,
@@ -1183,11 +1184,12 @@
         },
         "might_special_pack_t1": {
             "name": "Might Special Pack (T1)",
-            "category": "Special",
+            "category": "Weekly Rotation",
             "price": 499,
             "deal_percentage": 4180,
             "purchase_limit": 1,
             "limit_type": "weekly",
+            "available_days": ["sunday"],
             "tier": 1,
             "requires": null,
             "contains": {
@@ -1362,7 +1364,7 @@
         },
         "quick_research_pack_t1": {
             "name": "Quick Research Pack (T1)",
-            "category": "Special",
+            "category": "Weekly Rotation",
             "price": 499,
             "deal_percentage": 4490,
             "purchase_limit": 1,
@@ -1399,7 +1401,7 @@
         },
         "raven_epigraph_offer_t1": {
             "name": "Raven Epigraph Offer (T1)",
-            "category": "Special",
+            "category": "Weekly Rotation",
             "price": 499,
             "deal_percentage": 4500,
             "purchase_limit": 1,
@@ -1512,7 +1514,7 @@
         },
         "raven_growth_pack_t1": {
             "name": "Raven Growth Pack (T1)",
-            "category": "Special",
+            "category": "Weekly Rotation",
             "price": 499,
             "deal_percentage": 5000,
             "purchase_limit": 1,
@@ -1531,7 +1533,7 @@
         },
         "resource_special_pack_t1": {
             "name": "Resource Special Pack (T1)",
-            "category": "Special",
+            "category": "Weekly Rotation",
             "price": 499,
             "deal_percentage": 4140,
             "purchase_limit": 1,
@@ -1551,7 +1553,7 @@
         },
         "resource_special_pack_t2": {
             "name": "Resource Special Pack (T2)",
-            "category": "Special",
+            "category": "Weekly Rotation",
             "price": 499,
             "deal_percentage": 4140,
             "purchase_limit": 1,
@@ -1571,7 +1573,7 @@
         },
         "speedup_special_pack_t1": {
             "name": "Speedup Special Pack (T1)",
-            "category": "Special",
+            "category": "Weekly Rotation",
             "price": 499,
             "deal_percentage": 3330,
             "purchase_limit": 1,
@@ -1751,12 +1753,12 @@
         },
         "ur_blueprint_offer_t1": {
             "name": "UR Blueprint Offer (T1)",
-            "category": "Special",
+            "category": "Weekly Rotation",
             "price": 999,
             "deal_percentage": null,
             "purchase_limit": 1,
             "limit_type": "daily",
-            "available_days": ["saturday"],
+            "available_days": ["saturday", "sunday"],
             "tier": 1,
             "requires": null,
             "contains": {
@@ -1770,12 +1772,12 @@
         },
         "ur_blueprint_offer_t2": {
             "name": "UR Blueprint Offer (T2)",
-            "category": "Special",
+            "category": "Weekly Rotation",
             "price": 1999,
             "deal_percentage": 4650,
             "purchase_limit": 1,
             "limit_type": "daily",
-            "available_days": ["saturday"],
+            "available_days": ["saturday", "sunday"],
             "tier": 2,
             "requires": "ur_blueprint_offer_t1",
             "contains": {
@@ -1789,12 +1791,12 @@
         },
         "ur_blueprint_offer_t3": {
             "name": "UR Blueprint Offer (T3)",
-            "category": "Special",
+            "category": "Weekly Rotation",
             "price": 4999,
             "deal_percentage": 4380,
             "purchase_limit": 1,
             "limit_type": "daily",
-            "available_days": ["saturday"],
+            "available_days": ["saturday", "sunday"],
             "tier": 3,
             "requires": "ur_blueprint_offer_t2",
             "contains": {
