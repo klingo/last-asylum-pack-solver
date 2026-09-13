@@ -1609,6 +1609,21 @@
                 "lv4_alliance_chest": 1
             }
         },
+        "strange_bazaar_select_pack": {
+            "name": "Strange Bazaar Select Pack",
+            "category": "Event",
+            "price": 499,
+            "deal_percentage": 5000,
+            "purchase_limit": 1,
+            "limit_type": "daily",
+            "tier": null,
+            "requires": null,
+            "contains": {
+                "diamonds": 500,
+                "strange_coin": 80,
+                "vip_points": 500
+            }
+        },
         "study_scroll": {
             "name": "Study Scroll",
             "category": "Weekly Special",
@@ -2004,6 +2019,25 @@
                 "50": {
                     "stone_blade": 999,
                     "dummy_entry": 1
+                }
+            }
+        },
+        "strange_bazaar_shop": {
+            "name": "Strange Bazaar Shop (TBC!)",
+            "event_id": "strange_bazaar",
+            "currency_item_id": "strange_coin",
+            "offers": {
+                "gear_blueprint_ur": {
+                    "currency_cost": 60,
+                    "quantity": 1,
+                    "purchase_limit": 50,
+                    "limit_type": "weekly"
+                },
+                "tempered_steel": {
+                    "currency_cost": 40,
+                    "quantity": 100,
+                    "purchase_limit": 1,
+                    "limit_type": "daily"
                 }
             }
         },
