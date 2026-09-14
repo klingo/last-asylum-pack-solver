@@ -88,6 +88,21 @@
             "minItems": 1,
             "uniqueItems": true
         },
+        "substitutesFor": {
+            "anyOf": [
+                {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/id"
+                    },
+                    "minItems": 1,
+                    "uniqueItems": true
+                },
+                {
+                    "$ref": "#/definitions/itemQuantities"
+                }
+            ]
+        },
         "standardItem": {
             "type": "object",
             "required": ["name", "category"],
@@ -102,6 +117,9 @@
                 },
                 "contains": {
                     "$ref": "#/definitions/itemQuantities"
+                },
+                "substitutes_for": {
+                    "$ref": "#/definitions/substitutesFor"
                 }
             }
         },
@@ -142,6 +160,9 @@
                 },
                 "choice": {
                     "$ref": "#/definitions/choicePool"
+                },
+                "substitutes_for": {
+                    "$ref": "#/definitions/substitutesFor"
                 }
             }
         },
@@ -182,6 +203,9 @@
                         "$ref": "#/definitions/randomItemDrop"
                     },
                     "minItems": 2
+                },
+                "substitutes_for": {
+                    "$ref": "#/definitions/substitutesFor"
                 }
             }
         },

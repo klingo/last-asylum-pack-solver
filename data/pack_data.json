@@ -112,7 +112,8 @@
         },
         "exclusive_weapon_omni_shard": {
             "name": "Exclusive Weapon Omni Shard",
-            "category": "Hero"
+            "category": "Hero",
+            "substitutes_for": ["exclusive_weapon_shard"]
         },
         "exclusive_weapon_shard": {
             "name": "<Hero> Exclusive Weapon Shard",
@@ -178,7 +179,8 @@
         },
         "hero_awaken_omni_shard": {
             "name": "Hero Awaken Omni Shard ",
-            "category": "Hero"
+            "category": "Hero",
+            "substitutes_for": ["hero_awaken_shard"]
         },
         "hero_awaken_shard": {
             "name": "<Hero> Awaken Shard",
@@ -638,7 +640,8 @@
         },
         "ur_hero_omni_shard": {
             "name": "UR Hero Omni Shard",
-            "category": "Hero"
+            "category": "Hero",
+            "substitutes_for": ["hero_shard"]
         },
         "ur_sword": {
             "name": "UR Sword",
