@@ -85,7 +85,7 @@ function verifyData() {
 
         if (!valid && validate.errors) {
             for (const err of validate.errors) {
-                reportError('Schema', `${err.instancePath || 'root'} ${err.message}`);
+                reportError('Schema', `${err.instancePath || err.dataPath || 'root'} ${err.message}`);
             }
         }
     });
@@ -131,6 +131,35 @@ function verifyData() {
                         if (subItemId === itemId) {
                             reportError('Item Loop', `Item "${itemId}" offers itself in choice option #${i + 1}.`);
                         }
+                    }
+                }
+            }
+
+            // Check substitutes_for
+            if (Array.isArray(item.substitutes_for)) {
+                for (const subItemId of item.substitutes_for) {
+                    referencedItemKeys.add(subItemId);
+                    if (!itemKeys.has(subItemId)) {
+                        reportError(
+                            'Item Reference',
+                            `Item "${itemId}" substitutes for unresolvable item: "${subItemId}"`,
+                        );
+                    }
+                    if (subItemId === itemId) {
+                        reportError('Item Loop', `Item "${itemId}" substitutes for itself.`);
+                    }
+                }
+            } else if (item.substitutes_for && typeof item.substitutes_for === 'object') {
+                for (const subItemId of Object.keys(item.substitutes_for)) {
+                    referencedItemKeys.add(subItemId);
+                    if (!itemKeys.has(subItemId)) {
+                        reportError(
+                            'Item Reference',
+                            `Item "${itemId}" substitutes for unresolvable item: "${subItemId}"`,
+                        );
+                    }
+                    if (subItemId === itemId) {
+                        reportError('Item Loop', `Item "${itemId}" substitutes for itself.`);
                     }
                 }
             }
