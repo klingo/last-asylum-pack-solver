@@ -2,7 +2,7 @@
     "metadata": {
         "game": "Last Asylum: Plague",
         "currency": "Banknotes",
-        "last_updated": "2026-09-13"
+        "last_updated": "2026-09-14"
     },
     "items": {
         "antitoxin": {
@@ -1000,6 +1000,25 @@
                 "antitoxin_level_supply_sr": 10,
                 "vip_points": 500,
                 "lv2_alliance_chest": 1
+            }
+        },
+        "exclusive_weapon_pass": {
+            "name": "Exclusive Weapon Pass (T1)",
+            "category": "Weekly Pass",
+            "price": 1999,
+            "deal_percentage": 8159,
+            "purchase_limit": 1,
+            "limit_type": "weekly",
+            "tier": null,
+            "requires": null,
+            "contains": {
+                "lv4_alliance_chest": 1,
+                "recruit_ticket": 30,
+                "exclusive_weapon_omni_shard": 55,
+                "antitoxin_level_supply_ssr": 15,
+                "diamonds": 2000,
+                "skill_badge": 2500,
+                "resource_supply_general": 105
             }
         },
         "exclusive_weapon_t2": {
