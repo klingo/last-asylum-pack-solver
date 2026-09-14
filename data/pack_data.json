@@ -1007,7 +1007,7 @@
             }
         },
         "exclusive_weapon_pass": {
-            "name": "Exclusive Weapon Pass (T1)",
+            "name": "Exclusive Weapon Pass",
             "category": "Weekly Pass",
             "price": 1999,
             "deal_percentage": 8159,
@@ -1023,6 +1023,25 @@
                 "diamonds": 2000,
                 "skill_badge": 2500,
                 "resource_supply_general": 105
+            }
+        },
+        "exclusive_weapon_t1": {
+            "name": "Exclusive Weapon (T1)",
+            "category": "Daily Offer",
+            "price": 499,
+            "deal_percentage": 5880,
+            "purchase_limit": 1,
+            "limit_type": "daily",
+            "tier": 1,
+            "requires": null,
+            "contains": {
+                "diamonds": 700,
+                "exclusive_weapon_shard": 10,
+                "recruit_ticket": 10,
+                "antitoxin_level_supply_ssr": 6,
+                "vip_points": 700,
+                "lv1_alliance_chest": 1,
+                "lv2_alliance_chest": 2
             }
         },
         "exclusive_weapon_t2": {
