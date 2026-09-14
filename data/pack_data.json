@@ -736,7 +736,7 @@
         },
         "blades_out_deluxe_pack": {
             "name": "Blades Out Deluxe Pack",
-            "category": "Event",
+            "category": "Shop Event",
             "event_id": "blades_out",
             "price": 999,
             "deal_percentage": 3550,
@@ -755,7 +755,7 @@
         },
         "blades_out_premium_pack": {
             "name": "Blades Out Premium Pack",
-            "category": "Event",
+            "category": "Shop Event",
             "event_id": "blades_out",
             "price": 4999,
             "deal_percentage": 3550,
@@ -774,7 +774,7 @@
         },
         "blades_out_rare_pack": {
             "name": "Blades Out Rare Pack",
-            "category": "Event",
+            "category": "Shop Event",
             "event_id": "blades_out",
             "price": 1999,
             "deal_percentage": 3550,
@@ -793,7 +793,7 @@
         },
         "blades_out_select_pack": {
             "name": "Blades Out Select Pack",
-            "category": "Event",
+            "category": "Shop Event",
             "event_id": "blades_out",
             "price": 499,
             "deal_percentage": 3550,
@@ -812,7 +812,7 @@
         },
         "blades_out_ultimate_pack": {
             "name": "Blades Out Ultimate Pack",
-            "category": "Event",
+            "category": "Shop Event",
             "event_id": "blades_out",
             "price": 9999,
             "deal_percentage": 3550,
@@ -1108,7 +1108,7 @@
         },
         "hero_awaken_growth_pack_t5": {
             "name": "<Hero> Awaken Growth Pack (T5)",
-            "category": "Exclusive",
+            "category": "Hero Exclusive",
             "price": 9999,
             "deal_percentage": 3610,
             "purchase_limit": 1,
@@ -1126,7 +1126,7 @@
         },
         "hero_exclusive_weapon_pack_t4": {
             "name": "<Hero> Exclusive Weapon Pack (T4)",
-            "category": "Exclusive",
+            "category": "Hero Exclusive",
             "price": 4999,
             "deal_percentage": 3610,
             "purchase_limit": 1,
@@ -1144,7 +1144,7 @@
         },
         "hero_exclusive_weapon_pack_t5": {
             "name": "<Hero> Exclusive Weapon Pack (T5)",
-            "category": "Exclusive",
+            "category": "Hero Exclusive",
             "price": 9999,
             "deal_percentage": 3610,
             "purchase_limit": 2,
@@ -1663,7 +1663,7 @@
         },
         "strange_bazaar_select_pack": {
             "name": "Strange Bazaar Select Pack",
-            "category": "Event",
+            "category": "Shop Event",
             "price": 499,
             "deal_percentage": 5000,
             "purchase_limit": 1,
@@ -1720,7 +1720,7 @@
         },
         "surprise_encounter_exquisite_pack": {
             "name": "Surprise Encounter Exquisite Pack",
-            "category": "Event",
+            "category": "Shop Event",
             "price": 999,
             "deal_percentage": 3410,
             "purchase_limit": 5,
@@ -1736,7 +1736,7 @@
         },
         "surprise_encounter_premium_pack": {
             "name": "Surprise Encounter Premium Pack",
-            "category": "Event",
+            "category": "Shop Event",
             "price": 4999,
             "deal_percentage": 3410,
             "purchase_limit": 5,
@@ -1752,7 +1752,7 @@
         },
         "surprise_encounter_rare_pack": {
             "name": "Surprise Encounter Rare Pack",
-            "category": "Event",
+            "category": "Shop Event",
             "price": 1999,
             "deal_percentage": 3410,
             "purchase_limit": 5,
@@ -1768,7 +1768,7 @@
         },
         "surprise_encounter_select_pack": {
             "name": "Surprise Encounter Select Pack",
-            "category": "Event",
+            "category": "Shop Event",
             "price": 499,
             "deal_percentage": 5610,
             "purchase_limit": 1,
@@ -1784,7 +1784,7 @@
         },
         "surprise_encounter_ultimate_pack": {
             "name": "Surprise Encounter Ultimate Pack",
-            "category": "Event",
+            "category": "Shop Event",
             "price": 9999,
             "deal_percentage": 3410,
             "purchase_limit": 10,

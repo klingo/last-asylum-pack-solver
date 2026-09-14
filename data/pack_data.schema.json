@@ -304,12 +304,13 @@
                 "Daily Offer",
                 "Daily Must-Buy",
                 "Weekly Special",
-                "Weekly Pass",
                 "Premium Monthly Pass",
-                "Exclusive",
-                "Event",
-                "Special",
-                "Weekly Rotation"
+                "Weekly Pass",
+                "Value Event",
+                "Weekly Rotation",
+                "Shop Event",
+                "Hero Exclusive",
+                "Special"
             ]
         },
         "exchangeShop": {
