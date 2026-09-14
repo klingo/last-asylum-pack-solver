@@ -1914,12 +1914,12 @@
             }
         },
         "weekly_special_t1": {
-            "name": "Weekly Special (T1)",
+            "name": "Jokers Weekly Special (T1)",
             "category": "Special",
             "price": 499,
             "deal_percentage": 9870,
             "purchase_limit": 1,
-            "limit_type": "weekly",
+            "limit_type": "event",
             "tier": 1,
             "requires": null,
             "contains": {
@@ -1948,12 +1948,12 @@
             }
         },
         "weekly_special_t2": {
-            "name": "Weekly Special (T2)",
+            "name": "Jokers Weekly Special (T2)",
             "category": "Special",
             "price": 499,
             "deal_percentage": 8530,
             "purchase_limit": 1,
-            "limit_type": "weekly",
+            "limit_type": "event",
             "tier": 2,
             "requires": "weekly_special_t1",
             "contains": {
