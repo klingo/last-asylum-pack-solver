@@ -110,6 +110,13 @@
             "name": "Diamonds",
             "category": "Resource"
         },
+        "excl_weapon_shard_choice_chest": {
+            "name": "Excl Weapon Shard Choice Chest",
+            "category": "Special",
+            "contains": {
+                "exclusive_weapon_shard": 1
+            }
+        },
         "exclusive_weapon_omni_shard": {
             "name": "Exclusive Weapon Omni Shard",
             "category": "Hero",
@@ -703,7 +710,7 @@
             "requires": null,
             "contains": {
                 "diamonds": 500,
-                "awaknening_shard_choice_chest": 10,
+                "awaken_shard_choice_chest": 10,
                 "antitoxin_level_supply_sr": 10,
                 "vip_points": 500,
                 "lv2_alliance_chest": 1
@@ -721,7 +728,7 @@
             "requires": "awakening_special_pack_t1",
             "contains": {
                 "diamonds": 1000,
-                "awaknening_shard_choice_chest": 20,
+                "awaken_shard_choice_chest": 20,
                 "antitoxin_level_supply_sr": 20,
                 "vip_points": 1000,
                 "lv3_alliance_chest": 1
