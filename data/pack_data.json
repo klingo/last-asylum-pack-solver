@@ -110,6 +110,10 @@
             "name": "Diamonds",
             "category": "Resource"
         },
+        "exclusive_weapon_omni_shard": {
+            "name": "Exclusive Weapon Omni Shard",
+            "category": "Hero"
+        },
         "exclusive_weapon_shard": {
             "name": "<Hero> Exclusive Weapon Shard",
             "category": "Hero"
