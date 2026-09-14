@@ -1664,6 +1664,7 @@
         "strange_bazaar_select_pack": {
             "name": "Strange Bazaar Select Pack",
             "category": "Shop Event",
+            "event_id": "strange_bazaar",
             "price": 499,
             "deal_percentage": 5000,
             "purchase_limit": 1,
@@ -1721,6 +1722,7 @@
         "surprise_encounter_exquisite_pack": {
             "name": "Surprise Encounter Exquisite Pack",
             "category": "Shop Event",
+            "event_id": "surprise_encounter",
             "price": 999,
             "deal_percentage": 3410,
             "purchase_limit": 5,
@@ -1737,6 +1739,7 @@
         "surprise_encounter_premium_pack": {
             "name": "Surprise Encounter Premium Pack",
             "category": "Shop Event",
+            "event_id": "surprise_encounter",
             "price": 4999,
             "deal_percentage": 3410,
             "purchase_limit": 5,
@@ -1753,6 +1756,7 @@
         "surprise_encounter_rare_pack": {
             "name": "Surprise Encounter Rare Pack",
             "category": "Shop Event",
+            "event_id": "surprise_encounter",
             "price": 1999,
             "deal_percentage": 3410,
             "purchase_limit": 5,
@@ -1769,6 +1773,7 @@
         "surprise_encounter_select_pack": {
             "name": "Surprise Encounter Select Pack",
             "category": "Shop Event",
+            "event_id": "surprise_encounter",
             "price": 499,
             "deal_percentage": 5610,
             "purchase_limit": 1,
@@ -1785,6 +1790,7 @@
         "surprise_encounter_ultimate_pack": {
             "name": "Surprise Encounter Ultimate Pack",
             "category": "Shop Event",
+            "event_id": "surprise_encounter",
             "price": 9999,
             "deal_percentage": 3410,
             "purchase_limit": 10,
