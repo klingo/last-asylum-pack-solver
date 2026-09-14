@@ -106,6 +106,20 @@
             "name": "Construction Speedup",
             "category": "Speedup"
         },
+        "curio_chest_ssr": {
+            "name": "Curio Chest (SSR)",
+            "category": "Special",
+            "contains": {
+                "ssr_curio": 1
+            }
+        },
+        "curio_chest_ur": {
+            "name": "Curio Chest (UR)",
+            "category": "Special",
+            "contains": {
+                "ur_curio": 1
+            }
+        },
         "diamonds": {
             "name": "Diamonds",
             "category": "Resource"
@@ -286,6 +300,45 @@
         "lv6_alliance_chest": {
             "name": "Lv.6 Alliance Chest",
             "category": "Virtual"
+        },
+        "r_epigraph": {
+            "name": "R Epigraph",
+            "category": "Special"
+        },
+        "r_epigraph_chest": {
+            "name": "R Epigraph Chest",
+            "category": "Special",
+            "type": "random",
+            "drop_table": [
+                {
+                    "contains": {
+                        "ssr_epigraph": 1,
+                        "ur_epigraph_shard": 1
+                    },
+                    "probability": 0.002
+                },
+                {
+                    "contains": {
+                        "ssr_epigraph": 1,
+                        "ur_epigraph_shard": 1
+                    },
+                    "probability": 0.048
+                },
+                {
+                    "contains": {
+                        "sr_epigraph": 1,
+                        "ur_epigraph_shard": 1
+                    },
+                    "probability": 0.3
+                },
+                {
+                    "contains": {
+                        "r_epigraph": 1,
+                        "ur_epigraph_shard": 1
+                    },
+                    "probability": 0.65
+                }
+            ]
         },
         "random_gear_chest": {
             "name": "Random Gear Chest",
@@ -506,6 +559,38 @@
             "name": "Speedup",
             "category": "Speedup"
         },
+        "sr_epigraph": {
+            "name": "SR Epigraph",
+            "category": "Special"
+        },
+        "sr_epigraph_chest": {
+            "name": "SR Epigraph Chest",
+            "category": "Special",
+            "type": "random",
+            "drop_table": [
+                {
+                    "contains": {
+                        "ssr_epigraph": 1,
+                        "ur_epigraph_shard": 5
+                    },
+                    "probability": 0.02
+                },
+                {
+                    "contains": {
+                        "ssr_epigraph": 1,
+                        "ur_epigraph_shard": 5
+                    },
+                    "probability": 0.3
+                },
+                {
+                    "contains": {
+                        "sr_epigraph": 1,
+                        "ur_epigraph_shard": 5
+                    },
+                    "probability": 0.68
+                }
+            ]
+        },
         "ssr_armor": {
             "name": "SSR Armor",
             "category": "Gear"
@@ -513,6 +598,35 @@
         "ssr_boots": {
             "name": "SSR Boots",
             "category": "Gear"
+        },
+        "ssr_curio": {
+            "name": "SSR Curio",
+            "category": "Virtual"
+        },
+        "ssr_epigraph": {
+            "name": "SSR Epigraph",
+            "category": "Special"
+        },
+        "ssr_epigraph_chest": {
+            "name": "SSR Epigraph Chest",
+            "category": "Special",
+            "type": "random",
+            "drop_table": [
+                {
+                    "contains": {
+                        "ssr_epigraph": 1,
+                        "ur_epigraph_shard": 30
+                    },
+                    "probability": 0.15
+                },
+                {
+                    "contains": {
+                        "ssr_epigraph": 1,
+                        "ur_epigraph_shard": 30
+                    },
+                    "probability": 0.85
+                }
+            ]
         },
         "ssr_gauntlets": {
             "name": "SSR Gauntlets",
@@ -548,6 +662,10 @@
         },
         "survivor_recruit_ticket": {
             "name": "Survivor Recruit Ticket",
+            "category": "Hero"
+        },
+        "survivor_token": {
+            "name": "Survivor Token",
             "category": "Hero"
         },
         "tempered_steel": {
@@ -625,6 +743,14 @@
         "ur_boots": {
             "name": "UR Boots",
             "category": "Gear"
+        },
+        "ur_curio": {
+            "name": "UR Curio",
+            "category": "Virtual"
+        },
+        "ur_epigraph": {
+            "name": "UR Epigraph",
+            "category": "Special"
         },
         "ur_epigraph_chest": {
             "name": "UR Epigraph Chest",
@@ -1806,7 +1932,7 @@
         },
         "survivor_pack": {
             "name": "Survivor Pack",
-            "category": "",
+            "category": "Special",
             "price": 499,
             "deal_percentage": 2240,
             "purchase_limit": 1,
@@ -1844,7 +1970,7 @@
             "name": "UR Blueprint Offer (T1)",
             "category": "Weekly Rotation",
             "price": 999,
-            "deal_percentage": null,
+            "deal_percentage": 4650,
             "purchase_limit": 1,
             "limit_type": "daily",
             "available_days": ["saturday", "sunday"],
