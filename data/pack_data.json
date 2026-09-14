@@ -1798,6 +1798,22 @@
                 "resource_supply_general": 100
             }
         },
+        "survivor_pack": {
+            "name": "Survivor Pack",
+            "category": "",
+            "price": 499,
+            "deal_percentage": 2240,
+            "purchase_limit": 1,
+            "limit_type": "daily",
+            "tier": null,
+            "requires": null,
+            "contains": {
+                "diamonds": 500,
+                "survivor_recruit_ticket": 12,
+                "survivor_token": 5,
+                "vip_points": 500
+            }
+        },
         "universal_speedup_pack_t1": {
             "name": "Universal Speedup Pack (T1)",
             "category": "Daily Must-Buy",
