@@ -260,6 +260,7 @@ function collectPackageSources(targetId, packages, items, ignoreLevel) {
             type: 'package',
             id: pkgId,
             name: pkg.name,
+            category: pkg.category || '-',
             price: pkg.price,
             yieldPerPurchase: y,
             pricePerUnit: pkg.price / y,
@@ -289,6 +290,7 @@ function collectExchangeSources(targetId, exchangeShops, items, getItemCost, ign
                 type: 'exchange',
                 id: `${shopId}:${offerItemId}`,
                 name: `${shop.name} - ${items[offerItemId]?.name || offerItemId}`,
+                category: shop.category || (shop.event_id ? 'Event Exchange' : 'Exchange'),
                 price: totalPrice,
                 priceDisplay: `${offer.currency_cost} ${items[shop.currency_item_id]?.name || shop.currency_item_id} (~${totalPrice.toFixed(2)} Banknotes)`,
                 yieldPerPurchase: y,
@@ -313,6 +315,7 @@ function printSourceTable(sources) {
     const rows = sources.map((s, index) => ({
         Rank: index + 1,
         Source: s.name,
+        Category: s.category || '-',
         Type: s.type,
         'Price/Purchase': s.type === 'exchange' ? s.priceDisplay : s.price,
         'Yield/Purchase': Number(s.yieldPerPurchase.toFixed(4)),
@@ -354,6 +357,8 @@ function printPurchasePlan(sources, targetQuantity) {
 
         plan.push({
             Source: source.name,
+            Category: source.category || '-',
+            Days: formatDays(source.availableDays),
             Purchases: purchasesNeeded,
             'Units Gained': Number(actualUnits.toFixed(2)),
             'Cost (Banknotes)': Number(cost.toFixed(2)),
