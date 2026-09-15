@@ -23,6 +23,7 @@ dist
 build
 coverage
 test-results
+output
 
 # IDE
 .idea
