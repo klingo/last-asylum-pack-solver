@@ -348,9 +348,12 @@
         },
         "exchangeShopOffer": {
             "type": "object",
-            "required": ["currency_cost", "quantity", "purchase_limit", "limit_type"],
+            "required": ["item_id", "currency_cost", "quantity", "purchase_limit", "limit_type"],
             "additionalProperties": false,
             "properties": {
+                "item_id": {
+                    "$ref": "#/definitions/id"
+                },
                 "currency_cost": {
                     "type": "integer",
                     "minimum": 1

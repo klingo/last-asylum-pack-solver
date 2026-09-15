@@ -2180,78 +2180,91 @@
             "currency_item_id": "stone_blade",
             "offers": {
                 "antitoxin_level_supply_ssr": {
+                    "item_id": "antitoxin_level_supply_ssr",
                     "currency_cost": 1,
                     "quantity": 1,
                     "purchase_limit": 350,
                     "limit_type": "weekly"
                 },
                 "awaken_shard_choice_chest": {
+                    "item_id": "awaken_shard_choice_chest",
                     "currency_cost": 2,
                     "quantity": 1,
                     "purchase_limit": 400,
                     "limit_type": "weekly"
                 },
                 "exclusive_weapon_shard": {
+                    "item_id": "exclusive_weapon_shard",
                     "currency_cost": 2,
                     "quantity": 1,
                     "purchase_limit": 200,
                     "limit_type": "weekly"
                 },
                 "gear_blueprint_ur": {
+                    "item_id": "gear_blueprint_ur",
                     "currency_cost": 12,
                     "quantity": 1,
                     "purchase_limit": 50,
                     "limit_type": "weekly"
                 },
                 "gearstone": {
+                    "item_id": "gearstone",
                     "currency_cost": 1,
                     "quantity": 120,
                     "purchase_limit": 1010,
                     "limit_type": "weekly"
                 },
                 "lv5_raven_gear_chest": {
+                    "item_id": "lv5_raven_gear_chest",
                     "currency_cost": 30,
                     "quantity": 1,
                     "purchase_limit": 50,
                     "limit_type": "weekly"
                 },
                 "resource_supply_ssr": {
+                    "item_id": "resource_supply_ssr",
                     "currency_cost": 1,
                     "quantity": 1,
                     "purchase_limit": 4000,
                     "limit_type": "weekly"
                 },
                 "skill_badge": {
+                    "item_id": "skill_badge",
                     "currency_cost": 1,
                     "quantity": 200,
                     "purchase_limit": 1010,
                     "limit_type": "weekly"
                 },
                 "survivor_recruit_ticket": {
+                    "item_id": "survivor_recruit_ticket",
                     "currency_cost": 8,
                     "quantity": 8,
                     "purchase_limit": 50,
                     "limit_type": "weekly"
                 },
                 "ur_epigraph_chest": {
+                    "item_id": "ur_epigraph_chest",
                     "currency_cost": 55,
                     "quantity": 1,
                     "purchase_limit": 10,
                     "limit_type": "weekly"
                 },
                 "ur_epigraph_shard": {
+                    "item_id": "ur_epigraph_shard",
                     "currency_cost": 7,
                     "quantity": 100,
                     "purchase_limit": 10,
                     "limit_type": "weekly"
                 },
                 "ur_hero_choice_chest": {
+                    "item_id": "ur_hero_choice_chest",
                     "currency_cost": 2,
                     "quantity": 1,
                     "purchase_limit": 800,
                     "limit_type": "weekly"
                 },
                 "ur_hero_omni_shard": {
+                    "item_id": "ur_hero_omni_shard",
                     "currency_cost": 10,
                     "quantity": 10,
                     "purchase_limit": 1,
@@ -2271,90 +2284,105 @@
             "currency_item_id": "strange_coin",
             "offers": {
                 "deluxe_choice_chest": {
+                    "item_id": "deluxe_choice_chest",
                     "currency_cost": 100,
                     "quantity": 1,
                     "purchase_limit": 11,
                     "limit_type": "weekly"
                 },
                 "excl_weapon_shard_choice_chest": {
+                    "item_id": "excl_weapon_shard_choice_chest",
                     "currency_cost": 60,
                     "quantity": 10,
                     "purchase_limit": 1,
                     "limit_type": "daily"
                 },
                 "exclusive_weapon_omni_shard": {
+                    "item_id": "exclusive_weapon_omni_shard",
                     "currency_cost": 10,
                     "quantity": 1,
                     "purchase_limit": 300,
                     "limit_type": "weekly"
                 },
                 "gear_blueprint_mr": {
+                    "item_id": "gear_blueprint_mr",
                     "currency_cost": 300,
                     "quantity": 1,
                     "purchase_limit": 10,
                     "limit_type": "weekly"
                 },
                 "gear_blueprint_ur": {
+                    "item_id": "gear_blueprint_ur",
                     "currency_cost": 60,
                     "quantity": 1,
                     "purchase_limit": 50,
                     "limit_type": "weekly"
                 },
                 "gearstone": {
+                    "item_id": "gearstone",
                     "currency_cost": 250,
                     "quantity": 10000,
                     "purchase_limit": 100,
                     "limit_type": "weekly"
                 },
                 "resource_supply_ssr": {
+                    "item_id": "resource_supply_ssr",
                     "currency_cost": 2,
                     "quantity": 1,
                     "purchase_limit": 1000,
                     "limit_type": "weekly"
                 },
                 "skill_badge": {
+                    "item_id": "skill_badge",
                     "currency_cost": 15,
                     "quantity": 1000,
                     "purchase_limit": 300,
                     "limit_type": "weekly"
                 },
                 "speedup": {
+                    "item_id": "speedup",
                     "currency_cost": 25,
                     "quantity": 600,
                     "purchase_limit": 200,
                     "limit_type": "weekly"
                 },
                 "ssr_epigraph_chest": {
+                    "item_id": "ssr_epigraph_chest",
                     "currency_cost": 30,
                     "quantity": 1,
                     "purchase_limit": 20,
                     "limit_type": "weekly"
                 },
                 "study_scroll": {
+                    "item_id": "study_scroll",
                     "currency_cost": 50,
                     "quantity": 100,
                     "purchase_limit": 200,
                     "limit_type": "weekly"
                 },
                 "tempered_steel": {
+                    "item_id": "tempered_steel",
                     "currency_cost": 70,
                     "quantity": 100,
                     "purchase_limit": 200,
                     "limit_type": "weekly"
                 },
                 "ur_epigraph_chest": {
+                    "item_id": "ur_epigraph_chest",
                     "currency_cost": 200,
                     "quantity": 1,
                     "purchase_limit": 30,
                     "limit_type": "weekly"
                 },
                 "ur_epigraph_choice_chest": {
+                    "item_id": "ur_epigraph_choice_chest",
                     "currency_cost": 375,
                     "quantity": 1,
                     "purchase_limit": 5,
                     "limit_type": "weekly"
                 },
                 "ur_omni_shard": {
+                    "item_id": "ur_omni_shard",
                     "currency_cost": 10,
                     "quantity": 1,
                     "purchase_limit": 300,

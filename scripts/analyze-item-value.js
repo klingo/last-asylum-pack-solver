@@ -180,7 +180,8 @@ function buildItemCostResolver(packages, exchangeShops, items) {
         }
 
         for (const shop of Object.values(exchangeShops)) {
-            for (const [offerItemId, offer] of Object.entries(shop.offers || {})) {
+            for (const [offerKey, offer] of Object.entries(shop.offers || {})) {
+                const offerItemId = offer.item_id || offerKey;
                 const y = offer.quantity * rawYield(offerItemId, itemId, new Set(), items);
                 if (y <= 0) {
                     continue;
@@ -278,7 +279,8 @@ function collectPackageSources(targetId, packages, items, ignoreLevel) {
 function collectExchangeSources(targetId, exchangeShops, items, getItemCost, ignoreLevel) {
     const sources = [];
     for (const [shopId, shop] of Object.entries(exchangeShops)) {
-        for (const [offerItemId, offer] of Object.entries(shop.offers || {})) {
+        for (const [offerKey, offer] of Object.entries(shop.offers || {})) {
+            const offerItemId = offer.item_id || offerKey;
             const y = offer.quantity * rawYield(offerItemId, targetId, new Set(), items);
             if (y <= 0) {
                 continue;
@@ -288,7 +290,7 @@ function collectExchangeSources(targetId, exchangeShops, items, getItemCost, ign
             const limitIgnored = shouldIgnoreLimit(offer.limit_type, ignoreLevel);
             sources.push({
                 type: 'exchange',
-                id: `${shopId}:${offerItemId}`,
+                id: `${shopId}:${offerKey}`,
                 name: `${shop.name} - ${items[offerItemId]?.name || offerItemId}`,
                 category: shop.category || (shop.event_id ? 'Event Exchange' : 'Exchange'),
                 price: totalPrice,

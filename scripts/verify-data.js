@@ -269,12 +269,13 @@ function verifyData() {
             }
 
             if (shop.offers && typeof shop.offers === 'object') {
-                for (const offerItemId of Object.keys(shop.offers)) {
+                for (const [offerKey, offer] of Object.entries(shop.offers)) {
+                    const offerItemId = offer.item_id || offerKey;
                     referencedItemKeys.add(offerItemId);
                     if (!itemKeys.has(offerItemId)) {
                         reportError(
                             'Shop Reference',
-                            `Exchange shop "${shopId}" offer specifies unresolvable item: "${offerItemId}"`,
+                            `Exchange shop "${shopId}" offer "${offerKey}" specifies unresolvable item: "${offerItemId}"`,
                         );
                     }
                 }
