@@ -120,6 +120,31 @@
                 "ur_curio": 1
             }
         },
+        "deluxe_choice_chest": {
+            "name": "Deluxe Choice Chest",
+            "category": "Special",
+            "type": "choice",
+            "choice": {
+                "select_count": 1,
+                "choices": [
+                    {
+                        "ur_hero_omni_shard": 10
+                    },
+                    {
+                        "raven_essence": 40
+                    },
+                    {
+                        "gearstone": 5000
+                    },
+                    {
+                        "lv5_raven_gear_chest": 1
+                    },
+                    {
+                        "ur_choice_resource_supply": 15
+                    }
+                ]
+            }
+        },
         "diamonds": {
             "name": "Diamonds",
             "category": "Resource"
@@ -2245,6 +2270,12 @@
             "event_id": "strange_bazaar",
             "currency_item_id": "strange_coin",
             "offers": {
+                "deluxe_choice_chest": {
+                    "currency_cost": 100,
+                    "quantity": 1,
+                    "purchase_limit": 11,
+                    "limit_type": "weekly"
+                },
                 "excl_weapon_shard_choice_chest": {
                     "currency_cost": 60,
                     "quantity": 10,
