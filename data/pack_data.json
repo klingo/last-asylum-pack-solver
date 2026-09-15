@@ -165,6 +165,10 @@
             "name": "<Hero> Exclusive Weapon Shard",
             "category": "Hero"
         },
+        "gear_blueprint_mr": {
+            "name": "Gear Blueprint (MR)",
+            "category": "Gear"
+        },
         "gear_blueprint_ur": {
             "name": "Gear Blueprint (UR)",
             "category": "Gear"
