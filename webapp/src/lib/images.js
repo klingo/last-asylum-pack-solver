@@ -5,9 +5,18 @@
  */
 
 const PLACEHOLDER_ICON = `${import.meta.env.BASE_URL}icons/placeholder-item.svg`;
+const BANKNOTE_ICON_URL = `${import.meta.env.BASE_URL}assets/currencies/banknote.png`;
 
 function getItemImageUrl(itemId) {
     return `${import.meta.env.BASE_URL}assets/items/${itemId}.png`;
+}
+
+/**
+ * Returns an <img> markup string for the Banknotes currency icon, meant to be used next to
+ * a Banknotes amount instead of (or in addition to) the word "Banknotes".
+ */
+function banknoteIconHtml(className = 'currency-icon') {
+    return `<img src="${BANKNOTE_ICON_URL}" alt="Banknotes" class="${className}" />`;
 }
 
 /**
@@ -28,4 +37,4 @@ function createItemImage(itemId, altText, className = 'item-icon') {
     return img;
 }
 
-export { getItemImageUrl, createItemImage, PLACEHOLDER_ICON };
+export { getItemImageUrl, createItemImage, PLACEHOLDER_ICON, banknoteIconHtml, BANKNOTE_ICON_URL };

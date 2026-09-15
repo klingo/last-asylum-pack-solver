@@ -3,7 +3,7 @@ import { renderNav } from './nav';
 import { loadPackData } from './lib/data';
 import { createMarket, collectPackageSources, collectExchangeSources, formatDays } from './lib/pricing-core';
 import { buildPurchasePlan } from './lib/purchase-plan';
-import { createItemImage } from './lib/images';
+import { createItemImage, banknoteIconHtml } from './lib/images';
 
 renderNav('analyze');
 
@@ -86,7 +86,7 @@ function renderSourcesTable(sources) {
             const priceCell =
                 source.type === 'exchange'
                     ? source.priceDisplay
-                    : `<span class="text-gold">${source.price} Banknotes</span>`;
+                    : `<span class="text-gold">${source.price}</span> ${banknoteIconHtml()}`;
             const limitCell = Number.isFinite(source.purchaseCapacity)
                 ? Number((source.purchaseCapacity * source.yieldPerPurchase).toFixed(2))
                 : 'Unlimited';
@@ -94,7 +94,7 @@ function renderSourcesTable(sources) {
             const typeLabel = TYPE_LABELS[source.type] || source.type;
             const requiresDisplay = getResolvedRequiresName(source.requires, data?.packages || {}, data?.items || {});
             const pricePerUnitCell = Number.isFinite(source.pricePerUnit)
-                ? `<span class="text-gold">${Number(source.pricePerUnit.toFixed(2))}</span>`
+                ? `<span class="text-gold">${Number(source.pricePerUnit.toFixed(2))}</span> ${banknoteIconHtml()}`
                 : 'N/A';
 
             return `
@@ -121,7 +121,7 @@ function renderSourcesTable(sources) {
                 <th>Category</th>
                 <th>Price / Purchase</th>
                 <th>Yield / Purchase</th>
-                <th>Banknotes / Unit</th>
+                <th>${banknoteIconHtml()} / Unit</th>
                 <th>Limit (units)</th>
                 <th>Days</th>
                 <th>Requires</th>
@@ -141,7 +141,7 @@ function detailsRowsHtml(details) {
                     <div class="plan-grid__cell">${formatDays(detail.source.availableDays)}</div>
                     <div class="plan-grid__cell">${detail.purchases}</div>
                     <div class="plan-grid__cell">${detail.unitsGained}</div>
-                    <div class="plan-grid__cell"><span class="text-gold">${detail.cost}</span></div>
+                    <div class="plan-grid__cell"><span class="text-gold">${detail.cost}</span> ${banknoteIconHtml()}</div>
                 </div>
             `,
         )
@@ -179,7 +179,7 @@ function renderPlanTable(result, targetItemId) {
                         <div class="plan-grid__cell plan-grid__cell--header">Days</div>
                         <div class="plan-grid__cell plan-grid__cell--header">Purchases</div>
                         <div class="plan-grid__cell plan-grid__cell--header">Units Gained</div>
-                        <div class="plan-grid__cell plan-grid__cell--header">Cost (Banknotes)</div>
+                        <div class="plan-grid__cell plan-grid__cell--header">Cost (${banknoteIconHtml()})</div>
                     </div>
                     ${detailsRowsHtml(details)}
                 </div>
@@ -193,8 +193,8 @@ function renderPlanTable(result, targetItemId) {
                     <div class="plan-grid__cell" role="cell">${formatDays(source.availableDays)}</div>
                     <div class="plan-grid__cell" role="cell">${purchases}</div>
                     <div class="plan-grid__cell" role="cell">${unitsGained}</div>
-                    <div class="plan-grid__cell" role="cell"><span class="text-gold">${cost}</span></div>
-                    <div class="plan-grid__cell" role="cell">${Number.isFinite(source.pricePerUnit) ? `<span class="text-gold">${Number(source.pricePerUnit.toFixed(2))}</span>` : 'N/A'}</div>
+                    <div class="plan-grid__cell" role="cell"><span class="text-gold">${cost}</span> ${banknoteIconHtml()}</div>
+                    <div class="plan-grid__cell" role="cell">${Number.isFinite(source.pricePerUnit) ? `<span class="text-gold">${Number(source.pricePerUnit.toFixed(2))}</span> ${banknoteIconHtml()}` : 'N/A'}</div>
                     <div class="plan-grid__cell" role="cell">${detailsCell}</div>
                 </div>
                 ${detailsSection}
@@ -209,8 +209,8 @@ function renderPlanTable(result, targetItemId) {
             <div class="plan-grid__cell plan-grid__cell--header" role="columnheader">Days</div>
             <div class="plan-grid__cell plan-grid__cell--header" role="columnheader">Purchases</div>
             <div class="plan-grid__cell plan-grid__cell--header" role="columnheader">Units Gained</div>
-            <div class="plan-grid__cell plan-grid__cell--header" role="columnheader">Cost (Banknotes)</div>
-            <div class="plan-grid__cell plan-grid__cell--header" role="columnheader">Banknotes / Unit</div>
+            <div class="plan-grid__cell plan-grid__cell--header" role="columnheader">Cost (${banknoteIconHtml()})</div>
+            <div class="plan-grid__cell plan-grid__cell--header" role="columnheader">${banknoteIconHtml()} / Unit</div>
             <div class="plan-grid__cell plan-grid__cell--header" role="columnheader"></div>
         </div>
         ${rows}
@@ -243,7 +243,7 @@ function renderPlanTable(result, targetItemId) {
         });
     });
 
-    planSummary.innerHTML = `Total estimated cost: <span class="text-gold">${result.totalCost}</span> Banknotes.`;
+    planSummary.innerHTML = `Total estimated cost: <span class="text-gold">${result.totalCost}</span> ${banknoteIconHtml()}.`;
     if (!result.fullyReachable) {
         planWarning.textContent = `Warning: target quantity not fully reachable using known sources within purchase limits. Missing ~${result.remaining} unit(s).`;
         planWarning.hidden = false;

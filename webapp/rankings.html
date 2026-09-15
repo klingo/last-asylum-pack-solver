@@ -17,25 +17,30 @@
                     its full contents breakdown.
                 </p>
                 <div class="form-row">
-                    <div class="field">
+                    <div class="field field--wide">
                         <label for="search-input">Search</label>
                         <input id="search-input" type="search" placeholder="Filter by name or category" />
                     </div>
                     <div class="field">
-                        <label for="type-filter">Type</label>
-                        <select id="type-filter">
-                            <option value="">All types</option>
-                            <option value="package">Package</option>
-                            <option value="exchange_offer">Exchange offer</option>
-                            <option value="bonus_tier">Bonus tier</option>
-                        </select>
+                        <span>Type</span>
+                        <div class="checkbox-group" id="type-filter-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" value="package" checked /> Package
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" value="exchange_offer" checked /> Exchange offer
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" value="bonus_tier" checked /> Bonus tier
+                            </label>
+                        </div>
                     </div>
                 </div>
                 <p class="summary-line" id="ranking-meta"></p>
             </section>
 
             <section class="card">
-                <div class="table-wrap"><table id="ranking-table"></table></div>
+                <div class="table-wrap"><div id="ranking-table" class="ranking-grid" role="table"></div></div>
                 <div id="ranking-empty" class="empty-state" hidden>No entries match your filters.</div>
             </section>
         </main>

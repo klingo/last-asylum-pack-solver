@@ -2,17 +2,19 @@ import './style.css';
 import { renderNav } from './nav';
 import { loadPackData } from './lib/data';
 import { buildRanking } from './lib/ranking-core';
-import { createItemImage } from './lib/images';
+import { createItemImage, banknoteIconHtml } from './lib/images';
 
 renderNav('rankings');
 
 const searchInput = document.getElementById('search-input');
-const typeFilter = document.getElementById('type-filter');
+const typeFilterGroup = document.getElementById('type-filter-group');
+const typeFilterCheckboxes = Array.from(typeFilterGroup.querySelectorAll('input[type="checkbox"]'));
 const rankingMeta = document.getElementById('ranking-meta');
 const rankingTable = document.getElementById('ranking-table');
 const rankingEmpty = document.getElementById('ranking-empty');
 
 let rankings = [];
+let itemsById = {};
 
 const TYPE_LABELS = {
     package: 'Package',
@@ -20,8 +22,8 @@ const TYPE_LABELS = {
     bonus_tier: 'Bonus tier',
 };
 
-function matchesFilters(entry, search, type) {
-    if (type && entry.type !== type) {
+function matchesFilters(entry, search, types) {
+    if (!types.includes(entry.type)) {
         return false;
     }
     if (!search) {
@@ -32,19 +34,27 @@ function matchesFilters(entry, search, type) {
 }
 
 function goldenBanknotes(text) {
-    return text.replace(/([\d.,]+)(\s*Banknotes)/g, '<span class="text-gold">$1</span>$2');
+    return text.replace(
+        /([\d.,]+)\s*Banknotes/g,
+        (match, amount) => `<span class="text-gold">${amount}</span> ${banknoteIconHtml()}`,
+    );
 }
 
 function breakdownRowsHtml(entry) {
     return entry.contains_breakdown
         .map(
             (item) => `
-                <tr>
-                    <td class="item-cell"><span class="breakdown-icon" data-item-id="${item.item_id}"></span>${item.name}</td>
-                    <td>${item.quantity}</td>
-                    <td><span class="text-gold">${item.unit_cost !== null ? Number(item.unit_cost.toFixed(4)) : 'Unknown'}</span></td>
-                    <td><span class="text-gold">${item.value}</span></td>
-                </tr>
+                <div class="ranking-grid__row">
+                    <div class="ranking-grid__cell"></div>
+                    <div class="ranking-grid__cell item-cell"><span class="breakdown-icon" data-item-id="${item.item_id}"></span>${item.name} &times;${item.quantity}</div>
+                    <div class="ranking-grid__cell"></div>
+                    <div class="ranking-grid__cell">${itemsById[item.item_id]?.category || '-'}</div>
+                    <div class="ranking-grid__cell">${item.unit_cost !== null ? `<span class="text-gold">${Number(item.unit_cost.toFixed(4))}</span> ${banknoteIconHtml()}` : 'Unknown'}</div>
+                    <div class="ranking-grid__cell"><span class="text-gold">${item.value}</span> ${banknoteIconHtml()}</div>
+                    <div class="ranking-grid__cell"></div>
+                    <div class="ranking-grid__cell"></div>
+                    <div class="ranking-grid__cell"></div>
+                </div>
             `,
         )
         .join('');
@@ -58,57 +68,58 @@ function renderTable(filtered) {
     }
     rankingEmpty.hidden = true;
 
+    // Both the ranking rows and the nested "Details" breakdown below share the same
+    // `.ranking-grid` column tracks (the breakdown uses `grid-template-columns: subgrid`), so
+    // their columns always stay visually aligned instead of living in two separate tables.
     const rows = filtered
         .map((entry) => {
-            const mainItemId = entry.contains_breakdown[0]?.item_id || entry.id;
+            // Pick the breakdown item that contributes the most value as the "main" icon for
+            // this entry, rather than just the first one in `contains` (which is very often a
+            // generic currency like Diamonds, since it's usually listed first).
+            const mainItemId = [...entry.contains_breakdown].sort((a, b) => b.value - a.value)[0]?.item_id || entry.id;
             return `
-                <tr class="ranking-row" data-rank="${entry.rank}">
-                    <td>${entry.rank}</td>
-                    <td class="item-cell"><span class="main-icon" data-item-id="${mainItemId}"></span>${entry.name}</td>
-                    <td><span class="pill pill--${entry.type}">${TYPE_LABELS[entry.type] || entry.type}</span></td>
-                    <td>${entry.category}</td>
-                    <td>${goldenBanknotes(entry.price_display)}</td>
-                    <td><span class="text-gold">${entry.total_value}</span></td>
-                    <td>${entry.value_ratio}</td>
-                    <td>${entry.value_complete ? '<span class="text-good">Yes</span>' : '<span class="text-bad">No</span>'}</td>
-                    <td><button type="button" class="expand-toggle" data-rank="${entry.rank}">Details</button></td>
-                </tr>
-                <tr class="expand-row" data-rank-details="${entry.rank}" hidden>
-                    <td colspan="9">
-                        <div class="table-wrap">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Item</th>
-                                        <th>Quantity</th>
-                                        <th>Unit Cost</th>
-                                        <th>Value</th>
-                                    </tr>
-                                </thead>
-                                <tbody>${breakdownRowsHtml(entry)}</tbody>
-                            </table>
-                        </div>
-                    </td>
-                </tr>
+                <div class="ranking-grid__row" role="row" data-rank="${entry.rank}">
+                    <div class="ranking-grid__cell" role="cell">${entry.rank}</div>
+                    <div class="ranking-grid__cell item-cell" role="cell"><span class="main-icon" data-item-id="${mainItemId}"></span>${entry.name}</div>
+                    <div class="ranking-grid__cell" role="cell"><span class="pill pill--${entry.type}">${TYPE_LABELS[entry.type] || entry.type}</span></div>
+                    <div class="ranking-grid__cell" role="cell">${entry.category}</div>
+                    <div class="ranking-grid__cell" role="cell">${goldenBanknotes(entry.price_display)}</div>
+                    <div class="ranking-grid__cell" role="cell"><span class="text-gold">${entry.total_value}</span> ${banknoteIconHtml()}</div>
+                    <div class="ranking-grid__cell" role="cell">${entry.value_ratio}</div>
+                    <div class="ranking-grid__cell" role="cell">${entry.value_complete ? '<span class="text-good">Yes</span>' : '<span class="text-bad">No</span>'}</div>
+                    <div class="ranking-grid__cell" role="cell"><button type="button" class="expand-toggle" data-rank="${entry.rank}">Details</button></div>
+                </div>
+                <div class="ranking-grid__details" data-rank-details="${entry.rank}" hidden>
+                    <div class="ranking-grid__row">
+                        <div class="ranking-grid__cell ranking-grid__cell--header"></div>
+                        <div class="ranking-grid__cell ranking-grid__cell--header">Item</div>
+                        <div class="ranking-grid__cell ranking-grid__cell--header"></div>
+                        <div class="ranking-grid__cell ranking-grid__cell--header">Category</div>
+                        <div class="ranking-grid__cell ranking-grid__cell--header">Unit Cost</div>
+                        <div class="ranking-grid__cell ranking-grid__cell--header">Value</div>
+                        <div class="ranking-grid__cell ranking-grid__cell--header"></div>
+                        <div class="ranking-grid__cell ranking-grid__cell--header"></div>
+                        <div class="ranking-grid__cell ranking-grid__cell--header"></div>
+                    </div>
+                    ${breakdownRowsHtml(entry)}
+                </div>
             `;
         })
         .join('');
 
     rankingTable.innerHTML = `
-        <thead>
-            <tr>
-                <th>Rank</th>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Category</th>
-                <th>Price</th>
-                <th>Value (Banknotes)</th>
-                <th>Value Ratio</th>
-                <th>Complete</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>${rows}</tbody>
+        <div class="ranking-grid__row" role="row">
+            <div class="ranking-grid__cell ranking-grid__cell--header" role="columnheader">Rank</div>
+            <div class="ranking-grid__cell ranking-grid__cell--header" role="columnheader">Name</div>
+            <div class="ranking-grid__cell ranking-grid__cell--header" role="columnheader">Type</div>
+            <div class="ranking-grid__cell ranking-grid__cell--header" role="columnheader">Category</div>
+            <div class="ranking-grid__cell ranking-grid__cell--header" role="columnheader">Price</div>
+            <div class="ranking-grid__cell ranking-grid__cell--header" role="columnheader">Value (${banknoteIconHtml()})</div>
+            <div class="ranking-grid__cell ranking-grid__cell--header" role="columnheader">Value Ratio</div>
+            <div class="ranking-grid__cell ranking-grid__cell--header" role="columnheader">Complete</div>
+            <div class="ranking-grid__cell ranking-grid__cell--header" role="columnheader"></div>
+        </div>
+        ${rows}
     `;
 
     // Populate item images (real DOM nodes, can't be inlined into the HTML string above).
@@ -121,9 +132,9 @@ function renderTable(filtered) {
     rankingTable.querySelectorAll('.expand-toggle').forEach((button) => {
         button.addEventListener('click', () => {
             const rank = button.getAttribute('data-rank');
-            const detailsRow = rankingTable.querySelector(`[data-rank-details="${rank}"]`);
-            const isHidden = detailsRow.hidden;
-            detailsRow.hidden = !isHidden;
+            const detailsSection = rankingTable.querySelector(`[data-rank-details="${rank}"]`);
+            const isHidden = detailsSection.hidden;
+            detailsSection.hidden = !isHidden;
             button.textContent = isHidden ? 'Hide' : 'Details';
         });
     });
@@ -131,13 +142,14 @@ function renderTable(filtered) {
 
 function applyFilters() {
     const search = searchInput.value.trim().toLowerCase();
-    const type = typeFilter.value;
-    const filtered = rankings.filter((entry) => matchesFilters(entry, search, type));
+    const types = typeFilterCheckboxes.filter((checkbox) => checkbox.checked).map((checkbox) => checkbox.value);
+    const filtered = rankings.filter((entry) => matchesFilters(entry, search, types));
     renderTable(filtered);
 }
 
 async function init() {
     const data = await loadPackData();
+    itemsById = data.items || {};
     const result = buildRanking(data);
     rankings = result.rankings || [];
     const meta = result.metadata || {};
@@ -146,7 +158,7 @@ async function init() {
     }. ${meta.note || ''}`;
 
     searchInput.addEventListener('input', applyFilters);
-    typeFilter.addEventListener('change', applyFilters);
+    typeFilterCheckboxes.forEach((checkbox) => checkbox.addEventListener('change', applyFilters));
 
     applyFilters();
 }
