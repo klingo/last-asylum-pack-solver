@@ -1275,6 +1275,24 @@
                 "lv6_alliance_chest": 1
             }
         },
+        "hero_exclusive_weapon_pack_t1": {
+            "name": "<Hero> Exclusive Weapon Pack (T1)",
+            "category": "Hero Exclusive",
+            "price": 499,
+            "deal_percentage": 4220,
+            "purchase_limit": 1,
+            "limit_type": "exclusive",
+            "tier": 1,
+            "requires": null,
+            "contains": {
+                "diamonds": 500,
+                "exclusive_weapon_shard": 10,
+                "antitoxin_level_supply_sr": 10,
+                "skill_badge": 250,
+                "vip_points": 500,
+                "lv2_alliance_chest": 1
+            }
+        },
         "hero_exclusive_weapon_pack_t4": {
             "name": "<Hero> Exclusive Weapon Pack (T4)",
             "category": "Hero Exclusive",
