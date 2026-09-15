@@ -12,9 +12,9 @@
             <section class="card">
                 <h2>Analyze Item Value</h2>
                 <p class="text-dim">
-                    Pick an item, the amount you want, and (optionally) how far purchase limits may be exceeded.
-                    This shows every known purchase source for that item and the cheapest purchase plan to reach
-                    your target quantity.
+                    Pick an item, the amount you want, how many days you're planning to buy over, and (optionally)
+                    which purchase limits may be exceeded entirely. This shows every known purchase source for that
+                    item and the cheapest purchase plan to reach your target quantity.
                 </p>
                 <form id="analyze-form">
                     <div class="form-row">
@@ -33,13 +33,22 @@
                             <input id="quantity-input" type="number" min="1" step="1" placeholder="e.g. 50" />
                         </div>
                         <div class="field">
-                            <label for="ignore-limit-select">Exceed purchase limit</label>
-                            <select id="ignore-limit-select">
-                                <option value="0">None (respect all limits)</option>
-                                <option value="1">Daily</option>
-                                <option value="2">Daily + Weekly</option>
-                                <option value="3">Daily + Weekly + Monthly</option>
-                            </select>
+                            <label for="days-input">Over how many days</label>
+                            <input id="days-input" type="number" min="1" step="1" value="1" />
+                        </div>
+                        <div class="field">
+                            <span>Exceed purchase limit</span>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="ignore-daily-checkbox" /> Daily
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="ignore-weekly-checkbox" /> Weekly
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="ignore-monthly-checkbox" /> Monthly
+                                </label>
+                            </div>
                         </div>
                         <div class="field">
                             <button type="button" id="reset-btn" class="btn-secondary">Reset</button>
@@ -60,8 +69,9 @@
 
             <section class="card" id="plan-card" hidden>
                 <h2>Optimal Purchase Plan</h2>
-                <div class="table-wrap"><table id="plan-table"></table></div>
+                <div class="table-wrap"><div id="plan-table" class="plan-grid" role="table"></div></div>
                 <p class="summary-line" id="plan-summary"></p>
+                <p class="message-box message-box--warning" id="plan-warning" hidden></p>
             </section>
         </main>
         <footer class="app-footer">Last Asylum Pack Solver &mdash; data generated from pack_data.json</footer>

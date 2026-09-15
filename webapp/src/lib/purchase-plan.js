@@ -9,6 +9,60 @@
  */
 
 /**
+ * Recursively flattens the nested `currencySteps` of exchange-purchase steps down to the
+ * underlying package purchases (the only steps that represent an actual real-world
+ * transaction), so a "Details" breakdown never shows an intermediate currency exchange as
+ * if it were itself purchasable.
+ */
+function flattenToPackageSteps(steps) {
+    const result = [];
+    for (const step of steps) {
+        if (step.source.type === 'package' || !step.currencySteps) {
+            result.push(step);
+        } else {
+            result.push(...flattenToPackageSteps(step.currencySteps));
+        }
+    }
+    return result;
+}
+
+/**
+ * Merges a list of purchase steps into a single row per underlying source, in the order
+ * each source was first used.
+ */
+function mergeStepsBySource(steps) {
+    const order = [];
+    const bySourceId = new Map();
+
+    for (const step of steps) {
+        const id = step.source.id;
+        if (!bySourceId.has(id)) {
+            bySourceId.set(id, {
+                source: step.source,
+                purchases: 0,
+                unitsGained: 0,
+                cost: 0,
+            });
+            order.push(id);
+        }
+        const entry = bySourceId.get(id);
+        entry.purchases += step.purchases;
+        entry.unitsGained += step.unitsGained;
+        entry.cost += step.cost;
+    }
+
+    return order.map((id) => {
+        const entry = bySourceId.get(id);
+        return {
+            source: { ...entry.source, pricePerUnit: entry.cost / entry.unitsGained },
+            purchases: entry.purchases,
+            unitsGained: Number(entry.unitsGained.toFixed(2)),
+            cost: Number(entry.cost.toFixed(2)),
+        };
+    });
+}
+
+/**
  * Builds a purchase plan for `targetQuantity` units of `targetItemId` using `market`
  * (a fresh `createMarket()` instance, already configured with the desired purchase-limit
  * override level). `shopFilter` (a Set of shop ids, or null for "any shop") restricts which
@@ -33,6 +87,7 @@ function buildPurchasePlan(market, targetItemId, targetQuantity, shopFilter = nu
                 purchases: 0,
                 unitsGained: 0,
                 cost: 0,
+                currencySteps: [],
             });
             order.push(id);
         }
@@ -40,15 +95,23 @@ function buildPurchasePlan(market, targetItemId, targetQuantity, shopFilter = nu
         entry.purchases += step.purchases;
         entry.unitsGained += step.unitsGained;
         entry.cost += step.cost;
+        if (step.currencySteps) {
+            entry.currencySteps.push(...step.currencySteps);
+        }
     }
 
     const plan = order.map((id) => {
         const entry = bySourceId.get(id);
+        // For exchange sources, "details" is the merged list of packages actually needed to
+        // obtain the required event currency for this row's purchases.
+        const details =
+            entry.source.type === 'exchange' ? mergeStepsBySource(flattenToPackageSteps(entry.currencySteps)) : [];
         return {
             source: { ...entry.source, pricePerUnit: entry.cost / entry.unitsGained },
             purchases: entry.purchases,
             unitsGained: Number(entry.unitsGained.toFixed(2)),
             cost: Number(entry.cost.toFixed(2)),
+            details,
         };
     });
 

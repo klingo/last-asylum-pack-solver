@@ -10,7 +10,10 @@ renderNav('analyze');
 const itemSelect = document.getElementById('item-select');
 const shopSelect = document.getElementById('shop-select');
 const quantityInput = document.getElementById('quantity-input');
-const ignoreLimitSelect = document.getElementById('ignore-limit-select');
+const daysInput = document.getElementById('days-input');
+const ignoreDailyCheckbox = document.getElementById('ignore-daily-checkbox');
+const ignoreWeeklyCheckbox = document.getElementById('ignore-weekly-checkbox');
+const ignoreMonthlyCheckbox = document.getElementById('ignore-monthly-checkbox');
 const resetBtn = document.getElementById('reset-btn');
 const form = document.getElementById('analyze-form');
 
@@ -20,6 +23,7 @@ const sourcesEmpty = document.getElementById('sources-empty');
 const planCard = document.getElementById('plan-card');
 const planTable = document.getElementById('plan-table');
 const planSummary = document.getElementById('plan-summary');
+const planWarning = document.getElementById('plan-warning');
 
 let data = null;
 
@@ -79,13 +83,19 @@ function renderSourcesTable(sources) {
 
     const rows = ordered
         .map((source) => {
-            const priceCell = source.type === 'exchange' ? source.priceDisplay : `${source.price} Banknotes`;
+            const priceCell =
+                source.type === 'exchange'
+                    ? source.priceDisplay
+                    : `<span class="text-gold">${source.price} Banknotes</span>`;
             const limitCell = Number.isFinite(source.purchaseCapacity)
                 ? Number((source.purchaseCapacity * source.yieldPerPurchase).toFixed(2))
                 : 'Unlimited';
             const pillClass = source.type === 'exchange' ? 'pill--exchange_offer' : `pill--${source.type}`;
             const typeLabel = TYPE_LABELS[source.type] || source.type;
             const requiresDisplay = getResolvedRequiresName(source.requires, data?.packages || {}, data?.items || {});
+            const pricePerUnitCell = Number.isFinite(source.pricePerUnit)
+                ? `<span class="text-gold">${Number(source.pricePerUnit.toFixed(2))}</span>`
+                : 'N/A';
 
             return `
                 <tr>
@@ -94,7 +104,7 @@ function renderSourcesTable(sources) {
                     <td>${source.category || '-'}</td>
                     <td>${priceCell}</td>
                     <td>${Number(source.yieldPerPurchase.toFixed(4))}</td>
-                    <td>${Number.isFinite(source.pricePerUnit) ? Number(source.pricePerUnit.toFixed(2)) : 'N/A'}</td>
+                    <td>${pricePerUnitCell}</td>
                     <td>${limitCell}</td>
                     <td>${formatDays(source.availableDays)}</td>
                     <td>${requiresDisplay}</td>
@@ -121,59 +131,126 @@ function renderSourcesTable(sources) {
     `;
 }
 
+function detailsRowsHtml(details) {
+    return details
+        .map(
+            (detail) => `
+                <div class="plan-grid__row">
+                    <div class="plan-grid__cell">${detail.source.name}</div>
+                    <div class="plan-grid__cell">${detail.source.category || '-'}</div>
+                    <div class="plan-grid__cell">${formatDays(detail.source.availableDays)}</div>
+                    <div class="plan-grid__cell">${detail.purchases}</div>
+                    <div class="plan-grid__cell">${detail.unitsGained}</div>
+                    <div class="plan-grid__cell"><span class="text-gold">${detail.cost}</span></div>
+                </div>
+            `,
+        )
+        .join('');
+}
+
 function renderPlanTable(result, targetItemId) {
     if (result.plan.length === 0) {
         planTable.innerHTML = '';
         planSummary.textContent = 'No purchasable sources found for this item.';
+        planWarning.hidden = true;
+        planWarning.textContent = '';
         return;
     }
 
+    // Both the plan rows and the nested "Details" breakdown below share the same
+    // `.plan-grid` column tracks (the breakdown uses `grid-template-columns: subgrid`), so
+    // their columns always stay visually aligned instead of living in two separate tables.
     const rows = result.plan
-        .map(({ source, purchases, unitsGained, cost }) => {
+        .map(({ source, purchases, unitsGained, cost, details }, index) => {
+            const hasDetails = source.type === 'exchange' && details && details.length > 0;
+            const detailsCell = hasDetails
+                ? `<button type="button" class="expand-toggle" data-plan-index="${index}">Details</button>`
+                : '';
+
+            const detailsSection = hasDetails
+                ? `
+                <div class="plan-grid__details" data-plan-details="${index}" hidden>
+                    <p class="plan-grid__details-intro">
+                        Shop packages needed to buy the ${source.name.split(' - ')[1] || 'required'} currency for this row:
+                    </p>
+                    <div class="plan-grid__row">
+                        <div class="plan-grid__cell plan-grid__cell--header">Package</div>
+                        <div class="plan-grid__cell plan-grid__cell--header">Category</div>
+                        <div class="plan-grid__cell plan-grid__cell--header">Days</div>
+                        <div class="plan-grid__cell plan-grid__cell--header">Purchases</div>
+                        <div class="plan-grid__cell plan-grid__cell--header">Units Gained</div>
+                        <div class="plan-grid__cell plan-grid__cell--header">Cost (Banknotes)</div>
+                    </div>
+                    ${detailsRowsHtml(details)}
+                </div>
+            `
+                : '';
+
             return `
-                <tr>
-                    <td class="item-cell"></td>
-                    <td>${source.category || '-'}</td>
-                    <td>${formatDays(source.availableDays)}</td>
-                    <td>${purchases}</td>
-                    <td>${unitsGained}</td>
-                    <td>${cost}</td>
-                    <td>${Number.isFinite(source.pricePerUnit) ? Number(source.pricePerUnit.toFixed(2)) : 'N/A'}</td>
-                </tr>
+                <div class="plan-grid__row" role="row">
+                    <div class="plan-grid__cell item-cell" role="cell"></div>
+                    <div class="plan-grid__cell" role="cell">${source.category || '-'}</div>
+                    <div class="plan-grid__cell" role="cell">${formatDays(source.availableDays)}</div>
+                    <div class="plan-grid__cell" role="cell">${purchases}</div>
+                    <div class="plan-grid__cell" role="cell">${unitsGained}</div>
+                    <div class="plan-grid__cell" role="cell"><span class="text-gold">${cost}</span></div>
+                    <div class="plan-grid__cell" role="cell">${Number.isFinite(source.pricePerUnit) ? `<span class="text-gold">${Number(source.pricePerUnit.toFixed(2))}</span>` : 'N/A'}</div>
+                    <div class="plan-grid__cell" role="cell">${detailsCell}</div>
+                </div>
+                ${detailsSection}
             `;
         })
         .join('');
 
     planTable.innerHTML = `
-        <thead>
-            <tr>
-                <th>Source</th>
-                <th>Category</th>
-                <th>Days</th>
-                <th>Purchases</th>
-                <th>Units Gained</th>
-                <th>Cost (Banknotes)</th>
-                <th>Banknotes / Unit</th>
-            </tr>
-        </thead>
-        <tbody>${rows}</tbody>
+        <div class="plan-grid__row" role="row">
+            <div class="plan-grid__cell plan-grid__cell--header" role="columnheader">Source</div>
+            <div class="plan-grid__cell plan-grid__cell--header" role="columnheader">Category</div>
+            <div class="plan-grid__cell plan-grid__cell--header" role="columnheader">Days</div>
+            <div class="plan-grid__cell plan-grid__cell--header" role="columnheader">Purchases</div>
+            <div class="plan-grid__cell plan-grid__cell--header" role="columnheader">Units Gained</div>
+            <div class="plan-grid__cell plan-grid__cell--header" role="columnheader">Cost (Banknotes)</div>
+            <div class="plan-grid__cell plan-grid__cell--header" role="columnheader">Banknotes / Unit</div>
+            <div class="plan-grid__cell plan-grid__cell--header" role="columnheader"></div>
+        </div>
+        ${rows}
     `;
 
     // Fill in the item-image + source-name cell for each row (kept out of the template
-    // string above since createItemImage() builds a real DOM node, not markup).
-    planTable.querySelectorAll('tbody tr').forEach((tr, index) => {
-        const cell = tr.querySelector('.item-cell');
-        const { source } = result.plan[index];
+    // string above since createItemImage() builds a real DOM node, not markup). Scoped to
+    // direct children of the grid so the nested "Details" breakdown rows (which reuse the
+    // same `.plan-grid__row`/`.plan-grid__cell` classes, just further down the subtree)
+    // aren't counted here.
+    planTable.querySelectorAll(':scope > .plan-grid__row').forEach((row, index) => {
+        // index 0 is the header row; plan rows start at index 1.
+        if (index === 0) {
+            return;
+        }
+        const cell = row.querySelector('.item-cell');
+        const { source } = result.plan[index - 1];
         const img = createItemImage(targetItemId, source.name, 'item-icon item-icon--sm');
         cell.appendChild(img);
         cell.appendChild(document.createTextNode(source.name));
     });
 
-    let summary = `Total estimated cost: ${result.totalCost} Banknotes.`;
+    planTable.querySelectorAll('.expand-toggle').forEach((button) => {
+        button.addEventListener('click', () => {
+            const idx = button.getAttribute('data-plan-index');
+            const detailsSection = planTable.querySelector(`[data-plan-details="${idx}"]`);
+            const isHidden = detailsSection.hidden;
+            detailsSection.hidden = !isHidden;
+            button.textContent = isHidden ? 'Hide' : 'Details';
+        });
+    });
+
+    planSummary.innerHTML = `Total estimated cost: <span class="text-gold">${result.totalCost}</span> Banknotes.`;
     if (!result.fullyReachable) {
-        summary += ` Warning: target quantity not fully reachable using known sources within purchase limits. Missing ~${result.remaining} unit(s).`;
+        planWarning.textContent = `Warning: target quantity not fully reachable using known sources within purchase limits. Missing ~${result.remaining} unit(s).`;
+        planWarning.hidden = false;
+    } else {
+        planWarning.textContent = '';
+        planWarning.hidden = true;
     }
-    planSummary.textContent = summary;
 }
 
 function syncUrlParams() {
@@ -183,7 +260,7 @@ function syncUrlParams() {
     const itemId = itemSelect?.value;
     const shopId = shopSelect?.value;
     const quantity = quantityInput?.value?.trim();
-    const limit = ignoreLimitSelect?.value;
+    const days = daysInput?.value?.trim();
 
     if (itemId) {
         params.set('item', itemId);
@@ -194,8 +271,17 @@ function syncUrlParams() {
     if (quantity && Number(quantity) > 0) {
         params.set('quantity', quantity);
     }
-    if (limit && limit !== '0') {
-        params.set('limit', limit);
+    if (days && Number(days) > 1) {
+        params.set('days', days);
+    }
+    if (ignoreDailyCheckbox?.checked) {
+        params.set('ignoreDaily', '1');
+    }
+    if (ignoreWeeklyCheckbox?.checked) {
+        params.set('ignoreWeekly', '1');
+    }
+    if (ignoreMonthlyCheckbox?.checked) {
+        params.set('ignoreMonthly', '1');
     }
 
     const queryString = params.toString();
@@ -208,7 +294,7 @@ function applyUrlParams() {
     const itemParam = params.get('item');
     const shopParam = params.get('shop');
     const quantityParam = params.get('quantity') || params.get('amount');
-    const limitParam = params.get('limit') || params.get('ignoreLimit');
+    const daysParam = params.get('days');
 
     if (itemParam && data?.items?.[itemParam]) {
         itemSelect.value = itemParam;
@@ -227,10 +313,19 @@ function applyUrlParams() {
     } else {
         quantityInput.value = '';
     }
-    if (limitParam && ['0', '1', '2', '3'].includes(limitParam)) {
-        ignoreLimitSelect.value = limitParam;
+    if (daysParam && Number(daysParam) >= 1) {
+        daysInput.value = String(Math.floor(Number(daysParam)));
     } else {
-        ignoreLimitSelect.value = '0';
+        daysInput.value = '1';
+    }
+    if (ignoreDailyCheckbox) {
+        ignoreDailyCheckbox.checked = params.get('ignoreDaily') === '1';
+    }
+    if (ignoreWeeklyCheckbox) {
+        ignoreWeeklyCheckbox.checked = params.get('ignoreWeekly') === '1';
+    }
+    if (ignoreMonthlyCheckbox) {
+        ignoreMonthlyCheckbox.checked = params.get('ignoreMonthly') === '1';
     }
 }
 
@@ -241,7 +336,12 @@ function recalculate({ syncUrl = true } = {}) {
 
     const targetItemId = itemSelect ? itemSelect.value : '';
     const selectedShopId = shopSelect ? shopSelect.value : '';
-    const ignoreLevel = Number(ignoreLimitSelect ? ignoreLimitSelect.value : 0) || 0;
+    const limitOptions = {
+        ignoreDaily: Boolean(ignoreDailyCheckbox?.checked),
+        ignoreWeekly: Boolean(ignoreWeeklyCheckbox?.checked),
+        ignoreMonthly: Boolean(ignoreMonthlyCheckbox?.checked),
+        days: Number(daysInput ? daysInput.value : 1) || 1,
+    };
     const targetQuantity = Number(quantityInput ? quantityInput.value : 0) || 0;
 
     if (syncUrl) {
@@ -261,9 +361,9 @@ function recalculate({ syncUrl = true } = {}) {
     // needed to pay for any exchange offer (target item or otherwise) can still come from
     // any shop. A fresh market is created per recalculation so purchase-limit capacities
     // start out unconsumed.
-    const market = createMarket(packages, exchangeShops, items, ignoreLevel);
+    const market = createMarket(packages, exchangeShops, items, limitOptions);
 
-    const packageSources = collectPackageSources(targetItemId, packages, items, ignoreLevel);
+    const packageSources = collectPackageSources(targetItemId, packages, items, limitOptions);
     let activeShops = {};
     let shopFilter = new Set();
     if (selectedShopId === 'any') {
@@ -273,7 +373,7 @@ function recalculate({ syncUrl = true } = {}) {
         activeShops = { [selectedShopId]: exchangeShops[selectedShopId] };
         shopFilter = new Set([selectedShopId]);
     }
-    const exchangeSources = collectExchangeSources(targetItemId, activeShops, items, market.peekUnitCost, ignoreLevel);
+    const exchangeSources = collectExchangeSources(targetItemId, activeShops, items, market.peekUnitCost, limitOptions);
 
     const allSources = [...packageSources, ...exchangeSources].filter((s) => Number.isFinite(s.pricePerUnit));
 
@@ -307,8 +407,17 @@ function handleReset() {
     if (quantityInput) {
         quantityInput.value = '';
     }
-    if (ignoreLimitSelect) {
-        ignoreLimitSelect.value = '0';
+    if (daysInput) {
+        daysInput.value = '1';
+    }
+    if (ignoreDailyCheckbox) {
+        ignoreDailyCheckbox.checked = false;
+    }
+    if (ignoreWeeklyCheckbox) {
+        ignoreWeeklyCheckbox.checked = false;
+    }
+    if (ignoreMonthlyCheckbox) {
+        ignoreMonthlyCheckbox.checked = false;
     }
 
     const url = new URL(window.location.href);
@@ -332,8 +441,18 @@ async function init() {
         quantityInput.addEventListener('input', () => recalculate());
         quantityInput.addEventListener('change', () => recalculate());
     }
-    if (ignoreLimitSelect) {
-        ignoreLimitSelect.addEventListener('change', () => recalculate());
+    if (daysInput) {
+        daysInput.addEventListener('input', () => recalculate());
+        daysInput.addEventListener('change', () => recalculate());
+    }
+    if (ignoreDailyCheckbox) {
+        ignoreDailyCheckbox.addEventListener('change', () => recalculate());
+    }
+    if (ignoreWeeklyCheckbox) {
+        ignoreWeeklyCheckbox.addEventListener('change', () => recalculate());
+    }
+    if (ignoreMonthlyCheckbox) {
+        ignoreMonthlyCheckbox.addEventListener('change', () => recalculate());
     }
     if (resetBtn) {
         resetBtn.addEventListener('click', handleReset);

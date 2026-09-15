@@ -10,6 +10,7 @@
     --good: #63d68a;
     --warn: #f2c14e;
     --bad: #f2685c;
+    --gold: #d4af37;
     --radius: 8px;
 }
 
@@ -142,6 +143,30 @@ button:disabled {
     cursor: not-allowed;
 }
 
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 0;
+    min-height: 36px;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.checkbox-label input[type='checkbox'] {
+    width: 18px;
+    height: 18px;
+    padding: 0;
+    accent-color: var(--accent);
+    cursor: pointer;
+}
+
 .btn-secondary {
     background: var(--panel-alt);
     border-color: var(--border);
@@ -249,6 +274,11 @@ tbody tr:hover {
     color: var(--bad);
 }
 
+.text-gold {
+    color: var(--gold);
+    font-weight: 600;
+}
+
 .empty-state {
     color: var(--text-dim);
     font-style: italic;
@@ -260,8 +290,82 @@ tbody tr:hover {
     color: var(--text-dim);
 }
 
+.message-box {
+    margin: 10px 0 0;
+    padding: 10px 14px;
+    border-radius: var(--radius);
+    border: 1px solid transparent;
+    font-size: 0.9rem;
+}
+
+.message-box--warning {
+    color: var(--warn);
+    background: rgba(242, 193, 78, 0.12);
+    border-color: rgba(242, 193, 78, 0.4);
+}
+
 .expand-row td {
     background: var(--panel-alt);
+}
+
+/*
+ * The "Optimal Purchase Plan" grid and its nested "Details" breakdown share the exact same
+ * column tracks (via CSS subgrid) so that, e.g., a package's cost in the breakdown lines up
+ * visually under the plan row's own "Cost (Banknotes)" column, etc.
+ */
+.plan-grid {
+    display: grid;
+    grid-template-columns:
+        minmax(200px, 2fr) minmax(100px, 1fr) minmax(100px, 1fr) minmax(90px, 1fr) minmax(100px, 1fr)
+        minmax(110px, 1fr) minmax(110px, 1fr) 80px;
+    width: 100%;
+    font-size: 0.9rem;
+}
+
+.plan-grid__row {
+    display: contents;
+}
+
+.plan-grid__row:hover > .plan-grid__cell {
+    background: var(--panel-alt);
+}
+
+.plan-grid__cell {
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    min-width: 0;
+}
+
+.plan-grid__cell--header {
+    color: var(--text-dim);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.72rem;
+    letter-spacing: 0.03em;
+}
+
+.plan-grid__details {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: subgrid;
+    background: var(--panel-alt);
+}
+
+.plan-grid__details-intro {
+    grid-column: 1 / -1;
+    color: var(--text-dim);
+    padding: 8px 10px 0;
+    margin: 0;
+}
+
+.plan-grid__details .plan-grid__cell:first-child {
+    grid-column-start: 1;
+}
+
+.plan-grid__details[hidden] {
+    display: none;
 }
 
 .expand-toggle {

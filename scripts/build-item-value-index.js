@@ -50,8 +50,8 @@ function buildItemValueIndex(data) {
 
     const itemEntries = {};
     for (const [itemId, item] of Object.entries(items)) {
-        const packageSources = collectPackageSources(itemId, packages, items, 0);
-        const exchangeSources = collectExchangeSources(itemId, exchangeShops, items, getItemCost, 0);
+        const packageSources = collectPackageSources(itemId, packages, items);
+        const exchangeSources = collectExchangeSources(itemId, exchangeShops, items, getItemCost);
 
         const sources = [...packageSources, ...exchangeSources]
             .filter((s) => Number.isFinite(s.pricePerUnit))

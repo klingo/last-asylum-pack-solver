@@ -125,6 +125,15 @@ function packageYield(pkg, targetId, items) {
 
 const DEFAULT_MAX_PURCHASE_ITERATIONS = 5000;
 const MAX_MARKET_RECURSION_DEPTH = 64;
+// Any event/exchange shop is assumed to never run longer than this many days, so scaling a
+// daily/weekly limit by an entered day count beyond this is pointless: the event/shop will
+// already be gone (e.g. the Strange Bazaar never sticks around for more than a week).
+const EVENT_MAX_DAYS = 7;
+
+function normalizeLimitOptions(limitOptions) {
+    const { ignoreDaily = false, ignoreWeekly = false, ignoreMonthly = false, days = 1 } = limitOptions || {};
+    return { ignoreDaily, ignoreWeekly, ignoreMonthly, days: Math.max(1, Number(days) || 1) };
+}
 
 /**
  * Creates a "market" that tracks, for a single what-if calculation, how much purchase
@@ -142,8 +151,9 @@ const MAX_MARKET_RECURSION_DEPTH = 64;
  * `quantity` units, recursively buying whatever currency is required along the way, and
  * returns the resulting cost/steps.
  */
-function createMarket(packages, exchangeShops, items, ignoreLevel = 0, options = {}) {
+function createMarket(packages, exchangeShops, items, limitOptions = {}, options = {}) {
     const maxIterations = options.maxIterations || DEFAULT_MAX_PURCHASE_ITERATIONS;
+    const normalizedLimitOptions = normalizeLimitOptions(limitOptions);
     const ledger = new Map();
 
     function packageLedgerKey(pkgId) {
@@ -157,8 +167,13 @@ function createMarket(packages, exchangeShops, items, ignoreLevel = 0, options =
     function packageCapacity(pkgId, pkg) {
         const key = packageLedgerKey(pkgId);
         if (!ledger.has(key)) {
-            const limitIgnored = shouldIgnoreLimit(pkg.limit_type, ignoreLevel);
-            ledger.set(key, limitIgnored || pkg.purchase_limit == null ? Infinity : pkg.purchase_limit);
+            const { capacity } = effectiveCapacity(
+                pkg.purchase_limit,
+                pkg.limit_type,
+                Boolean(pkg.event_id),
+                normalizedLimitOptions,
+            );
+            ledger.set(key, capacity);
         }
         return ledger.get(key);
     }
@@ -166,8 +181,14 @@ function createMarket(packages, exchangeShops, items, ignoreLevel = 0, options =
     function offerCapacity(shopId, offerKey, offer) {
         const key = offerLedgerKey(shopId, offerKey);
         if (!ledger.has(key)) {
-            const limitIgnored = shouldIgnoreLimit(offer.limit_type, ignoreLevel);
-            ledger.set(key, limitIgnored || offer.purchase_limit == null ? Infinity : offer.purchase_limit);
+            const shop = exchangeShops[shopId];
+            const { capacity } = effectiveCapacity(
+                offer.purchase_limit,
+                offer.limit_type,
+                Boolean(shop && shop.event_id),
+                normalizedLimitOptions,
+            );
+            ledger.set(key, capacity);
         }
         return ledger.get(key);
     }
@@ -367,6 +388,10 @@ function createMarket(packages, exchangeShops, items, ignoreLevel = 0, options =
                 unitsGained,
                 cost: currencyResult.totalCost,
                 pricePerUnit: currencyResult.totalCost / unitsGained,
+                // Kept so callers (e.g. the webapp's purchase-plan "Details" breakdown) can
+                // show exactly which packages/offers were used to obtain the currency spent
+                // on this single exchange purchase, instead of just a flat cost.
+                currencySteps: currencyResult.steps,
             });
             totalCost += currencyResult.totalCost;
             remaining -= unitsGained;
@@ -395,42 +420,70 @@ function createMarket(packages, exchangeShops, items, ignoreLevel = 0, options =
  * around `createMarket()` for callers that only need a one-off snapshot cost (e.g. ranking).
  */
 function buildItemCostResolver(packages, exchangeShops, items) {
-    const market = createMarket(packages, exchangeShops, items, 0);
+    const market = createMarket(packages, exchangeShops, items);
     return (itemId) => market.peekUnitCost(itemId);
 }
 
 /**
- * Determines whether a purchase limit of the given type should be ignored based on the override level:
- * - Level 0: None (respect all limits)
- * - Level 1: Exceed daily limits only
- * - Level 2: Exceed daily + weekly limits
- * - Level 3: Exceed daily + weekly + monthly limits
- * "exclusive" and "event" limits are NEVER exceeded under any level.
+ * Computes how many units of purchase capacity a daily/weekly/monthly (or
+ * exclusive/event/unlimited) limit actually allows, given the "ignore" flags and the
+ * "days" planning horizon:
+ * - "exclusive" and "event" limits are NEVER scaled or ignored.
+ * - A set ignore flag for a limit type makes that limit unlimited outright.
+ * - Otherwise, "daily" limits scale linearly with the day count, and "weekly" limits scale
+ *   by the number of weeks spanned (ceil(days / 7)); "monthly" limits are left as-is since a
+ *   month never fits in the realistic day ranges this tool is meant for.
+ * - For anything tied to a specific event/shop (`eventTied`), the day count used for scaling
+ *   is capped at `EVENT_MAX_DAYS`, since the event/shop itself won't still be around after
+ *   that (e.g. the Strange Bazaar).
+ * Returns `{ capacity, ignored }`, where `ignored` is only true when the limit was fully
+ * lifted via its flag (not merely scaled by the day count).
  */
-function shouldIgnoreLimit(limitType, ignoreLevel) {
+function effectiveCapacity(baseLimit, limitType, eventTied, limitOptions) {
+    if (baseLimit == null) {
+        return { capacity: Infinity, ignored: false };
+    }
     if (limitType === 'exclusive' || limitType === 'event') {
-        return false;
+        return { capacity: baseLimit, ignored: false };
     }
-    if (ignoreLevel >= 1 && limitType === 'daily') {
-        return true;
+
+    const days = eventTied ? Math.min(limitOptions.days, EVENT_MAX_DAYS) : limitOptions.days;
+
+    if (limitType === 'daily') {
+        if (limitOptions.ignoreDaily) {
+            return { capacity: Infinity, ignored: true };
+        }
+        return { capacity: baseLimit * days, ignored: false };
     }
-    if (ignoreLevel >= 2 && limitType === 'weekly') {
-        return true;
+    if (limitType === 'weekly') {
+        if (limitOptions.ignoreWeekly) {
+            return { capacity: Infinity, ignored: true };
+        }
+        return { capacity: baseLimit * Math.ceil(days / 7), ignored: false };
     }
-    if (ignoreLevel >= 3 && limitType === 'monthly') {
-        return true;
+    if (limitType === 'monthly') {
+        if (limitOptions.ignoreMonthly) {
+            return { capacity: Infinity, ignored: true };
+        }
+        return { capacity: baseLimit, ignored: false };
     }
-    return false;
+    return { capacity: baseLimit, ignored: false };
 }
 
-function collectPackageSources(targetId, packages, items, ignoreLevel = 0) {
+function collectPackageSources(targetId, packages, items, limitOptions = {}) {
+    const normalizedLimitOptions = normalizeLimitOptions(limitOptions);
     const sources = [];
     for (const [pkgId, pkg] of Object.entries(packages)) {
         const y = packageYield(pkg, targetId, items);
         if (y <= 0) {
             continue;
         }
-        const limitIgnored = shouldIgnoreLimit(pkg.limit_type, ignoreLevel);
+        const { capacity, ignored } = effectiveCapacity(
+            pkg.purchase_limit,
+            pkg.limit_type,
+            Boolean(pkg.event_id),
+            normalizedLimitOptions,
+        );
         sources.push({
             type: 'package',
             id: pkgId,
@@ -443,14 +496,15 @@ function collectPackageSources(targetId, packages, items, ignoreLevel = 0) {
             limitType: pkg.limit_type,
             availableDays: pkg.available_days || null,
             requires: pkg.requires || null,
-            limitIgnored,
-            purchaseCapacity: limitIgnored || pkg.purchase_limit == null ? Infinity : pkg.purchase_limit,
+            limitIgnored: ignored,
+            purchaseCapacity: capacity,
         });
     }
     return sources;
 }
 
-function collectExchangeSources(targetId, exchangeShops, items, getItemCost, ignoreLevel = 0) {
+function collectExchangeSources(targetId, exchangeShops, items, getItemCost, limitOptions = {}) {
+    const normalizedLimitOptions = normalizeLimitOptions(limitOptions);
     const sources = [];
     for (const [shopId, shop] of Object.entries(exchangeShops)) {
         for (const [offerKey, offer] of Object.entries(shop.offers || {})) {
@@ -461,22 +515,27 @@ function collectExchangeSources(targetId, exchangeShops, items, getItemCost, ign
             }
             const currencyUnitCost = getItemCost(shop.currency_item_id);
             const totalPrice = offer.currency_cost * currencyUnitCost;
-            const limitIgnored = shouldIgnoreLimit(offer.limit_type, ignoreLevel);
+            const { capacity, ignored } = effectiveCapacity(
+                offer.purchase_limit,
+                offer.limit_type,
+                Boolean(shop.event_id),
+                normalizedLimitOptions,
+            );
             sources.push({
                 type: 'exchange',
                 id: `${shopId}:${offerKey}`,
                 name: `${shop.name} - ${items[offerItemId]?.name || offerItemId}`,
                 category: shop.category || (shop.event_id ? 'Event Exchange' : 'Exchange'),
                 price: totalPrice,
-                priceDisplay: `${offer.currency_cost} ${items[shop.currency_item_id]?.name || shop.currency_item_id} (~${totalPrice.toFixed(2)} Banknotes)`,
+                priceDisplay: `${offer.currency_cost} ${items[shop.currency_item_id]?.name || shop.currency_item_id}`,
                 yieldPerPurchase: y,
                 pricePerUnit: Number.isFinite(totalPrice) ? totalPrice / y : Infinity,
                 purchaseLimit: offer.purchase_limit,
                 limitType: offer.limit_type,
                 availableDays: null,
                 requires: null,
-                limitIgnored,
-                purchaseCapacity: limitIgnored || offer.purchase_limit == null ? Infinity : offer.purchase_limit,
+                limitIgnored: ignored,
+                purchaseCapacity: capacity,
             });
         }
     }
@@ -497,8 +556,9 @@ module.exports = {
     packageYield,
     createMarket,
     buildItemCostResolver,
-    shouldIgnoreLimit,
+    effectiveCapacity,
     collectPackageSources,
     collectExchangeSources,
     formatDays,
+    EVENT_MAX_DAYS,
 };

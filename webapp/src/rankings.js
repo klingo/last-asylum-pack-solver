@@ -31,6 +31,10 @@ function matchesFilters(entry, search, type) {
     return haystack.includes(search);
 }
 
+function goldenBanknotes(text) {
+    return text.replace(/([\d.,]+)(\s*Banknotes)/g, '<span class="text-gold">$1</span>$2');
+}
+
 function breakdownRowsHtml(entry) {
     return entry.contains_breakdown
         .map(
@@ -38,8 +42,8 @@ function breakdownRowsHtml(entry) {
                 <tr>
                     <td class="item-cell"><span class="breakdown-icon" data-item-id="${item.item_id}"></span>${item.name}</td>
                     <td>${item.quantity}</td>
-                    <td>${item.unit_cost !== null ? Number(item.unit_cost.toFixed(4)) : 'Unknown'}</td>
-                    <td>${item.value}</td>
+                    <td><span class="text-gold">${item.unit_cost !== null ? Number(item.unit_cost.toFixed(4)) : 'Unknown'}</span></td>
+                    <td><span class="text-gold">${item.value}</span></td>
                 </tr>
             `,
         )
@@ -63,8 +67,8 @@ function renderTable(filtered) {
                     <td class="item-cell"><span class="main-icon" data-item-id="${mainItemId}"></span>${entry.name}</td>
                     <td><span class="pill pill--${entry.type}">${TYPE_LABELS[entry.type] || entry.type}</span></td>
                     <td>${entry.category}</td>
-                    <td>${entry.price_display}</td>
-                    <td>${entry.total_value}</td>
+                    <td>${goldenBanknotes(entry.price_display)}</td>
+                    <td><span class="text-gold">${entry.total_value}</span></td>
                     <td>${entry.value_ratio}</td>
                     <td>${entry.value_complete ? '<span class="text-good">Yes</span>' : '<span class="text-bad">No</span>'}</td>
                     <td><button type="button" class="expand-toggle" data-rank="${entry.rank}">Details</button></td>

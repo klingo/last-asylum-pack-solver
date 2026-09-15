@@ -207,7 +207,7 @@ function buildRanking(data) {
     const items = data.items || {};
     const packages = data.packages || {};
     const exchangeShops = data.exchange_shops || {};
-    const market = createMarket(packages, exchangeShops, items, 0);
+    const market = createMarket(packages, exchangeShops, items);
 
     const rankings = [
         ...rankPackages(packages, market, items),

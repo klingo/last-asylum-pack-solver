@@ -6,61 +6,50 @@ const { loadData, createMarket, collectPackageSources, collectExchangeSources, f
  * a purchase plan for a target quantity if one is provided.
  *
  * Usage:
- *   node scripts/analyze-item-value.js <item_id> [target_quantity] [--ignore-limits[=level]]
- *   node scripts/analyze-item-value.js <item_id> [target_quantity] [ignore_limits_level]
- *
- * Limit Override Levels:
- *   0 / "false" / "none"    Respect all purchase limits (default).
- *   1 / "true" / "daily"    Exceed/ignore daily purchase limits only.
- *   2 / "weekly"            Exceed/ignore daily and weekly purchase limits.
- *   3 / "monthly"           Exceed/ignore daily, weekly, and monthly purchase limits.
- *   * Note: "exclusive" and "event" limits are NEVER exceeded under any level.
+ *   node scripts/analyze-item-value.js <item_id> [target_quantity] [options]
  *
  * Options:
- *   --ignore-limits (-i)        Exceed purchase limits up to the specified level (defaults to level 1 / daily).
- *                               Can also be passed as a plain (non-dashed) 3rd positional
- *                               argument, e.g. "true"/"daily"/"1", "weekly"/"2", or "monthly"/"3",
- *                               which is the recommended way when running via npm (see note below).
+ *   --ignore-daily-limits          Treat daily purchase limits as unlimited.
+ *   --ignore-weekly-limits         Treat weekly purchase limits as unlimited.
+ *   --ignore-monthly-limits        Treat monthly purchase limits as unlimited.
+ *                                  These three are independent: enabling one does NOT also
+ *                                  enable the others (e.g. "weekly" alone still respects
+ *                                  daily limits). "exclusive" and "event" limits are NEVER
+ *                                  exceeded, regardless of these flags.
+ *   --days=N (default 1)           How many days you're planning to buy over. Daily limits
+ *                                  scale linearly with N (buy up to N times); weekly limits
+ *                                  only start allowing multiple purchases once N reaches 8+
+ *                                  (ceil(N / 7) purchases). For anything tied to a specific
+ *                                  event/shop (e.g. the Strange Bazaar), N is capped at 7
+ *                                  since the event/shop won't still be around after that.
  *
  * Example:
- *   node scripts/analyze-item-value.js gear_blueprint_ur 50 --ignore-limits
- *   node scripts/analyze-item-value.js gear_blueprint_ur 50 --ignore-limits=weekly
+ *   node scripts/analyze-item-value.js gear_blueprint_ur 50 --ignore-daily-limits --days=3
  *
- * Note (npm): npm treats leading "--" flags (like --ignore-limits) as its own
- * options unless you add an extra "--" separator before the script arguments:
- *   npm run analyze-item-value -- gear_blueprint_ur 50 --ignore-limits
+ * Note (npm): npm treats leading "--" flags as its own options unless you add an extra "--"
+ * separator before the script arguments:
+ *   npm run analyze-item-value -- gear_blueprint_ur 50 --ignore-daily-limits --days=3
  *
- * To avoid needing "--" at all, pass the item_id and target_quantity as plain positional
- * arguments plus a plain 3rd positional argument (no leading dashes) for the limit override level;
- * npm forwards these the same way it forwards item_id and target_quantity:
- *   npm run analyze-item-value gear_blueprint_ur 50 true      # ignore daily limits
- *   npm run analyze-item-value gear_blueprint_ur 50 weekly    # ignore daily + weekly limits
- *   npm run analyze-item-value gear_blueprint_ur 50 monthly   # ignore daily + weekly + monthly limits
- *
- * Alternative: set the IGNORE_LIMITS environment variable instead:
- *   IGNORE_LIMITS=daily npm run analyze-item-value gear_blueprint_ur 50
+ * Alternative: set the IGNORE_DAILY_LIMITS / IGNORE_WEEKLY_LIMITS / IGNORE_MONTHLY_LIMITS /
+ * DAYS environment variables instead (useful with npm without the "--" separator):
+ *   IGNORE_DAILY_LIMITS=1 DAYS=3 npm run analyze-item-value gear_blueprint_ur 50
  */
 
-function parseIgnoreLevel(value) {
+function parseBoolean(value) {
+    if (value === undefined || value === null || value === '') {
+        return false;
+    }
+    const str = String(value).trim().toLowerCase();
+    return str === '1' || str === 'true' || str === 'yes' || str === 'on';
+}
+
+function parseDays(value) {
     if (value === undefined || value === null || value === '') {
         return null;
     }
-    const str = String(value).trim().toLowerCase();
-    if (str === '0' || str === 'false' || str === 'none' || str === 'off' || str === 'no') {
-        return 0;
-    }
-    if (str === '1' || str === 'true' || str === 'daily' || str === 'yes' || str === 'on') {
-        return 1;
-    }
-    if (str === '2' || str === 'weekly') {
-        return 2;
-    }
-    if (str === '3' || str === 'monthly' || str === 'month' || str === 'all') {
-        return 3;
-    }
-    const num = Number(str);
-    if (!Number.isNaN(num) && num >= 0) {
-        return Math.min(Math.floor(num), 3);
+    const num = Number(value);
+    if (!Number.isNaN(num) && num >= 1) {
+        return Math.floor(num);
     }
     return null;
 }
@@ -134,56 +123,51 @@ function printPurchasePlan(market, targetItemId, targetQuantity) {
 function main() {
     const rawArgs = process.argv.slice(2);
     const positionalArgs = rawArgs.filter((arg) => !arg.startsWith('-'));
-    const [targetItemId, quantityArg, ignoreLimitsArg] = positionalArgs;
+    const [targetItemId, quantityArg] = positionalArgs;
 
-    let flagLevel = null;
+    let ignoreDaily = false;
+    let ignoreWeekly = false;
+    let ignoreMonthly = false;
+    let days = null;
     for (const arg of rawArgs) {
         if (/^--ignore-daily-limits$/i.test(arg)) {
-            flagLevel = Math.max(flagLevel ?? 0, 1);
+            ignoreDaily = true;
         } else if (/^--ignore-weekly-limits$/i.test(arg)) {
-            flagLevel = Math.max(flagLevel ?? 0, 2);
+            ignoreWeekly = true;
         } else if (/^--ignore-monthly-limits$/i.test(arg)) {
-            flagLevel = Math.max(flagLevel ?? 0, 3);
-        } else if (/^(?:--ignore-limits?|--ignore-purchase-limits?|-i)(?:=(.+))?$/i.test(arg)) {
-            const match = arg.match(/^(?:--ignore-limits?|--ignore-purchase-limits?|-i)(?:=(.+))?$/i);
-            const val = match && match[1] ? parseIgnoreLevel(match[1]) : 1;
-            if (val !== null) {
-                flagLevel = Math.max(flagLevel ?? 0, val);
+            ignoreMonthly = true;
+        } else {
+            const daysMatch = arg.match(/^--days(?:=(.+))?$/i);
+            if (daysMatch) {
+                const parsed = parseDays(daysMatch[1]);
+                if (parsed !== null) {
+                    days = parsed;
+                }
             }
         }
     }
 
-    const envLevel = parseIgnoreLevel(
-        process.env.IGNORE_LIMITS || process.env.IGNORE_LIMITS_LEVEL || process.env.IGNORE_EVENT_LIMITS,
-    );
-    const positionalLevel = parseIgnoreLevel(ignoreLimitsArg);
-
-    const ignoreLevel = positionalLevel ?? flagLevel ?? envLevel ?? 0;
+    ignoreDaily = ignoreDaily || parseBoolean(process.env.IGNORE_DAILY_LIMITS);
+    ignoreWeekly = ignoreWeekly || parseBoolean(process.env.IGNORE_WEEKLY_LIMITS);
+    ignoreMonthly = ignoreMonthly || parseBoolean(process.env.IGNORE_MONTHLY_LIMITS);
+    days = days ?? parseDays(process.env.DAYS) ?? 1;
 
     if (!targetItemId) {
+        console.error('Usage: node scripts/analyze-item-value.js <item_id> [target_quantity] [options]');
         console.error(
-            'Usage: node scripts/analyze-item-value.js <item_id> [target_quantity] [ignore_limits_level|--ignore-limits[=level]]',
+            '  --ignore-daily-limits / --ignore-weekly-limits / --ignore-monthly-limits   Independently treat that limit type as unlimited.',
         );
         console.error(
-            'Note: when running via "npm run analyze-item-value", plain (non-dashed) positional arguments ' +
-                'are always forwarded, so you can pass "true"/"daily", "weekly", or "monthly" as the 3rd argument, e.g.:',
+            '  --days=N (default 1)   How many days you plan to buy over; scales daily/weekly limits accordingly.',
         );
         console.error(
-            '  npm run analyze-item-value <item_id> [target_quantity] true      # level 1: ignore daily limits',
+            'Note: when running via "npm run analyze-item-value", add "--" before dashed flags, e.g.:\n' +
+                '  npm run analyze-item-value -- <item_id> [target_quantity] --ignore-daily-limits --days=3',
         );
         console.error(
-            '  npm run analyze-item-value <item_id> [target_quantity] weekly    # level 2: ignore daily + weekly limits',
-        );
-        console.error(
-            '  npm run analyze-item-value <item_id> [target_quantity] monthly   # level 3: ignore daily + weekly + monthly limits',
-        );
-        console.error(
-            'If you prefer the --ignore-limits flag via npm, add "--" before the arguments, e.g.:\n' +
-                '  npm run analyze-item-value -- <item_id> [target_quantity] --ignore-limits=weekly',
-        );
-        console.error(
-            'Alternative: set the IGNORE_LIMITS environment variable instead, e.g.:\n' +
-                '  IGNORE_LIMITS=daily npm run analyze-item-value <item_id> [target_quantity]',
+            'Alternative: set the IGNORE_DAILY_LIMITS / IGNORE_WEEKLY_LIMITS / IGNORE_MONTHLY_LIMITS / DAYS ' +
+                'environment variables instead, e.g.:\n' +
+                '  IGNORE_DAILY_LIMITS=1 DAYS=3 npm run analyze-item-value <item_id> [target_quantity]',
         );
         process.exit(1);
     }
@@ -198,17 +182,20 @@ function main() {
         process.exit(1);
     }
 
-    console.log(`ignoreLevel=${ignoreLevel}`);
+    const limitOptions = { ignoreDaily, ignoreWeekly, ignoreMonthly, days };
+    console.log(
+        `Limit options: ignoreDaily=${ignoreDaily}, ignoreWeekly=${ignoreWeekly}, ignoreMonthly=${ignoreMonthly}, days=${days}`,
+    );
 
-    const market = createMarket(packages, exchangeShops, items, ignoreLevel);
+    const market = createMarket(packages, exchangeShops, items, limitOptions);
 
-    const packageSources = collectPackageSources(targetItemId, packages, items, ignoreLevel);
+    const packageSources = collectPackageSources(targetItemId, packages, items, limitOptions);
     const exchangeSources = collectExchangeSources(
         targetItemId,
         exchangeShops,
         items,
         market.peekUnitCost,
-        ignoreLevel,
+        limitOptions,
     );
 
     const allSources = [...packageSources, ...exchangeSources]
@@ -227,17 +214,12 @@ function main() {
     console.log(
         '\nNote: exchange shop prices are converted to Banknotes using the cheapest known source for their currency item.',
     );
-    if (ignoreLevel === 1) {
-        console.log(
-            'Purchase limit override active (level 1 / daily): daily limits are treated as unlimited (weekly, monthly, exclusive, and event limits are respected).',
+    if (ignoreDaily || ignoreWeekly || ignoreMonthly || days > 1) {
+        const ignoredParts = [ignoreDaily && 'daily', ignoreWeekly && 'weekly', ignoreMonthly && 'monthly'].filter(
+            Boolean,
         );
-    } else if (ignoreLevel === 2) {
         console.log(
-            'Purchase limit override active (level 2 / weekly): daily and weekly limits are treated as unlimited (monthly, exclusive, and event limits are respected).',
-        );
-    } else if (ignoreLevel >= 3) {
-        console.log(
-            'Purchase limit override active (level 3 / monthly): daily, weekly, and monthly limits are treated as unlimited (exclusive and event limits are never exceeded).',
+            `Purchase limit override active: days=${days}${ignoredParts.length ? `, fully ignored=[${ignoredParts.join(', ')}]` : ''} (exclusive and event limits are never exceeded).`,
         );
     }
 
@@ -248,21 +230,16 @@ function main() {
         console.log('\nTip: pass a target quantity as a second argument to get a suggested purchase plan, e.g.:');
         console.log(`  node scripts/analyze-item-value.js ${targetItemId} 50`);
         console.log(
-            '     Add limit override level (1/daily, 2/weekly, 3/monthly) to treat limits as unlimited up to that level.',
+            '     Add --ignore-daily-limits / --ignore-weekly-limits / --ignore-monthly-limits and/or --days=N ' +
+                'to change purchase limit assumptions.',
         );
         console.log(
-            '     Via npm, the easiest way is a plain 3rd argument (no "--" needed), e.g.:\n' +
-                `       npm run analyze-item-value ${targetItemId} 50 true      # daily\n` +
-                `       npm run analyze-item-value ${targetItemId} 50 weekly    # daily + weekly\n` +
-                `       npm run analyze-item-value ${targetItemId} 50 monthly   # daily + weekly + monthly`,
+            '     Via npm, add "--" before dashed flags, e.g.:\n' +
+                `       npm run analyze-item-value -- ${targetItemId} 50 --ignore-daily-limits --days=3`,
         );
         console.log(
-            '     If you prefer the --ignore-limits flag via npm, add "--" before the arguments, e.g.:\n' +
-                `       npm run analyze-item-value -- ${targetItemId} 50 --ignore-limits=weekly`,
-        );
-        console.log(
-            '     Alternative for npm without "--": set the IGNORE_LIMITS environment variable, e.g.:\n' +
-                `       IGNORE_LIMITS=weekly npm run analyze-item-value ${targetItemId} 50`,
+            '     Alternative for npm without "--": set the IGNORE_DAILY_LIMITS / DAYS environment variables, e.g.:\n' +
+                `       IGNORE_DAILY_LIMITS=1 DAYS=3 npm run analyze-item-value ${targetItemId} 50`,
         );
     }
 }
