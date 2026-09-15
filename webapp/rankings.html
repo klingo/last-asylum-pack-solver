@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Value Ranking - Last Asylum Pack Solver</title>
+        <link rel="stylesheet" href="/src/style.css" />
+    </head>
+    <body>
+        <header class="app-header"></header>
+        <main>
+            <section class="card">
+                <h2>Value Ranking</h2>
+                <p class="text-dim">
+                    Every package and shop exchange offer (including bonus tiers), ranked by how much value it
+                    provides relative to its price. Higher "Value Ratio" means a better deal. Click a row to see
+                    its full contents breakdown.
+                </p>
+                <div class="form-row">
+                    <div class="field">
+                        <label for="search-input">Search</label>
+                        <input id="search-input" type="search" placeholder="Filter by name or category" />
+                    </div>
+                    <div class="field">
+                        <label for="type-filter">Type</label>
+                        <select id="type-filter">
+                            <option value="">All types</option>
+                            <option value="package">Package</option>
+                            <option value="exchange_offer">Exchange offer</option>
+                            <option value="bonus_tier">Bonus tier</option>
+                        </select>
+                    </div>
+                </div>
+                <p class="summary-line" id="ranking-meta"></p>
+            </section>
+
+            <section class="card">
+                <div class="table-wrap"><table id="ranking-table"></table></div>
+                <div id="ranking-empty" class="empty-state" hidden>No entries match your filters.</div>
+            </section>
+        </main>
+        <footer class="app-footer">Last Asylum Pack Solver &mdash; ranking generated from value_ranking.json</footer>
+        <script type="module" src="/src/rankings.js"></script>
+    </body>
+</html>

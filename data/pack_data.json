@@ -1293,6 +1293,42 @@
                 "lv2_alliance_chest": 1
             }
         },
+        "hero_exclusive_weapon_pack_t2": {
+            "name": "<Hero> Exclusive Weapon Pack (T2)",
+            "category": "Hero Exclusive",
+            "price": 999,
+            "deal_percentage": 4220,
+            "purchase_limit": 1,
+            "limit_type": "exclusive",
+            "tier": 2,
+            "requires": "hero_exclusive_weapon_pack_t1",
+            "contains": {
+                "diamonds": 1000,
+                "exclusive_weapon_shard": 20,
+                "antitoxin_level_supply_sr": 20,
+                "skill_badge": 500,
+                "vip_points": 1000,
+                "lv3_alliance_chest": 1
+            }
+        },
+        "hero_exclusive_weapon_pack_t3": {
+            "name": "<Hero> Exclusive Weapon Pack (T3)",
+            "category": "Hero Exclusive",
+            "price": 1999,
+            "deal_percentage": 4220,
+            "purchase_limit": 1,
+            "limit_type": "exclusive",
+            "tier": 3,
+            "requires": "hero_exclusive_weapon_pack_t2",
+            "contains": {
+                "diamonds": 2000,
+                "exclusive_weapon_shard": 40,
+                "antitoxin_level_supply_sr": 40,
+                "skill_badge": 1000,
+                "vip_points": 2000,
+                "lv4_alliance_chest": 1
+            }
+        },
         "hero_exclusive_weapon_pack_t4": {
             "name": "<Hero> Exclusive Weapon Pack (T4)",
             "category": "Hero Exclusive",
@@ -2291,7 +2327,7 @@
             },
             "bonus_tiers": {
                 "50": {
-                    "stone_blade": 999,
+                    "stone_blade": 1,
                     "dummy_entry": 1
                 }
             }

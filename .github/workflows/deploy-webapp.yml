@@ -1,0 +1,60 @@
+name: Deploy webapp to GitHub Pages
+
+on:
+    push:
+        branches: [main]
+    workflow_dispatch: {}
+
+permissions:
+    contents: read
+    pages: write
+    id-token: write
+
+# Only allow one concurrent deployment, cancelling in-progress runs.
+concurrency:
+    group: pages
+    cancel-in-progress: true
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+
+            - name: Install root dependencies
+              run: npm ci
+
+            - name: Verify pack data
+              run: npm run verify-data
+
+            - name: Install webapp dependencies
+              run: npm install
+              working-directory: webapp
+
+            - name: Regenerate item value index & value ranking, then build the webapp
+              run: npm run webapp:build
+
+            - name: Setup Pages
+              uses: actions/configure-pages@v5
+
+            - name: Upload Pages artifact
+              uses: actions/upload-pages-artifact@v3
+              with:
+                  path: webapp/dist
+
+    deploy:
+        needs: build
+        runs-on: ubuntu-latest
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
+        steps:
+            - name: Deploy to GitHub Pages
+              id: deployment
+              uses: actions/deploy-pages@v4
