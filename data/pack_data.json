@@ -793,6 +793,22 @@
             "name": "UR Gauntlets",
             "category": "Gear"
         },
+        "ur_hero_and_awaken_choice_chest": {
+            "name": "UR Hero & Awaken Shard Choice Chest",
+            "category": "Special",
+            "type": "choice",
+            "choice": {
+                "select_count": 1,
+                "choices": [
+                    {
+                        "ur_hero_omni_shard": 1
+                    },
+                    {
+                        "hero_awaken_omni_shard": 1
+                    }
+                ]
+            }
+        },
         "ur_hero_choice_chest": {
             "name": "UR Hero Choice Chest",
             "category": "Special",
@@ -1173,7 +1189,7 @@
         },
         "exclusive_weapon_pass": {
             "name": "Exclusive Weapon Pass",
-            "category": "Weekly Pass",
+            "category": "Hero Exclusive",
             "price": 1999,
             "deal_percentage": 8159,
             "purchase_limit": 1,
@@ -2345,7 +2361,7 @@
                     "item_id": "deluxe_choice_chest",
                     "currency_cost": 100,
                     "quantity": 1,
-                    "purchase_limit": 11,
+                    "purchase_limit": 1,
                     "limit_type": "weekly"
                 },
                 "excl_weapon_shard_choice_chest": {
@@ -2445,6 +2461,13 @@
                     "quantity": 1,
                     "purchase_limit": 5,
                     "limit_type": "weekly"
+                },
+                "ur_hero_and_awaken_choice_chest": {
+                    "item_id": "ur_hero_and_awaken_choice_chest",
+                    "currency_cost": 60,
+                    "quantity": 10,
+                    "purchase_limit": 1,
+                    "limit_type": "daily"
                 },
                 "ur_omni_shard": {
                     "item_id": "ur_omni_shard",
