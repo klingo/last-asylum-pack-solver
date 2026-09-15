@@ -2279,7 +2279,7 @@
             }
         },
         "strange_bazaar_shop": {
-            "name": "Strange Bazaar Shop (TBC!)",
+            "name": "Strange Bazaar",
             "event_id": "strange_bazaar",
             "currency_item_id": "strange_coin",
             "offers": {
@@ -2360,7 +2360,14 @@
                     "purchase_limit": 200,
                     "limit_type": "weekly"
                 },
-                "tempered_steel": {
+                "tempered_steel_daily": {
+                    "item_id": "tempered_steel",
+                    "currency_cost": 40,
+                    "quantity": 100,
+                    "purchase_limit": 1,
+                    "limit_type": "daily"
+                },
+                "tempered_steel_weekly": {
                     "item_id": "tempered_steel",
                     "currency_cost": 70,
                     "quantity": 100,
