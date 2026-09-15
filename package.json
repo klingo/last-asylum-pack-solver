@@ -7,8 +7,8 @@
     "scripts": {
         "analyze-item-value": "node scripts/analyze-item-value.js",
         "build-item-value-index": "node scripts/build-item-value-index.js",
+        "copy-pack-data": "node scripts/copy-pack-data.js",
         "format": "prettier --write \"**/*.{js,jsx,json,css}\"",
-        "generate-webapp-data": "node scripts/generate-webapp-data.js",
         "lint": "eslint .",
         "prepare": "husky",
         "rank-packages": "node scripts/rank-packages.js",
@@ -16,8 +16,8 @@
         "update-last-updated": "node scripts/update-last-updated.js",
         "verify-data": "node scripts/verify-data.js",
         "webapp:install": "npm install --prefix webapp",
-        "webapp:dev": "npm run generate-webapp-data && npm run dev --prefix webapp",
-        "webapp:build": "npm run generate-webapp-data && npm run build --prefix webapp",
+        "webapp:dev": "npm run copy-pack-data && npm run dev --prefix webapp",
+        "webapp:build": "npm run copy-pack-data && npm run build --prefix webapp",
         "webapp:preview": "npm run preview --prefix webapp"
     },
     "devDependencies": {

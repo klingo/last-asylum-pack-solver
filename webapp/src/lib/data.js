@@ -1,6 +1,7 @@
 /**
- * Loads the generated data files (copied into public/data by scripts/generate-webapp-data.js
- * as part of the build) that back both pages of the webapp.
+ * Loads the raw pack data (copied into public/data by scripts/copy-pack-data.js as part of
+ * the build) that backs both pages of the webapp. All analysis/ranking is computed live in
+ * the browser from this file; no pre-generated ranking/index files are involved.
  */
 
 async function fetchJson(fileName) {
@@ -16,8 +17,4 @@ function loadPackData() {
     return fetchJson('pack_data.json');
 }
 
-function loadValueRanking() {
-    return fetchJson('value_ranking.json');
-}
-
-export { fetchJson, loadPackData, loadValueRanking };
+export { fetchJson, loadPackData };

@@ -1,7 +1,7 @@
 import './style.css';
 import { renderNav } from './nav';
 import { loadPackData } from './lib/data';
-import { buildItemCostResolver, collectPackageSources, collectExchangeSources, formatDays } from './lib/pricing-core';
+import { createMarket, collectPackageSources, collectExchangeSources, formatDays } from './lib/pricing-core';
 import { buildPurchasePlan } from './lib/purchase-plan';
 import { createItemImage } from './lib/images';
 
@@ -256,15 +256,24 @@ function recalculate({ syncUrl = true } = {}) {
 
     const { items, packages = {}, exchange_shops: exchangeShops = {} } = data;
 
-    const getItemCost = buildItemCostResolver(packages, exchangeShops, items);
+    // The market always sees every package/exchange shop, since the "Active Exchange Shop"
+    // selection only restricts which shop may sell the target item *directly*; the currency
+    // needed to pay for any exchange offer (target item or otherwise) can still come from
+    // any shop. A fresh market is created per recalculation so purchase-limit capacities
+    // start out unconsumed.
+    const market = createMarket(packages, exchangeShops, items, ignoreLevel);
+
     const packageSources = collectPackageSources(targetItemId, packages, items, ignoreLevel);
     let activeShops = {};
+    let shopFilter = new Set();
     if (selectedShopId === 'any') {
         activeShops = exchangeShops;
+        shopFilter = null;
     } else if (selectedShopId && exchangeShops[selectedShopId]) {
         activeShops = { [selectedShopId]: exchangeShops[selectedShopId] };
+        shopFilter = new Set([selectedShopId]);
     }
-    const exchangeSources = collectExchangeSources(targetItemId, activeShops, items, getItemCost, ignoreLevel);
+    const exchangeSources = collectExchangeSources(targetItemId, activeShops, items, market.peekUnitCost, ignoreLevel);
 
     const allSources = [...packageSources, ...exchangeSources].filter((s) => Number.isFinite(s.pricePerUnit));
 
@@ -280,7 +289,7 @@ function recalculate({ syncUrl = true } = {}) {
     renderSourcesTable(allSources);
 
     if (targetQuantity > 0) {
-        const result = buildPurchasePlan(allSources, targetQuantity);
+        const result = buildPurchasePlan(market, targetItemId, targetQuantity, shopFilter);
         planCard.hidden = false;
         renderPlanTable(result, targetItemId);
     } else {

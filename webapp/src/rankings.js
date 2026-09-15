@@ -1,6 +1,7 @@
 import './style.css';
 import { renderNav } from './nav';
-import { loadValueRanking } from './lib/data';
+import { loadPackData } from './lib/data';
+import { buildRanking } from './lib/ranking-core';
 import { createItemImage } from './lib/images';
 
 renderNav('rankings');
@@ -132,7 +133,8 @@ function applyFilters() {
 }
 
 async function init() {
-    const result = await loadValueRanking();
+    const data = await loadPackData();
+    const result = buildRanking(data);
     rankings = result.rankings || [];
     const meta = result.metadata || {};
     rankingMeta.textContent = `${meta.entry_count ?? rankings.length} entries. Generated ${

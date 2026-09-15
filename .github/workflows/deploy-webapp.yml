@@ -37,7 +37,7 @@ jobs:
               run: npm install
               working-directory: webapp
 
-            - name: Regenerate item value index & value ranking, then build the webapp
+            - name: Copy pack data and build the webapp
               run: npm run webapp:build
 
             - name: Setup Pages

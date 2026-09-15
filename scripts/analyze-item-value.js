@@ -1,10 +1,4 @@
-const {
-    loadData,
-    buildItemCostResolver,
-    collectPackageSources,
-    collectExchangeSources,
-    formatDays,
-} = require('./lib/pricing');
+const { loadData, createMarket, collectPackageSources, collectExchangeSources, formatDays } = require('./lib/pricing');
 
 /**
  * Analyzes every available purchase option (packages & exchange shop offers) that can
@@ -89,54 +83,52 @@ function printSourceTable(sources) {
     console.table(rows);
 }
 
-function printPurchasePlan(sources, targetQuantity) {
+function printPurchasePlan(market, targetItemId, targetQuantity) {
     console.log(`\nOptimal purchase plan for ${targetQuantity} unit(s) (cheapest cost/unit first):`);
 
-    // Ensure the plan is strictly ordered by effective Banknotes/unit, cheapest first,
-    // so it's clear at a glance where it stops making sense to keep buying.
-    const orderedSources = [...sources].sort((a, b) => a.pricePerUnit - b.pricePerUnit);
+    // Simulate the actual purchase against the market: this correctly accounts for limited
+    // currency sources (e.g. a "100 Strange Coins for 499 Banknotes" offer capped at once
+    // per day) running out mid-plan and falling back to pricier sources for the remainder,
+    // instead of assuming the cheapest price applies to an unlimited amount.
+    const result = market.purchase(targetItemId, targetQuantity);
 
-    let remaining = targetQuantity;
-    let totalCost = 0;
-    const plan = [];
-
-    for (const source of orderedSources) {
-        if (remaining <= 0) {
-            break;
+    // Multiple purchase steps can reference the same underlying source (each exchange offer
+    // purchase is simulated one at a time), so merge them back into a single row per source.
+    const order = [];
+    const bySourceId = new Map();
+    for (const step of result.steps) {
+        const id = step.source.id;
+        if (!bySourceId.has(id)) {
+            bySourceId.set(id, { source: step.source, purchases: 0, unitsGained: 0, cost: 0 });
+            order.push(id);
         }
-        const availableUnits = Number.isFinite(source.purchaseCapacity)
-            ? source.purchaseCapacity * source.yieldPerPurchase
-            : Infinity;
-        if (availableUnits <= 0) {
-            continue;
-        }
-        const unitsFromSource = Math.min(remaining, availableUnits);
-        const purchasesNeeded = Math.ceil(unitsFromSource / source.yieldPerPurchase);
-        const actualUnits = purchasesNeeded * source.yieldPerPurchase;
-        const cost = purchasesNeeded * source.price;
+        const entry = bySourceId.get(id);
+        entry.purchases += step.purchases;
+        entry.unitsGained += step.unitsGained;
+        entry.cost += step.cost;
+    }
 
-        plan.push({
+    const plan = order.map((id) => {
+        const { source, purchases, unitsGained, cost } = bySourceId.get(id);
+        return {
             Source: source.name,
             Category: source.category || '-',
             Days: formatDays(source.availableDays),
-            Purchases: purchasesNeeded,
-            'Units Gained': Number(actualUnits.toFixed(2)),
+            Purchases: purchases,
+            'Units Gained': Number(unitsGained.toFixed(2)),
             'Cost (Banknotes)': Number(cost.toFixed(2)),
-            'Banknotes/Unit': Number.isFinite(source.pricePerUnit) ? Number(source.pricePerUnit.toFixed(2)) : 'N/A',
-        });
-
-        totalCost += cost;
-        remaining -= actualUnits;
-    }
+            'Banknotes/Unit': Number((cost / unitsGained).toFixed(2)),
+        };
+    });
 
     console.table(plan);
 
-    if (remaining > 0) {
+    if (result.remaining > 0) {
         console.log(
-            `\nWarning: target quantity not fully reachable using known sources within purchase limits. Missing ~${remaining.toFixed(2)} unit(s).`,
+            `\nWarning: target quantity not fully reachable using known sources within purchase limits. Missing ~${result.remaining.toFixed(2)} unit(s).`,
         );
     }
-    console.log(`Total estimated cost: ${totalCost.toFixed(2)} Banknotes\n`);
+    console.log(`Total estimated cost: ${result.totalCost.toFixed(2)} Banknotes\n`);
 }
 
 function main() {
@@ -208,10 +200,16 @@ function main() {
 
     console.log(`ignoreLevel=${ignoreLevel}`);
 
-    const getItemCost = buildItemCostResolver(packages, exchangeShops, items);
+    const market = createMarket(packages, exchangeShops, items, ignoreLevel);
 
     const packageSources = collectPackageSources(targetItemId, packages, items, ignoreLevel);
-    const exchangeSources = collectExchangeSources(targetItemId, exchangeShops, items, getItemCost, ignoreLevel);
+    const exchangeSources = collectExchangeSources(
+        targetItemId,
+        exchangeShops,
+        items,
+        market.peekUnitCost,
+        ignoreLevel,
+    );
 
     const allSources = [...packageSources, ...exchangeSources]
         .filter((s) => Number.isFinite(s.pricePerUnit))
@@ -245,7 +243,7 @@ function main() {
 
     const targetQuantity = quantityArg ? Number(quantityArg) : null;
     if (targetQuantity && targetQuantity > 0) {
-        printPurchasePlan(allSources, targetQuantity);
+        printPurchasePlan(market, targetItemId, targetQuantity);
     } else {
         console.log('\nTip: pass a target quantity as a second argument to get a suggested purchase plan, e.g.:');
         console.log(`  node scripts/analyze-item-value.js ${targetItemId} 50`);
