@@ -2,7 +2,7 @@
     "metadata": {
         "game": "Last Asylum: Plague",
         "currency": "Banknotes",
-        "last_updated": "2026-09-14"
+        "last_updated": "2026-09-15"
     },
     "items": {
         "antitoxin": {
@@ -1609,8 +1609,8 @@
             "contains": {
                 "diamonds": 500,
                 "top_up_exp": 5,
-                "ssr_sword_epigraph_chest": 1,
-                "ur_epigraph_chest": 4,
+                "ssr_epigraph_chest": 1,
+                "r_epigraph_chest": 4,
                 "resource_supply_general": 5,
                 "vip_points": 500,
                 "lv2_alliance_chest": 1
@@ -1787,6 +1787,23 @@
                 "lv4_alliance_chest": 1
             }
         },
+        "strange_bazaar_exquisite_pack": {
+            "name": "Strange Bazaar Exquisite Pack",
+            "category": "Shop Event",
+            "event_id": "strange_bazaar",
+            "price": 999,
+            "deal_percentage": 3160,
+            "purchase_limit": 10,
+            "limit_type": "daily",
+            "tier": null,
+            "requires": null,
+            "contains": {
+                "diamonds": 1000,
+                "strange_coin": 100,
+                "vip_points": 1000,
+                "resource_supply_general": 10
+            }
+        },
         "strange_bazaar_select_pack": {
             "name": "Strange Bazaar Select Pack",
             "category": "Shop Event",
@@ -1800,7 +1817,8 @@
             "contains": {
                 "diamonds": 500,
                 "strange_coin": 80,
-                "vip_points": 500
+                "vip_points": 500,
+                "resource_supply_general": 5
             }
         },
         "study_scroll": {
@@ -2227,17 +2245,106 @@
             "event_id": "strange_bazaar",
             "currency_item_id": "strange_coin",
             "offers": {
+                "excl_weapon_shard_choice_chest": {
+                    "currency_cost": 60,
+                    "quantity": 10,
+                    "purchase_limit": 1,
+                    "limit_type": "daily"
+                },
+                "exclusive_weapon_omni_shard": {
+                    "currency_cost": 10,
+                    "quantity": 1,
+                    "purchase_limit": 300,
+                    "limit_type": "weekly"
+                },
+                "gear_blueprint_mr": {
+                    "currency_cost": 300,
+                    "quantity": 1,
+                    "purchase_limit": 10,
+                    "limit_type": "weekly"
+                },
                 "gear_blueprint_ur": {
                     "currency_cost": 60,
                     "quantity": 1,
                     "purchase_limit": 50,
                     "limit_type": "weekly"
                 },
-                "tempered_steel": {
-                    "currency_cost": 40,
+                "gearstone": {
+                    "currency_cost": 250,
+                    "quantity": 10000,
+                    "purchase_limit": 100,
+                    "limit_type": "weekly"
+                },
+                "resource_supply_ssr": {
+                    "currency_cost": 2,
+                    "quantity": 1,
+                    "purchase_limit": 1000,
+                    "limit_type": "weekly"
+                },
+                "skill_badge": {
+                    "currency_cost": 15,
+                    "quantity": 1000,
+                    "purchase_limit": 300,
+                    "limit_type": "weekly"
+                },
+                "speedup": {
+                    "currency_cost": 25,
+                    "quantity": 600,
+                    "purchase_limit": 200,
+                    "limit_type": "weekly"
+                },
+                "ssr_epigraph_chest": {
+                    "currency_cost": 30,
+                    "quantity": 1,
+                    "purchase_limit": 20,
+                    "limit_type": "weekly"
+                },
+                "study_scroll": {
+                    "currency_cost": 50,
                     "quantity": 100,
-                    "purchase_limit": 1,
-                    "limit_type": "daily"
+                    "purchase_limit": 200,
+                    "limit_type": "weekly"
+                },
+                "tempered_steel": {
+                    "currency_cost": 70,
+                    "quantity": 100,
+                    "purchase_limit": 200,
+                    "limit_type": "weekly"
+                },
+                "ur_epigraph_chest": {
+                    "currency_cost": 200,
+                    "quantity": 1,
+                    "purchase_limit": 30,
+                    "limit_type": "weekly"
+                },
+                "ur_epigraph_choice_chest": {
+                    "currency_cost": 375,
+                    "quantity": 1,
+                    "purchase_limit": 5,
+                    "limit_type": "weekly"
+                },
+                "ur_omni_shard": {
+                    "currency_cost": 10,
+                    "quantity": 1,
+                    "purchase_limit": 300,
+                    "limit_type": "weekly"
+                }
+            },
+            "bonus_tiers": {
+                "100": {
+                    "ur_hero_omni_shard": 10
+                },
+                "400": {
+                    "curio_chest_ur": 1
+                },
+                "1000": {
+                    "lv5_raven_gear_choice_chest": 1
+                },
+                "4000": {
+                    "raven_essence": 200
+                },
+                "10000": {
+                    "tempered_steel": 1000
                 }
             }
         },
