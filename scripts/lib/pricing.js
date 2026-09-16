@@ -302,7 +302,7 @@ function createMarket(packages, exchangeShops, items, limitOptions = {}, options
             return {
                 type: 'package',
                 id: best.pkgId,
-                name: best.pkg.name,
+                name: best.pkg.name.en,
                 category: best.pkg.category || '-',
                 availableDays: best.pkg.available_days || null,
                 requires: best.pkg.requires || null,
@@ -311,7 +311,7 @@ function createMarket(packages, exchangeShops, items, limitOptions = {}, options
         return {
             type: 'exchange',
             id: `${best.shopId}:${best.offerKey}`,
-            name: `${best.shop.name} - ${items[best.offerItemId]?.name || best.offerItemId}`,
+            name: `${best.shop.name.en} - ${items[best.offerItemId]?.name?.en || best.offerItemId}`,
             category: best.shop.category || (best.shop.event_id ? 'Event Exchange' : 'Exchange'),
             availableDays: null,
             requires: null,
@@ -487,7 +487,7 @@ function collectPackageSources(targetId, packages, items, limitOptions = {}) {
         sources.push({
             type: 'package',
             id: pkgId,
-            name: pkg.name,
+            name: pkg.name.en,
             category: pkg.category || '-',
             price: pkg.price,
             yieldPerPurchase: y,
@@ -524,10 +524,10 @@ function collectExchangeSources(targetId, exchangeShops, items, getItemCost, lim
             sources.push({
                 type: 'exchange',
                 id: `${shopId}:${offerKey}`,
-                name: `${shop.name} - ${items[offerItemId]?.name || offerItemId}`,
+                name: `${shop.name.en} - ${items[offerItemId]?.name?.en || offerItemId}`,
                 category: shop.category || (shop.event_id ? 'Event Exchange' : 'Exchange'),
                 price: totalPrice,
-                priceDisplay: `${offer.currency_cost} ${items[shop.currency_item_id]?.name || shop.currency_item_id}`,
+                priceDisplay: `${offer.currency_cost} ${items[shop.currency_item_id]?.name?.en || shop.currency_item_id}`,
                 yieldPerPurchase: y,
                 pricePerUnit: Number.isFinite(totalPrice) ? totalPrice / y : Infinity,
                 purchaseLimit: offer.purchase_limit,

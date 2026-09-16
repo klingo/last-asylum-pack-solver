@@ -38,6 +38,21 @@
         }
     },
     "definitions": {
+        "localizedString": {
+            "type": "object",
+            "description": "A display string translated per supported locale. \"en\" is required and non-empty; other locales may be an empty string, which means \"not yet translated\" and falls back to \"en\" wherever this is displayed.",
+            "required": ["en"],
+            "additionalProperties": false,
+            "properties": {
+                "en": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "de": {
+                    "type": "string"
+                }
+            }
+        },
         "metadata": {
             "type": "object",
             "required": ["game", "currency", "last_updated"],
@@ -109,8 +124,7 @@
             "additionalProperties": false,
             "properties": {
                 "name": {
-                    "type": "string",
-                    "minLength": 1
+                    "$ref": "#/definitions/localizedString"
                 },
                 "category": {
                     "$ref": "#/definitions/itemCategory"
@@ -148,8 +162,7 @@
             "additionalProperties": false,
             "properties": {
                 "name": {
-                    "type": "string",
-                    "minLength": 1
+                    "$ref": "#/definitions/localizedString"
                 },
                 "category": {
                     "$ref": "#/definitions/itemCategory"
@@ -187,8 +200,7 @@
             "additionalProperties": false,
             "properties": {
                 "name": {
-                    "type": "string",
-                    "minLength": 1
+                    "$ref": "#/definitions/localizedString"
                 },
                 "category": {
                     "$ref": "#/definitions/itemCategory"
@@ -242,8 +254,7 @@
             "additionalProperties": false,
             "properties": {
                 "name": {
-                    "type": "string",
-                    "minLength": 1
+                    "$ref": "#/definitions/localizedString"
                 },
                 "category": {
                     "$ref": "#/definitions/packageCategory"
@@ -319,8 +330,7 @@
             "additionalProperties": false,
             "properties": {
                 "name": {
-                    "type": "string",
-                    "minLength": 1
+                    "$ref": "#/definitions/localizedString"
                 },
                 "event_id": {
                     "$ref": "#/definitions/eventId"

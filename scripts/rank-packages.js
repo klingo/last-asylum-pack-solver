@@ -52,7 +52,7 @@ function valueOfContains(containsObj, itemValueMap, items) {
         total += value;
         breakdown.push({
             item_id: itemId,
-            name: items[itemId]?.name || itemId,
+            name: items[itemId]?.name?.en || itemId,
             quantity: qty,
             unit_cost: known ? unitCost : null,
             value: known ? Number(value.toFixed(6)) : 0,
@@ -114,7 +114,7 @@ function rankPackages(packages, itemValueMap, items) {
         rankings.push({
             type: 'package',
             id: pkgId,
-            name: pkg.name,
+            name: pkg.name.en,
             category: pkg.category || '-',
             price,
             price_display: `${price} Banknotes`,
@@ -153,10 +153,10 @@ function rankExchangeOffers(exchangeShops, itemValueMap, items) {
             rankings.push({
                 type: 'exchange_offer',
                 id: `${shopId}:${offerKey}`,
-                name: `${shop.name} - ${items[offerItemId]?.name || offerItemId}`,
+                name: `${shop.name.en} - ${items[offerItemId]?.name?.en || offerItemId}`,
                 category: shop.category || (shop.event_id ? 'Event Exchange' : 'Exchange'),
                 price: Number(price.toFixed(6)),
-                price_display: `${offer.currency_cost} ${items[shop.currency_item_id]?.name || shop.currency_item_id} (~${price.toFixed(2)} Banknotes)`,
+                price_display: `${offer.currency_cost} ${items[shop.currency_item_id]?.name?.en || shop.currency_item_id} (~${price.toFixed(2)} Banknotes)`,
                 total_value: Number(totalValue.toFixed(2)),
                 value_ratio: Number((totalValue / price).toFixed(4)),
                 purchase_limit: offer.purchase_limit,
@@ -167,7 +167,7 @@ function rankExchangeOffers(exchangeShops, itemValueMap, items) {
                 contains_breakdown: [
                     {
                         item_id: offerItemId,
-                        name: items[offerItemId]?.name || offerItemId,
+                        name: items[offerItemId]?.name?.en || offerItemId,
                         quantity: offer.quantity,
                         unit_cost: known ? unitCost : null,
                         value: known ? Number(totalValue.toFixed(6)) : 0,
@@ -202,10 +202,10 @@ function rankBonusTiers(exchangeShops, itemValueMap, items) {
             rankings.push({
                 type: 'bonus_tier',
                 id: `${shopId}:bonus_tier_${thresholdStr}`,
-                name: `${shop.name} - Bonus Tier (${thresholdStr} ${items[shop.currency_item_id]?.name || shop.currency_item_id})`,
+                name: `${shop.name.en} - Bonus Tier (${thresholdStr} ${items[shop.currency_item_id]?.name?.en || shop.currency_item_id})`,
                 category: shop.category || (shop.event_id ? 'Event Exchange' : 'Exchange'),
                 price: Number(price.toFixed(6)),
-                price_display: `${thresholdStr} ${items[shop.currency_item_id]?.name || shop.currency_item_id} spent (~${price.toFixed(2)} Banknotes)`,
+                price_display: `${thresholdStr} ${items[shop.currency_item_id]?.name?.en || shop.currency_item_id} spent (~${price.toFixed(2)} Banknotes)`,
                 total_value: Number(total.toFixed(2)),
                 value_ratio: Number((total / price).toFixed(4)),
                 purchase_limit: 1,

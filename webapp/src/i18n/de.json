@@ -1,0 +1,134 @@
+{
+    "app": {
+        "title": ""
+    },
+    "nav": {
+        "analyze": "",
+        "rankings": "",
+        "language": ""
+    },
+    "common": {
+        "unlimited": "",
+        "unknown": "",
+        "notAvailable": "",
+        "yes": "",
+        "no": "",
+        "details": "",
+        "hide": "",
+        "dash": "",
+        "none": "",
+        "any": "",
+        "anyDay": "",
+        "loadError": ""
+    },
+    "weekday": {
+        "monday": "",
+        "tuesday": "",
+        "wednesday": "",
+        "thursday": "",
+        "friday": "",
+        "saturday": "",
+        "sunday": ""
+    },
+    "currency": {
+        "banknotes": ""
+    },
+    "category": {
+        "Resource": "",
+        "Hero": "",
+        "Gear": "",
+        "Special": "",
+        "Speedup": "",
+        "Virtual": "",
+        "Daily Offer": "",
+        "Daily Must-Buy": "",
+        "Weekly Special": "",
+        "Premium Monthly Pass": "",
+        "Weekly Pass": "",
+        "Value Event": "",
+        "Weekly Rotation": "",
+        "Shop Event": "",
+        "Hero Exclusive": "",
+        "Event Exchange": "",
+        "Exchange": ""
+    },
+    "sourceType": {
+        "package": "",
+        "exchange": "",
+        "exchange_offer": "",
+        "bonus_tier": ""
+    },
+    "docTitle": {
+        "analyze": "",
+        "rankings": ""
+    },
+    "footer": {
+        "analyzeGenerated": "",
+        "analyzeDefault": "",
+        "rankings": ""
+    },
+    "analyze": {
+        "heading": "",
+        "description": "",
+        "itemLabel": "",
+        "shopLabel": "",
+        "quantityLabel": "",
+        "quantityPlaceholder": "",
+        "daysLabel": "",
+        "exceedLimitLabel": "",
+        "ignoreDaily": "",
+        "ignoreWeekly": "",
+        "ignoreMonthly": "",
+        "reset": "",
+        "sourcesHeading": "",
+        "sourcesEmpty": "",
+        "sourcesFootnote": "",
+        "planHeading": "",
+        "planEmpty": "",
+        "planSummary": "",
+        "planWarning": "",
+        "detailsIntro": "",
+        "detailsIntroFallback": "",
+        "table": {
+            "type": "",
+            "source": "",
+            "category": "",
+            "pricePerPurchase": "",
+            "yieldPerPurchase": "",
+            "perUnit": "",
+            "limitUnits": "",
+            "days": "",
+            "requires": "",
+            "purchases": "",
+            "unitsGained": "",
+            "cost": ""
+        }
+    },
+    "rankings": {
+        "heading": "",
+        "description": "",
+        "searchLabel": "",
+        "searchPlaceholder": "",
+        "typeLabel": "",
+        "empty": "",
+        "meta": "",
+        "note": "",
+        "table": {
+            "rank": "",
+            "name": "",
+            "type": "",
+            "category": "",
+            "price": "",
+            "value": "",
+            "valueRatio": "",
+            "complete": "",
+            "item": "",
+            "unitCost": ""
+        },
+        "priceDisplay": {
+            "package": "",
+            "exchange": "",
+            "bonusTier": ""
+        }
+    }
+}

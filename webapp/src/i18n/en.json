@@ -1,0 +1,134 @@
+{
+    "app": {
+        "title": "Last Asylum Pack Solver"
+    },
+    "nav": {
+        "analyze": "Analyze Item Value",
+        "rankings": "Value Ranking",
+        "language": "Language"
+    },
+    "common": {
+        "unlimited": "Unlimited",
+        "unknown": "Unknown",
+        "notAvailable": "N/A",
+        "yes": "Yes",
+        "no": "No",
+        "details": "Details",
+        "hide": "Hide",
+        "dash": "-",
+        "none": "None",
+        "any": "Any",
+        "anyDay": "any day",
+        "loadError": "Failed to load data: {message}"
+    },
+    "weekday": {
+        "monday": "Monday",
+        "tuesday": "Tuesday",
+        "wednesday": "Wednesday",
+        "thursday": "Thursday",
+        "friday": "Friday",
+        "saturday": "Saturday",
+        "sunday": "Sunday"
+    },
+    "currency": {
+        "banknotes": "Banknotes"
+    },
+    "category": {
+        "Resource": "Resource",
+        "Hero": "Hero",
+        "Gear": "Gear",
+        "Special": "Special",
+        "Speedup": "Speedup",
+        "Virtual": "Virtual",
+        "Daily Offer": "Daily Offer",
+        "Daily Must-Buy": "Daily Must-Buy",
+        "Weekly Special": "Weekly Special",
+        "Premium Monthly Pass": "Premium Monthly Pass",
+        "Weekly Pass": "Weekly Pass",
+        "Value Event": "Value Event",
+        "Weekly Rotation": "Weekly Rotation",
+        "Shop Event": "Shop Event",
+        "Hero Exclusive": "Hero Exclusive",
+        "Event Exchange": "Event Exchange",
+        "Exchange": "Exchange"
+    },
+    "sourceType": {
+        "package": "Package",
+        "exchange": "Exchange offer",
+        "exchange_offer": "Exchange offer",
+        "bonus_tier": "Bonus tier"
+    },
+    "docTitle": {
+        "analyze": "Analyze Item Value - Last Asylum Pack Solver",
+        "rankings": "Value Ranking - Last Asylum Pack Solver"
+    },
+    "footer": {
+        "analyzeGenerated": "Last Asylum Pack Solver — data generated from pack_data.json (updated {date})",
+        "analyzeDefault": "Last Asylum Pack Solver — data generated from pack_data.json",
+        "rankings": "Last Asylum Pack Solver — ranking computed live from pack_data.json"
+    },
+    "analyze": {
+        "heading": "Analyze Item Value",
+        "description": "Pick an item, the amount you want, how many days you're planning to buy over, and (optionally) which purchase limits may be exceeded entirely. This shows every known purchase source for that item and the cheapest purchase plan to reach your target quantity.",
+        "itemLabel": "Item",
+        "shopLabel": "Active Exchange Shop",
+        "quantityLabel": "Target quantity",
+        "quantityPlaceholder": "e.g. 50",
+        "daysLabel": "Over how many days",
+        "exceedLimitLabel": "Exceed purchase limit",
+        "ignoreDaily": "Daily",
+        "ignoreWeekly": "Weekly",
+        "ignoreMonthly": "Monthly",
+        "reset": "Reset",
+        "sourcesHeading": "Purchase Sources",
+        "sourcesEmpty": "No purchasable sources found for this item.",
+        "sourcesFootnote": "Exchange shop prices are converted to Banknotes using the cheapest known source for their currency item.",
+        "planHeading": "Optimal Purchase Plan",
+        "planEmpty": "No purchasable sources found for this item.",
+        "planSummary": "Total estimated cost: {cost} {icon}.",
+        "planWarning": "Warning: target quantity not fully reachable using known sources within purchase limits. Missing ~{remaining} unit(s).",
+        "detailsIntro": "Shop packages needed to buy the {currency} currency for this row:",
+        "detailsIntroFallback": "required",
+        "table": {
+            "type": "Type",
+            "source": "Source",
+            "category": "Category",
+            "pricePerPurchase": "Price / Purchase",
+            "yieldPerPurchase": "Yield / Purchase",
+            "perUnit": "{icon} / Unit",
+            "limitUnits": "Limit (units)",
+            "days": "Days",
+            "requires": "Requires",
+            "purchases": "Purchases",
+            "unitsGained": "Units Gained",
+            "cost": "Cost ({icon})"
+        }
+    },
+    "rankings": {
+        "heading": "Value Ranking",
+        "description": "Every package and shop exchange offer (including bonus tiers), ranked by how much value it provides relative to its price. Higher \"Value Ratio\" means a better deal. Click a row to see its full contents breakdown.",
+        "searchLabel": "Search",
+        "searchPlaceholder": "Filter by name or category",
+        "typeLabel": "Type",
+        "empty": "No entries match your filters.",
+        "meta": "{count} entries. Generated {date}.",
+        "note": "Value ratio = total value / price. Higher value ratio means more relative value for the Banknotes spent; entries marked incomplete contain at least one item with no known purchasable source, so total value is a lower-bound estimate.",
+        "table": {
+            "rank": "Rank",
+            "name": "Name",
+            "type": "Type",
+            "category": "Category",
+            "price": "Price",
+            "value": "Value ({icon})",
+            "valueRatio": "Value Ratio",
+            "complete": "Complete",
+            "item": "Item",
+            "unitCost": "Unit Cost"
+        },
+        "priceDisplay": {
+            "package": "{price} {currency}",
+            "exchange": "{cost} {currencyName} (~{approx} {currency})",
+            "bonusTier": "{threshold} {currencyName} spent (~{approx} {currency})"
+        }
+    }
+}

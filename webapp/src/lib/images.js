@@ -3,6 +3,7 @@
  * convention (assets/items/<item_id>.png) and a graceful fallback to a placeholder icon,
  * so images can be dropped in later without touching any rendering code.
  */
+import { t } from './i18n';
 
 const PLACEHOLDER_ICON = `${import.meta.env.BASE_URL}icons/placeholder-item.svg`;
 const BANKNOTE_ICON_URL = `${import.meta.env.BASE_URL}assets/currencies/banknote.png`;
@@ -16,7 +17,7 @@ function getItemImageUrl(itemId) {
  * a Banknotes amount instead of (or in addition to) the word "Banknotes".
  */
 function banknoteIconHtml(className = 'currency-icon') {
-    return `<img src="${BANKNOTE_ICON_URL}" alt="Banknotes" class="${className}" />`;
+    return `<img src="${BANKNOTE_ICON_URL}" alt="${t('currency.banknotes')}" class="${className}" />`;
 }
 
 /**

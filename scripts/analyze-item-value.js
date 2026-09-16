@@ -202,7 +202,7 @@ function main() {
         .filter((s) => Number.isFinite(s.pricePerUnit))
         .sort((a, b) => a.pricePerUnit - b.pricePerUnit);
 
-    console.log(`\nPurchase options for "${items[targetItemId].name}" (${targetItemId}):\n`);
+    console.log(`\nPurchase options for "${items[targetItemId].name.en}" (${targetItemId}):\n`);
 
     if (allSources.length === 0) {
         console.log('No purchasable sources found for this item.');

@@ -17,13 +17,14 @@
  */
 
 import { createMarket } from './pricing-core';
+import { localizedName, t } from './i18n';
 
 function getUnitCost(market, itemId) {
     const cost = market.peekUnitCost(itemId);
     return Number.isFinite(cost) ? cost : null;
 }
 
-function valueOfContains(containsObj, market, items) {
+function valueOfContains(containsObj, market, items, locale) {
     let total = 0;
     let complete = true;
     const breakdown = [];
@@ -37,7 +38,7 @@ function valueOfContains(containsObj, market, items) {
         total += value;
         breakdown.push({
             item_id: itemId,
-            name: items[itemId]?.name || itemId,
+            name: localizedName(items[itemId]?.name, locale) || itemId,
             quantity: qty,
             unit_cost: unitCost,
             value: unitCost !== null ? Number(value.toFixed(6)) : 0,
@@ -47,13 +48,15 @@ function valueOfContains(containsObj, market, items) {
     return { total, complete, breakdown };
 }
 
-function valueOfChoice(choiceObj, market, items) {
+function valueOfChoice(choiceObj, market, items, locale) {
     if (!choiceObj || !Array.isArray(choiceObj.choices) || choiceObj.choices.length === 0) {
         return { total: 0, complete: true, breakdown: [] };
     }
 
     const selectCount = choiceObj.select_count || 1;
-    const evaluatedChoices = choiceObj.choices.map((choiceEntry) => valueOfContains(choiceEntry, market, items));
+    const evaluatedChoices = choiceObj.choices.map((choiceEntry) =>
+        valueOfContains(choiceEntry, market, items, locale),
+    );
 
     const bestChoices = [...evaluatedChoices].sort((a, b) => b.total - a.total).slice(0, selectCount);
 
@@ -71,9 +74,9 @@ function valueOfChoice(choiceObj, market, items) {
     return { total, complete, breakdown };
 }
 
-function valueOfPackage(pkg, market, items) {
-    const containsResult = valueOfContains(pkg.contains, market, items);
-    const choiceResult = valueOfChoice(pkg.choice, market, items);
+function valueOfPackage(pkg, market, items, locale) {
+    const containsResult = valueOfContains(pkg.contains, market, items, locale);
+    const choiceResult = valueOfChoice(pkg.choice, market, items, locale);
 
     return {
         total: containsResult.total + choiceResult.total,
@@ -82,11 +85,11 @@ function valueOfPackage(pkg, market, items) {
     };
 }
 
-function rankPackages(packages, market, items) {
+function rankPackages(packages, market, items, locale) {
     const rankings = [];
 
     for (const [pkgId, pkg] of Object.entries(packages)) {
-        const { total, complete, breakdown } = valueOfPackage(pkg, market, items);
+        const { total, complete, breakdown } = valueOfPackage(pkg, market, items, locale);
         const price = pkg.price;
         if (!Number.isFinite(price) || price <= 0) {
             continue;
@@ -95,10 +98,10 @@ function rankPackages(packages, market, items) {
         rankings.push({
             type: 'package',
             id: pkgId,
-            name: pkg.name,
+            name: localizedName(pkg.name, locale),
             category: pkg.category || '-',
             price,
-            price_display: `${price} Banknotes`,
+            price_display: t('rankings.priceDisplay.package', { price, currency: t('currency.banknotes') }),
             total_value: Number(total.toFixed(2)),
             value_ratio: Number((total / price).toFixed(4)),
             purchase_limit: pkg.purchase_limit,
@@ -113,7 +116,7 @@ function rankPackages(packages, market, items) {
     return rankings;
 }
 
-function rankExchangeOffers(exchangeShops, market, items) {
+function rankExchangeOffers(exchangeShops, market, items, locale) {
     const rankings = [];
 
     for (const [shopId, shop] of Object.entries(exchangeShops)) {
@@ -129,13 +132,20 @@ function rankExchangeOffers(exchangeShops, market, items) {
                 continue;
             }
 
+            const currencyName = localizedName(items[shop.currency_item_id]?.name, locale) || shop.currency_item_id;
+
             rankings.push({
                 type: 'exchange_offer',
                 id: `${shopId}:${offerKey}`,
-                name: `${shop.name} - ${items[offerItemId]?.name || offerItemId}`,
+                name: `${localizedName(shop.name, locale)} - ${localizedName(items[offerItemId]?.name, locale) || offerItemId}`,
                 category: shop.category || (shop.event_id ? 'Event Exchange' : 'Exchange'),
                 price: Number(price.toFixed(6)),
-                price_display: `${offer.currency_cost} ${items[shop.currency_item_id]?.name || shop.currency_item_id} (~${price.toFixed(2)} Banknotes)`,
+                price_display: t('rankings.priceDisplay.exchange', {
+                    cost: offer.currency_cost,
+                    currencyName,
+                    approx: price.toFixed(2),
+                    currency: t('currency.banknotes'),
+                }),
                 total_value: Number(totalValue.toFixed(2)),
                 value_ratio: Number((totalValue / price).toFixed(4)),
                 purchase_limit: offer.purchase_limit,
@@ -146,7 +156,7 @@ function rankExchangeOffers(exchangeShops, market, items) {
                 contains_breakdown: [
                     {
                         item_id: offerItemId,
-                        name: items[offerItemId]?.name || offerItemId,
+                        name: localizedName(items[offerItemId]?.name, locale) || offerItemId,
                         quantity: offer.quantity,
                         unit_cost: unitCost,
                         value: unitCost !== null ? Number(totalValue.toFixed(6)) : 0,
@@ -159,7 +169,7 @@ function rankExchangeOffers(exchangeShops, market, items) {
     return rankings;
 }
 
-function rankBonusTiers(exchangeShops, market, items) {
+function rankBonusTiers(exchangeShops, market, items, locale) {
     const rankings = [];
 
     for (const [shopId, shop] of Object.entries(exchangeShops)) {
@@ -171,19 +181,26 @@ function rankBonusTiers(exchangeShops, market, items) {
                 continue;
             }
 
-            const { total, complete, breakdown } = valueOfContains(contains, market, items);
+            const { total, complete, breakdown } = valueOfContains(contains, market, items, locale);
             const price = threshold * (currencyUnitCost ?? NaN);
             if (!Number.isFinite(price) || price <= 0) {
                 continue;
             }
 
+            const currencyName = localizedName(items[shop.currency_item_id]?.name, locale) || shop.currency_item_id;
+
             rankings.push({
                 type: 'bonus_tier',
                 id: `${shopId}:bonus_tier_${thresholdStr}`,
-                name: `${shop.name} - Bonus Tier (${thresholdStr} ${items[shop.currency_item_id]?.name || shop.currency_item_id})`,
+                name: `${localizedName(shop.name, locale)} - ${t('sourceType.bonus_tier')} (${thresholdStr} ${currencyName})`,
                 category: shop.category || (shop.event_id ? 'Event Exchange' : 'Exchange'),
                 price: Number(price.toFixed(6)),
-                price_display: `${thresholdStr} ${items[shop.currency_item_id]?.name || shop.currency_item_id} spent (~${price.toFixed(2)} Banknotes)`,
+                price_display: t('rankings.priceDisplay.bonusTier', {
+                    threshold: thresholdStr,
+                    currencyName,
+                    approx: price.toFixed(2),
+                    currency: t('currency.banknotes'),
+                }),
                 total_value: Number(total.toFixed(2)),
                 value_ratio: Number((total / price).toFixed(4)),
                 purchase_limit: 1,
@@ -203,16 +220,16 @@ function rankBonusTiers(exchangeShops, market, items) {
  * Builds the full live ranking of packages/exchange offers/bonus tiers from raw pack data.
  * Mirrors the shape of the (now retired) output/value_ranking.json for a drop-in swap.
  */
-function buildRanking(data) {
+function buildRanking(data, locale = 'en') {
     const items = data.items || {};
     const packages = data.packages || {};
     const exchangeShops = data.exchange_shops || {};
-    const market = createMarket(packages, exchangeShops, items);
+    const market = createMarket(packages, exchangeShops, items, {}, {}, locale);
 
     const rankings = [
-        ...rankPackages(packages, market, items),
-        ...rankExchangeOffers(exchangeShops, market, items),
-        ...rankBonusTiers(exchangeShops, market, items),
+        ...rankPackages(packages, market, items, locale),
+        ...rankExchangeOffers(exchangeShops, market, items, locale),
+        ...rankBonusTiers(exchangeShops, market, items, locale),
     ]
         .filter((entry) => Number.isFinite(entry.value_ratio))
         .sort((a, b) => b.value_ratio - a.value_ratio)
@@ -224,7 +241,7 @@ function buildRanking(data) {
             source_last_updated: data.metadata?.last_updated || null,
             currency: data.metadata?.currency || 'Banknotes',
             entry_count: rankings.length,
-            note: 'value_ratio = total_value / price. Higher value_ratio means more relative value for the Banknotes spent; entries with value_complete=false contain at least one item with no known purchasable source, so total_value is a lower-bound estimate. Computed live in your browser from the current pack data.',
+            note: t('rankings.note'),
         },
         rankings,
     };

@@ -289,7 +289,7 @@ function verifyData() {
             if (!referencedItemKeys.has(itemId)) {
                 reportWarning(
                     'Unreferenced Item',
-                    `Item "${itemId}" (${items[itemId].name}) is defined but never referenced anywhere.`,
+                    `Item "${itemId}" (${items[itemId].name.en}) is defined but never referenced anywhere.`,
                 );
             }
         }

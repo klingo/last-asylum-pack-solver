@@ -3,6 +3,7 @@
  * Kept free of any Node.js dependency (no "fs"/"path") so it can run in the webapp.
  * If the logic in scripts/lib/pricing.js changes, mirror the change here too.
  */
+import { localizedName } from './i18n';
 
 function resolveYieldFromContains(containsObj, targetId, visited, items) {
     let total = 0;
@@ -134,7 +135,7 @@ function normalizeLimitOptions(limitOptions) {
  * `quantity` units, recursively buying whatever currency is required along the way, and
  * returns the resulting cost/steps.
  */
-function createMarket(packages, exchangeShops, items, limitOptions = {}, options = {}) {
+function createMarket(packages, exchangeShops, items, limitOptions = {}, options = {}, locale = 'en') {
     const maxIterations = options.maxIterations || DEFAULT_MAX_PURCHASE_ITERATIONS;
     const normalizedLimitOptions = normalizeLimitOptions(limitOptions);
     const ledger = new Map();
@@ -285,7 +286,7 @@ function createMarket(packages, exchangeShops, items, limitOptions = {}, options
             return {
                 type: 'package',
                 id: best.pkgId,
-                name: best.pkg.name,
+                name: localizedName(best.pkg.name, locale),
                 category: best.pkg.category || '-',
                 availableDays: best.pkg.available_days || null,
                 requires: best.pkg.requires || null,
@@ -294,7 +295,7 @@ function createMarket(packages, exchangeShops, items, limitOptions = {}, options
         return {
             type: 'exchange',
             id: `${best.shopId}:${best.offerKey}`,
-            name: `${best.shop.name} - ${items[best.offerItemId]?.name || best.offerItemId}`,
+            name: `${localizedName(best.shop.name, locale)} - ${localizedName(items[best.offerItemId]?.name, locale) || best.offerItemId}`,
             category: best.shop.category || (best.shop.event_id ? 'Event Exchange' : 'Exchange'),
             availableDays: null,
             requires: null,
@@ -453,7 +454,7 @@ function effectiveCapacity(baseLimit, limitType, eventTied, limitOptions) {
     return { capacity: baseLimit, ignored: false };
 }
 
-function collectPackageSources(targetId, packages, items, limitOptions = {}) {
+function collectPackageSources(targetId, packages, items, limitOptions = {}, locale = 'en') {
     const normalizedLimitOptions = normalizeLimitOptions(limitOptions);
     const sources = [];
     for (const [pkgId, pkg] of Object.entries(packages)) {
@@ -470,7 +471,7 @@ function collectPackageSources(targetId, packages, items, limitOptions = {}) {
         sources.push({
             type: 'package',
             id: pkgId,
-            name: pkg.name,
+            name: localizedName(pkg.name, locale),
             category: pkg.category || '-',
             price: pkg.price,
             yieldPerPurchase: y,
@@ -486,7 +487,7 @@ function collectPackageSources(targetId, packages, items, limitOptions = {}) {
     return sources;
 }
 
-function collectExchangeSources(targetId, exchangeShops, items, getItemCost, limitOptions = {}) {
+function collectExchangeSources(targetId, exchangeShops, items, getItemCost, limitOptions = {}, locale = 'en') {
     const normalizedLimitOptions = normalizeLimitOptions(limitOptions);
     const sources = [];
     for (const [shopId, shop] of Object.entries(exchangeShops)) {
@@ -507,10 +508,10 @@ function collectExchangeSources(targetId, exchangeShops, items, getItemCost, lim
             sources.push({
                 type: 'exchange',
                 id: `${shopId}:${offerKey}`,
-                name: `${shop.name} - ${items[offerItemId]?.name || offerItemId}`,
+                name: `${localizedName(shop.name, locale)} - ${localizedName(items[offerItemId]?.name, locale) || offerItemId}`,
                 category: shop.category || (shop.event_id ? 'Event Exchange' : 'Exchange'),
                 price: totalPrice,
-                priceDisplay: `${offer.currency_cost} ${items[shop.currency_item_id]?.name || shop.currency_item_id}`,
+                priceDisplay: `${offer.currency_cost} ${localizedName(items[shop.currency_item_id]?.name, locale) || shop.currency_item_id}`,
                 yieldPerPurchase: y,
                 pricePerUnit: Number.isFinite(totalPrice) ? totalPrice / y : Infinity,
                 purchaseLimit: offer.purchase_limit,
@@ -526,10 +527,6 @@ function collectExchangeSources(targetId, exchangeShops, items, getItemCost, lim
     return sources;
 }
 
-function formatDays(availableDays) {
-    return availableDays ? availableDays.join(', ') : 'any day';
-}
-
 export {
     resolveYieldFromContains,
     resolveYieldFromChoice,
@@ -541,6 +538,5 @@ export {
     effectiveCapacity,
     collectPackageSources,
     collectExchangeSources,
-    formatDays,
     EVENT_MAX_DAYS,
 };

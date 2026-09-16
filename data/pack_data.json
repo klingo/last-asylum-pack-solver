@@ -2,50 +2,71 @@
     "metadata": {
         "game": "Last Asylum: Plague",
         "currency": "Banknotes",
-        "last_updated": "2026-09-15"
+        "last_updated": "2026-09-16"
     },
     "items": {
         "antitoxin": {
-            "name": "Antitoxin",
+            "name": {
+                "en": "Antitoxin",
+                "de": "Gegengift"
+            },
             "category": "Resource"
         },
         "antitoxin_level_supply_r": {
-            "name": "Antitoxin Level Supply (R)",
+            "name": {
+                "en": "Antitoxin Level Supply (R)",
+                "de": ""
+            },
             "category": "Hero",
             "contains": {
                 "antitoxin": 108210
             }
         },
         "antitoxin_level_supply_sr": {
-            "name": "Antitoxin Level Supply (SR)",
+            "name": {
+                "en": "Antitoxin Level Supply (SR)",
+                "de": ""
+            },
             "category": "Hero",
             "contains": {
                 "antitoxin": 1082100
             }
         },
         "antitoxin_level_supply_ssr": {
-            "name": "Antitoxin Level Supply (SSR)",
+            "name": {
+                "en": "Antitoxin Level Supply (SSR)",
+                "de": ""
+            },
             "category": "Hero",
             "contains": {
                 "antitoxin": 8656800
             }
         },
         "antitoxin_level_supply_ur": {
-            "name": "Antitoxin Level Supply (UR)",
+            "name": {
+                "en": "Antitoxin Level Supply (UR)",
+                "de": ""
+            },
             "category": "Hero",
             "contains": {
                 "antitoxin": 25970400
             }
         },
         "awaken_shard_choice_chest": {
-            "name": "Awaken Shard Choice Chest",
+            "name": {
+                "en": "Awaken Shard Choice Chest",
+                "de": ""
+            },
             "category": "Special",
             "contains": {
                 "hero_awaken_shard": 1
             }
         },
         "battlebreaker_loot": {
-            "name": "Battlebreaker Loot",
+            "name": {
+                "en": "Battlebreaker Loot",
+                "de": ""
+            },
             "category": "Special",
             "type": "random",
             "drop_table": [
@@ -70,7 +91,10 @@
             ]
         },
         "berserker_loot": {
-            "name": "Berserker Loot",
+            "name": {
+                "en": "Berserker Loot",
+                "de": ""
+            },
             "category": "Special",
             "type": "random",
             "drop_table": [
@@ -95,33 +119,51 @@
             ]
         },
         "brass": {
-            "name": "Brass",
+            "name": {
+                "en": "Brass",
+                "de": ""
+            },
             "category": "Gear"
         },
         "cloth": {
-            "name": "Cloth",
+            "name": {
+                "en": "Cloth",
+                "de": ""
+            },
             "category": "Gear"
         },
         "construction_speedup": {
-            "name": "Construction Speedup",
+            "name": {
+                "en": "Construction Speedup",
+                "de": ""
+            },
             "category": "Speedup"
         },
         "curio_chest_ssr": {
-            "name": "Curio Chest (SSR)",
+            "name": {
+                "en": "Curio Chest (SSR)",
+                "de": ""
+            },
             "category": "Special",
             "contains": {
                 "ssr_curio": 1
             }
         },
         "curio_chest_ur": {
-            "name": "Curio Chest (UR)",
+            "name": {
+                "en": "Curio Chest (UR)",
+                "de": ""
+            },
             "category": "Special",
             "contains": {
                 "ur_curio": 1
             }
         },
         "deluxe_choice_chest": {
-            "name": "Deluxe Choice Chest",
+            "name": {
+                "en": "Deluxe Choice Chest",
+                "de": ""
+            },
             "category": "Special",
             "type": "choice",
             "choice": {
@@ -146,102 +188,159 @@
             }
         },
         "diamonds": {
-            "name": "Diamonds",
+            "name": {
+                "en": "Diamonds",
+                "de": ""
+            },
             "category": "Resource"
         },
         "excl_weapon_shard_choice_chest": {
-            "name": "Excl Weapon Shard Choice Chest",
+            "name": {
+                "en": "Excl Weapon Shard Choice Chest",
+                "de": ""
+            },
             "category": "Special",
             "contains": {
                 "exclusive_weapon_shard": 1
             }
         },
         "exclusive_weapon_omni_shard": {
-            "name": "Exclusive Weapon Omni Shard",
+            "name": {
+                "en": "Exclusive Weapon Omni Shard",
+                "de": ""
+            },
             "category": "Hero",
             "substitutes_for": ["exclusive_weapon_shard"]
         },
         "exclusive_weapon_shard": {
-            "name": "<Hero> Exclusive Weapon Shard",
+            "name": {
+                "en": "<Hero> Exclusive Weapon Shard",
+                "de": ""
+            },
             "category": "Hero"
         },
         "gear_blueprint_mr": {
-            "name": "Gear Blueprint (MR)",
+            "name": {
+                "en": "Gear Blueprint (MR)",
+                "de": ""
+            },
             "category": "Gear"
         },
         "gear_blueprint_ur": {
-            "name": "Gear Blueprint (UR)",
+            "name": {
+                "en": "Gear Blueprint (UR)",
+                "de": ""
+            },
             "category": "Gear"
         },
         "gearstone": {
-            "name": "Gearstone",
+            "name": {
+                "en": "Gearstone",
+                "de": ""
+            },
             "category": "Gear"
         },
         "grain": {
-            "name": "Grain",
+            "name": {
+                "en": "Grain",
+                "de": ""
+            },
             "category": "Resource"
         },
         "grain_level_supply_sr": {
-            "name": "Grain Level Supply (SR)",
+            "name": {
+                "en": "Grain Level Supply (SR)",
+                "de": ""
+            },
             "category": "Resource",
             "contains": {
                 "grain": 169090
             }
         },
         "grain_level_supply_ssr": {
-            "name": "Grain Level Supply (SSR)",
+            "name": {
+                "en": "Grain Level Supply (SSR)",
+                "de": ""
+            },
             "category": "Resource",
             "contains": {
                 "grain": 1352660
             }
         },
         "grain_level_supply_ur": {
-            "name": "Grain Level Supply (UR)",
+            "name": {
+                "en": "Grain Level Supply (UR)",
+                "de": ""
+            },
             "category": "Resource",
             "contains": {
                 "grain": 4057980
             }
         },
         "herb_level_supply_sr": {
-            "name": "Herb Level Supply (SR)",
+            "name": {
+                "en": "Herb Level Supply (SR)",
+                "de": ""
+            },
             "category": "Resource",
             "contains": {
                 "herbs": 108470
             }
         },
         "herb_level_supply_ssr": {
-            "name": "Herb Level Supply (SSR)",
+            "name": {
+                "en": "Herb Level Supply (SSR)",
+                "de": ""
+            },
             "category": "Resource",
             "contains": {
                 "herbs": 867720
             }
         },
         "herb_level_supply_ur": {
-            "name": "Herb Level Supply (UR)",
+            "name": {
+                "en": "Herb Level Supply (UR)",
+                "de": ""
+            },
             "category": "Resource",
             "contains": {
                 "herbs": 2603150
             }
         },
         "herbs": {
-            "name": "Herbs",
+            "name": {
+                "en": "Herbs",
+                "de": ""
+            },
             "category": "Resource"
         },
         "hero_awaken_omni_shard": {
-            "name": "Hero Awaken Omni Shard ",
+            "name": {
+                "en": "Hero Awaken Omni Shard",
+                "de": ""
+            },
             "category": "Hero",
             "substitutes_for": ["hero_awaken_shard"]
         },
         "hero_awaken_shard": {
-            "name": "<Hero> Awaken Shard",
+            "name": {
+                "en": "<Hero> Awaken Shard",
+                "de": ""
+            },
             "category": "Hero"
         },
         "hero_shard": {
-            "name": "<Hero> Shard",
+            "name": {
+                "en": "<Hero> Shard",
+                "de": ""
+            },
             "category": "Hero"
         },
         "holy_sword_loot": {
-            "name": "Holy Sword Loot",
+            "name": {
+                "en": "Holy Sword Loot",
+                "de": ""
+            },
             "category": "Special",
             "type": "random",
             "drop_table": [
@@ -266,7 +365,10 @@
             ]
         },
         "iron_guard_loot": {
-            "name": "Iron Guard Loot",
+            "name": {
+                "en": "Iron Guard Loot",
+                "de": ""
+            },
             "category": "Special",
             "type": "random",
             "drop_table": [
@@ -291,51 +393,87 @@
             ]
         },
         "leather": {
-            "name": "Leather",
+            "name": {
+                "en": "Leather",
+                "de": ""
+            },
             "category": "Gear"
         },
         "lv1_alliance_chest": {
-            "name": "Lv.1 Alliance Chest",
+            "name": {
+                "en": "Lv.1 Alliance Chest",
+                "de": ""
+            },
             "category": "Virtual"
         },
         "lv1_raven_gear_chest": {
-            "name": "Lv.1 Raven Gear Chest",
+            "name": {
+                "en": "Lv.1 Raven Gear Chest",
+                "de": ""
+            },
             "category": "Special"
         },
         "lv2_alliance_chest": {
-            "name": "Lv.2 Alliance Chest",
+            "name": {
+                "en": "Lv.2 Alliance Chest",
+                "de": ""
+            },
             "category": "Virtual"
         },
         "lv3_alliance_chest": {
-            "name": "Lv.3 Alliance Chest",
+            "name": {
+                "en": "Lv.3 Alliance Chest",
+                "de": ""
+            },
             "category": "Virtual"
         },
         "lv3_raven_gear_chest": {
-            "name": "Lv.3 Raven Gear Chest",
+            "name": {
+                "en": "Lv.3 Raven Gear Chest",
+                "de": ""
+            },
             "category": "Special"
         },
         "lv4_alliance_chest": {
-            "name": "Lv.4 Alliance Chest",
+            "name": {
+                "en": "Lv.4 Alliance Chest",
+                "de": ""
+            },
             "category": "Virtual"
         },
         "lv5_alliance_chest": {
-            "name": "Lv.5 Alliance Chest",
+            "name": {
+                "en": "Lv.5 Alliance Chest",
+                "de": ""
+            },
             "category": "Virtual"
         },
         "lv5_raven_gear_chest": {
-            "name": "Lv.5 Raven Gear Chest",
+            "name": {
+                "en": "Lv.5 Raven Gear Chest",
+                "de": ""
+            },
             "category": "Special"
         },
         "lv6_alliance_chest": {
-            "name": "Lv.6 Alliance Chest",
+            "name": {
+                "en": "Lv.6 Alliance Chest",
+                "de": ""
+            },
             "category": "Virtual"
         },
         "r_epigraph": {
-            "name": "R Epigraph",
+            "name": {
+                "en": "R Epigraph",
+                "de": ""
+            },
             "category": "Special"
         },
         "r_epigraph_chest": {
-            "name": "R Epigraph Chest",
+            "name": {
+                "en": "R Epigraph Chest",
+                "de": ""
+            },
             "category": "Special",
             "type": "random",
             "drop_table": [
@@ -370,7 +508,10 @@
             ]
         },
         "random_gear_chest": {
-            "name": "Random Gear Chest",
+            "name": {
+                "en": "Random Gear Chest",
+                "de": ""
+            },
             "category": "Special",
             "type": "random",
             "drop_table": [
@@ -425,7 +566,10 @@
             ]
         },
         "random_gearstone_supply": {
-            "name": "Random Gearstone Supply",
+            "name": {
+                "en": "Random Gearstone Supply",
+                "de": ""
+            },
             "category": "Gear",
             "type": "random",
             "drop_table": [
@@ -456,31 +600,52 @@
             ]
         },
         "raven_essence": {
-            "name": "Raven Essence",
+            "name": {
+                "en": "Raven Essence",
+                "de": ""
+            },
             "category": "Gear"
         },
         "raven_evolve_guide": {
-            "name": "Raven Evolve Guide",
+            "name": {
+                "en": "Raven Evolve Guide",
+                "de": ""
+            },
             "category": "Special"
         },
         "raven_fruit": {
-            "name": "Raven Fruit",
+            "name": {
+                "en": "Raven Fruit",
+                "de": ""
+            },
             "category": "Gear"
         },
         "recruit_ticket": {
-            "name": "Recruit Ticket",
+            "name": {
+                "en": "Recruit Ticket",
+                "de": ""
+            },
             "category": "Hero"
         },
         "refined_iron": {
-            "name": "Refined Iron",
+            "name": {
+                "en": "Refined Iron",
+                "de": ""
+            },
             "category": "Gear"
         },
         "research_speedup": {
-            "name": "Research Speedup",
+            "name": {
+                "en": "Research Speedup",
+                "de": ""
+            },
             "category": "Speedup"
         },
         "resource_supply_general": {
-            "name": "Resource Supply (General)",
+            "name": {
+                "en": "Resource Supply (General)",
+                "de": ""
+            },
             "category": "Resource",
             "type": "choice",
             "choice": {
@@ -499,7 +664,10 @@
             }
         },
         "resource_supply_sr": {
-            "name": "Resource Supply (SR)",
+            "name": {
+                "en": "Resource Supply (SR)",
+                "de": ""
+            },
             "category": "Resource",
             "type": "choice",
             "choice": {
@@ -518,7 +686,10 @@
             }
         },
         "resource_supply_ssr": {
-            "name": "Resource Supply (SSR)",
+            "name": {
+                "en": "Resource Supply (SSR)",
+                "de": ""
+            },
             "category": "Resource",
             "type": "choice",
             "choice": {
@@ -537,7 +708,10 @@
             }
         },
         "resource_supply_ur": {
-            "name": "Resource Supply (UR)",
+            "name": {
+                "en": "Resource Supply (UR)",
+                "de": ""
+            },
             "category": "Resource",
             "type": "choice",
             "choice": {
@@ -556,7 +730,10 @@
             }
         },
         "rock_loot": {
-            "name": "Rock Loot",
+            "name": {
+                "en": "Rock Loot",
+                "de": ""
+            },
             "category": "Special",
             "type": "random",
             "drop_table": [
@@ -581,19 +758,31 @@
             ]
         },
         "skill_badge": {
-            "name": "Skill Badge",
+            "name": {
+                "en": "Skill Badge",
+                "de": ""
+            },
             "category": "Hero"
         },
         "speedup": {
-            "name": "Speedup",
+            "name": {
+                "en": "Speedup",
+                "de": ""
+            },
             "category": "Speedup"
         },
         "sr_epigraph": {
-            "name": "SR Epigraph",
+            "name": {
+                "en": "SR Epigraph",
+                "de": ""
+            },
             "category": "Special"
         },
         "sr_epigraph_chest": {
-            "name": "SR Epigraph Chest",
+            "name": {
+                "en": "SR Epigraph Chest",
+                "de": ""
+            },
             "category": "Special",
             "type": "random",
             "drop_table": [
@@ -621,23 +810,38 @@
             ]
         },
         "ssr_armor": {
-            "name": "SSR Armor",
+            "name": {
+                "en": "SSR Armor",
+                "de": ""
+            },
             "category": "Gear"
         },
         "ssr_boots": {
-            "name": "SSR Boots",
+            "name": {
+                "en": "SSR Boots",
+                "de": ""
+            },
             "category": "Gear"
         },
         "ssr_curio": {
-            "name": "SSR Curio",
+            "name": {
+                "en": "SSR Curio",
+                "de": ""
+            },
             "category": "Virtual"
         },
         "ssr_epigraph": {
-            "name": "SSR Epigraph",
+            "name": {
+                "en": "SSR Epigraph",
+                "de": ""
+            },
             "category": "Special"
         },
         "ssr_epigraph_chest": {
-            "name": "SSR Epigraph Chest",
+            "name": {
+                "en": "SSR Epigraph Chest",
+                "de": ""
+            },
             "category": "Special",
             "type": "random",
             "drop_table": [
@@ -658,80 +862,131 @@
             ]
         },
         "ssr_gauntlets": {
-            "name": "SSR Gauntlets",
+            "name": {
+                "en": "SSR Gauntlets",
+                "de": ""
+            },
             "category": "Gear"
         },
         "ssr_sword": {
-            "name": "SSR Sword",
+            "name": {
+                "en": "SSR Sword",
+                "de": ""
+            },
             "category": "Gear"
         },
         "ssr_sword_epigraph_chest": {
-            "name": "SSR Sword Epigraph Chest",
+            "name": {
+                "en": "SSR Sword Epigraph Chest",
+                "de": ""
+            },
             "category": "Special"
         },
         "stamina": {
-            "name": "Stamina",
+            "name": {
+                "en": "Stamina",
+                "de": ""
+            },
             "category": "Resource"
         },
         "stone_blade": {
-            "name": "Stone Blade",
+            "name": {
+                "en": "Stone Blade",
+                "de": ""
+            },
             "category": "Special"
         },
         "strange_coin": {
-            "name": "Strange Coin",
+            "name": {
+                "en": "Strange Coin",
+                "de": ""
+            },
             "category": "Special"
         },
         "study_scroll": {
-            "name": "Study Scroll",
+            "name": {
+                "en": "Study Scroll",
+                "de": ""
+            },
             "category": "Special"
         },
         "surprise_emblem": {
-            "name": "Surprise Emblem",
+            "name": {
+                "en": "Surprise Emblem",
+                "de": ""
+            },
             "category": "Special"
         },
         "survivor_recruit_ticket": {
-            "name": "Survivor Recruit Ticket",
+            "name": {
+                "en": "Survivor Recruit Ticket",
+                "de": ""
+            },
             "category": "Hero"
         },
         "survivor_token": {
-            "name": "Survivor Token",
+            "name": {
+                "en": "Survivor Token",
+                "de": ""
+            },
             "category": "Hero"
         },
         "tempered_steel": {
-            "name": "Tempered Steel",
+            "name": {
+                "en": "Tempered Steel",
+                "de": ""
+            },
             "category": "Gear"
         },
         "timber": {
-            "name": "Timber",
+            "name": {
+                "en": "Timber",
+                "de": ""
+            },
             "category": "Resource"
         },
         "timber_level_supply_sr": {
-            "name": "Timber Level Supply (SR)",
+            "name": {
+                "en": "Timber Level Supply (SR)",
+                "de": ""
+            },
             "category": "Resource",
             "contains": {
                 "timber": 169090
             }
         },
         "timber_level_supply_ssr": {
-            "name": "Timber Level Supply (SSR)",
+            "name": {
+                "en": "Timber Level Supply (SSR)",
+                "de": ""
+            },
             "category": "Resource",
             "contains": {
                 "timber": 1352660
             }
         },
         "timber_level_supply_ur": {
-            "name": "Timber Level Supply (UR)",
+            "name": {
+                "en": "Timber Level Supply (UR)",
+                "de": ""
+            },
             "category": "Resource",
             "contains": {
                 "timber": 4057980
             }
         },
         "top_up_exp": {
-            "name": "Top-Up EXP",
+            "name": {
+                "en": "Top-Up EXP",
+                "de": ""
+            },
             "category": "Virtual"
         },
         "universal_curio_random_chest": {
-            "name": "Universal Curio Random Chest",
+            "name": {
+                "en": "Universal Curio Random Chest",
+                "de": ""
+            },
             "category": "Special",
             "type": "random",
             "drop_table": [
@@ -762,39 +1017,66 @@
             ]
         },
         "universal_curio_shard": {
-            "name": "Universal Curio Shard",
+            "name": {
+                "en": "Universal Curio Shard",
+                "de": ""
+            },
             "category": "Special"
         },
         "ur_armor": {
-            "name": "UR Armor",
+            "name": {
+                "en": "UR Armor",
+                "de": ""
+            },
             "category": "Gear"
         },
         "ur_boots": {
-            "name": "UR Boots",
+            "name": {
+                "en": "UR Boots",
+                "de": ""
+            },
             "category": "Gear"
         },
         "ur_curio": {
-            "name": "UR Curio",
+            "name": {
+                "en": "UR Curio",
+                "de": ""
+            },
             "category": "Virtual"
         },
         "ur_epigraph": {
-            "name": "UR Epigraph",
+            "name": {
+                "en": "UR Epigraph",
+                "de": ""
+            },
             "category": "Special"
         },
         "ur_epigraph_chest": {
-            "name": "UR Epigraph Chest",
+            "name": {
+                "en": "UR Epigraph Chest",
+                "de": ""
+            },
             "category": "Special"
         },
         "ur_epigraph_shard": {
-            "name": "UR Epigraph Shard",
+            "name": {
+                "en": "UR Epigraph Shard",
+                "de": ""
+            },
             "category": "Special"
         },
         "ur_gauntlets": {
-            "name": "UR Gauntlets",
+            "name": {
+                "en": "UR Gauntlets",
+                "de": ""
+            },
             "category": "Gear"
         },
         "ur_hero_and_awaken_choice_chest": {
-            "name": "UR Hero & Awaken Shard Choice Chest",
+            "name": {
+                "en": "UR Hero & Awaken Shard Choice Chest",
+                "de": ""
+            },
             "category": "Special",
             "type": "choice",
             "choice": {
@@ -810,29 +1092,44 @@
             }
         },
         "ur_hero_choice_chest": {
-            "name": "UR Hero Choice Chest",
+            "name": {
+                "en": "UR Hero Choice Chest",
+                "de": ""
+            },
             "category": "Special",
             "contains": {
                 "hero_shard": 1
             }
         },
         "ur_hero_omni_shard": {
-            "name": "UR Hero Omni Shard",
+            "name": {
+                "en": "UR Hero Omni Shard",
+                "de": ""
+            },
             "category": "Hero",
             "substitutes_for": ["hero_shard"]
         },
         "ur_sword": {
-            "name": "UR Sword",
+            "name": {
+                "en": "UR Sword",
+                "de": ""
+            },
             "category": "Gear"
         },
         "vip_points": {
-            "name": "VIP Points",
+            "name": {
+                "en": "VIP Points",
+                "de": ""
+            },
             "category": "Virtual"
         }
     },
     "packages": {
         "awaken_shard_t1": {
-            "name": "Awaken Shard (T1)",
+            "name": {
+                "en": "Awaken Shard (T1)",
+                "de": ""
+            },
             "category": "Daily Offer",
             "price": 499,
             "deal_percentage": 5880,
@@ -851,7 +1148,10 @@
             }
         },
         "awaken_shard_t2": {
-            "name": "Awaken Shard (T2)",
+            "name": {
+                "en": "Awaken Shard (T2)",
+                "de": ""
+            },
             "category": "Daily Offer",
             "price": 999,
             "deal_percentage": 5880,
@@ -870,7 +1170,10 @@
             }
         },
         "awakening_special_pack_t1": {
-            "name": "Awakening Special Pack (T1)",
+            "name": {
+                "en": "Awakening Special Pack (T1)",
+                "de": ""
+            },
             "category": "Weekly Rotation",
             "price": 499,
             "deal_percentage": 3500,
@@ -888,7 +1191,10 @@
             }
         },
         "awakening_special_pack_t2": {
-            "name": "Awakening Special Pack (T2)",
+            "name": {
+                "en": "Awakening Special Pack (T2)",
+                "de": ""
+            },
             "category": "Weekly Rotation",
             "price": 999,
             "deal_percentage": 3500,
@@ -906,7 +1212,10 @@
             }
         },
         "blades_out_deluxe_pack": {
-            "name": "Blades Out Deluxe Pack",
+            "name": {
+                "en": "Blades Out Deluxe Pack",
+                "de": ""
+            },
             "category": "Shop Event",
             "event_id": "blades_out",
             "price": 999,
@@ -925,7 +1234,10 @@
             }
         },
         "blades_out_premium_pack": {
-            "name": "Blades Out Premium Pack",
+            "name": {
+                "en": "Blades Out Premium Pack",
+                "de": ""
+            },
             "category": "Shop Event",
             "event_id": "blades_out",
             "price": 4999,
@@ -944,7 +1256,10 @@
             }
         },
         "blades_out_rare_pack": {
-            "name": "Blades Out Rare Pack",
+            "name": {
+                "en": "Blades Out Rare Pack",
+                "de": ""
+            },
             "category": "Shop Event",
             "event_id": "blades_out",
             "price": 1999,
@@ -963,7 +1278,10 @@
             }
         },
         "blades_out_select_pack": {
-            "name": "Blades Out Select Pack",
+            "name": {
+                "en": "Blades Out Select Pack",
+                "de": ""
+            },
             "category": "Shop Event",
             "event_id": "blades_out",
             "price": 499,
@@ -982,7 +1300,10 @@
             }
         },
         "blades_out_ultimate_pack": {
-            "name": "Blades Out Ultimate Pack",
+            "name": {
+                "en": "Blades Out Ultimate Pack",
+                "de": ""
+            },
             "category": "Shop Event",
             "event_id": "blades_out",
             "price": 9999,
@@ -1001,7 +1322,10 @@
             }
         },
         "building_speedup_pack_t1": {
-            "name": "Building Speedup Pack (T1)",
+            "name": {
+                "en": "Building Speedup Pack (T1)",
+                "de": ""
+            },
             "category": "Weekly Rotation",
             "price": 499,
             "deal_percentage": 4140,
@@ -1021,7 +1345,10 @@
             }
         },
         "curio_boost": {
-            "name": "Curio Boost",
+            "name": {
+                "en": "Curio Boost",
+                "de": ""
+            },
             "category": "Weekly Special",
             "price": 9999,
             "deal_percentage": 3360,
@@ -1039,7 +1366,10 @@
             }
         },
         "curio_pack_t1": {
-            "name": "Curio Pack (T1)",
+            "name": {
+                "en": "Curio Pack (T1)",
+                "de": ""
+            },
             "category": "Daily Must-Buy",
             "price": 499,
             "deal_percentage": 4080,
@@ -1057,7 +1387,10 @@
             }
         },
         "develop_territory": {
-            "name": "Develop Territory",
+            "name": {
+                "en": "Develop Territory",
+                "de": ""
+            },
             "category": "Weekly Special",
             "price": 1999,
             "deal_percentage": 3980,
@@ -1077,7 +1410,10 @@
             }
         },
         "development_pack_t1": {
-            "name": "Development Pack (T1)",
+            "name": {
+                "en": "Development Pack (T1)",
+                "de": ""
+            },
             "category": "Weekly Rotation",
             "price": 499,
             "deal_percentage": 4140,
@@ -1097,7 +1433,10 @@
             }
         },
         "development_pack_t2": {
-            "name": "Development Pack (T2)",
+            "name": {
+                "en": "Development Pack (T2)",
+                "de": ""
+            },
             "category": "Weekly Rotation",
             "price": 999,
             "deal_percentage": 4140,
@@ -1117,7 +1456,10 @@
             }
         },
         "enhance_might": {
-            "name": "Enhance Might",
+            "name": {
+                "en": "Enhance Might",
+                "de": ""
+            },
             "category": "Weekly Special",
             "price": 9999,
             "deal_percentage": 3980,
@@ -1136,7 +1478,10 @@
             }
         },
         "enhancement_special_pack_t1": {
-            "name": "Enhancement Special Pack (T1)",
+            "name": {
+                "en": "Enhancement Special Pack (T1)",
+                "de": ""
+            },
             "category": "Weekly Rotation",
             "price": 499,
             "deal_percentage": 3280,
@@ -1154,7 +1499,10 @@
             }
         },
         "exclusive_weapon": {
-            "name": "Exclusive Weapon",
+            "name": {
+                "en": "Exclusive Weapon",
+                "de": ""
+            },
             "category": "Weekly Special",
             "price": 9999,
             "deal_percentage": 2550,
@@ -1170,7 +1518,10 @@
             }
         },
         "exclusive_weapon_pack_t1": {
-            "name": "Exclusive Weapon Pack (T1)",
+            "name": {
+                "en": "Exclusive Weapon Pack (T1)",
+                "de": ""
+            },
             "category": "Weekly Rotation",
             "price": 499,
             "deal_percentage": 3500,
@@ -1188,7 +1539,10 @@
             }
         },
         "exclusive_weapon_pass": {
-            "name": "Exclusive Weapon Pass",
+            "name": {
+                "en": "Exclusive Weapon Pass",
+                "de": ""
+            },
             "category": "Hero Exclusive",
             "price": 1999,
             "deal_percentage": 8159,
@@ -1207,7 +1561,10 @@
             }
         },
         "exclusive_weapon_t1": {
-            "name": "Exclusive Weapon (T1)",
+            "name": {
+                "en": "Exclusive Weapon (T1)",
+                "de": ""
+            },
             "category": "Daily Offer",
             "price": 499,
             "deal_percentage": 5880,
@@ -1226,7 +1583,10 @@
             }
         },
         "exclusive_weapon_t2": {
-            "name": "Exclusive Weapon (T2)",
+            "name": {
+                "en": "Exclusive Weapon (T2)",
+                "de": ""
+            },
             "category": "Daily Offer",
             "price": 999,
             "deal_percentage": 5880,
@@ -1245,7 +1605,10 @@
             }
         },
         "exp_special_pack_t1": {
-            "name": "EXP Special Pack (T1)",
+            "name": {
+                "en": "EXP Special Pack (T1)",
+                "de": ""
+            },
             "category": "Weekly Rotation",
             "price": 499,
             "deal_percentage": 2550,
@@ -1262,7 +1625,10 @@
             }
         },
         "hero_awaken": {
-            "name": "Hero Awaken",
+            "name": {
+                "en": "Hero Awaken",
+                "de": ""
+            },
             "category": "Weekly Special",
             "price": 9999,
             "deal_percentage": 2550,
@@ -1278,7 +1644,10 @@
             }
         },
         "hero_awaken_growth_pack_t5": {
-            "name": "<Hero> Awaken Growth Pack (T5)",
+            "name": {
+                "en": "<Hero> Awaken Growth Pack (T5)",
+                "de": ""
+            },
             "category": "Hero Exclusive",
             "price": 9999,
             "deal_percentage": 3610,
@@ -1296,7 +1665,10 @@
             }
         },
         "hero_exclusive_weapon_pack_t1": {
-            "name": "<Hero> Exclusive Weapon Pack (T1)",
+            "name": {
+                "en": "<Hero> Exclusive Weapon Pack (T1)",
+                "de": ""
+            },
             "category": "Hero Exclusive",
             "price": 499,
             "deal_percentage": 4220,
@@ -1314,7 +1686,10 @@
             }
         },
         "hero_exclusive_weapon_pack_t2": {
-            "name": "<Hero> Exclusive Weapon Pack (T2)",
+            "name": {
+                "en": "<Hero> Exclusive Weapon Pack (T2)",
+                "de": ""
+            },
             "category": "Hero Exclusive",
             "price": 999,
             "deal_percentage": 4220,
@@ -1332,7 +1707,10 @@
             }
         },
         "hero_exclusive_weapon_pack_t3": {
-            "name": "<Hero> Exclusive Weapon Pack (T3)",
+            "name": {
+                "en": "<Hero> Exclusive Weapon Pack (T3)",
+                "de": ""
+            },
             "category": "Hero Exclusive",
             "price": 1999,
             "deal_percentage": 4220,
@@ -1350,7 +1728,10 @@
             }
         },
         "hero_exclusive_weapon_pack_t4": {
-            "name": "<Hero> Exclusive Weapon Pack (T4)",
+            "name": {
+                "en": "<Hero> Exclusive Weapon Pack (T4)",
+                "de": ""
+            },
             "category": "Hero Exclusive",
             "price": 4999,
             "deal_percentage": 3610,
@@ -1368,7 +1749,10 @@
             }
         },
         "hero_exclusive_weapon_pack_t5": {
-            "name": "<Hero> Exclusive Weapon Pack (T5)",
+            "name": {
+                "en": "<Hero> Exclusive Weapon Pack (T5)",
+                "de": ""
+            },
             "category": "Hero Exclusive",
             "price": 9999,
             "deal_percentage": 3610,
@@ -1386,7 +1770,10 @@
             }
         },
         "hero_growth_pack_t1": {
-            "name": "Hero Growth Pack (T1)",
+            "name": {
+                "en": "Hero Growth Pack (T1)",
+                "de": ""
+            },
             "category": "Daily Must-Buy",
             "price": 499,
             "deal_percentage": 4450,
@@ -1406,7 +1793,10 @@
             }
         },
         "hero_promotion": {
-            "name": "Hero Promotion",
+            "name": {
+                "en": "Hero Promotion",
+                "de": ""
+            },
             "category": "Weekly Special",
             "price": 9999,
             "deal_percentage": 2540,
@@ -1423,7 +1813,10 @@
             }
         },
         "hero_shard_t1": {
-            "name": "Hero Shard (T1)",
+            "name": {
+                "en": "Hero Shard (T1)",
+                "de": ""
+            },
             "category": "Daily Offer",
             "price": 499,
             "deal_percentage": 5880,
@@ -1442,7 +1835,10 @@
             }
         },
         "hero_special_pack_t1": {
-            "name": "Hero Special Pack (T1)",
+            "name": {
+                "en": "Hero Special Pack (T1)",
+                "de": ""
+            },
             "category": "Weekly Rotation",
             "price": 499,
             "deal_percentage": 3500,
@@ -1460,7 +1856,10 @@
             }
         },
         "might_special_pack_t1": {
-            "name": "Might Special Pack (T1)",
+            "name": {
+                "en": "Might Special Pack (T1)",
+                "de": ""
+            },
             "category": "Weekly Rotation",
             "price": 499,
             "deal_percentage": 4180,
@@ -1480,7 +1879,10 @@
             }
         },
         "mystic_cabinet_i_t1": {
-            "name": "Mystic Cabinet I (T1)",
+            "name": {
+                "en": "Mystic Cabinet I (T1)",
+                "de": ""
+            },
             "category": "Special",
             "price": 499,
             "deal_percentage": 5520,
@@ -1498,7 +1900,10 @@
             }
         },
         "mystic_cabinet_i_t2": {
-            "name": "Mystic Cabinet I (T2)",
+            "name": {
+                "en": "Mystic Cabinet I (T2)",
+                "de": ""
+            },
             "category": "Special",
             "price": 999,
             "deal_percentage": 5520,
@@ -1516,7 +1921,10 @@
             }
         },
         "mystic_cabinet_i_t3": {
-            "name": "Mystic Cabinet I (T3)",
+            "name": {
+                "en": "Mystic Cabinet I (T3)",
+                "de": ""
+            },
             "category": "Special",
             "price": 1999,
             "deal_percentage": 5520,
@@ -1533,7 +1941,10 @@
             }
         },
         "mystic_cabinet_ii_t1": {
-            "name": "Mystic Cabinet II (T1)",
+            "name": {
+                "en": "Mystic Cabinet II (T1)",
+                "de": ""
+            },
             "category": "Special",
             "price": 499,
             "deal_percentage": 5520,
@@ -1550,7 +1961,10 @@
             }
         },
         "mystic_cabinet_iii_t1": {
-            "name": "Mystic Cabinet III (T1)",
+            "name": {
+                "en": "Mystic Cabinet III (T1)",
+                "de": ""
+            },
             "category": "Special",
             "price": 499,
             "deal_percentage": 5520,
@@ -1567,7 +1981,10 @@
             }
         },
         "premium_grain_pack_t1": {
-            "name": "Premium Grain Pack (T1)",
+            "name": {
+                "en": "Premium Grain Pack (T1)",
+                "de": ""
+            },
             "category": "Daily Must-Buy",
             "price": 499,
             "deal_percentage": 3700,
@@ -1585,7 +2002,10 @@
             }
         },
         "premium_herb_pack_t1": {
-            "name": "Premium Herb Pack (T1)",
+            "name": {
+                "en": "Premium Herb Pack (T1)",
+                "de": ""
+            },
             "category": "Daily Must-Buy",
             "price": 499,
             "deal_percentage": 3700,
@@ -1603,7 +2023,10 @@
             }
         },
         "premium_monthly_pass": {
-            "name": "Premium Monthly Pass",
+            "name": {
+                "en": "Premium Monthly Pass",
+                "de": ""
+            },
             "category": "Premium Monthly Pass",
             "price": 2499,
             "deal_percentage": 8360,
@@ -1622,7 +2045,10 @@
             }
         },
         "premium_timber_pack_t1": {
-            "name": "Premium Timber Pack (T1)",
+            "name": {
+                "en": "Premium Timber Pack (T1)",
+                "de": ""
+            },
             "category": "Daily Must-Buy",
             "price": 499,
             "deal_percentage": 3700,
@@ -1640,7 +2066,10 @@
             }
         },
         "quick_research_pack_t1": {
-            "name": "Quick Research Pack (T1)",
+            "name": {
+                "en": "Quick Research Pack (T1)",
+                "de": ""
+            },
             "category": "Weekly Rotation",
             "price": 499,
             "deal_percentage": 4490,
@@ -1658,7 +2087,10 @@
             }
         },
         "raven_epigraph": {
-            "name": "Raven Epigraph",
+            "name": {
+                "en": "Raven Epigraph",
+                "de": ""
+            },
             "category": "Weekly Special",
             "price": 4999,
             "deal_percentage": 3720,
@@ -1677,7 +2109,10 @@
             }
         },
         "raven_epigraph_offer_t1": {
-            "name": "Raven Epigraph Offer (T1)",
+            "name": {
+                "en": "Raven Epigraph Offer (T1)",
+                "de": ""
+            },
             "category": "Weekly Rotation",
             "price": 499,
             "deal_percentage": 4500,
@@ -1697,7 +2132,10 @@
             }
         },
         "raven_epigraph_t1": {
-            "name": "Raven Epigraph (T1)",
+            "name": {
+                "en": "Raven Epigraph (T1)",
+                "de": ""
+            },
             "category": "Daily Must-Buy",
             "price": 499,
             "deal_percentage": 4020,
@@ -1716,7 +2154,10 @@
             }
         },
         "raven_essence": {
-            "name": "Raven Essence",
+            "name": {
+                "en": "Raven Essence",
+                "de": ""
+            },
             "category": "Weekly Special",
             "price": 4999,
             "deal_percentage": 3340,
@@ -1734,7 +2175,10 @@
             }
         },
         "raven_essence_t1": {
-            "name": "Raven Essence (T1)",
+            "name": {
+                "en": "Raven Essence (T1)",
+                "de": ""
+            },
             "category": "Daily Must-Buy",
             "price": 499,
             "deal_percentage": 4460,
@@ -1753,7 +2197,10 @@
             }
         },
         "raven_gear": {
-            "name": "Raven Gear",
+            "name": {
+                "en": "Raven Gear",
+                "de": ""
+            },
             "category": "Weekly Special",
             "price": 4999,
             "deal_percentage": 3630,
@@ -1772,7 +2219,10 @@
             }
         },
         "raven_gear_t1": {
-            "name": "Raven Gear (T1)",
+            "name": {
+                "en": "Raven Gear (T1)",
+                "de": ""
+            },
             "category": "Daily Must-Buy",
             "price": 499,
             "deal_percentage": 4280,
@@ -1790,7 +2240,10 @@
             }
         },
         "raven_growth_pack_t1": {
-            "name": "Raven Growth Pack (T1)",
+            "name": {
+                "en": "Raven Growth Pack (T1)",
+                "de": ""
+            },
             "category": "Weekly Rotation",
             "price": 499,
             "deal_percentage": 5000,
@@ -1809,7 +2262,10 @@
             }
         },
         "resource_special_pack_t1": {
-            "name": "Resource Special Pack (T1)",
+            "name": {
+                "en": "Resource Special Pack (T1)",
+                "de": ""
+            },
             "category": "Weekly Rotation",
             "price": 499,
             "deal_percentage": 4140,
@@ -1829,7 +2285,10 @@
             }
         },
         "resource_special_pack_t2": {
-            "name": "Resource Special Pack (T2)",
+            "name": {
+                "en": "Resource Special Pack (T2)",
+                "de": ""
+            },
             "category": "Weekly Rotation",
             "price": 499,
             "deal_percentage": 4140,
@@ -1849,7 +2308,10 @@
             }
         },
         "speedup_special_pack_t1": {
-            "name": "Speedup Special Pack (T1)",
+            "name": {
+                "en": "Speedup Special Pack (T1)",
+                "de": ""
+            },
             "category": "Weekly Rotation",
             "price": 499,
             "deal_percentage": 3330,
@@ -1869,7 +2331,10 @@
             }
         },
         "stamina_discount_pack": {
-            "name": "Stamina Discount Pack",
+            "name": {
+                "en": "Stamina Discount Pack",
+                "de": ""
+            },
             "category": "Weekly Special",
             "price": 999,
             "deal_percentage": 3220,
@@ -1887,7 +2352,10 @@
             }
         },
         "strange_bazaar_exquisite_pack": {
-            "name": "Strange Bazaar Exquisite Pack",
+            "name": {
+                "en": "Strange Bazaar Exquisite Pack",
+                "de": ""
+            },
             "category": "Shop Event",
             "event_id": "strange_bazaar",
             "price": 999,
@@ -1904,7 +2372,10 @@
             }
         },
         "strange_bazaar_select_pack": {
-            "name": "Strange Bazaar Select Pack",
+            "name": {
+                "en": "Strange Bazaar Select Pack",
+                "de": ""
+            },
             "category": "Shop Event",
             "event_id": "strange_bazaar",
             "price": 499,
@@ -1921,7 +2392,10 @@
             }
         },
         "study_scroll": {
-            "name": "Study Scroll",
+            "name": {
+                "en": "Study Scroll",
+                "de": ""
+            },
             "category": "Weekly Special",
             "price": 9999,
             "deal_percentage": 4000,
@@ -1941,7 +2415,10 @@
             }
         },
         "study_scroll_t1": {
-            "name": "Study Scroll (T1)",
+            "name": {
+                "en": "Study Scroll (T1)",
+                "de": ""
+            },
             "category": "Daily Must-Buy",
             "price": 499,
             "deal_percentage": 4180,
@@ -1963,7 +2440,10 @@
             }
         },
         "surprise_encounter_exquisite_pack": {
-            "name": "Surprise Encounter Exquisite Pack",
+            "name": {
+                "en": "Surprise Encounter Exquisite Pack",
+                "de": ""
+            },
             "category": "Shop Event",
             "event_id": "surprise_encounter",
             "price": 999,
@@ -1980,7 +2460,10 @@
             }
         },
         "surprise_encounter_premium_pack": {
-            "name": "Surprise Encounter Premium Pack",
+            "name": {
+                "en": "Surprise Encounter Premium Pack",
+                "de": ""
+            },
             "category": "Shop Event",
             "event_id": "surprise_encounter",
             "price": 4999,
@@ -1997,7 +2480,10 @@
             }
         },
         "surprise_encounter_rare_pack": {
-            "name": "Surprise Encounter Rare Pack",
+            "name": {
+                "en": "Surprise Encounter Rare Pack",
+                "de": ""
+            },
             "category": "Shop Event",
             "event_id": "surprise_encounter",
             "price": 1999,
@@ -2014,7 +2500,10 @@
             }
         },
         "surprise_encounter_select_pack": {
-            "name": "Surprise Encounter Select Pack",
+            "name": {
+                "en": "Surprise Encounter Select Pack",
+                "de": ""
+            },
             "category": "Shop Event",
             "event_id": "surprise_encounter",
             "price": 499,
@@ -2031,7 +2520,10 @@
             }
         },
         "surprise_encounter_ultimate_pack": {
-            "name": "Surprise Encounter Ultimate Pack",
+            "name": {
+                "en": "Surprise Encounter Ultimate Pack",
+                "de": ""
+            },
             "category": "Shop Event",
             "event_id": "surprise_encounter",
             "price": 9999,
@@ -2048,7 +2540,10 @@
             }
         },
         "survivor_pack": {
-            "name": "Survivor Pack",
+            "name": {
+                "en": "Survivor Pack",
+                "de": ""
+            },
             "category": "Special",
             "price": 499,
             "deal_percentage": 2240,
@@ -2064,7 +2559,10 @@
             }
         },
         "universal_speedup_pack_t1": {
-            "name": "Universal Speedup Pack (T1)",
+            "name": {
+                "en": "Universal Speedup Pack (T1)",
+                "de": ""
+            },
             "category": "Daily Must-Buy",
             "price": 499,
             "deal_percentage": 3880,
@@ -2084,7 +2582,10 @@
             }
         },
         "ur_blueprint_offer_t1": {
-            "name": "UR Blueprint Offer (T1)",
+            "name": {
+                "en": "UR Blueprint Offer (T1)",
+                "de": ""
+            },
             "category": "Weekly Rotation",
             "price": 999,
             "deal_percentage": 4650,
@@ -2103,7 +2604,10 @@
             }
         },
         "ur_blueprint_offer_t2": {
-            "name": "UR Blueprint Offer (T2)",
+            "name": {
+                "en": "UR Blueprint Offer (T2)",
+                "de": ""
+            },
             "category": "Weekly Rotation",
             "price": 1999,
             "deal_percentage": 4650,
@@ -2122,7 +2626,10 @@
             }
         },
         "ur_blueprint_offer_t3": {
-            "name": "UR Blueprint Offer (T3)",
+            "name": {
+                "en": "UR Blueprint Offer (T3)",
+                "de": ""
+            },
             "category": "Weekly Rotation",
             "price": 4999,
             "deal_percentage": 4380,
@@ -2141,7 +2648,10 @@
             }
         },
         "ur_gear_crafting": {
-            "name": "UR Gear Crafting",
+            "name": {
+                "en": "UR Gear Crafting",
+                "de": ""
+            },
             "category": "Weekly Special",
             "price": 4999,
             "deal_percentage": 2960,
@@ -2160,7 +2670,10 @@
             }
         },
         "value_gear_pack_t1": {
-            "name": "Value Gear Pack (T1)",
+            "name": {
+                "en": "Value Gear Pack (T1)",
+                "de": ""
+            },
             "category": "Daily Must-Buy",
             "price": 499,
             "deal_percentage": 5060,
@@ -2179,7 +2692,10 @@
             }
         },
         "weekly_special_t1": {
-            "name": "Jokers Weekly Special (T1)",
+            "name": {
+                "en": "Jokers Weekly Special (T1)",
+                "de": ""
+            },
             "category": "Special",
             "price": 499,
             "deal_percentage": 9870,
@@ -2213,7 +2729,10 @@
             }
         },
         "weekly_special_t2": {
-            "name": "Jokers Weekly Special (T2)",
+            "name": {
+                "en": "Jokers Weekly Special (T2)",
+                "de": ""
+            },
             "category": "Special",
             "price": 499,
             "deal_percentage": 8530,
@@ -2249,7 +2768,10 @@
     },
     "exchange_shops": {
         "stone_blade_exchange_shop": {
-            "name": "Stone Blade Exchange Shop",
+            "name": {
+                "en": "Stone Blade Exchange Shop",
+                "de": ""
+            },
             "event_id": "blades_out",
             "currency_item_id": "stone_blade",
             "offers": {
@@ -2353,7 +2875,10 @@
             }
         },
         "strange_bazaar_shop": {
-            "name": "Strange Bazaar",
+            "name": {
+                "en": "Strange Bazaar",
+                "de": ""
+            },
             "event_id": "strange_bazaar",
             "currency_item_id": "strange_coin",
             "offers": {
@@ -2496,7 +3021,10 @@
             }
         },
         "surprise_encounter_shop": {
-            "name": "Surprise Encounter Shop",
+            "name": {
+                "en": "Surprise Encounter Shop",
+                "de": ""
+            },
             "event_id": "surprise_encounter",
             "currency_item_id": "surprise_emblem",
             "offers": {},

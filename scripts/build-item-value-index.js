@@ -61,7 +61,7 @@ function buildItemValueIndex(data) {
         const unitCost = getItemCost(itemId);
 
         itemEntries[itemId] = {
-            name: item.name,
+            name: item.name.en,
             category: item.category || '-',
             unit_cost: Number.isFinite(unitCost) ? Number(unitCost.toFixed(6)) : null,
             source_count: sources.length,
