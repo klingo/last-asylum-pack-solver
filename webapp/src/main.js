@@ -24,6 +24,7 @@ const planCard = document.getElementById('plan-card');
 const planTable = document.getElementById('plan-table');
 const planSummary = document.getElementById('plan-summary');
 const planWarning = document.getElementById('plan-warning');
+const appFooter = document.querySelector('.app-footer');
 
 let data = null;
 
@@ -427,6 +428,9 @@ function handleReset() {
 
 async function init() {
     data = await loadPackData();
+    if (appFooter && data.metadata?.last_updated) {
+        appFooter.textContent = `Last Asylum Pack Solver — data generated from pack_data.json (updated ${data.metadata.last_updated})`;
+    }
     populateItemSelect(data.items || {});
     populateShopSelect(data.exchange_shops || {});
     applyUrlParams();
