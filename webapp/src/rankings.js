@@ -4,6 +4,7 @@ import { loadPackData } from './lib/data';
 import { buildRanking } from './lib/ranking-core';
 import { createItemImage, banknoteIconHtml } from './lib/images';
 import { t, getLocale, categoryLabel, sourceTypeLabel, applyStaticTranslations } from './lib/i18n';
+import { formatUnitPrice } from './lib/format';
 
 renderNav('rankings');
 applyStaticTranslations();
@@ -45,7 +46,7 @@ function breakdownRowsHtml(entry) {
                     <div class="ranking-grid__cell item-cell"><span class="breakdown-icon" data-item-id="${item.item_id}"></span>${item.name} &times;${item.quantity}</div>
                     <div class="ranking-grid__cell"></div>
                     <div class="ranking-grid__cell">${categoryLabel(itemsById[item.item_id]?.category)}</div>
-                    <div class="ranking-grid__cell">${item.unit_cost !== null ? `<span class="text-gold">${Number(item.unit_cost.toFixed(4))}</span> ${banknoteIconHtml()}` : t('common.unknown')}</div>
+                    <div class="ranking-grid__cell">${item.unit_cost !== null ? `<span class="text-gold">${formatUnitPrice(item.unit_cost, { minDecimals: 4 })}</span> ${banknoteIconHtml()}` : t('common.unknown')}</div>
                     <div class="ranking-grid__cell"><span class="text-gold">${item.value}</span> ${banknoteIconHtml()}</div>
                     <div class="ranking-grid__cell"></div>
                     <div class="ranking-grid__cell"></div>

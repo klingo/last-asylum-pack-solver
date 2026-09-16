@@ -4,6 +4,7 @@ import { loadPackData } from './lib/data';
 import { createMarket, collectPackageSources, collectExchangeSources } from './lib/pricing-core';
 import { buildPurchasePlan } from './lib/purchase-plan';
 import { createItemImage, banknoteIconHtml } from './lib/images';
+import { formatUnitPrice } from './lib/format';
 import {
     t,
     getLocale,
@@ -100,7 +101,7 @@ function renderSourcesTable(sources) {
             const typeLabel = sourceTypeLabel(source.type);
             const requiresDisplay = getResolvedRequiresName(source.requires, data?.packages || {}, data?.items || {});
             const pricePerUnitCell = Number.isFinite(source.pricePerUnit)
-                ? `<span class="text-gold">${Number(source.pricePerUnit.toFixed(2))}</span> ${banknoteIconHtml()}`
+                ? `<span class="text-gold">${formatUnitPrice(source.pricePerUnit)}</span> ${banknoteIconHtml()}`
                 : t('common.notAvailable');
 
             return `
@@ -200,7 +201,7 @@ function renderPlanTable(result, targetItemId) {
                     <div class="plan-grid__cell" role="cell">${purchases}</div>
                     <div class="plan-grid__cell" role="cell">${unitsGained}</div>
                     <div class="plan-grid__cell" role="cell"><span class="text-gold">${cost}</span> ${banknoteIconHtml()}</div>
-                    <div class="plan-grid__cell" role="cell">${Number.isFinite(source.pricePerUnit) ? `<span class="text-gold">${Number(source.pricePerUnit.toFixed(2))}</span> ${banknoteIconHtml()}` : t('common.notAvailable')}</div>
+                    <div class="plan-grid__cell" role="cell">${Number.isFinite(source.pricePerUnit) ? `<span class="text-gold">${formatUnitPrice(source.pricePerUnit)}</span> ${banknoteIconHtml()}` : t('common.notAvailable')}</div>
                     <div class="plan-grid__cell" role="cell">${detailsCell}</div>
                 </div>
                 ${detailsSection}
