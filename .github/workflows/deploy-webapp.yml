@@ -16,6 +16,43 @@ concurrency:
     cancel-in-progress: true
 
 jobs:
+    verify-data:
+        runs-on: ubuntu-latest
+        continue-on-error: true
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v5
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v5
+              with:
+                  node-version: 24
+                  cache: npm
+
+            - name: Install root dependencies
+              run: npm ci
+
+            - name: Verify pack data
+              run: npm run verify-data
+
+    lint:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v5
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v5
+              with:
+                  node-version: 24
+                  cache: npm
+
+            - name: Install root dependencies
+              run: npm ci
+
+            - name: Lint
+              run: npm run lint
+
     build:
         runs-on: ubuntu-latest
         steps:
@@ -26,16 +63,16 @@ jobs:
               uses: actions/setup-node@v5
               with:
                   node-version: 24
+                  cache: npm
+                  cache-dependency-path: |
+                      package-lock.json
+                      webapp/package-lock.json
 
             - name: Install root dependencies
               run: npm ci
 
-            - name: Verify pack data
-              run: npm run verify-data
-              continue-on-error: true
-
             - name: Install webapp dependencies
-              run: npm install
+              run: npm ci
               working-directory: webapp
 
             - name: Copy pack data and build the webapp
@@ -50,7 +87,7 @@ jobs:
                   path: webapp/dist
 
     deploy:
-        needs: build
+        needs: [build, lint]
         runs-on: ubuntu-latest
         environment:
             name: github-pages
