@@ -2218,6 +2218,27 @@
                 "lv5_alliance_chest": 1
             }
         },
+        "raven_gear_special_pack_t1": {
+            "name": {
+                "en": "Raven Gear Special Pack (T1)",
+                "de": ""
+            },
+            "category": "Weekly Rotation",
+            "price": 499,
+            "deal_percentage": 4200,
+            "purchase_limit": 1,
+            "limit_type": "daily",
+            "available_days": ["wednesday"],
+            "tier": 1,
+            "requires": null,
+            "contains": {
+                "diamonds": 500,
+                "lv3_raven_gear_chest": 3,
+                "lv1_raven_gear_chest": 1,
+                "vip_points": 500,
+                "lv2_alliance_chest": 1
+            }
+        },
         "raven_gear_t1": {
             "name": {
                 "en": "Raven Gear (T1)",
@@ -2261,6 +2282,31 @@
                 "lv2_alliance_chest": 1
             }
         },
+        "research_special_pack_t1": {
+            "name": {
+                "en": "Research Special Pack (T1)",
+                "de": ""
+            },
+            "category": "Weekly Rotation",
+            "price": 499,
+            "deal_percentage": 4490,
+            "purchase_limit": 1,
+            "limit_type": "daily",
+            "available_days": ["wednesday"],
+            "tier": 1,
+            "requires": null,
+            "contains": {
+                "diamonds": 500,
+                "study_scroll": 60,
+                "research_speedup": 350,
+                "timber_level_supply_ur": 1,
+                "grain_level_supply_ur": 1,
+                "herb_level_supply_ur": 1,
+                "resource_supply_general": 2,
+                "vip_points": 500,
+                "lv2_alliance_chest": 1
+            }
+        },
         "resource_special_pack_t1": {
             "name": {
                 "en": "Resource Special Pack (T1)",
@@ -2271,7 +2317,7 @@
             "deal_percentage": 4140,
             "purchase_limit": 1,
             "limit_type": "daily",
-            "available_days": ["friday", "saturday"],
+            "available_days": ["wednesday", "friday", "saturday"],
             "tier": 1,
             "requires": null,
             "contains": {
@@ -2294,7 +2340,7 @@
             "deal_percentage": 4140,
             "purchase_limit": 1,
             "limit_type": "daily",
-            "available_days": ["friday", "saturday"],
+            "available_days": ["wednesday", "friday", "saturday"],
             "tier": 2,
             "requires": "resource_special_pack_t1",
             "contains": {
