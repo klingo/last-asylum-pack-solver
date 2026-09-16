@@ -3,94 +3,80 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Analyze Item Value - Last Asylum Pack Solver</title>
+        <title data-i18n="docTitle.analyze"></title>
         <link rel="stylesheet" href="/src/style.css" />
     </head>
     <body>
         <header class="app-header"></header>
         <main>
             <section class="card">
-                <h2 data-i18n="analyze.heading">Analyze Item Value</h2>
-                <p class="text-dim" data-i18n="analyze.description">
-                    Pick an item, the amount you want, how many days you're planning to buy over, and (optionally) which
-                    purchase limits may be exceeded entirely. This shows every known purchase source for that item and
-                    the cheapest purchase plan to reach your target quantity.
-                </p>
+                <h2 data-i18n="analyze.heading"></h2>
+                <p class="text-dim" data-i18n="analyze.description"></p>
                 <form id="analyze-form">
                     <div class="form-row">
                         <div class="field">
-                            <label for="item-select" data-i18n="analyze.itemLabel">Item</label>
+                            <label for="item-select" data-i18n="analyze.itemLabel"></label>
                             <select id="item-select" required></select>
                         </div>
                         <div class="field">
-                            <label for="shop-select" data-i18n="analyze.shopLabel">Active Exchange Shop</label>
+                            <label for="shop-select" data-i18n="analyze.shopLabel"></label>
                             <select id="shop-select">
-                                <option value="" data-i18n="common.none">None</option>
+                                <option value="" data-i18n="common.none"></option>
                             </select>
                         </div>
                         <div class="field">
-                            <label for="quantity-input" data-i18n="analyze.quantityLabel">Target quantity</label>
+                            <label for="quantity-input" data-i18n="analyze.quantityLabel"></label>
                             <input
                                 id="quantity-input"
                                 type="number"
                                 min="1"
                                 step="1"
                                 data-i18n-placeholder="analyze.quantityPlaceholder"
-                                placeholder="e.g. 50"
                             />
                         </div>
                         <div class="field">
-                            <label for="days-input" data-i18n="analyze.daysLabel">Over how many days</label>
+                            <label for="days-input" data-i18n="analyze.daysLabel"></label>
                             <input id="days-input" type="number" min="1" step="1" value="1" />
                         </div>
                         <div class="field">
-                            <span data-i18n="analyze.exceedLimitLabel">Exceed purchase limit</span>
+                            <span data-i18n="analyze.exceedLimitLabel"></span>
                             <div class="checkbox-group">
                                 <label class="checkbox-label">
                                     <input type="checkbox" id="ignore-daily-checkbox" />
-                                    <span data-i18n="analyze.ignoreDaily">Daily</span>
+                                    <span data-i18n="analyze.ignoreDaily"></span>
                                 </label>
                                 <label class="checkbox-label">
                                     <input type="checkbox" id="ignore-weekly-checkbox" />
-                                    <span data-i18n="analyze.ignoreWeekly">Weekly</span>
+                                    <span data-i18n="analyze.ignoreWeekly"></span>
                                 </label>
                                 <label class="checkbox-label">
                                     <input type="checkbox" id="ignore-monthly-checkbox" />
-                                    <span data-i18n="analyze.ignoreMonthly">Monthly</span>
+                                    <span data-i18n="analyze.ignoreMonthly"></span>
                                 </label>
                             </div>
                         </div>
                         <div class="field">
-                            <button type="button" id="reset-btn" class="btn-secondary" data-i18n="analyze.reset">
-                                Reset
-                            </button>
+                            <button type="button" id="reset-btn" class="btn-secondary" data-i18n="analyze.reset"></button>
                         </div>
                     </div>
                 </form>
             </section>
 
             <section class="card" id="sources-card" hidden>
-                <h2 data-i18n="analyze.sourcesHeading">Purchase Sources</h2>
-                <div id="sources-empty" class="empty-state" hidden data-i18n="analyze.sourcesEmpty">
-                    No purchasable sources found for this item.
-                </div>
+                <h2 data-i18n="analyze.sourcesHeading"></h2>
+                <div id="sources-empty" class="empty-state" hidden data-i18n="analyze.sourcesEmpty"></div>
                 <div class="table-wrap"><table id="sources-table"></table></div>
-                <p class="footnote" data-i18n="analyze.sourcesFootnote">
-                    Exchange shop prices are converted to Banknotes using the cheapest known source for their currency
-                    item.
-                </p>
+                <p class="footnote" data-i18n="analyze.sourcesFootnote"></p>
             </section>
 
             <section class="card" id="plan-card" hidden>
-                <h2 data-i18n="analyze.planHeading">Optimal Purchase Plan</h2>
+                <h2 data-i18n="analyze.planHeading"></h2>
                 <div class="table-wrap"><div id="plan-table" class="plan-grid" role="table"></div></div>
                 <p class="summary-line" id="plan-summary"></p>
                 <p class="message-box message-box--warning" id="plan-warning" hidden></p>
             </section>
         </main>
-        <footer class="app-footer" data-i18n="footer.analyzeDefault">
-            Last Asylum Pack Solver &mdash; data generated from pack_data.json
-        </footer>
+        <footer class="app-footer" data-i18n="footer.analyzeDefault"></footer>
         <script type="module" src="/src/main.js"></script>
     </body>
 </html>

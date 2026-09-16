@@ -16,7 +16,6 @@ import {
 
 renderNav('analyze');
 applyStaticTranslations();
-document.title = t('docTitle.analyze');
 
 const itemSelect = document.getElementById('item-select');
 const shopSelect = document.getElementById('shop-select');
@@ -468,7 +467,6 @@ async function init() {
         const selectedItem = itemSelect?.value;
         const selectedShop = shopSelect?.value;
         applyStaticTranslations();
-        document.title = t('docTitle.analyze');
         updateFooter();
         populateItemSelect(data.items || {});
         populateShopSelect(data.exchange_shops || {});

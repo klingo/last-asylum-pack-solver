@@ -7,7 +7,6 @@ import { t, getLocale, categoryLabel, sourceTypeLabel, applyStaticTranslations }
 
 renderNav('rankings');
 applyStaticTranslations();
-document.title = t('docTitle.rankings');
 
 const searchInput = document.getElementById('search-input');
 const typeFilterGroup = document.getElementById('type-filter-group');
@@ -163,7 +162,6 @@ async function init() {
 
     window.addEventListener('localechange', () => {
         applyStaticTranslations();
-        document.title = t('docTitle.rankings');
         recompute();
     });
 }

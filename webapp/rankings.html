@@ -3,43 +3,34 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Value Ranking - Last Asylum Pack Solver</title>
+        <title data-i18n="docTitle.rankings"></title>
         <link rel="stylesheet" href="/src/style.css" />
     </head>
     <body>
         <header class="app-header"></header>
         <main>
             <section class="card">
-                <h2 data-i18n="rankings.heading">Value Ranking</h2>
-                <p class="text-dim" data-i18n="rankings.description">
-                    Every package and shop exchange offer (including bonus tiers), ranked by how much value it provides
-                    relative to its price. Higher "Value Ratio" means a better deal. Click a row to see its full
-                    contents breakdown.
-                </p>
+                <h2 data-i18n="rankings.heading"></h2>
+                <p class="text-dim" data-i18n="rankings.description"></p>
                 <div class="form-row">
                     <div class="field field--wide">
-                        <label for="search-input" data-i18n="rankings.searchLabel">Search</label>
-                        <input
-                            id="search-input"
-                            type="search"
-                            data-i18n-placeholder="rankings.searchPlaceholder"
-                            placeholder="Filter by name or category"
-                        />
+                        <label for="search-input" data-i18n="rankings.searchLabel"></label>
+                        <input id="search-input" type="search" data-i18n-placeholder="rankings.searchPlaceholder" />
                     </div>
                     <div class="field">
-                        <span data-i18n="rankings.typeLabel">Type</span>
+                        <span data-i18n="rankings.typeLabel"></span>
                         <div class="checkbox-group" id="type-filter-group">
                             <label class="checkbox-label">
                                 <input type="checkbox" value="package" checked />
-                                <span data-i18n="sourceType.package">Package</span>
+                                <span data-i18n="sourceType.package"></span>
                             </label>
                             <label class="checkbox-label">
                                 <input type="checkbox" value="exchange_offer" checked />
-                                <span data-i18n="sourceType.exchange_offer">Exchange offer</span>
+                                <span data-i18n="sourceType.exchange_offer"></span>
                             </label>
                             <label class="checkbox-label">
                                 <input type="checkbox" value="bonus_tier" checked />
-                                <span data-i18n="sourceType.bonus_tier">Bonus tier</span>
+                                <span data-i18n="sourceType.bonus_tier"></span>
                             </label>
                         </div>
                     </div>
@@ -49,14 +40,10 @@
 
             <section class="card">
                 <div class="table-wrap"><div id="ranking-table" class="ranking-grid" role="table"></div></div>
-                <div id="ranking-empty" class="empty-state" hidden data-i18n="rankings.empty">
-                    No entries match your filters.
-                </div>
+                <div id="ranking-empty" class="empty-state" hidden data-i18n="rankings.empty"></div>
             </section>
         </main>
-        <footer class="app-footer" data-i18n="footer.rankings">
-            Last Asylum Pack Solver &mdash; ranking computed live from pack_data.json
-        </footer>
+        <footer class="app-footer" data-i18n="footer.rankings"></footer>
         <script type="module" src="/src/rankings.js"></script>
     </body>
 </html>
