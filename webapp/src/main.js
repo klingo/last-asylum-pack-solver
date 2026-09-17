@@ -4,6 +4,7 @@ import { loadPackData } from './lib/data';
 import { createMarket, collectPackageSources, collectExchangeSources } from './lib/pricing-core';
 import { buildPurchasePlan } from './lib/purchase-plan';
 import { createItemImage, banknoteIconHtml } from './lib/images';
+import { createItemPicker } from './lib/item-picker';
 import { formatUnitPrice } from './lib/format';
 import {
     t,
@@ -18,7 +19,15 @@ import {
 renderNav('analyze');
 applyStaticTranslations();
 
-const itemSelect = document.getElementById('item-select');
+const itemSearchInput = document.getElementById('item-search');
+const itemListPanel = document.getElementById('item-listbox');
+const itemSearchClearBtn = document.getElementById('item-search-clear');
+const itemPicker = createItemPicker({
+    input: itemSearchInput,
+    panel: itemListPanel,
+    clearButton: itemSearchClearBtn,
+    onChange: () => recalculate(),
+});
 const shopSelect = document.getElementById('shop-select');
 const quantityInput = document.getElementById('quantity-input');
 const daysInput = document.getElementById('days-input');
@@ -38,31 +47,6 @@ const planWarning = document.getElementById('plan-warning');
 const appFooter = document.querySelector('.app-footer');
 
 let data = null;
-
-function populateItemSelect(items) {
-    const grouped = {};
-    for (const [itemId, item] of Object.entries(items)) {
-        const category = item.category || 'Other';
-        if (!grouped[category]) {
-            grouped[category] = [];
-        }
-        grouped[category].push({ id: itemId, name: localizedName(item.name) });
-    }
-
-    const sortedCategories = Object.keys(grouped).sort((a, b) => categoryLabel(a).localeCompare(categoryLabel(b)));
-    for (const category of sortedCategories) {
-        grouped[category].sort((a, b) => a.name.localeCompare(b.name));
-    }
-
-    itemSelect.innerHTML = sortedCategories
-        .map((category) => {
-            const options = grouped[category]
-                .map((item) => `<option value="${item.id}">${item.name}</option>`)
-                .join('');
-            return `<optgroup label="${categoryLabel(category)}">${options}</optgroup>`;
-        })
-        .join('');
-}
 
 function populateShopSelect(exchangeShops) {
     if (!shopSelect) {
@@ -267,7 +251,7 @@ function syncUrlParams() {
     const url = new URL(window.location.href);
     const params = new URLSearchParams();
 
-    const itemId = itemSelect?.value;
+    const itemId = itemPicker.getValue();
     const shopId = shopSelect?.value;
     const quantity = quantityInput?.value?.trim();
     const days = daysInput?.value?.trim();
@@ -311,7 +295,7 @@ function applyUrlParams() {
     const daysParam = params.get('days');
 
     if (itemParam && data?.items?.[itemParam]) {
-        itemSelect.value = itemParam;
+        itemPicker.setValue(itemParam);
     }
     if (shopParam) {
         if (shopParam === 'any' || data?.exchange_shops?.[shopParam]) {
@@ -348,7 +332,7 @@ function recalculate({ syncUrl = true } = {}) {
         return;
     }
 
-    const targetItemId = itemSelect ? itemSelect.value : '';
+    const targetItemId = itemPicker.getValue();
     const selectedShopId = shopSelect ? shopSelect.value : '';
     const limitOptions = {
         ignoreDaily: Boolean(ignoreDailyCheckbox?.checked),
@@ -420,9 +404,7 @@ function recalculate({ syncUrl = true } = {}) {
 }
 
 function handleReset() {
-    if (itemSelect && itemSelect.options.length > 0) {
-        itemSelect.selectedIndex = 0;
-    }
+    itemPicker.reset();
     if (shopSelect) {
         shopSelect.value = '';
     }
@@ -460,29 +442,26 @@ function updateFooter() {
 async function init() {
     data = await loadPackData();
     updateFooter();
-    populateItemSelect(data.items || {});
+    itemPicker.setItems(data.items || {});
     populateShopSelect(data.exchange_shops || {});
     applyUrlParams();
 
     window.addEventListener('localechange', () => {
-        const selectedItem = itemSelect?.value;
         const selectedShop = shopSelect?.value;
         applyStaticTranslations();
         updateFooter();
-        populateItemSelect(data.items || {});
+        // Re-affirms the currently selected item's display text in the new locale; the
+        // picker keeps its selection across a setItems() call, unlike a native <select>
+        // whose value resets when its <option>s are replaced (hence the shop capture/restore
+        // just below still being necessary).
+        itemPicker.setItems(data.items || {});
         populateShopSelect(data.exchange_shops || {});
-        if (itemSelect && selectedItem) {
-            itemSelect.value = selectedItem;
-        }
         if (shopSelect && selectedShop) {
             shopSelect.value = selectedShop;
         }
         recalculate({ syncUrl: false });
     });
 
-    if (itemSelect) {
-        itemSelect.addEventListener('change', () => recalculate());
-    }
     if (shopSelect) {
         shopSelect.addEventListener('change', () => recalculate());
     }

@@ -128,7 +128,26 @@ main {
     min-width: 320px;
 }
 
-.field label {
+.field--item {
+    flex: 2;
+    min-width: 400px;
+}
+
+/* ~25% narrower than the browser's default number-input width (was ~203px). */
+.field--narrow {
+    min-width: 150px;
+}
+
+.field--narrow input {
+    width: 150px;
+}
+
+.field--reset {
+    min-width: 130px;
+}
+
+.field label,
+.field .field-label {
     font-size: 0.8rem;
     color: var(--text-dim);
 }
@@ -190,6 +209,93 @@ button:disabled {
     padding: 0;
     accent-color: var(--accent);
     cursor: pointer;
+}
+
+.item-combobox {
+    position: relative;
+}
+
+.item-combobox__input {
+    width: 100%;
+    padding-right: 28px;
+}
+
+.item-combobox__clear {
+    position: absolute;
+    top: 50%;
+    right: 4px;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: 4px;
+    color: var(--text-dim);
+    font-size: 1.1rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.item-combobox__clear[hidden] {
+    display: none;
+}
+
+.item-combobox__clear:hover {
+    background: var(--panel);
+    color: var(--text);
+}
+
+.item-combobox__panel {
+    position: absolute;
+    z-index: 20;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    max-height: 320px;
+    overflow-y: auto;
+    background: var(--panel-alt);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.item-combobox__group-label {
+    padding: 6px 10px 4px;
+    color: var(--text-dim);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.72rem;
+    letter-spacing: 0.03em;
+}
+
+.item-combobox__option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    cursor: pointer;
+}
+
+.item-combobox__option:hover,
+.item-combobox__option.is-active {
+    background: var(--panel);
+}
+
+.item-combobox__option.is-selected {
+    color: var(--accent);
+}
+
+.item-combobox__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
 }
 
 .btn-secondary {
@@ -256,13 +362,13 @@ tbody tr:hover {
 }
 
 .item-icon--sm {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
 }
 
 .currency-icon {
-    width: 16px;
-    height: 16px;
+    width: 20px;
+    height: 20px;
     object-fit: contain;
     vertical-align: middle;
     margin: 0 2px;

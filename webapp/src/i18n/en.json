@@ -71,6 +71,8 @@
         "heading": "Analyze Item Value",
         "description": "Pick an item, the amount you want, how many days you're planning to buy over, and (optionally) which purchase limits may be exceeded entirely. This shows every known purchase source for that item and the cheapest purchase plan to reach your target quantity.",
         "itemLabel": "Item",
+        "itemSearchPlaceholder": "Search items…",
+        "itemSearchClear": "Clear item search",
         "shopLabel": "Active Exchange Shop",
         "quantityLabel": "Target quantity",
         "quantityPlaceholder": "e.g. 50",

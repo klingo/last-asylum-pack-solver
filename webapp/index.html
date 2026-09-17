@@ -14,9 +14,25 @@
                 <p class="text-dim" data-i18n="analyze.description"></p>
                 <form id="analyze-form">
                     <div class="form-row">
-                        <div class="field">
-                            <label for="item-select" data-i18n="analyze.itemLabel"></label>
-                            <select id="item-select" required></select>
+                        <div class="field field--item">
+                            <label for="item-search" data-i18n="analyze.itemLabel"></label>
+                            <div class="item-combobox">
+                                <input
+                                    type="text"
+                                    id="item-search"
+                                    class="item-combobox__input"
+                                    role="combobox"
+                                    aria-expanded="false"
+                                    aria-autocomplete="list"
+                                    aria-controls="item-listbox"
+                                    autocomplete="off"
+                                    data-i18n-placeholder="analyze.itemSearchPlaceholder"
+                                />
+                                <button type="button" id="item-search-clear" class="item-combobox__clear" tabindex="-1" hidden>
+                                    &times;
+                                </button>
+                                <div class="item-combobox__panel" id="item-listbox" role="listbox" hidden></div>
+                            </div>
                         </div>
                         <div class="field">
                             <label for="shop-select" data-i18n="analyze.shopLabel"></label>
@@ -24,7 +40,7 @@
                                 <option value="" data-i18n="common.none"></option>
                             </select>
                         </div>
-                        <div class="field">
+                        <div class="field field--narrow">
                             <label for="quantity-input" data-i18n="analyze.quantityLabel"></label>
                             <input
                                 id="quantity-input"
@@ -34,12 +50,12 @@
                                 data-i18n-placeholder="analyze.quantityPlaceholder"
                             />
                         </div>
-                        <div class="field">
+                        <div class="field field--narrow">
                             <label for="days-input" data-i18n="analyze.daysLabel"></label>
                             <input id="days-input" type="number" min="1" step="1" value="1" />
                         </div>
                         <div class="field">
-                            <span data-i18n="analyze.exceedLimitLabel"></span>
+                            <span class="field-label" data-i18n="analyze.exceedLimitLabel"></span>
                             <div class="checkbox-group">
                                 <label class="checkbox-label">
                                     <input type="checkbox" id="ignore-daily-checkbox" />
@@ -55,7 +71,7 @@
                                 </label>
                             </div>
                         </div>
-                        <div class="field">
+                        <div class="field field--reset">
                             <button type="button" id="reset-btn" class="btn-secondary" data-i18n="analyze.reset"></button>
                         </div>
                     </div>

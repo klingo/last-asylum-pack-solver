@@ -71,6 +71,8 @@
         "heading": "",
         "description": "",
         "itemLabel": "",
+        "itemSearchPlaceholder": "",
+        "itemSearchClear": "",
         "shopLabel": "",
         "quantityLabel": "",
         "quantityPlaceholder": "",
