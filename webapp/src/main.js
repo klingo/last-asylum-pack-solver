@@ -5,7 +5,7 @@ import { createMarket, collectPackageSources, collectExchangeSources } from './l
 import { buildPurchasePlan } from './lib/purchase-plan';
 import { createItemImage, banknoteIconHtml } from './lib/images';
 import { createItemPicker } from './lib/item-picker';
-import { formatUnitPrice } from './lib/format';
+import { formatUnitPriceColumn } from './lib/format';
 import {
     t,
     getLocale,
@@ -71,9 +71,13 @@ function getResolvedRequiresName(requiresId, packages, items) {
 
 function renderSourcesTable(sources) {
     const ordered = [...sources].sort((a, b) => a.pricePerUnit - b.pricePerUnit);
+    // Every row's "/ Unit" price shares one decimal precision (whatever the smallest value in
+    // the column needs to show a non-zero digit) rather than each row rounding independently,
+    // so e.g. "1" reads as "1.00" once some other row needs two decimals to not show as "0.00".
+    const perUnitDisplay = formatUnitPriceColumn(ordered.map((source) => source.pricePerUnit));
 
     const rows = ordered
-        .map((source) => {
+        .map((source, index) => {
             const priceCell =
                 source.type === 'exchange'
                     ? source.priceDisplay
@@ -84,9 +88,10 @@ function renderSourcesTable(sources) {
             const pillClass = source.type === 'exchange' ? 'pill--exchange_offer' : `pill--${source.type}`;
             const typeLabel = sourceTypeLabel(source.type);
             const requiresDisplay = getResolvedRequiresName(source.requires, data?.packages || {}, data?.items || {});
-            const pricePerUnitCell = Number.isFinite(source.pricePerUnit)
-                ? `<span class="text-gold">${formatUnitPrice(source.pricePerUnit)}</span> ${banknoteIconHtml()}`
-                : t('common.notAvailable');
+            const pricePerUnitCell =
+                perUnitDisplay[index] !== null
+                    ? `<span class="text-gold">${perUnitDisplay[index]}</span> ${banknoteIconHtml()}`
+                    : t('common.notAvailable');
 
             return `
                 <tr>
@@ -151,6 +156,9 @@ function renderPlanTable(result, targetItemId) {
     // Both the plan rows and the nested "Details" breakdown below share the same
     // `.plan-grid` column tracks (the breakdown uses `grid-template-columns: subgrid`), so
     // their columns always stay visually aligned instead of living in two separate tables.
+    // The "/ Unit" column shares one decimal precision across all rows (see renderSourcesTable).
+    const perUnitDisplay = formatUnitPriceColumn(result.plan.map(({ source }) => source.pricePerUnit));
+
     const rows = result.plan
         .map(({ source, purchases, unitsGained, cost, details }, index) => {
             const hasDetails = source.type === 'exchange' && details && details.length > 0;
@@ -185,7 +193,7 @@ function renderPlanTable(result, targetItemId) {
                     <div class="plan-grid__cell" role="cell">${purchases}</div>
                     <div class="plan-grid__cell" role="cell">${unitsGained}</div>
                     <div class="plan-grid__cell" role="cell"><span class="text-gold">${cost}</span> ${banknoteIconHtml()}</div>
-                    <div class="plan-grid__cell" role="cell">${Number.isFinite(source.pricePerUnit) ? `<span class="text-gold">${formatUnitPrice(source.pricePerUnit)}</span> ${banknoteIconHtml()}` : t('common.notAvailable')}</div>
+                    <div class="plan-grid__cell" role="cell">${perUnitDisplay[index] !== null ? `<span class="text-gold">${perUnitDisplay[index]}</span> ${banknoteIconHtml()}` : t('common.notAvailable')}</div>
                     <div class="plan-grid__cell" role="cell">${detailsCell}</div>
                 </div>
                 ${detailsSection}
