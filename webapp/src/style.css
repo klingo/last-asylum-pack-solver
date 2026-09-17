@@ -540,7 +540,7 @@ tbody tr:hover {
  */
 .ranking-grid {
     display: grid;
-    grid-template-columns: 50px minmax(200px, 2fr) 120px 110px minmax(90px, 1fr) minmax(100px, 1fr) 90px 90px 80px;
+    grid-template-columns: 50px minmax(160px, 1.5fr) 120px 190px minmax(75px, 0.8fr) minmax(85px, 0.8fr) 90px 90px 80px;
     width: 100%;
     font-size: 0.9rem;
 }
@@ -559,6 +559,11 @@ tbody tr:hover {
     display: flex;
     align-items: center;
     min-width: 0;
+}
+
+.ranking-grid__cell--num {
+    justify-content: flex-end;
+    text-align: right;
 }
 
 .ranking-grid__cell--header {

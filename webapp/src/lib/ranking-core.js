@@ -18,6 +18,7 @@
 
 import { createMarket } from './pricing-core';
 import { localizedName, t } from './i18n';
+import { formatThousands } from './format';
 
 function getUnitCost(market, itemId) {
     const cost = market.peekUnitCost(itemId);
@@ -101,7 +102,10 @@ function rankPackages(packages, market, items, locale) {
             name: localizedName(pkg.name, locale),
             category: pkg.category || '-',
             price,
-            price_display: t('rankings.priceDisplay.package', { price, currency: t('currency.banknotes') }),
+            price_display: t('rankings.priceDisplay.package', {
+                price: formatThousands(price),
+                currency: t('currency.banknotes'),
+            }),
             total_value: Number(total.toFixed(2)),
             value_ratio: Number((total / price).toFixed(4)),
             purchase_limit: pkg.purchase_limit,
@@ -141,9 +145,9 @@ function rankExchangeOffers(exchangeShops, market, items, locale) {
                 category: shop.category || (shop.event_id ? 'Event Exchange' : 'Exchange'),
                 price: Number(price.toFixed(6)),
                 price_display: t('rankings.priceDisplay.exchange', {
-                    cost: offer.currency_cost,
+                    cost: formatThousands(offer.currency_cost),
                     currencyName,
-                    approx: price.toFixed(2),
+                    approx: formatThousands(Number(price.toFixed(2))),
                     currency: t('currency.banknotes'),
                 }),
                 total_value: Number(totalValue.toFixed(2)),
@@ -196,9 +200,9 @@ function rankBonusTiers(exchangeShops, market, items, locale) {
                 category: shop.category || (shop.event_id ? 'Event Exchange' : 'Exchange'),
                 price: Number(price.toFixed(6)),
                 price_display: t('rankings.priceDisplay.bonusTier', {
-                    threshold: thresholdStr,
+                    threshold: formatThousands(threshold),
                     currencyName,
-                    approx: price.toFixed(2),
+                    approx: formatThousands(Number(price.toFixed(2))),
                     currency: t('currency.banknotes'),
                 }),
                 total_value: Number(total.toFixed(2)),

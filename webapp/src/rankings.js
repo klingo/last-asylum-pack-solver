@@ -4,7 +4,7 @@ import { loadPackData } from './lib/data';
 import { buildRanking } from './lib/ranking-core';
 import { createItemImage, banknoteIconHtml } from './lib/images';
 import { t, getLocale, categoryLabel, sourceTypeLabel, applyStaticTranslations } from './lib/i18n';
-import { formatUnitPrice } from './lib/format';
+import { formatUnitPrice, formatThousands } from './lib/format';
 
 renderNav('rankings');
 applyStaticTranslations();
@@ -33,7 +33,7 @@ function matchesFilters(entry, search, types) {
 
 function goldenBanknotes(text) {
     const currency = t('currency.banknotes');
-    const pattern = new RegExp(`([\\d.,]+)\\s*${currency}`, 'g');
+    const pattern = new RegExp(`([\\d.,']+)\\s*${currency}`, 'g');
     return text.replace(pattern, (match, amount) => `<span class="text-gold">${amount}</span> ${banknoteIconHtml()}`);
 }
 
@@ -46,8 +46,8 @@ function breakdownRowsHtml(entry) {
                     <div class="ranking-grid__cell item-cell"><span class="breakdown-icon" data-item-id="${item.item_id}"></span>${item.name} &times;${item.quantity}</div>
                     <div class="ranking-grid__cell"></div>
                     <div class="ranking-grid__cell">${categoryLabel(itemsById[item.item_id]?.category)}</div>
-                    <div class="ranking-grid__cell">${item.unit_cost !== null ? `<span class="text-gold">${formatUnitPrice(item.unit_cost, { minDecimals: 4 })}</span> ${banknoteIconHtml()}` : t('common.unknown')}</div>
-                    <div class="ranking-grid__cell"><span class="text-gold">${item.value}</span> ${banknoteIconHtml()}</div>
+                    <div class="ranking-grid__cell ranking-grid__cell--num">${item.unit_cost !== null ? `<span class="text-gold">${formatUnitPrice(item.unit_cost, { minDecimals: 4 })}</span> ${banknoteIconHtml()}` : t('common.unknown')}</div>
+                    <div class="ranking-grid__cell ranking-grid__cell--num"><span class="text-gold">${formatThousands(item.value)}</span> ${banknoteIconHtml()}</div>
                     <div class="ranking-grid__cell"></div>
                     <div class="ranking-grid__cell"></div>
                     <div class="ranking-grid__cell"></div>
@@ -72,13 +72,13 @@ function renderTable(filtered) {
         .map((entry) => {
             return `
                 <div class="ranking-grid__row" role="row" data-rank="${entry.rank}">
-                    <div class="ranking-grid__cell" role="cell">${entry.rank}</div>
+                    <div class="ranking-grid__cell ranking-grid__cell--num" role="cell">${entry.rank}</div>
                     <div class="ranking-grid__cell" role="cell">${entry.name}</div>
                     <div class="ranking-grid__cell" role="cell"><span class="pill pill--${entry.type}">${sourceTypeLabel(entry.type)}</span></div>
                     <div class="ranking-grid__cell" role="cell">${categoryLabel(entry.category)}</div>
-                    <div class="ranking-grid__cell" role="cell">${goldenBanknotes(entry.price_display)}</div>
-                    <div class="ranking-grid__cell" role="cell"><span class="text-gold">${entry.total_value}</span> ${banknoteIconHtml()}</div>
-                    <div class="ranking-grid__cell" role="cell">${entry.value_ratio}</div>
+                    <div class="ranking-grid__cell ranking-grid__cell--num" role="cell">${goldenBanknotes(entry.price_display)}</div>
+                    <div class="ranking-grid__cell ranking-grid__cell--num" role="cell"><span class="text-gold">${formatThousands(entry.total_value)}</span> ${banknoteIconHtml()}</div>
+                    <div class="ranking-grid__cell ranking-grid__cell--num" role="cell">${formatThousands(entry.value_ratio)}</div>
                     <div class="ranking-grid__cell" role="cell">${entry.value_complete ? `<span class="text-good">${t('common.yes')}</span>` : `<span class="text-bad">${t('common.no')}</span>`}</div>
                     <div class="ranking-grid__cell" role="cell"><button type="button" class="expand-toggle" data-rank="${entry.rank}">${t('common.details')}</button></div>
                 </div>
@@ -88,8 +88,8 @@ function renderTable(filtered) {
                         <div class="ranking-grid__cell ranking-grid__cell--header">${t('rankings.table.item')}</div>
                         <div class="ranking-grid__cell ranking-grid__cell--header"></div>
                         <div class="ranking-grid__cell ranking-grid__cell--header">${t('rankings.table.category')}</div>
-                        <div class="ranking-grid__cell ranking-grid__cell--header">${t('rankings.table.unitCost')}</div>
-                        <div class="ranking-grid__cell ranking-grid__cell--header">${t('rankings.table.value', { icon: banknoteIconHtml() })}</div>
+                        <div class="ranking-grid__cell ranking-grid__cell--header ranking-grid__cell--num">${t('rankings.table.unitCost')}</div>
+                        <div class="ranking-grid__cell ranking-grid__cell--header ranking-grid__cell--num">${t('rankings.table.value', { icon: banknoteIconHtml() })}</div>
                         <div class="ranking-grid__cell ranking-grid__cell--header"></div>
                         <div class="ranking-grid__cell ranking-grid__cell--header"></div>
                         <div class="ranking-grid__cell ranking-grid__cell--header"></div>
@@ -102,13 +102,13 @@ function renderTable(filtered) {
 
     rankingTable.innerHTML = `
         <div class="ranking-grid__row" role="row">
-            <div class="ranking-grid__cell ranking-grid__cell--header" role="columnheader">${t('rankings.table.rank')}</div>
+            <div class="ranking-grid__cell ranking-grid__cell--header ranking-grid__cell--num" role="columnheader">${t('rankings.table.rank')}</div>
             <div class="ranking-grid__cell ranking-grid__cell--header" role="columnheader">${t('rankings.table.name')}</div>
             <div class="ranking-grid__cell ranking-grid__cell--header" role="columnheader">${t('rankings.table.type')}</div>
             <div class="ranking-grid__cell ranking-grid__cell--header" role="columnheader">${t('rankings.table.category')}</div>
-            <div class="ranking-grid__cell ranking-grid__cell--header" role="columnheader">${t('rankings.table.price')}</div>
-            <div class="ranking-grid__cell ranking-grid__cell--header" role="columnheader">${t('rankings.table.value', { icon: banknoteIconHtml() })}</div>
-            <div class="ranking-grid__cell ranking-grid__cell--header" role="columnheader">${t('rankings.table.valueRatio')}</div>
+            <div class="ranking-grid__cell ranking-grid__cell--header ranking-grid__cell--num" role="columnheader">${t('rankings.table.price')}</div>
+            <div class="ranking-grid__cell ranking-grid__cell--header ranking-grid__cell--num" role="columnheader">${t('rankings.table.value', { icon: banknoteIconHtml() })}</div>
+            <div class="ranking-grid__cell ranking-grid__cell--header ranking-grid__cell--num" role="columnheader">${t('rankings.table.valueRatio')}</div>
             <div class="ranking-grid__cell ranking-grid__cell--header" role="columnheader">${t('rankings.table.complete')}</div>
             <div class="ranking-grid__cell ranking-grid__cell--header" role="columnheader"></div>
         </div>
