@@ -4,6 +4,7 @@
  * If the logic in scripts/lib/pricing.js changes, mirror the change here too.
  */
 import { localizedName } from './i18n';
+import { formatThousands } from './format';
 
 function resolveYieldFromContains(containsObj, targetId, visited, items) {
     let total = 0;
@@ -511,7 +512,7 @@ function collectExchangeSources(targetId, exchangeShops, items, getItemCost, lim
                 name: `${localizedName(shop.name, locale)} - ${localizedName(items[offerItemId]?.name, locale) || offerItemId}`,
                 category: shop.category || (shop.event_id ? 'Event Exchange' : 'Exchange'),
                 price: totalPrice,
-                priceDisplay: `${offer.currency_cost} ${localizedName(items[shop.currency_item_id]?.name, locale) || shop.currency_item_id}`,
+                priceDisplay: `${formatThousands(offer.currency_cost)} ${localizedName(items[shop.currency_item_id]?.name, locale) || shop.currency_item_id}`,
                 yieldPerPurchase: y,
                 pricePerUnit: Number.isFinite(totalPrice) ? totalPrice / y : Infinity,
                 purchaseLimit: offer.purchase_limit,

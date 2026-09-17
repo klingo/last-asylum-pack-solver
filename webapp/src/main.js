@@ -5,7 +5,7 @@ import { createMarket, collectPackageSources, collectExchangeSources } from './l
 import { buildPurchasePlan } from './lib/purchase-plan';
 import { createItemImage, banknoteIconHtml } from './lib/images';
 import { createItemPicker } from './lib/item-picker';
-import { formatUnitPriceColumn } from './lib/format';
+import { formatUnitPriceColumn, formatThousands } from './lib/format';
 import {
     t,
     getLocale,
@@ -81,9 +81,9 @@ function renderSourcesTable(sources) {
             const priceCell =
                 source.type === 'exchange'
                     ? source.priceDisplay
-                    : `<span class="text-gold">${source.price}</span> ${banknoteIconHtml()}`;
+                    : `<span class="text-gold">${formatThousands(source.price)}</span> ${banknoteIconHtml()}`;
             const limitCell = Number.isFinite(source.purchaseCapacity)
-                ? Number((source.purchaseCapacity * source.yieldPerPurchase).toFixed(2))
+                ? formatThousands(Number((source.purchaseCapacity * source.yieldPerPurchase).toFixed(2)))
                 : t('common.unlimited');
             const pillClass = source.type === 'exchange' ? 'pill--exchange_offer' : `pill--${source.type}`;
             const typeLabel = sourceTypeLabel(source.type);
@@ -98,10 +98,10 @@ function renderSourcesTable(sources) {
                     <td><span class="pill ${pillClass}">${typeLabel}</span></td>
                     <td>${source.name}</td>
                     <td>${categoryLabel(source.category)}</td>
-                    <td>${priceCell}</td>
-                    <td>${Number(source.yieldPerPurchase.toFixed(4))}</td>
-                    <td>${pricePerUnitCell}</td>
-                    <td>${limitCell}</td>
+                    <td class="text-right">${priceCell}</td>
+                    <td class="text-right">${formatThousands(Number(source.yieldPerPurchase.toFixed(4)))}</td>
+                    <td class="text-right">${pricePerUnitCell}</td>
+                    <td class="text-right">${limitCell}</td>
                     <td>${formatDays(source.availableDays)}</td>
                     <td>${requiresDisplay}</td>
                 </tr>
@@ -115,10 +115,10 @@ function renderSourcesTable(sources) {
                 <th>${t('analyze.table.type')}</th>
                 <th>${t('analyze.table.source')}</th>
                 <th>${t('analyze.table.category')}</th>
-                <th>${t('analyze.table.pricePerPurchase')}</th>
-                <th>${t('analyze.table.yieldPerPurchase')}</th>
-                <th>${t('analyze.table.perUnit', { icon: banknoteIconHtml() })}</th>
-                <th>${t('analyze.table.limitUnits')}</th>
+                <th class="text-right">${t('analyze.table.pricePerPurchase')}</th>
+                <th class="text-right">${t('analyze.table.yieldPerPurchase')}</th>
+                <th class="text-right">${t('analyze.table.perUnit', { icon: banknoteIconHtml() })}</th>
+                <th class="text-right">${t('analyze.table.limitUnits')}</th>
                 <th>${t('analyze.table.days')}</th>
                 <th>${t('analyze.table.requires')}</th>
             </tr>
@@ -193,7 +193,7 @@ function renderPlanTable(result, targetItemId) {
                     <div class="plan-grid__cell" role="cell">${purchases}</div>
                     <div class="plan-grid__cell" role="cell">${unitsGained}</div>
                     <div class="plan-grid__cell" role="cell"><span class="text-gold">${cost}</span> ${banknoteIconHtml()}</div>
-                    <div class="plan-grid__cell" role="cell">${perUnitDisplay[index] !== null ? `<span class="text-gold">${perUnitDisplay[index]}</span> ${banknoteIconHtml()}` : t('common.notAvailable')}</div>
+                    <div class="plan-grid__cell text-right" role="cell">${perUnitDisplay[index] !== null ? `<span class="text-gold">${perUnitDisplay[index]}</span> ${banknoteIconHtml()}` : t('common.notAvailable')}</div>
                     <div class="plan-grid__cell" role="cell">${detailsCell}</div>
                 </div>
                 ${detailsSection}
@@ -209,7 +209,7 @@ function renderPlanTable(result, targetItemId) {
             <div class="plan-grid__cell plan-grid__cell--header" role="columnheader">${t('analyze.table.purchases')}</div>
             <div class="plan-grid__cell plan-grid__cell--header" role="columnheader">${t('analyze.table.unitsGained')}</div>
             <div class="plan-grid__cell plan-grid__cell--header" role="columnheader">${t('analyze.table.cost', { icon: banknoteIconHtml() })}</div>
-            <div class="plan-grid__cell plan-grid__cell--header" role="columnheader">${t('analyze.table.perUnit', { icon: banknoteIconHtml() })}</div>
+            <div class="plan-grid__cell plan-grid__cell--header text-right" role="columnheader">${t('analyze.table.perUnit', { icon: banknoteIconHtml() })}</div>
             <div class="plan-grid__cell plan-grid__cell--header" role="columnheader"></div>
         </div>
         ${rows}

@@ -40,4 +40,19 @@ function formatUnitPriceColumn(values, options = {}) {
     return values.map((value) => (Number.isFinite(value) ? value.toFixed(decimals) : null));
 }
 
-export { formatUnitPrice, formatUnitPriceColumn };
+/**
+ * Formats a number with apostrophe (') thousand separators, e.g. 1234567.89 -> "1'234'567.89".
+ * Any decimal part `value` already has (from prior rounding) is preserved as-is; only the
+ * integer part is grouped.
+ */
+function formatThousands(value) {
+    if (!Number.isFinite(value)) {
+        return String(value);
+    }
+    const [intPart, decPart] = Math.abs(value).toString().split('.');
+    const groupedInt = intPart.replace(/\B(?=(\d{3})+(?!\d))/g, "'");
+    const sign = value < 0 ? '-' : '';
+    return decPart ? `${sign}${groupedInt}.${decPart}` : `${sign}${groupedInt}`;
+}
+
+export { formatUnitPrice, formatUnitPriceColumn, formatThousands };
