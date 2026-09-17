@@ -12,8 +12,23 @@
  * more value per Banknote spent rank higher, i.e. they are the best deals to prioritize
  * buying. Purchase limits are intentionally ignored for this "unit cost" (a fresh market is
  * peeked, never purchased from), since it represents the theoretical cheapest market price
- * of an item, independent of how many can actually be bought; if the item has no known
- * purchasable source, "unit_cost" stays null and the ranking entry is marked incomplete.
+ * of an item, independent of how many can actually be bought.
+ *
+ * A package/bonus tier is never allowed to count as evidence for its own contents' worth: for
+ * each one, its contents are priced against a market built with THAT ONE bundle excluded (see
+ * `marketExcludingPackage`/`marketExcludingBonusTier`) — reusing `createMarket` entirely
+ * unchanged, just called with a filtered input. If an item still has no OTHER known source
+ * anywhere (only ever sold as part of this exact bundle), it can't be priced independently;
+ * rather than crediting it with the bundle's entire price (which would make e.g. a
+ * 9999-Banknote bundle handing over six different items read as "each of those six items
+ * individually costs 9999"), whatever price is left over after paying the bundle's OTHER
+ * contents their real market rate is split evenly across those exclusive items (`valueOfBundle`).
+ * If the resolvable contents alone already account for the full price, exclusive items get 0
+ * — there's no room left in the price to attribute to them. This computation is entirely
+ * local to each bundle (no bundle's valuation depends on any other bundle's OUTPUT), so unlike
+ * a globally self-consistent solve there's no possibility of cross-bundle feedback loops or
+ * numerical instability; the trade-off is that items exclusive to more than one otherwise-poorly-
+ * connected bundle are priced independently per bundle rather than reconciled against each other.
  */
 
 import { createMarket } from './pricing-core';
@@ -25,76 +40,125 @@ function getUnitCost(market, itemId) {
     return Number.isFinite(cost) ? cost : null;
 }
 
-function valueOfContains(containsObj, market, items, locale) {
-    let total = 0;
-    let complete = true;
-    const breakdown = [];
+// A market that never considers `excludePkgId` a package source, so that package can never be
+// counted as evidence for its own contents' worth. Reuses `createMarket` unchanged.
+function marketExcludingPackage(packages, exchangeShops, items, locale, excludePkgId) {
+    if (!excludePkgId || !(excludePkgId in packages)) {
+        return createMarket(packages, exchangeShops, items, {}, {}, locale);
+    }
+    const filteredPackages = { ...packages };
+    delete filteredPackages[excludePkgId];
+    return createMarket(filteredPackages, exchangeShops, items, {}, {}, locale);
+}
 
-    for (const [itemId, qty] of Object.entries(containsObj || {})) {
-        const unitCost = getUnitCost(market, itemId);
-        if (unitCost === null) {
-            complete = false;
+// Same idea for one specific bonus tier: keeps its shop's offers and every other tier intact,
+// drops just that one threshold.
+function marketExcludingBonusTier(packages, exchangeShops, items, locale, excludeShopId, excludeThresholdStr) {
+    const filteredExchangeShops = {};
+    for (const [shopId, shop] of Object.entries(exchangeShops)) {
+        if (shopId !== excludeShopId || !shop.bonus_tiers || !(excludeThresholdStr in shop.bonus_tiers)) {
+            filteredExchangeShops[shopId] = shop;
+            continue;
         }
-        const value = qty * (unitCost ?? 0);
+        const filteredBonusTiers = { ...shop.bonus_tiers };
+        delete filteredBonusTiers[excludeThresholdStr];
+        filteredExchangeShops[shopId] = { ...shop, bonus_tiers: filteredBonusTiers };
+    }
+    return createMarket(packages, filteredExchangeShops, items, {}, {}, locale);
+}
+
+/**
+ * Values a flat `{itemId: qty}` map against `price`, pricing each item via `excludingMarket`
+ * (see module header). See module header for the exclusive-item residual-split rule.
+ */
+function valueOfBundle(contentsMap, price, excludingMarket, items, locale) {
+    const resolvable = [];
+    const exclusive = [];
+
+    for (const [itemId, qty] of contentsMap) {
+        const unitCost = getUnitCost(excludingMarket, itemId);
+        if (unitCost === null) {
+            exclusive.push({ itemId, qty });
+        } else {
+            resolvable.push({ itemId, qty, unitCost });
+        }
+    }
+
+    let total = 0;
+    const breakdown = [];
+    for (const { itemId, qty, unitCost } of resolvable) {
+        const value = qty * unitCost;
         total += value;
         breakdown.push({
             item_id: itemId,
             name: localizedName(items[itemId]?.name, locale) || itemId,
             quantity: qty,
             unit_cost: unitCost,
-            value: unitCost !== null ? Number(value.toFixed(6)) : 0,
+            value: Number(value.toFixed(6)),
         });
     }
 
-    return { total, complete, breakdown };
-}
-
-function valueOfChoice(choiceObj, market, items, locale) {
-    if (!choiceObj || !Array.isArray(choiceObj.choices) || choiceObj.choices.length === 0) {
-        return { total: 0, complete: true, breakdown: [] };
-    }
-
-    const selectCount = choiceObj.select_count || 1;
-    const evaluatedChoices = choiceObj.choices.map((choiceEntry) =>
-        valueOfContains(choiceEntry, market, items, locale),
-    );
-
-    const bestChoices = [...evaluatedChoices].sort((a, b) => b.total - a.total).slice(0, selectCount);
-
-    let total = 0;
-    let complete = true;
-    const breakdown = [];
-    for (const choice of bestChoices) {
-        total += choice.total;
-        if (!choice.complete) {
-            complete = false;
+    if (exclusive.length > 0) {
+        const residual = Math.max(0, price - total);
+        const perItemShare = residual / exclusive.length;
+        for (const { itemId, qty } of exclusive) {
+            total += perItemShare;
+            breakdown.push({
+                item_id: itemId,
+                name: localizedName(items[itemId]?.name, locale) || itemId,
+                quantity: qty,
+                unit_cost: perItemShare / qty,
+                value: Number(perItemShare.toFixed(6)),
+            });
         }
-        breakdown.push(...choice.breakdown);
     }
 
-    return { total, complete, breakdown };
+    return { total, complete: exclusive.length === 0, breakdown };
 }
 
-function valueOfPackage(pkg, market, items, locale) {
-    const containsResult = valueOfContains(pkg.contains, market, items, locale);
-    const choiceResult = valueOfChoice(pkg.choice, market, items, locale);
+/**
+ * A package's own directly-declared contents: `contains` plus whichever `choice` branch(es)
+ * currently look best (top `select_count`), priced via `excludingMarket`. Matches the
+ * optimistic "assume the best choices" approach the item-analysis page already uses.
+ */
+function mergedContentsOf(pkg, excludingMarket) {
+    const merged = new Map();
+    const add = (id, qty) => merged.set(id, (merged.get(id) || 0) + qty);
 
-    return {
-        total: containsResult.total + choiceResult.total,
-        complete: containsResult.complete && choiceResult.complete,
-        breakdown: [...containsResult.breakdown, ...choiceResult.breakdown],
-    };
+    if (pkg.contains) {
+        for (const [id, qty] of Object.entries(pkg.contains)) add(id, qty);
+    }
+    if (pkg.choice?.choices?.length) {
+        const selectCount = pkg.choice.select_count || 1;
+        const scored = pkg.choice.choices
+            .map((choiceEntry) => {
+                let total = 0;
+                for (const [id, qty] of Object.entries(choiceEntry)) {
+                    const v = getUnitCost(excludingMarket, id);
+                    total += v !== null ? qty * v : 0;
+                }
+                return { choiceEntry, total };
+            })
+            .sort((a, b) => b.total - a.total);
+        for (const { choiceEntry } of scored.slice(0, selectCount)) {
+            for (const [id, qty] of Object.entries(choiceEntry)) add(id, qty);
+        }
+    }
+    return merged;
 }
 
-function rankPackages(packages, market, items, locale) {
+function rankPackages(packages, exchangeShops, items, locale) {
     const rankings = [];
 
     for (const [pkgId, pkg] of Object.entries(packages)) {
-        const { total, complete, breakdown } = valueOfPackage(pkg, market, items, locale);
         const price = pkg.price;
         if (!Number.isFinite(price) || price <= 0) {
             continue;
         }
+
+        const excludingMarket = marketExcludingPackage(packages, exchangeShops, items, locale, pkgId);
+        const merged = mergedContentsOf(pkg, excludingMarket);
+        const { total, complete, breakdown } = valueOfBundle(merged, price, excludingMarket, items, locale);
 
         rankings.push({
             type: 'package',
@@ -128,6 +192,8 @@ function rankExchangeOffers(exchangeShops, market, items, locale) {
 
         for (const [offerKey, offer] of Object.entries(shop.offers || {})) {
             const offerItemId = offer.item_id || offerKey;
+            // No self-exclusion here: an offer only ever hands over one declared item type, so
+            // there's no bundling ambiguity to game — see module header.
             const unitCost = getUnitCost(market, offerItemId);
 
             const totalValue = offer.quantity * (unitCost ?? 0);
@@ -173,7 +239,7 @@ function rankExchangeOffers(exchangeShops, market, items, locale) {
     return rankings;
 }
 
-function rankBonusTiers(exchangeShops, market, items, locale) {
+function rankBonusTiers(packages, exchangeShops, market, items, locale) {
     const rankings = [];
 
     for (const [shopId, shop] of Object.entries(exchangeShops)) {
@@ -185,11 +251,26 @@ function rankBonusTiers(exchangeShops, market, items, locale) {
                 continue;
             }
 
-            const { total, complete, breakdown } = valueOfContains(contains, market, items, locale);
             const price = threshold * (currencyUnitCost ?? NaN);
             if (!Number.isFinite(price) || price <= 0) {
                 continue;
             }
+
+            const excludingMarket = marketExcludingBonusTier(
+                packages,
+                exchangeShops,
+                items,
+                locale,
+                shopId,
+                thresholdStr,
+            );
+            const { total, complete, breakdown } = valueOfBundle(
+                new Map(Object.entries(contains)),
+                price,
+                excludingMarket,
+                items,
+                locale,
+            );
 
             const currencyName = localizedName(items[shop.currency_item_id]?.name, locale) || shop.currency_item_id;
 
@@ -224,10 +305,11 @@ function rankBonusTiers(exchangeShops, market, items, locale) {
  * Builds the full live ranking of packages/exchange offers/bonus tiers from raw pack data.
  * Mirrors the shape of the (now retired) output/value_ranking.json for a drop-in swap.
  *
- * `options.excludeExchangeShops`, when true, drops exchange shops entirely: the market never
- * considers exchange offers as a pricing source (so package "value" is computed from packages
- * alone), and exchange offer / bonus tier entries — both inherently shop-based — are left out
- * of the rankings altogether rather than kept around with a now-pointless price.
+ * `options.excludeExchangeShops`, when true, drops exchange shops entirely: neither the price
+ * market nor the value attribution consider exchange offers as a source (so package "value" is
+ * computed from packages alone), and exchange offer / bonus tier entries — both inherently
+ * shop-based — are left out of the rankings altogether rather than kept around with a
+ * now-pointless price.
  */
 function buildRanking(data, locale = 'en', options = {}) {
     const { excludeExchangeShops = false } = options;
@@ -237,9 +319,9 @@ function buildRanking(data, locale = 'en', options = {}) {
     const market = createMarket(packages, exchangeShops, items, {}, {}, locale);
 
     const rankings = [
-        ...rankPackages(packages, market, items, locale),
+        ...rankPackages(packages, exchangeShops, items, locale),
         ...rankExchangeOffers(exchangeShops, market, items, locale),
-        ...rankBonusTiers(exchangeShops, market, items, locale),
+        ...rankBonusTiers(packages, exchangeShops, market, items, locale),
     ]
         .filter((entry) => Number.isFinite(entry.value_ratio))
         .sort((a, b) => b.value_ratio - a.value_ratio)
