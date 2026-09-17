@@ -70,14 +70,10 @@ function renderTable(filtered) {
     // their columns always stay visually aligned instead of living in two separate tables.
     const rows = filtered
         .map((entry) => {
-            // Pick the breakdown item that contributes the most value as the "main" icon for
-            // this entry, rather than just the first one in `contains` (which is very often a
-            // generic currency like Diamonds, since it's usually listed first).
-            const mainItemId = [...entry.contains_breakdown].sort((a, b) => b.value - a.value)[0]?.item_id || entry.id;
             return `
                 <div class="ranking-grid__row" role="row" data-rank="${entry.rank}">
                     <div class="ranking-grid__cell" role="cell">${entry.rank}</div>
-                    <div class="ranking-grid__cell item-cell" role="cell"><span class="main-icon" data-item-id="${mainItemId}"></span>${entry.name}</div>
+                    <div class="ranking-grid__cell" role="cell">${entry.name}</div>
                     <div class="ranking-grid__cell" role="cell"><span class="pill pill--${entry.type}">${sourceTypeLabel(entry.type)}</span></div>
                     <div class="ranking-grid__cell" role="cell">${categoryLabel(entry.category)}</div>
                     <div class="ranking-grid__cell" role="cell">${goldenBanknotes(entry.price_display)}</div>
