@@ -135,9 +135,9 @@ function detailsRowsHtml(details) {
                     <div class="plan-grid__cell">${detail.source.name}</div>
                     <div class="plan-grid__cell">${categoryLabel(detail.source.category)}</div>
                     <div class="plan-grid__cell">${formatDays(detail.source.availableDays)}</div>
-                    <div class="plan-grid__cell">${detail.purchases}</div>
-                    <div class="plan-grid__cell">${detail.unitsGained}</div>
-                    <div class="plan-grid__cell"><span class="text-gold">${detail.cost}</span> ${banknoteIconHtml()}</div>
+                    <div class="plan-grid__cell text-right">${detail.purchases}</div>
+                    <div class="plan-grid__cell text-right">${formatThousands(detail.unitsGained)}</div>
+                    <div class="plan-grid__cell text-right"><span class="text-gold">${formatThousands(detail.cost)}</span> ${banknoteIconHtml()}</div>
                 </div>
             `,
         )
@@ -176,9 +176,9 @@ function renderPlanTable(result, targetItemId) {
                         <div class="plan-grid__cell plan-grid__cell--header">${t('analyze.table.source')}</div>
                         <div class="plan-grid__cell plan-grid__cell--header">${t('analyze.table.category')}</div>
                         <div class="plan-grid__cell plan-grid__cell--header">${t('analyze.table.days')}</div>
-                        <div class="plan-grid__cell plan-grid__cell--header">${t('analyze.table.purchases')}</div>
-                        <div class="plan-grid__cell plan-grid__cell--header">${t('analyze.table.unitsGained')}</div>
-                        <div class="plan-grid__cell plan-grid__cell--header">${t('analyze.table.cost', { icon: banknoteIconHtml() })}</div>
+                        <div class="plan-grid__cell plan-grid__cell--header text-right">${t('analyze.table.purchases')}</div>
+                        <div class="plan-grid__cell plan-grid__cell--header text-right">${t('analyze.table.unitsGained')}</div>
+                        <div class="plan-grid__cell plan-grid__cell--header text-right">${t('analyze.table.cost', { icon: banknoteIconHtml() })}</div>
                     </div>
                     ${detailsRowsHtml(details)}
                 </div>
@@ -190,9 +190,9 @@ function renderPlanTable(result, targetItemId) {
                     <div class="plan-grid__cell item-cell" role="cell"></div>
                     <div class="plan-grid__cell" role="cell">${categoryLabel(source.category)}</div>
                     <div class="plan-grid__cell" role="cell">${formatDays(source.availableDays)}</div>
-                    <div class="plan-grid__cell" role="cell">${purchases}</div>
-                    <div class="plan-grid__cell" role="cell">${unitsGained}</div>
-                    <div class="plan-grid__cell" role="cell"><span class="text-gold">${cost}</span> ${banknoteIconHtml()}</div>
+                    <div class="plan-grid__cell text-right" role="cell">${purchases}</div>
+                    <div class="plan-grid__cell text-right" role="cell">${formatThousands(unitsGained)}</div>
+                    <div class="plan-grid__cell text-right" role="cell"><span class="text-gold">${formatThousands(cost)}</span> ${banknoteIconHtml()}</div>
                     <div class="plan-grid__cell text-right" role="cell">${perUnitDisplay[index] !== null ? `<span class="text-gold">${perUnitDisplay[index]}</span> ${banknoteIconHtml()}` : t('common.notAvailable')}</div>
                     <div class="plan-grid__cell" role="cell">${detailsCell}</div>
                 </div>
@@ -206,9 +206,9 @@ function renderPlanTable(result, targetItemId) {
             <div class="plan-grid__cell plan-grid__cell--header" role="columnheader">${t('analyze.table.source')}</div>
             <div class="plan-grid__cell plan-grid__cell--header" role="columnheader">${t('analyze.table.category')}</div>
             <div class="plan-grid__cell plan-grid__cell--header" role="columnheader">${t('analyze.table.days')}</div>
-            <div class="plan-grid__cell plan-grid__cell--header" role="columnheader">${t('analyze.table.purchases')}</div>
-            <div class="plan-grid__cell plan-grid__cell--header" role="columnheader">${t('analyze.table.unitsGained')}</div>
-            <div class="plan-grid__cell plan-grid__cell--header" role="columnheader">${t('analyze.table.cost', { icon: banknoteIconHtml() })}</div>
+            <div class="plan-grid__cell plan-grid__cell--header text-right" role="columnheader">${t('analyze.table.purchases')}</div>
+            <div class="plan-grid__cell plan-grid__cell--header text-right" role="columnheader">${t('analyze.table.unitsGained')}</div>
+            <div class="plan-grid__cell plan-grid__cell--header text-right" role="columnheader">${t('analyze.table.cost', { icon: banknoteIconHtml() })}</div>
             <div class="plan-grid__cell plan-grid__cell--header text-right" role="columnheader">${t('analyze.table.perUnit', { icon: banknoteIconHtml() })}</div>
             <div class="plan-grid__cell plan-grid__cell--header" role="columnheader"></div>
         </div>
@@ -243,11 +243,11 @@ function renderPlanTable(result, targetItemId) {
     });
 
     planSummary.innerHTML = t('analyze.planSummary', {
-        cost: `<span class="text-gold">${result.totalCost}</span>`,
+        cost: `<span class="text-gold">${formatThousands(result.totalCost)}</span>`,
         icon: banknoteIconHtml(),
     });
     if (!result.fullyReachable) {
-        planWarning.textContent = t('analyze.planWarning', { remaining: result.remaining });
+        planWarning.textContent = t('analyze.planWarning', { remaining: formatThousands(result.remaining) });
         planWarning.hidden = false;
     } else {
         planWarning.textContent = '';
