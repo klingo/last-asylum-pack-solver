@@ -12,6 +12,7 @@ applyStaticTranslations();
 const searchInput = document.getElementById('search-input');
 const typeFilterGroup = document.getElementById('type-filter-group');
 const typeFilterCheckboxes = Array.from(typeFilterGroup.querySelectorAll('input[type="checkbox"]'));
+const includeExchangeShopsCheckbox = document.getElementById('include-exchange-shops');
 const rankingMeta = document.getElementById('ranking-meta');
 const rankingTable = document.getElementById('ranking-table');
 const rankingEmpty = document.getElementById('ranking-empty');
@@ -47,7 +48,7 @@ function breakdownRowsHtml(entry) {
                     <div class="ranking-grid__cell"></div>
                     <div class="ranking-grid__cell">${categoryLabel(itemsById[item.item_id]?.category)}</div>
                     <div class="ranking-grid__cell ranking-grid__cell--num">${item.unit_cost !== null ? `<span class="text-gold">${formatUnitPrice(item.unit_cost, { minDecimals: 4 })}</span> ${banknoteIconHtml()}` : t('common.unknown')}</div>
-                    <div class="ranking-grid__cell ranking-grid__cell--num"><span class="text-gold">${formatThousands(item.value)}</span> ${banknoteIconHtml()}</div>
+                    <div class="ranking-grid__cell ranking-grid__cell--num"><span class="text-gold">${formatThousands(item.value, 2)}</span> ${banknoteIconHtml()}</div>
                     <div class="ranking-grid__cell"></div>
                     <div class="ranking-grid__cell"></div>
                     <div class="ranking-grid__cell"></div>
@@ -77,8 +78,8 @@ function renderTable(filtered) {
                     <div class="ranking-grid__cell" role="cell"><span class="pill pill--${entry.type}">${sourceTypeLabel(entry.type)}</span></div>
                     <div class="ranking-grid__cell" role="cell">${categoryLabel(entry.category)}</div>
                     <div class="ranking-grid__cell ranking-grid__cell--num" role="cell">${goldenBanknotes(entry.price_display)}</div>
-                    <div class="ranking-grid__cell ranking-grid__cell--num" role="cell"><span class="text-gold">${formatThousands(entry.total_value)}</span> ${banknoteIconHtml()}</div>
-                    <div class="ranking-grid__cell ranking-grid__cell--num" role="cell">${formatThousands(entry.value_ratio)}</div>
+                    <div class="ranking-grid__cell ranking-grid__cell--num" role="cell"><span class="text-gold">${formatThousands(entry.total_value, 2)}</span> ${banknoteIconHtml()}</div>
+                    <div class="ranking-grid__cell ranking-grid__cell--num" role="cell">${formatThousands(entry.value_ratio, 4)}</div>
                     <div class="ranking-grid__cell" role="cell">${entry.value_complete ? `<span class="text-good">${t('common.yes')}</span>` : `<span class="text-bad">${t('common.no')}</span>`}</div>
                     <div class="ranking-grid__cell" role="cell"><button type="button" class="expand-toggle" data-rank="${entry.rank}">${t('common.details')}</button></div>
                 </div>
@@ -142,7 +143,7 @@ function applyFilters() {
 
 function recompute() {
     itemsById = rawData.items || {};
-    const result = buildRanking(rawData, getLocale());
+    const result = buildRanking(rawData, getLocale(), { excludeExchangeShops: !includeExchangeShopsCheckbox.checked });
     rankings = result.rankings || [];
     const meta = result.metadata || {};
     const generatedAt = meta.generated_at ? new Date(meta.generated_at).toLocaleString(getLocale()) : '';
@@ -156,6 +157,7 @@ async function init() {
 
     searchInput.addEventListener('input', applyFilters);
     typeFilterCheckboxes.forEach((checkbox) => checkbox.addEventListener('change', applyFilters));
+    includeExchangeShopsCheckbox.addEventListener('change', recompute);
 
     window.addEventListener('localechange', () => {
         applyStaticTranslations();

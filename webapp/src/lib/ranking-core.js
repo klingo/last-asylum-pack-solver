@@ -223,11 +223,17 @@ function rankBonusTiers(exchangeShops, market, items, locale) {
 /**
  * Builds the full live ranking of packages/exchange offers/bonus tiers from raw pack data.
  * Mirrors the shape of the (now retired) output/value_ranking.json for a drop-in swap.
+ *
+ * `options.excludeExchangeShops`, when true, drops exchange shops entirely: the market never
+ * considers exchange offers as a pricing source (so package "value" is computed from packages
+ * alone), and exchange offer / bonus tier entries — both inherently shop-based — are left out
+ * of the rankings altogether rather than kept around with a now-pointless price.
  */
-function buildRanking(data, locale = 'en') {
+function buildRanking(data, locale = 'en', options = {}) {
+    const { excludeExchangeShops = false } = options;
     const items = data.items || {};
     const packages = data.packages || {};
-    const exchangeShops = data.exchange_shops || {};
+    const exchangeShops = excludeExchangeShops ? {} : data.exchange_shops || {};
     const market = createMarket(packages, exchangeShops, items, {}, {}, locale);
 
     const rankings = [

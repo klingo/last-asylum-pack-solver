@@ -18,7 +18,7 @@
                         <input id="search-input" type="search" data-i18n-placeholder="rankings.searchPlaceholder" />
                     </div>
                     <div class="field">
-                        <span data-i18n="rankings.typeLabel"></span>
+                        <span class="field-label" data-i18n="rankings.typeLabel"></span>
                         <div class="checkbox-group" id="type-filter-group">
                             <label class="checkbox-label">
                                 <input type="checkbox" value="package" checked />
@@ -31,6 +31,15 @@
                             <label class="checkbox-label">
                                 <input type="checkbox" value="bonus_tier" checked />
                                 <span data-i18n="sourceType.bonus_tier"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <span class="field-label" data-i18n="rankings.pricingLabel"></span>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="include-exchange-shops" checked />
+                                <span data-i18n="rankings.includeExchangeShops"></span>
                             </label>
                         </div>
                     </div>

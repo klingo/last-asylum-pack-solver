@@ -112,6 +112,8 @@
         "searchLabel": "Search",
         "searchPlaceholder": "Filter by name or category",
         "typeLabel": "Type",
+        "pricingLabel": "Pricing",
+        "includeExchangeShops": "Include Exchange Shops (and Bonus Tiers)",
         "empty": "No entries match your filters.",
         "meta": "{count} entries. Generated {date}.",
         "note": "Value ratio = total value / price. Higher value ratio means more relative value for the Banknotes spent; entries marked incomplete contain at least one item with no known purchasable source, so total value is a lower-bound estimate.",

@@ -42,14 +42,18 @@ function formatUnitPriceColumn(values, options = {}) {
 
 /**
  * Formats a number with apostrophe (') thousand separators, e.g. 1234567.89 -> "1'234'567.89".
- * Any decimal part `value` already has (from prior rounding) is preserved as-is; only the
- * integer part is grouped.
+ * With no `decimals` given, any decimal part `value` already has (from prior rounding) is
+ * preserved as-is; only the integer part is grouped. When `decimals` is given, the value is
+ * padded/rounded to exactly that many decimal places first, so every value in a column ends up
+ * with the same number of decimals (e.g. "5.5000" lining up under "5.7721") instead of each row
+ * showing however many non-zero decimals it happens to have.
  */
-function formatThousands(value) {
+function formatThousands(value, decimals) {
     if (!Number.isFinite(value)) {
         return String(value);
     }
-    const [intPart, decPart] = Math.abs(value).toString().split('.');
+    const raw = Number.isFinite(decimals) ? Math.abs(value).toFixed(decimals) : Math.abs(value).toString();
+    const [intPart, decPart] = raw.split('.');
     const groupedInt = intPart.replace(/\B(?=(\d{3})+(?!\d))/g, "'");
     const sign = value < 0 ? '-' : '';
     return decPart ? `${sign}${groupedInt}.${decPart}` : `${sign}${groupedInt}`;
