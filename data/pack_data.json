@@ -2,7 +2,7 @@
     "metadata": {
         "game": "Last Asylum: Plague",
         "currency": "Banknotes",
-        "last_updated": "2026-09-16"
+        "last_updated": "2026-09-17"
     },
     "items": {
         "antitoxin": {
@@ -1543,7 +1543,7 @@
                 "en": "Exclusive Weapon Pass",
                 "de": ""
             },
-            "category": "Hero Exclusive",
+            "category": "Value Event",
             "price": 1999,
             "deal_percentage": 8159,
             "purchase_limit": 1,
