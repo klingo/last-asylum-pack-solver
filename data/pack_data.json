@@ -182,7 +182,7 @@
                         "lv5_raven_gear_chest": 1
                     },
                     {
-                        "ur_choice_resource_supply": 15
+                        "resource_supply_ur": 15
                     }
                 ]
             }
@@ -3040,8 +3040,8 @@
                     "purchase_limit": 1,
                     "limit_type": "daily"
                 },
-                "ur_omni_shard": {
-                    "item_id": "ur_omni_shard",
+                "ur_hero_omni_shard": {
+                    "item_id": "ur_hero_omni_shard",
                     "currency_cost": 10,
                     "quantity": 1,
                     "purchase_limit": 300,
