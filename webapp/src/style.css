@@ -211,6 +211,15 @@ button:disabled {
     cursor: pointer;
 }
 
+.checkbox-label:has(input:disabled) {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.checkbox-label input:disabled {
+    cursor: not-allowed;
+}
+
 .item-combobox {
     position: relative;
 }

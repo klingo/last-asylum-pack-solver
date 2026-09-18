@@ -40,9 +40,7 @@ const shopMultiSelect = createMultiSelect({
 });
 const quantityInput = document.getElementById('quantity-input');
 const daysInput = document.getElementById('days-input');
-const ignoreDailyCheckbox = document.getElementById('ignore-daily-checkbox');
-const ignoreWeeklyCheckbox = document.getElementById('ignore-weekly-checkbox');
-const ignoreMonthlyCheckbox = document.getElementById('ignore-monthly-checkbox');
+const exceedPackLimitsCheckbox = document.getElementById('exceed-pack-limits-checkbox');
 const resetBtn = document.getElementById('reset-btn');
 const form = document.getElementById('analyze-form');
 
@@ -282,14 +280,8 @@ function syncUrlParams() {
     if (days && Number(days) > 1) {
         params.set('days', days);
     }
-    if (ignoreDailyCheckbox?.checked) {
-        params.set('ignoreDaily', '1');
-    }
-    if (ignoreWeeklyCheckbox?.checked) {
-        params.set('ignoreWeekly', '1');
-    }
-    if (ignoreMonthlyCheckbox?.checked) {
-        params.set('ignoreMonthly', '1');
+    if (exceedPackLimitsCheckbox?.checked) {
+        params.set('exceedPackLimits', '1');
     }
 
     const queryString = params.toString();
@@ -319,14 +311,8 @@ function applyUrlParams() {
     } else {
         daysInput.value = '1';
     }
-    if (ignoreDailyCheckbox) {
-        ignoreDailyCheckbox.checked = params.get('ignoreDaily') === '1';
-    }
-    if (ignoreWeeklyCheckbox) {
-        ignoreWeeklyCheckbox.checked = params.get('ignoreWeekly') === '1';
-    }
-    if (ignoreMonthlyCheckbox) {
-        ignoreMonthlyCheckbox.checked = params.get('ignoreMonthly') === '1';
+    if (exceedPackLimitsCheckbox) {
+        exceedPackLimitsCheckbox.checked = params.get('exceedPackLimits') === '1';
     }
 }
 
@@ -337,12 +323,22 @@ function recalculate({ syncUrl = true } = {}) {
 
     const targetItemId = itemPicker.getValue();
     const selectedShopIds = shopMultiSelect.getValues();
+    const hasActiveShop = selectedShopIds.size > 0;
+
+    // "Exceed event limits" only makes sense once an event is actually active (i.e. at least
+    // one exchange shop is selected); keep it disabled and cleared otherwise so a stale
+    // checked state never lingers from before the last shop was deselected.
+    if (exceedPackLimitsCheckbox) {
+        exceedPackLimitsCheckbox.disabled = !hasActiveShop;
+        if (!hasActiveShop) {
+            exceedPackLimitsCheckbox.checked = false;
+        }
+    }
+
     const limitOptions = {
-        ignoreDaily: Boolean(ignoreDailyCheckbox?.checked),
-        ignoreWeekly: Boolean(ignoreWeeklyCheckbox?.checked),
-        ignoreMonthly: Boolean(ignoreMonthlyCheckbox?.checked),
         days: Number(daysInput ? daysInput.value : 1) || 1,
     };
+    const exceedEventPackLimits = hasActiveShop && Boolean(exceedPackLimitsCheckbox?.checked);
     const targetQuantity = Number(quantityInput ? quantityInput.value : 0) || 0;
 
     if (syncUrl) {
@@ -376,9 +372,24 @@ function recalculate({ syncUrl = true } = {}) {
     // needed to pay for any exchange offer (target item or otherwise) can still come from
     // any shop. A fresh market is created per recalculation so purchase-limit capacities
     // start out unconsumed.
-    const market = createMarket(packages, exchangeShops, items, limitOptions, { activeEventIds }, locale);
+    const market = createMarket(
+        packages,
+        exchangeShops,
+        items,
+        limitOptions,
+        { activeEventIds, exceedEventPackLimits },
+        locale,
+    );
 
-    const packageSources = collectPackageSources(targetItemId, packages, items, limitOptions, locale, activeEventIds);
+    const packageSources = collectPackageSources(
+        targetItemId,
+        packages,
+        items,
+        limitOptions,
+        locale,
+        activeEventIds,
+        exceedEventPackLimits,
+    );
     const activeShops = {};
     for (const shopId of selectedShopIds) {
         if (exchangeShops[shopId]) {
@@ -393,6 +404,8 @@ function recalculate({ syncUrl = true } = {}) {
         market.peekUnitCost,
         limitOptions,
         locale,
+        activeEventIds,
+        exceedEventPackLimits,
     );
 
     const allSources = [...packageSources, ...exchangeSources].filter((s) => Number.isFinite(s.pricePerUnit));
@@ -426,14 +439,8 @@ function handleReset() {
     if (daysInput) {
         daysInput.value = '1';
     }
-    if (ignoreDailyCheckbox) {
-        ignoreDailyCheckbox.checked = false;
-    }
-    if (ignoreWeeklyCheckbox) {
-        ignoreWeeklyCheckbox.checked = false;
-    }
-    if (ignoreMonthlyCheckbox) {
-        ignoreMonthlyCheckbox.checked = false;
+    if (exceedPackLimitsCheckbox) {
+        exceedPackLimitsCheckbox.checked = false;
     }
 
     const url = new URL(window.location.href);
@@ -480,14 +487,8 @@ async function init() {
         daysInput.addEventListener('input', () => recalculate());
         daysInput.addEventListener('change', () => recalculate());
     }
-    if (ignoreDailyCheckbox) {
-        ignoreDailyCheckbox.addEventListener('change', () => recalculate());
-    }
-    if (ignoreWeeklyCheckbox) {
-        ignoreWeeklyCheckbox.addEventListener('change', () => recalculate());
-    }
-    if (ignoreMonthlyCheckbox) {
-        ignoreMonthlyCheckbox.addEventListener('change', () => recalculate());
+    if (exceedPackLimitsCheckbox) {
+        exceedPackLimitsCheckbox.addEventListener('change', () => recalculate());
     }
     if (resetBtn) {
         resetBtn.addEventListener('click', handleReset);
