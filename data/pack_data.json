@@ -2,7 +2,7 @@
     "metadata": {
         "game": "Last Asylum: Plague",
         "currency": "Banknotes",
-        "last_updated": "2026-09-17"
+        "last_updated": "2026-09-18"
     },
     "items": {
         "antitoxin": {
@@ -1127,7 +1127,7 @@
     "packages": {
         "awaken_shard_t1": {
             "name": {
-                "en": "Awaken Shard (T1)",
+                "en": "Awaken Shard",
                 "de": ""
             },
             "category": "Daily Offer",
@@ -1149,7 +1149,7 @@
         },
         "awaken_shard_t2": {
             "name": {
-                "en": "Awaken Shard (T2)",
+                "en": "Awaken Shard",
                 "de": ""
             },
             "category": "Daily Offer",
@@ -1171,7 +1171,7 @@
         },
         "awakening_special_pack_t1": {
             "name": {
-                "en": "Awakening Special Pack (T1)",
+                "en": "Awakening Special Pack",
                 "de": ""
             },
             "category": "Weekly Rotation",
@@ -1192,7 +1192,7 @@
         },
         "awakening_special_pack_t2": {
             "name": {
-                "en": "Awakening Special Pack (T2)",
+                "en": "Awakening Special Pack",
                 "de": ""
             },
             "category": "Weekly Rotation",
@@ -1323,7 +1323,7 @@
         },
         "building_speedup_pack_t1": {
             "name": {
-                "en": "Building Speedup Pack (T1)",
+                "en": "Building Speedup Pack",
                 "de": ""
             },
             "category": "Weekly Rotation",
@@ -1367,7 +1367,7 @@
         },
         "curio_pack_t1": {
             "name": {
-                "en": "Curio Pack (T1)",
+                "en": "Curio Pack",
                 "de": ""
             },
             "category": "Daily Must-Buy",
@@ -1411,7 +1411,7 @@
         },
         "development_pack_t1": {
             "name": {
-                "en": "Development Pack (T1)",
+                "en": "Development Pack",
                 "de": ""
             },
             "category": "Weekly Rotation",
@@ -1434,7 +1434,7 @@
         },
         "development_pack_t2": {
             "name": {
-                "en": "Development Pack (T2)",
+                "en": "Development Pack",
                 "de": ""
             },
             "category": "Weekly Rotation",
@@ -1479,7 +1479,7 @@
         },
         "enhancement_special_pack_t1": {
             "name": {
-                "en": "Enhancement Special Pack (T1)",
+                "en": "Enhancement Special Pack",
                 "de": ""
             },
             "category": "Weekly Rotation",
@@ -1519,7 +1519,7 @@
         },
         "exclusive_weapon_pack_t1": {
             "name": {
-                "en": "Exclusive Weapon Pack (T1)",
+                "en": "Exclusive Weapon Pack",
                 "de": ""
             },
             "category": "Weekly Rotation",
@@ -1562,7 +1562,7 @@
         },
         "exclusive_weapon_t1": {
             "name": {
-                "en": "Exclusive Weapon (T1)",
+                "en": "Exclusive Weapon",
                 "de": ""
             },
             "category": "Daily Offer",
@@ -1584,7 +1584,7 @@
         },
         "exclusive_weapon_t2": {
             "name": {
-                "en": "Exclusive Weapon (T2)",
+                "en": "Exclusive Weapon",
                 "de": ""
             },
             "category": "Daily Offer",
@@ -1606,7 +1606,7 @@
         },
         "exp_special_pack_t1": {
             "name": {
-                "en": "EXP Special Pack (T1)",
+                "en": "EXP Special Pack",
                 "de": ""
             },
             "category": "Weekly Rotation",
@@ -1645,7 +1645,7 @@
         },
         "hero_awaken_growth_pack_t5": {
             "name": {
-                "en": "<Hero> Awaken Growth Pack (T5)",
+                "en": "<Hero> Awaken Growth Pack",
                 "de": ""
             },
             "category": "Hero Exclusive",
@@ -1666,7 +1666,7 @@
         },
         "hero_exclusive_weapon_pack_t1": {
             "name": {
-                "en": "<Hero> Exclusive Weapon Pack (T1)",
+                "en": "<Hero> Exclusive Weapon Pack",
                 "de": ""
             },
             "category": "Hero Exclusive",
@@ -1687,7 +1687,7 @@
         },
         "hero_exclusive_weapon_pack_t2": {
             "name": {
-                "en": "<Hero> Exclusive Weapon Pack (T2)",
+                "en": "<Hero> Exclusive Weapon Pack",
                 "de": ""
             },
             "category": "Hero Exclusive",
@@ -1708,7 +1708,7 @@
         },
         "hero_exclusive_weapon_pack_t3": {
             "name": {
-                "en": "<Hero> Exclusive Weapon Pack (T3)",
+                "en": "<Hero> Exclusive Weapon Pack",
                 "de": ""
             },
             "category": "Hero Exclusive",
@@ -1729,7 +1729,7 @@
         },
         "hero_exclusive_weapon_pack_t4": {
             "name": {
-                "en": "<Hero> Exclusive Weapon Pack (T4)",
+                "en": "<Hero> Exclusive Weapon Pack",
                 "de": ""
             },
             "category": "Hero Exclusive",
@@ -1750,7 +1750,7 @@
         },
         "hero_exclusive_weapon_pack_t5": {
             "name": {
-                "en": "<Hero> Exclusive Weapon Pack (T5)",
+                "en": "<Hero> Exclusive Weapon Pack",
                 "de": ""
             },
             "category": "Hero Exclusive",
@@ -1771,7 +1771,7 @@
         },
         "hero_growth_pack_t1": {
             "name": {
-                "en": "Hero Growth Pack (T1)",
+                "en": "Hero Growth Pack",
                 "de": ""
             },
             "category": "Daily Must-Buy",
@@ -1814,7 +1814,7 @@
         },
         "hero_shard_t1": {
             "name": {
-                "en": "Hero Shard (T1)",
+                "en": "Hero Shard",
                 "de": ""
             },
             "category": "Daily Offer",
@@ -1836,7 +1836,7 @@
         },
         "hero_special_pack_t1": {
             "name": {
-                "en": "Hero Special Pack (T1)",
+                "en": "Hero Special Pack",
                 "de": ""
             },
             "category": "Weekly Rotation",
@@ -1857,7 +1857,7 @@
         },
         "might_special_pack_t1": {
             "name": {
-                "en": "Might Special Pack (T1)",
+                "en": "Might Special Pack",
                 "de": ""
             },
             "category": "Weekly Rotation",
@@ -1880,7 +1880,7 @@
         },
         "mystic_cabinet_i_t1": {
             "name": {
-                "en": "Mystic Cabinet I (T1)",
+                "en": "Mystic Cabinet I",
                 "de": ""
             },
             "category": "Special",
@@ -1901,7 +1901,7 @@
         },
         "mystic_cabinet_i_t2": {
             "name": {
-                "en": "Mystic Cabinet I (T2)",
+                "en": "Mystic Cabinet I",
                 "de": ""
             },
             "category": "Special",
@@ -1922,7 +1922,7 @@
         },
         "mystic_cabinet_i_t3": {
             "name": {
-                "en": "Mystic Cabinet I (T3)",
+                "en": "Mystic Cabinet I",
                 "de": ""
             },
             "category": "Special",
@@ -1942,7 +1942,7 @@
         },
         "mystic_cabinet_ii_t1": {
             "name": {
-                "en": "Mystic Cabinet II (T1)",
+                "en": "Mystic Cabinet II",
                 "de": ""
             },
             "category": "Special",
@@ -1962,7 +1962,7 @@
         },
         "mystic_cabinet_iii_t1": {
             "name": {
-                "en": "Mystic Cabinet III (T1)",
+                "en": "Mystic Cabinet III",
                 "de": ""
             },
             "category": "Special",
@@ -1982,7 +1982,7 @@
         },
         "premium_grain_pack_t1": {
             "name": {
-                "en": "Premium Grain Pack (T1)",
+                "en": "Premium Grain Pack",
                 "de": ""
             },
             "category": "Daily Must-Buy",
@@ -2003,7 +2003,7 @@
         },
         "premium_herb_pack_t1": {
             "name": {
-                "en": "Premium Herb Pack (T1)",
+                "en": "Premium Herb Pack",
                 "de": ""
             },
             "category": "Daily Must-Buy",
@@ -2046,7 +2046,7 @@
         },
         "premium_timber_pack_t1": {
             "name": {
-                "en": "Premium Timber Pack (T1)",
+                "en": "Premium Timber Pack",
                 "de": ""
             },
             "category": "Daily Must-Buy",
@@ -2067,7 +2067,7 @@
         },
         "quick_research_pack_t1": {
             "name": {
-                "en": "Quick Research Pack (T1)",
+                "en": "Quick Research Pack",
                 "de": ""
             },
             "category": "Weekly Rotation",
@@ -2110,7 +2110,7 @@
         },
         "raven_epigraph_offer_t1": {
             "name": {
-                "en": "Raven Epigraph Offer (T1)",
+                "en": "Raven Epigraph Offer",
                 "de": ""
             },
             "category": "Weekly Rotation",
@@ -2133,7 +2133,7 @@
         },
         "raven_epigraph_t1": {
             "name": {
-                "en": "Raven Epigraph (T1)",
+                "en": "Raven Epigraph",
                 "de": ""
             },
             "category": "Daily Must-Buy",
@@ -2176,7 +2176,7 @@
         },
         "raven_essence_t1": {
             "name": {
-                "en": "Raven Essence (T1)",
+                "en": "Raven Essence",
                 "de": ""
             },
             "category": "Daily Must-Buy",
@@ -2220,7 +2220,7 @@
         },
         "raven_gear_special_pack_t1": {
             "name": {
-                "en": "Raven Gear Special Pack (T1)",
+                "en": "Raven Gear Special Pack",
                 "de": ""
             },
             "category": "Weekly Rotation",
@@ -2241,7 +2241,7 @@
         },
         "raven_gear_t1": {
             "name": {
-                "en": "Raven Gear (T1)",
+                "en": "Raven Gear",
                 "de": ""
             },
             "category": "Daily Must-Buy",
@@ -2262,7 +2262,7 @@
         },
         "raven_growth_pack_t1": {
             "name": {
-                "en": "Raven Growth Pack (T1)",
+                "en": "Raven Growth Pack",
                 "de": ""
             },
             "category": "Weekly Rotation",
@@ -2284,7 +2284,7 @@
         },
         "research_special_pack_t1": {
             "name": {
-                "en": "Research Special Pack (T1)",
+                "en": "Research Special Pack",
                 "de": ""
             },
             "category": "Weekly Rotation",
@@ -2309,7 +2309,7 @@
         },
         "resource_special_pack_t1": {
             "name": {
-                "en": "Resource Special Pack (T1)",
+                "en": "Resource Special Pack",
                 "de": ""
             },
             "category": "Weekly Rotation",
@@ -2332,7 +2332,7 @@
         },
         "resource_special_pack_t2": {
             "name": {
-                "en": "Resource Special Pack (T2)",
+                "en": "Resource Special Pack",
                 "de": ""
             },
             "category": "Weekly Rotation",
@@ -2355,7 +2355,7 @@
         },
         "speedup_special_pack_t1": {
             "name": {
-                "en": "Speedup Special Pack (T1)",
+                "en": "Speedup Special Pack",
                 "de": ""
             },
             "category": "Weekly Rotation",
@@ -2462,7 +2462,7 @@
         },
         "study_scroll_t1": {
             "name": {
-                "en": "Study Scroll (T1)",
+                "en": "Study Scroll",
                 "de": ""
             },
             "category": "Daily Must-Buy",
@@ -2606,7 +2606,7 @@
         },
         "universal_speedup_pack_t1": {
             "name": {
-                "en": "Universal Speedup Pack (T1)",
+                "en": "Universal Speedup Pack",
                 "de": ""
             },
             "category": "Daily Must-Buy",
@@ -2629,7 +2629,7 @@
         },
         "ur_blueprint_offer_t1": {
             "name": {
-                "en": "UR Blueprint Offer (T1)",
+                "en": "UR Blueprint Offer",
                 "de": ""
             },
             "category": "Weekly Rotation",
@@ -2651,7 +2651,7 @@
         },
         "ur_blueprint_offer_t2": {
             "name": {
-                "en": "UR Blueprint Offer (T2)",
+                "en": "UR Blueprint Offer",
                 "de": ""
             },
             "category": "Weekly Rotation",
@@ -2673,7 +2673,7 @@
         },
         "ur_blueprint_offer_t3": {
             "name": {
-                "en": "UR Blueprint Offer (T3)",
+                "en": "UR Blueprint Offer",
                 "de": ""
             },
             "category": "Weekly Rotation",
@@ -2717,7 +2717,7 @@
         },
         "value_gear_pack_t1": {
             "name": {
-                "en": "Value Gear Pack (T1)",
+                "en": "Value Gear Pack",
                 "de": ""
             },
             "category": "Daily Must-Buy",
@@ -2739,7 +2739,7 @@
         },
         "weekly_special_t1": {
             "name": {
-                "en": "Jokers Weekly Special (T1)",
+                "en": "Jokers Weekly Special",
                 "de": ""
             },
             "category": "Special",
@@ -2776,7 +2776,7 @@
         },
         "weekly_special_t2": {
             "name": {
-                "en": "Jokers Weekly Special (T2)",
+                "en": "Jokers Weekly Special",
                 "de": ""
             },
             "category": "Special",
