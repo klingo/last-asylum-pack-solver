@@ -3,6 +3,8 @@ import { renderNav } from './nav';
 import { loadPackData } from './lib/data';
 import { buildRanking } from './lib/ranking-core';
 import { createItemImage, banknoteIconHtml } from './lib/images';
+import { enableInfoTooltips } from './lib/tooltip';
+import { requiresIconHtml } from './lib/requires-tooltip';
 import { t, getLocale, categoryLabel, sourceTypeLabel, applyStaticTranslations } from './lib/i18n';
 import { formatUnitPrice, formatThousands } from './lib/format';
 
@@ -74,7 +76,7 @@ function renderTable(filtered) {
             return `
                 <div class="ranking-grid__row" role="row" data-rank="${entry.rank}">
                     <div class="ranking-grid__cell ranking-grid__cell--num" role="cell">${entry.rank}</div>
-                    <div class="ranking-grid__cell" role="cell">${entry.name}</div>
+                    <div class="ranking-grid__cell" role="cell">${entry.name}${requiresIconHtml(entry.requires, rawData?.packages || {}, itemsById, getLocale())}</div>
                     <div class="ranking-grid__cell" role="cell"><span class="pill pill--${entry.type}">${sourceTypeLabel(entry.type)}</span></div>
                     <div class="ranking-grid__cell" role="cell">${categoryLabel(entry.category)}</div>
                     <div class="ranking-grid__cell ranking-grid__cell--num" role="cell">${goldenBanknotes(entry.price_display)}</div>
@@ -122,6 +124,7 @@ function renderTable(filtered) {
         const img = createItemImage(itemId, itemId, 'item-icon item-icon--sm');
         placeholder.replaceWith(img);
     });
+    enableInfoTooltips(rankingTable);
 
     rankingTable.querySelectorAll('.expand-toggle').forEach((button) => {
         button.addEventListener('click', () => {

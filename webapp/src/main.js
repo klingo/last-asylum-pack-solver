@@ -1,12 +1,13 @@
 import './style.css';
 import { renderNav } from './nav';
 import { loadPackData } from './lib/data';
-import { createMarket, collectPackageSources, collectExchangeSources, packageDisplayName } from './lib/pricing-core';
+import { createMarket, collectPackageSources, collectExchangeSources } from './lib/pricing-core';
 import { buildPurchasePlan } from './lib/purchase-plan';
 import { createItemImage, banknoteIconHtml } from './lib/images';
 import { createItemPicker } from './lib/item-picker';
 import { createMultiSelect } from './lib/multi-select';
 import { enableInfoTooltips } from './lib/tooltip';
+import { requiresIconHtml } from './lib/requires-tooltip';
 import { formatUnitPriceColumn, formatThousands } from './lib/format';
 import {
     t,
@@ -63,32 +64,6 @@ function populateShopSelect(exchangeShops) {
     shopMultiSelect.setOptions(sortedShops.map(([shopId, shop]) => ({ id: shopId, label: localizedName(shop.name) })));
 }
 
-function getResolvedRequiresName(requiresId, packages, items) {
-    const requiredPackage = packages[requiresId];
-    if (requiredPackage) {
-        return packageDisplayName(requiredPackage, getLocale());
-    }
-    return localizedName(items[requiresId]?.name) || requiresId;
-}
-
-// Small "i in a circle" icon; the button itself carries the accessible name (aria-label), so
-// the SVG is purely decorative.
-const INFO_ICON_SVG =
-    '<svg viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false">' +
-    '<circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.3" />' +
-    '<circle cx="8" cy="4.8" r="0.9" fill="currentColor" />' +
-    '<rect x="7.3" y="7" width="1.4" height="4.6" rx="0.7" fill="currentColor" />' +
-    '</svg>';
-
-function requiresIconHtml(requiresId) {
-    if (!requiresId) {
-        return '';
-    }
-    const requiresName = getResolvedRequiresName(requiresId, data?.packages || {}, data?.items || {});
-    const label = t('analyze.table.requiresTooltip', { name: requiresName });
-    return `<button type="button" class="info-icon" data-tooltip="${label}" aria-label="${label}">${INFO_ICON_SVG}</button>`;
-}
-
 function renderSourcesTable(sources) {
     const ordered = [...sources].sort((a, b) => a.pricePerUnit - b.pricePerUnit);
     // Every row's "/ Unit" price shares one decimal precision (whatever the smallest value in
@@ -115,7 +90,7 @@ function renderSourcesTable(sources) {
             return `
                 <tr>
                     <td><span class="pill ${pillClass}">${typeLabel}</span></td>
-                    <td>${source.name}${requiresIconHtml(source.requires)}</td>
+                    <td>${source.name}${requiresIconHtml(source.requires, data?.packages || {}, data?.items || {}, getLocale())}</td>
                     <td>${categoryLabel(source.category)}</td>
                     <td class="text-right">${priceCell}</td>
                     <td class="text-right">${formatThousands(Number(source.yieldPerPurchase.toFixed(4)))}</td>

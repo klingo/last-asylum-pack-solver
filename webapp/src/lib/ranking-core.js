@@ -31,7 +31,7 @@
  * connected bundle are priced independently per bundle rather than reconciled against each other.
  */
 
-import { createMarket } from './pricing-core';
+import { createMarket, packageDisplayName } from './pricing-core';
 import { localizedName, t } from './i18n';
 import { formatThousands } from './format';
 
@@ -163,7 +163,7 @@ function rankPackages(packages, exchangeShops, items, locale) {
         rankings.push({
             type: 'package',
             id: pkgId,
-            name: localizedName(pkg.name, locale),
+            name: packageDisplayName(pkg, locale),
             category: pkg.category || '-',
             price,
             price_display: t('rankings.priceDisplay.package', {
