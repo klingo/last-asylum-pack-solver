@@ -414,6 +414,59 @@ tbody tr:hover {
     overflow-x: auto;
 }
 
+.info-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    margin-left: 6px;
+    padding: 0;
+    background: none;
+    border: none;
+    border-radius: 50%;
+    color: var(--text-dim);
+    cursor: help;
+    vertical-align: middle;
+}
+
+.info-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.info-icon:hover,
+.info-icon:focus-visible {
+    /* Overrides the global `button:hover` background/border (a solid accent fill), which
+       would otherwise still apply here since `.info-icon` is a plain <button>. */
+    background: none;
+    border-color: transparent;
+    color: var(--accent);
+}
+
+.info-icon:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.app-tooltip {
+    position: absolute;
+    z-index: 50;
+    max-width: 260px;
+    padding: 6px 10px;
+    background: var(--panel-alt);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    font-size: 0.8rem;
+    color: var(--text);
+    pointer-events: none;
+}
+
+.app-tooltip[hidden] {
+    display: none;
+}
+
 .item-cell {
     display: flex;
     align-items: center;

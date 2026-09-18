@@ -98,7 +98,7 @@
             "perUnit": "{icon} / Unit",
             "limitUnits": "Limit (units)",
             "days": "Days",
-            "requires": "Requires",
+            "requiresTooltip": "Requires: {name}",
             "purchases": "Purchases",
             "unitsGained": "Units Gained",
             "cost": "Cost ({icon})"
