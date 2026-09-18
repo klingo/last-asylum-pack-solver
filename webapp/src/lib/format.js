@@ -4,11 +4,19 @@
  * cheap-per-unit resources (e.g. Herbs, obtained in the tens of millions per purchase) round
  * away to "0.00" at a fixed low precision, which reads as free/unknown rather than merely
  * tiny.
+ *
+ * Once growing was actually needed (i.e. `minDecimals` alone wasn't enough), one extra decimal
+ * is added on top of the first non-zero digit, up to `maxDecimals`, so a barely-visible value
+ * like "0.00001" instead reads as "0.000014" — a second significant digit rather than just
+ * clearing zero. Values that already fit at `minDecimals` are never affected by this.
  */
 function unitPriceDecimals(value, { minDecimals = 2, maxDecimals = 10 } = {}) {
     let decimals = minDecimals;
     while (decimals < maxDecimals && value !== 0 && Number(value.toFixed(decimals)) === 0) {
         decimals++;
+    }
+    if (decimals > minDecimals) {
+        decimals = Math.min(decimals + 1, maxDecimals);
     }
     return decimals;
 }
