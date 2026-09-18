@@ -21,6 +21,15 @@ function loadData(dataPath = DATA_PATH) {
     return JSON.parse(fs.readFileSync(dataPath, 'utf8'));
 }
 
+/**
+ * A package's display name, with " (Tier N)" appended whenever it declares a `tier` (e.g.
+ * "Blades Out Deluxe Pack (Tier 2)"). Applied even for names that already hint at a tier via
+ * their own "(T1)"/"(T2)"-style suffix, since `tier` is the authoritative field.
+ */
+function packageDisplayName(pkg) {
+    return pkg.tier != null ? `${pkg.name.en} (Tier ${pkg.tier})` : pkg.name.en;
+}
+
 function resolveYieldFromContains(containsObj, targetId, visited, items) {
     let total = 0;
     for (const [subId, qty] of Object.entries(containsObj)) {
@@ -330,7 +339,7 @@ function createMarket(packages, exchangeShops, items, limitOptions = {}, options
             return {
                 type: 'package',
                 id: best.pkgId,
-                name: best.pkg.name.en,
+                name: packageDisplayName(best.pkg),
                 category: best.pkg.category || '-',
                 availableDays: best.pkg.available_days || null,
                 requires: best.pkg.requires || null,
@@ -510,7 +519,7 @@ function collectPackageSources(
         sources.push({
             type: 'package',
             id: pkgId,
-            name: pkg.name.en,
+            name: packageDisplayName(pkg),
             category: pkg.category || '-',
             price: pkg.price,
             yieldPerPurchase: y,
@@ -584,6 +593,7 @@ function formatDays(availableDays) {
 module.exports = {
     DATA_PATH,
     loadData,
+    packageDisplayName,
     resolveYieldFromContains,
     resolveYieldFromChoice,
     resolveYieldFromSubstitutes,

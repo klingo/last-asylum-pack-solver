@@ -6,6 +6,16 @@
 import { localizedName } from './i18n';
 import { formatThousands } from './format';
 
+/**
+ * A package's display name, with " (Tier N)" appended whenever it declares a `tier` (e.g.
+ * "Blades Out Deluxe Pack (Tier 2)"). Applied even for names that already hint at a tier via
+ * their own "(T1)"/"(T2)"-style suffix, since `tier` is the authoritative field.
+ */
+function packageDisplayName(pkg, locale = 'en') {
+    const name = localizedName(pkg.name, locale);
+    return pkg.tier != null ? `${name} (Tier ${pkg.tier})` : name;
+}
+
 function resolveYieldFromContains(containsObj, targetId, visited, items) {
     let total = 0;
     for (const [subId, qty] of Object.entries(containsObj)) {
@@ -315,7 +325,7 @@ function createMarket(packages, exchangeShops, items, limitOptions = {}, options
             return {
                 type: 'package',
                 id: best.pkgId,
-                name: localizedName(best.pkg.name, locale),
+                name: packageDisplayName(best.pkg, locale),
                 category: best.pkg.category || '-',
                 availableDays: best.pkg.available_days || null,
                 requires: best.pkg.requires || null,
@@ -496,7 +506,7 @@ function collectPackageSources(
         sources.push({
             type: 'package',
             id: pkgId,
-            name: localizedName(pkg.name, locale),
+            name: packageDisplayName(pkg, locale),
             category: pkg.category || '-',
             price: pkg.price,
             yieldPerPurchase: y,
@@ -566,6 +576,7 @@ function collectExchangeSources(
 }
 
 export {
+    packageDisplayName,
     resolveYieldFromContains,
     resolveYieldFromChoice,
     resolveYieldFromSubstitutes,

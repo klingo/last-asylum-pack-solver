@@ -1,7 +1,7 @@
 import './style.css';
 import { renderNav } from './nav';
 import { loadPackData } from './lib/data';
-import { createMarket, collectPackageSources, collectExchangeSources } from './lib/pricing-core';
+import { createMarket, collectPackageSources, collectExchangeSources, packageDisplayName } from './lib/pricing-core';
 import { buildPurchasePlan } from './lib/purchase-plan';
 import { createItemImage, banknoteIconHtml } from './lib/images';
 import { createItemPicker } from './lib/item-picker';
@@ -64,7 +64,11 @@ function populateShopSelect(exchangeShops) {
 }
 
 function getResolvedRequiresName(requiresId, packages, items) {
-    return localizedName(packages[requiresId]?.name) || localizedName(items[requiresId]?.name) || requiresId;
+    const requiredPackage = packages[requiresId];
+    if (requiredPackage) {
+        return packageDisplayName(requiredPackage, getLocale());
+    }
+    return localizedName(items[requiresId]?.name) || requiresId;
 }
 
 // Small "i in a circle" icon; the button itself carries the accessible name (aria-label), so
