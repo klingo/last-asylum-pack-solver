@@ -3,6 +3,7 @@
         "title": ""
     },
     "nav": {
+        "home": "",
         "analyze": "",
         "rankings": "",
         "language": ""
@@ -60,13 +61,21 @@
         "bonus_tier": ""
     },
     "docTitle": {
+        "welcome": "",
         "analyze": "",
         "rankings": ""
     },
     "footer": {
+        "welcome": "",
         "analyzeGenerated": "",
         "analyzeDefault": "",
         "rankings": ""
+    },
+    "welcome": {
+        "heading": "",
+        "intro": "",
+        "analyzeDescription": "",
+        "rankingsDescription": ""
     },
     "analyze": {
         "heading": "",

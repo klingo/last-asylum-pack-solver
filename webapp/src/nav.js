@@ -2,12 +2,17 @@ import { t, getLocale, setLocale, SUPPORTED_LOCALES } from './lib/i18n';
 
 const LOCALE_LABELS = { en: 'EN', de: 'DE' };
 
+// Remembered across `renderNav()` calls so the "localechange" listener below can re-render
+// with the same active page without having to re-derive it from the (about to be replaced) DOM.
+let currentActivePage = 'welcome';
+
 /**
  * Renders the shared top navigation bar (including the language switcher) and marks the
  * current page as active. Re-run automatically on every "localechange" event so the nav's
  * own text stays in sync, without each page having to remember to do it.
  */
 function renderNav(activePage) {
+    currentActivePage = activePage;
     const header = document.querySelector('.app-header');
     if (!header) {
         return;
@@ -19,9 +24,10 @@ function renderNav(activePage) {
             `<option value="${code}" ${code === locale ? 'selected' : ''}>${LOCALE_LABELS[code] || code}</option>`,
     ).join('');
     header.innerHTML = `
-        <h1>${t('app.title')}</h1>
+        <h1><a href="${base}index.html" class="app-title">${t('app.title')}</a></h1>
         <nav class="app-nav">
-            <a href="${base}index.html" class="${activePage === 'analyze' ? 'active' : ''}">${t('nav.analyze')}</a>
+            <a href="${base}index.html" class="${activePage === 'welcome' ? 'active' : ''}">${t('nav.home')}</a>
+            <a href="${base}analyze.html" class="${activePage === 'analyze' ? 'active' : ''}">${t('nav.analyze')}</a>
             <a href="${base}rankings.html" class="${activePage === 'rankings' ? 'active' : ''}">${t('nav.rankings')}</a>
         </nav>
         <label class="lang-switch">
@@ -36,9 +42,7 @@ function renderNav(activePage) {
 }
 
 window.addEventListener('localechange', () => {
-    const active = document.querySelector('.app-nav a.active');
-    const activePage = active && active.getAttribute('href')?.includes('rankings') ? 'rankings' : 'analyze';
-    renderNav(activePage);
+    renderNav(currentActivePage);
 });
 
 export { renderNav };

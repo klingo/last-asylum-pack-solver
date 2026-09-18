@@ -3,6 +3,7 @@
         "title": "Last Asylum Pack Solver"
     },
     "nav": {
+        "home": "Home",
         "analyze": "Analyze Item Value",
         "rankings": "Value Ranking",
         "language": "Language"
@@ -60,13 +61,21 @@
         "bonus_tier": "Bonus tier"
     },
     "docTitle": {
+        "welcome": "Last Asylum Pack Solver",
         "analyze": "Analyze Item Value - Last Asylum Pack Solver",
         "rankings": "Value Ranking - Last Asylum Pack Solver"
     },
     "footer": {
+        "welcome": "Last Asylum Pack Solver — computed live from pack_data.json",
         "analyzeGenerated": "Last Asylum Pack Solver — data generated from pack_data.json (updated {date})",
         "analyzeDefault": "Last Asylum Pack Solver — data generated from pack_data.json",
         "rankings": "Last Asylum Pack Solver — ranking computed live from pack_data.json"
+    },
+    "welcome": {
+        "heading": "Welcome",
+        "intro": "Tools for figuring out the best way to spend your Banknotes in Last Asylum: Plague, computed live from the current pack data.",
+        "analyzeDescription": "Pick any item and see every package or exchange offer that yields it, ranked by cost per unit, plus the cheapest purchase plan to reach a target quantity.",
+        "rankingsDescription": "Browse every package, exchange offer, and bonus tier ranked by how much value it returns relative to its price, to spot the best deals at a glance."
     },
     "analyze": {
         "heading": "Analyze Item Value",
