@@ -5,6 +5,7 @@ import { createMarket, collectPackageSources, collectExchangeSources } from './l
 import { buildPurchasePlan } from './lib/purchase-plan';
 import { createItemImage, banknoteIconHtml } from './lib/images';
 import { createItemPicker } from './lib/item-picker';
+import { createMultiSelect } from './lib/multi-select';
 import { formatUnitPriceColumn, formatThousands } from './lib/format';
 import {
     t,
@@ -28,7 +29,15 @@ const itemPicker = createItemPicker({
     clearButton: itemSearchClearBtn,
     onChange: () => recalculate(),
 });
-const shopSelect = document.getElementById('shop-select');
+const shopSelectButton = document.getElementById('shop-select-button');
+const shopSelectPanel = document.getElementById('shop-select-panel');
+const shopMultiSelect = createMultiSelect({
+    button: shopSelectButton,
+    panel: shopSelectPanel,
+    emptyLabel: () => t('analyze.shopNoneSelected'),
+    countLabel: (count) => t('analyze.shopSelectedCount', { count }),
+    onChange: () => recalculate(),
+});
 const quantityInput = document.getElementById('quantity-input');
 const daysInput = document.getElementById('days-input');
 const ignoreDailyCheckbox = document.getElementById('ignore-daily-checkbox');
@@ -49,17 +58,10 @@ const appFooter = document.querySelector('.app-footer');
 let data = null;
 
 function populateShopSelect(exchangeShops) {
-    if (!shopSelect) {
-        return;
-    }
     const sortedShops = Object.entries(exchangeShops).sort((a, b) =>
         localizedName(a[1].name).localeCompare(localizedName(b[1].name)),
     );
-    shopSelect.innerHTML = [
-        `<option value="">${t('common.none')}</option>`,
-        `<option value="any">${t('common.any')}</option>`,
-        ...sortedShops.map(([shopId, shop]) => `<option value="${shopId}">${localizedName(shop.name)}</option>`),
-    ].join('');
+    shopMultiSelect.setOptions(sortedShops.map(([shopId, shop]) => ({ id: shopId, label: localizedName(shop.name) })));
 }
 
 function getResolvedRequiresName(requiresId, packages, items) {
@@ -260,7 +262,7 @@ function syncUrlParams() {
     const params = new URLSearchParams();
 
     const itemId = itemPicker.getValue();
-    const shopId = shopSelect?.value;
+    const shopIds = [...shopMultiSelect.getValues()];
     const quantity = quantityInput?.value?.trim();
     const days = daysInput?.value?.trim();
     const lang = new URLSearchParams(url.search).get('lang');
@@ -271,8 +273,8 @@ function syncUrlParams() {
     if (itemId) {
         params.set('item', itemId);
     }
-    if (shopId) {
-        params.set('shop', shopId);
+    if (shopIds.length > 0) {
+        params.set('shop', shopIds.join(','));
     }
     if (quantity && Number(quantity) > 0) {
         params.set('quantity', quantity);
@@ -305,15 +307,8 @@ function applyUrlParams() {
     if (itemParam && data?.items?.[itemParam]) {
         itemPicker.setValue(itemParam);
     }
-    if (shopParam) {
-        if (shopParam === 'any' || data?.exchange_shops?.[shopParam]) {
-            shopSelect.value = shopParam;
-        } else {
-            shopSelect.value = '';
-        }
-    } else {
-        shopSelect.value = '';
-    }
+    const shopIds = shopParam ? shopParam.split(',').filter((id) => data?.exchange_shops?.[id]) : [];
+    shopMultiSelect.setValues(shopIds);
     if (quantityParam && Number(quantityParam) > 0) {
         quantityInput.value = quantityParam;
     } else {
@@ -341,7 +336,7 @@ function recalculate({ syncUrl = true } = {}) {
     }
 
     const targetItemId = itemPicker.getValue();
-    const selectedShopId = shopSelect ? shopSelect.value : '';
+    const selectedShopIds = shopMultiSelect.getValues();
     const limitOptions = {
         ignoreDaily: Boolean(ignoreDailyCheckbox?.checked),
         ignoreWeekly: Boolean(ignoreWeeklyCheckbox?.checked),
@@ -363,23 +358,34 @@ function recalculate({ syncUrl = true } = {}) {
     const { items, packages = {}, exchange_shops: exchangeShops = {} } = data;
     const locale = getLocale();
 
+    // Packages tied to an event (e.g. "blades_out_select_pack") only exist while that event's
+    // exchange shop is running, so they're gated by the same "Active Exchange Shop" selection:
+    // an event is active exactly when one of the currently selected shops carries its
+    // event_id (shops without an event_id contribute nothing). No shop selected activates no
+    // event at all.
+    const activeEventIds = new Set();
+    for (const shopId of selectedShopIds) {
+        const eventId = exchangeShops[shopId]?.event_id;
+        if (eventId) {
+            activeEventIds.add(eventId);
+        }
+    }
+
     // The market always sees every package/exchange shop, since the "Active Exchange Shop"
     // selection only restricts which shop may sell the target item *directly*; the currency
     // needed to pay for any exchange offer (target item or otherwise) can still come from
     // any shop. A fresh market is created per recalculation so purchase-limit capacities
     // start out unconsumed.
-    const market = createMarket(packages, exchangeShops, items, limitOptions, {}, locale);
+    const market = createMarket(packages, exchangeShops, items, limitOptions, { activeEventIds }, locale);
 
-    const packageSources = collectPackageSources(targetItemId, packages, items, limitOptions, locale);
-    let activeShops = {};
-    let shopFilter = new Set();
-    if (selectedShopId === 'any') {
-        activeShops = exchangeShops;
-        shopFilter = null;
-    } else if (selectedShopId && exchangeShops[selectedShopId]) {
-        activeShops = { [selectedShopId]: exchangeShops[selectedShopId] };
-        shopFilter = new Set([selectedShopId]);
+    const packageSources = collectPackageSources(targetItemId, packages, items, limitOptions, locale, activeEventIds);
+    const activeShops = {};
+    for (const shopId of selectedShopIds) {
+        if (exchangeShops[shopId]) {
+            activeShops[shopId] = exchangeShops[shopId];
+        }
     }
+    const shopFilter = new Set(selectedShopIds);
     const exchangeSources = collectExchangeSources(
         targetItemId,
         activeShops,
@@ -413,9 +419,7 @@ function recalculate({ syncUrl = true } = {}) {
 
 function handleReset() {
     itemPicker.reset();
-    if (shopSelect) {
-        shopSelect.value = '';
-    }
+    shopMultiSelect.reset();
     if (quantityInput) {
         quantityInput.value = '';
     }
@@ -455,24 +459,19 @@ async function init() {
     applyUrlParams();
 
     window.addEventListener('localechange', () => {
-        const selectedShop = shopSelect?.value;
+        const selectedShopIds = [...shopMultiSelect.getValues()];
         applyStaticTranslations();
         updateFooter();
-        // Re-affirms the currently selected item's display text in the new locale; the
-        // picker keeps its selection across a setItems() call, unlike a native <select>
-        // whose value resets when its <option>s are replaced (hence the shop capture/restore
-        // just below still being necessary).
+        // Re-affirms the currently selected item's display text in the new locale; both
+        // pickers keep their own selection state across a setItems()/setOptions() call, unlike
+        // a native <select> whose value resets when its <option>s are replaced (hence the
+        // shop capture/restore just below still being necessary).
         itemPicker.setItems(data.items || {});
         populateShopSelect(data.exchange_shops || {});
-        if (shopSelect && selectedShop) {
-            shopSelect.value = selectedShop;
-        }
+        shopMultiSelect.setValues(selectedShopIds);
         recalculate({ syncUrl: false });
     });
 
-    if (shopSelect) {
-        shopSelect.addEventListener('change', () => recalculate());
-    }
     if (quantityInput) {
         quantityInput.addEventListener('input', () => recalculate());
         quantityInput.addEventListener('change', () => recalculate());

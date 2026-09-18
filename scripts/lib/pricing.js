@@ -153,6 +153,12 @@ function normalizeLimitOptions(limitOptions) {
  */
 function createMarket(packages, exchangeShops, items, limitOptions = {}, options = {}) {
     const maxIterations = options.maxIterations || DEFAULT_MAX_PURCHASE_ITERATIONS;
+    // A package tied to an event (e.g. "blades_out_select_pack") is only actually purchasable
+    // while that event's exchange shop is running. `null` (the default) means "no restriction"
+    // (every event considered active, matching the "any shop" selection); a Set restricts
+    // event-tied packages to those whose event_id is in it (an empty Set disables every
+    // event-tied package, matching "no active exchange shop" selected).
+    const activeEventIds = options.activeEventIds ?? null;
     const normalizedLimitOptions = normalizeLimitOptions(limitOptions);
     const ledger = new Map();
 
@@ -167,13 +173,17 @@ function createMarket(packages, exchangeShops, items, limitOptions = {}, options
     function packageCapacity(pkgId, pkg) {
         const key = packageLedgerKey(pkgId);
         if (!ledger.has(key)) {
-            const { capacity } = effectiveCapacity(
-                pkg.purchase_limit,
-                pkg.limit_type,
-                Boolean(pkg.event_id),
-                normalizedLimitOptions,
-            );
-            ledger.set(key, capacity);
+            if (pkg.event_id && activeEventIds && !activeEventIds.has(pkg.event_id)) {
+                ledger.set(key, 0);
+            } else {
+                const { capacity } = effectiveCapacity(
+                    pkg.purchase_limit,
+                    pkg.limit_type,
+                    Boolean(pkg.event_id),
+                    normalizedLimitOptions,
+                );
+                ledger.set(key, capacity);
+            }
         }
         return ledger.get(key);
     }
@@ -470,10 +480,13 @@ function effectiveCapacity(baseLimit, limitType, eventTied, limitOptions) {
     return { capacity: baseLimit, ignored: false };
 }
 
-function collectPackageSources(targetId, packages, items, limitOptions = {}) {
+function collectPackageSources(targetId, packages, items, limitOptions = {}, activeEventIds = null) {
     const normalizedLimitOptions = normalizeLimitOptions(limitOptions);
     const sources = [];
     for (const [pkgId, pkg] of Object.entries(packages)) {
+        if (pkg.event_id && activeEventIds && !activeEventIds.has(pkg.event_id)) {
+            continue;
+        }
         const y = packageYield(pkg, targetId, items);
         if (y <= 0) {
             continue;

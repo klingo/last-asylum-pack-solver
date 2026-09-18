@@ -16,8 +16,6 @@
         "details": "Details",
         "hide": "Hide",
         "dash": "-",
-        "none": "None",
-        "any": "Any",
         "anyDay": "any day",
         "loadError": "Failed to load data: {message}"
     },
@@ -74,6 +72,8 @@
         "itemSearchPlaceholder": "Search items…",
         "itemSearchClear": "Clear item search",
         "shopLabel": "Active Exchange Shop",
+        "shopNoneSelected": "None selected",
+        "shopSelectedCount": "{count} selected",
         "quantityLabel": "Target quantity",
         "quantityPlaceholder": "e.g. 50",
         "daysLabel": "Over how many days",

@@ -298,6 +298,71 @@ button:disabled {
     flex-shrink: 0;
 }
 
+.multi-select {
+    position: relative;
+}
+
+.multi-select__button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    background: var(--panel-alt);
+    border-color: var(--border);
+    color: var(--text);
+    font-weight: normal;
+}
+
+.multi-select__button:hover {
+    background: var(--panel-alt);
+    border-color: var(--border);
+}
+
+.multi-select__button:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.multi-select__panel {
+    position: absolute;
+    z-index: 20;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    max-height: 320px;
+    overflow-y: auto;
+    background: var(--panel-alt);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.multi-select__option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    cursor: pointer;
+}
+
+.multi-select__option:hover {
+    background: var(--panel);
+}
+
+.multi-select__option input[type='checkbox'] {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    padding: 0;
+    border: none;
+    background: none;
+    accent-color: var(--accent);
+    cursor: pointer;
+}
+
 .btn-secondary {
     background: var(--panel-alt);
     border-color: var(--border);

@@ -16,8 +16,6 @@
         "details": "",
         "hide": "",
         "dash": "",
-        "none": "",
-        "any": "",
         "anyDay": "",
         "loadError": ""
     },
@@ -74,6 +72,8 @@
         "itemSearchPlaceholder": "",
         "itemSearchClear": "",
         "shopLabel": "",
+        "shopNoneSelected": "",
+        "shopSelectedCount": "",
         "quantityLabel": "",
         "quantityPlaceholder": "",
         "daysLabel": "",

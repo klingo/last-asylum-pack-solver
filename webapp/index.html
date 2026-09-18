@@ -35,10 +35,23 @@
                             </div>
                         </div>
                         <div class="field">
-                            <label for="shop-select" data-i18n="analyze.shopLabel"></label>
-                            <select id="shop-select">
-                                <option value="" data-i18n="common.none"></option>
-                            </select>
+                            <label for="shop-select-button" data-i18n="analyze.shopLabel"></label>
+                            <div class="multi-select">
+                                <button
+                                    type="button"
+                                    id="shop-select-button"
+                                    class="multi-select__button"
+                                    aria-haspopup="listbox"
+                                    aria-expanded="false"
+                                ></button>
+                                <div
+                                    class="multi-select__panel"
+                                    id="shop-select-panel"
+                                    role="listbox"
+                                    aria-multiselectable="true"
+                                    hidden
+                                ></div>
+                            </div>
                         </div>
                         <div class="field field--narrow">
                             <label for="quantity-input" data-i18n="analyze.quantityLabel"></label>
