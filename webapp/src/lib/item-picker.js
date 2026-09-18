@@ -23,6 +23,40 @@ function createItemPicker({ input, panel, clearButton, onChange }) {
         clearButton.setAttribute('aria-label', t('analyze.itemSearchClear'));
     }
 
+    // The wrapper `.item-combobox` (input + clear button + panel all live inside it) also
+    // hosts the selected item's icon, absolutely positioned over the input's left padding.
+    const container = input.parentElement;
+
+    // Shows the selected item's icon inside the input, to the left of its text — but only once
+    // the image actually loads (most items have no real image yet, see lib/images.js), so no
+    // icon slot/padding is reserved for items that don't have one.
+    const selectedIcon = document.createElement('img');
+    selectedIcon.className = 'item-combobox__selected-icon';
+    selectedIcon.alt = '';
+    // Not `loading="lazy"`: it starts out `hidden` (display: none) until we know whether the
+    // image exists, and a lazy-loaded image never loads at all while it has no layout box (the
+    // browser only starts fetching once it's near the viewport, which a hidden element never is).
+    selectedIcon.hidden = true;
+    selectedIcon.addEventListener('load', () => {
+        selectedIcon.hidden = false;
+        container.classList.add('item-combobox--has-icon');
+    });
+    selectedIcon.addEventListener('error', () => {
+        selectedIcon.hidden = true;
+        container.classList.remove('item-combobox--has-icon');
+    });
+    container.insertBefore(selectedIcon, input);
+
+    function updateSelectedIcon() {
+        selectedIcon.hidden = true;
+        container.classList.remove('item-combobox--has-icon');
+        if (selectedId) {
+            selectedIcon.src = getItemImageUrl(selectedId);
+        } else {
+            selectedIcon.removeAttribute('src');
+        }
+    }
+
     function allItemsById() {
         const map = new Map();
         for (const group of groups) {
@@ -147,6 +181,7 @@ function createItemPicker({ input, panel, clearButton, onChange }) {
     function applySelection(itemId) {
         selectedId = allItemsById().has(itemId) ? itemId : '';
         setInputValue(selectedName());
+        updateSelectedIcon();
     }
 
     function selectItem(itemId) {
@@ -221,14 +256,12 @@ function createItemPicker({ input, panel, clearButton, onChange }) {
         });
     }
 
-    // The wrapper `.item-combobox` (input + clear button + panel all live inside it) is used
-    // for the outside-click check below rather than checking each child individually: the
-    // clear button can go `hidden` mid-click (its own handler empties the field synchronously
-    // on mousedown), which shifts the later "click" event's target to the wrapper itself as
-    // the button disappears from hit-testing — `container.contains(event.target)` still holds
-    // true in that case (a node contains itself), so the panel doesn't get closed as "outside".
-    const container = input.parentElement;
-
+    // `container` (declared above, alongside the selected-icon element) is used for the
+    // outside-click check below rather than checking each child individually: the clear button
+    // can go `hidden` mid-click (its own handler empties the field synchronously on mousedown),
+    // which shifts the later "click" event's target to the wrapper itself as the button
+    // disappears from hit-testing — `container.contains(event.target)` still holds true in
+    // that case (a node contains itself), so the panel doesn't get closed as "outside".
     document.addEventListener('click', (event) => {
         if (!isOpen()) {
             return;
@@ -262,6 +295,7 @@ function createItemPicker({ input, panel, clearButton, onChange }) {
                 selectedId = '';
             }
             setInputValue(selectedName());
+            updateSelectedIcon();
             if (isOpen()) {
                 renderPanel();
             }
@@ -273,8 +307,7 @@ function createItemPicker({ input, panel, clearButton, onChange }) {
             applySelection(itemId);
         },
         reset() {
-            selectedId = '';
-            setInputValue('');
+            applySelection('');
         },
         hasItem(itemId) {
             return allItemsById().has(itemId);

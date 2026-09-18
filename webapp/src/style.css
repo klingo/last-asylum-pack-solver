@@ -269,6 +269,26 @@ button:disabled {
     padding-right: 28px;
 }
 
+.item-combobox__selected-icon {
+    position: absolute;
+    top: 50%;
+    left: 6px;
+    transform: translateY(-50%);
+    width: 22px;
+    height: 22px;
+    border-radius: 4px;
+    object-fit: cover;
+    pointer-events: none;
+}
+
+.item-combobox__selected-icon[hidden] {
+    display: none;
+}
+
+.item-combobox--has-icon .item-combobox__input {
+    padding-left: 34px;
+}
+
 .item-combobox__clear {
     position: absolute;
     top: 50%;
