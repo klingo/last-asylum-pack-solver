@@ -1,3 +1,0 @@
-Item images go here, named "<item_id>.png" to match the ids in data/pack_data.json.
-This folder is intentionally empty for now; the webapp already falls back to a
-placeholder icon for any item without a matching image (see src/lib/images.js).
