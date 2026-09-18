@@ -331,7 +331,7 @@ function buildRanking(data, locale = 'en', options = {}) {
         metadata: {
             generated_at: new Date().toISOString(),
             source_last_updated: data.metadata?.last_updated || null,
-            currency: data.metadata?.currency || 'Banknotes',
+            currency: data.metadata?.currency || t('currency.banknotes'),
             entry_count: rankings.length,
             note: t('rankings.note'),
         },

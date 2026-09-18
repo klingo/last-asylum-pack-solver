@@ -17,7 +17,9 @@
         "hide": "Hide",
         "dash": "-",
         "anyDay": "any day",
-        "loadError": "Failed to load data: {message}"
+        "tierSuffix": "(Tier {tier})",
+        "loadError": "Failed to load data: {message}",
+        "fetchError": "Failed to load {file}: {status} {statusText}"
     },
     "weekday": {
         "monday": "Monday",
@@ -48,7 +50,8 @@
         "Shop Event": "Shop Event",
         "Hero Exclusive": "Hero Exclusive",
         "Event Exchange": "Event Exchange",
-        "Exchange": "Exchange"
+        "Exchange": "Exchange",
+        "Other": "Other"
     },
     "sourceType": {
         "package": "Package",

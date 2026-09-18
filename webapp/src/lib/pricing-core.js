@@ -3,17 +3,17 @@
  * Kept free of any Node.js dependency (no "fs"/"path") so it can run in the webapp.
  * If the logic in scripts/lib/pricing.js changes, mirror the change here too.
  */
-import { localizedName } from './i18n';
+import { localizedName, t } from './i18n';
 import { formatThousands } from './format';
 
 /**
- * A package's display name, with " (Tier N)" appended whenever it declares a `tier` (e.g.
- * "Blades Out Deluxe Pack (Tier 2)"). Applied even for names that already hint at a tier via
- * their own "(T1)"/"(T2)"-style suffix, since `tier` is the authoritative field.
+ * A package's display name, with a localized "(Tier N)" suffix appended whenever it declares
+ * a `tier` (e.g. "Blades Out Deluxe Pack (Tier 2)"). Applied even for names that already hint
+ * at a tier via their own "(T1)"/"(T2)"-style suffix, since `tier` is the authoritative field.
  */
 function packageDisplayName(pkg, locale = 'en') {
     const name = localizedName(pkg.name, locale);
-    return pkg.tier != null ? `${name} (Tier ${pkg.tier})` : name;
+    return pkg.tier != null ? `${name} ${t('common.tierSuffix', { tier: pkg.tier })}` : name;
 }
 
 function resolveYieldFromContains(containsObj, targetId, visited, items) {

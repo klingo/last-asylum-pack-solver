@@ -17,7 +17,9 @@
         "hide": "",
         "dash": "",
         "anyDay": "",
-        "loadError": ""
+        "tierSuffix": "",
+        "loadError": "",
+        "fetchError": ""
     },
     "weekday": {
         "monday": "",
@@ -48,7 +50,8 @@
         "Shop Event": "",
         "Hero Exclusive": "",
         "Event Exchange": "",
-        "Exchange": ""
+        "Exchange": "",
+        "Other": ""
     },
     "sourceType": {
         "package": "",
