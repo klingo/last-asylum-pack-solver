@@ -2,7 +2,7 @@
     "metadata": {
         "game": "Last Asylum: Plague",
         "currency": "Banknotes",
-        "last_updated": "2026-09-18"
+        "last_updated": "2026-09-19"
     },
     "items": {
         "antitoxin": {
@@ -2351,6 +2351,29 @@
                 "herb_level_supply_ur": 4,
                 "vip_points": 1000,
                 "lv3_alliance_chest": 1
+            }
+        },
+        "resource_special_pack_t3": {
+            "name": {
+                "en": "Resource Special Pack",
+                "de": ""
+            },
+            "category": "Weekly Rotation",
+            "price": 1999,
+            "deal_percentage": 4140,
+            "purchase_limit": 1,
+            "limit_type": "daily",
+            "available_days": ["wednesday", "friday", "saturday"],
+            "tier": 3,
+            "requires": "resource_special_pack_t2",
+            "contains": {
+                "diamonds": 2000,
+                "resource_supply_ur": 20,
+                "timber_level_supply_ur": 8,
+                "grain_level_supply_ur": 8,
+                "herb_level_supply_ur": 8,
+                "vip_points": 2000,
+                "lv4_alliance_chest": 1
             }
         },
         "speedup_special_pack_t1": {
